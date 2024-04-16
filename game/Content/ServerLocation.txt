@@ -1,0 +1,12 @@
+{
+	"debug":
+	{
+		"location": "http://localhost:3000",
+		"path": ""
+	},
+	"release":
+	{
+		"location": "[...]",
+		"path": "/api/socket.io"
+	}
+}
