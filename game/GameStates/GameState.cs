@@ -6,7 +6,8 @@ namespace Blok3Game.GameStates
     {
         public GameState() : base()
         {           
-            //TODO: Start with your game here.
+            Player player = new(300, 300, 5);
+            Add(player);
         }        
     }
 }
