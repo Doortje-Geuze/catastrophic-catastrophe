@@ -8,10 +8,11 @@ namespace Blok3Game.GameObjects
     {
         private int EnemyHp;
         private int EnemySpeed;
-        public RedEnemies(int hp, int speed, string assetName = "Images/Enemies/standaard enemy") : base(hp, speed, assetName)
+        public RedEnemies(int hp, int speed, Vector2 position, string assetName = "Images/Enemies/standaard enemy") : base(hp, speed, position, assetName)
         {
             EnemyHp = hp;
             EnemySpeed = speed;
+            Position = position;
         }
     }
 }
