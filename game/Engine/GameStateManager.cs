@@ -6,6 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class GameStateManager : IGameLoopObject
 {
+    public const string MAIN_MENU_STATE = "Main Menu";
+    public const string GAME_STATE = "Game";
+    public const string GO_TO_PREVIOUS_SCREEN = "GO TO PREVIOUS SCREEN";
+
     private readonly Stack<string> previousGameStates = new Stack<string>();
     private string currentStateName = string.Empty;
     Dictionary<string, IGameLoopObject> gameStates;
@@ -27,6 +31,18 @@ public class GameStateManager : IGameLoopObject
         return gameStates[name];
     }
 
+    public void SwitchTo(string name)
+    {
+        if (name == GO_TO_PREVIOUS_SCREEN)
+        {
+            GoToPreviousScreen();
+        }
+        else
+        {
+            SwitchToState(name);
+        }
+    }
+    
     public void SwitchToState(string name, bool addStateToStack = true)
     {
         if (gameStates.ContainsKey(name))

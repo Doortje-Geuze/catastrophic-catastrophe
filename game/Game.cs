@@ -16,8 +16,9 @@ namespace BaseProject
 			
 			InitializeSocketClient();
 
+            GameStateManager.AddGameState("MAIN_MENU_STATE", new MainMenuState());
             GameStateManager.AddGameState("GAME_STATE", new GameState());
-            GameStateManager.SwitchToState("GAME_STATE");
+            GameStateManager.SwitchToState("MAIN_MENU_STATE");
         }
 
         private void InitializeSocketClient()
