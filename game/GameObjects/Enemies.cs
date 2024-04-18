@@ -4,14 +4,13 @@ using Microsoft.Xna.Framework;
 
 
 namespace Blok3Game.GameObjects
-{   
+{
 
     public class Enemies : SpriteGameObject
     {
+        public Enemies(int hp, int speed, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName, layer, id, sheetIndex)
+        {
 
-            public Enemies(string assetName, int hp, int speed, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName, layer, id, sheetIndex)
-            {   
-
-            }
+        }
     }
 }
