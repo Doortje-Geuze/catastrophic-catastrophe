@@ -8,6 +8,8 @@ public class Bullet : GameObjectList
 
     protected int y;
 
+    protected bool active;
+
     public Bullet (int x, int y): base()
     {
         bullet = new SpriteGameObject("Images/Characters/White-circle")
@@ -16,3 +18,4 @@ public class Bullet : GameObjectList
         };
     }
 }
+

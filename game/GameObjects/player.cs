@@ -7,8 +7,8 @@ public class Player : GameObjectList
 {
     protected SpriteGameObject player;
     protected int HP;
-    protected int X;
-    protected int Y;
+    public int x;
+    public int y;
 
     public Player(int X, int Y, int Health) : base()
     {
