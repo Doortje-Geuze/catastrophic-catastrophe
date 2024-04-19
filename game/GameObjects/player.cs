@@ -1,11 +1,8 @@
 using System;
-using System.Drawing;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 public class Player : GameObjectList
 {
@@ -26,7 +23,7 @@ public class Player : GameObjectList
         //initialises player with a sprite and position
         player = new SpriteGameObject("Images/Characters/circle", 1, "")
         {
-            Position = new Microsoft.Xna.Framework.Vector2(X, Y)
+            Position = new Vector2(X, Y)
         };
         Add(player);
     }
@@ -53,7 +50,7 @@ public class Player : GameObjectList
     private void PlayerDash()
     {
         MoveSpeed = 15;
-        player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
+        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
         return; 
@@ -82,22 +79,22 @@ public class Player : GameObjectList
         if (inputHelper.IsKeyDown(Keys.W) && player.Position.Y > 0)
         {
             Direction = new Vector2(0, -1);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
+            player.Position = new Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.A) && player.Position.X > 0)
         {
             Direction = new Vector2(-1, 0);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
+            player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
         }
         if (inputHelper.IsKeyDown(Keys.S) && player.Position.Y < 600 - Size)
         {
             Direction = new Vector2(0, 1);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
+            player.Position = new Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.D) && player.Position.X < 800 - Size)
         {
             Direction = new Vector2(1, 0);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
+            player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
         }
     }
 }
