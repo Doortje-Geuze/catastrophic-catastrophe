@@ -12,7 +12,6 @@ public class Player : GameObjectList
     protected int X;
     protected int Y;
     private int MoveSpeed = 5;
-    private int DistanceFromBorder = 20;
 
     public Player(int X, int Y, int Health) : base()
     {
