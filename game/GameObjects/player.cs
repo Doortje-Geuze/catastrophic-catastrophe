@@ -1,4 +1,7 @@
+using System;
 using Blok3Game.Engine.GameObjects;
+using Blok3Game.Engine.Helpers;
+using Microsoft.Xna.Framework.Input;
 
 public class Player : GameObjectList
 {
@@ -14,5 +17,26 @@ public class Player : GameObjectList
             Position = new Microsoft.Xna.Framework.Vector2(X, Y)
         };
         Add(player);
+    }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        base.HandleInput(inputHelper);
+        if (inputHelper.IsKeyDown(Keys.W))
+        {
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y - 5);
+        }
+        if (inputHelper.IsKeyDown(Keys.A))
+        {
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X - 5, Position.Y);
+        }
+        if (inputHelper.IsKeyDown(Keys.S))
+        {
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + 5);
+        }
+        if (inputHelper.IsKeyDown(Keys.D))
+        {
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X + 5, Position.Y);
+        }
     }
 }
