@@ -65,6 +65,11 @@ namespace Blok3Game.Engine.Helpers
 			return currentKeyboardState.IsKeyDown(k);
 		}
 
+		public static string KeyIsDown(Keys k)
+		{
+			return $"{k}";
+		}
+
 		public bool AnyKeyPressed => 
 			currentKeyboardState.GetPressedKeys().Length > 0 && 
 			previousKeyboardState.GetPressedKeys().Length == 0;

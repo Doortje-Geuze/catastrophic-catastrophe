@@ -1,4 +1,8 @@
+using System;
+using System.Numerics;
 using Blok3Game.Engine.GameObjects;
+using Blok3Game.Engine.Helpers;
+using Microsoft.Xna.Framework.Input;
 
 public class Player : GameObjectList
 {
@@ -11,8 +15,26 @@ public class Player : GameObjectList
     {
         player = new SpriteGameObject("Images/Characters/circle", 1, "")
         {
-            Position = new Microsoft.Xna.Framework.Vector2(X, Y)
+            Position = new Vector2(X, Y)
         };
         Add(player);
+    }
+
+    public void CheckPlayerMovement()
+    {
+        CheckForKeys();
+
+    }
+
+    private void CheckForKeys()
+    {
+        string currentKeyDown;
+        currentKeyDown = InputHelper.KeyIsDown(inputHelper.CurrentKeyboardState);
+        Console.WriteLine(currentKeyDown);
+    }
+
+    public void InputHandler(InputHelper inputHelper)
+    {
+        
     }
 }
