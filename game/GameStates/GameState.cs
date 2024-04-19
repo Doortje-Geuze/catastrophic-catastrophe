@@ -8,7 +8,6 @@ namespace Blok3Game.GameStates
         {           
             Player player = new(300, 300, 5);
             Add(player);
-            player.CheckPlayerMovement();
         }        
     }
 }
