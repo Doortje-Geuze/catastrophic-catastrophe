@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using System.Collections.Generic;
 using System.Numerics;
@@ -91,12 +91,14 @@ namespace Blok3Game.GameStates
             redEnemiesList.Add(redEnemy);
             Add(redEnemy);
             }
-        }
 
-        {           
             Player player = new(0, 0, 5);
             Add(player);
-        }        
+        }
+
+                
+            
+              
 
     }
     
