@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+
 using System.Collections.Generic;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
@@ -6,6 +7,9 @@ using Blok3Game.Engine.GameObjects;
 using Blok3Game.GameObjects;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
+
+
+
 
 namespace Blok3Game.GameStates
 {
@@ -45,6 +49,7 @@ namespace Blok3Game.GameStates
             }   
         }
         public GameState() : base()
+
         {
 
             //Aanmaken van een nieuwe lijst
@@ -87,6 +92,12 @@ namespace Blok3Game.GameStates
             Add(redEnemy);
             }
         }
+
+        {           
+            Player player = new(0, 0, 5);
+            Add(player);
+        }        
+
     }
     
 }
