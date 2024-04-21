@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class GameStateManager : IGameLoopObject
 {
     public const string MAIN_MENU_STATE = "Main Menu";
+    public const string SETTINGS_STATE = "Settings";
     public const string GAME_STATE = "Game";
     public const string GO_TO_PREVIOUS_SCREEN = "GO TO PREVIOUS SCREEN";
 
@@ -42,7 +43,7 @@ public class GameStateManager : IGameLoopObject
             SwitchToState(name);
         }
     }
-    
+
     public void SwitchToState(string name, bool addStateToStack = true)
     {
         if (gameStates.ContainsKey(name))

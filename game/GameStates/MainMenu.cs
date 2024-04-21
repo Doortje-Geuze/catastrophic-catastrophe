@@ -10,7 +10,6 @@ namespace Blok3Game.GameStates
 {
     public class MainMenuState : MenuItem
     {
-        private SpriteGameObject mainTitle;
         public MainMenuState() : base()
         {
             CreateButtons();
