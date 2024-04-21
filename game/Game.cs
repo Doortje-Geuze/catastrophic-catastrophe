@@ -6,17 +6,18 @@ using Microsoft.Xna.Framework;
 namespace BaseProject
 {
     public class Game : GameEnvironment
-    {      
+    {
         protected override void LoadContent()
         {
             base.LoadContent();
-			
+
             screen = new Point(800, 600);
             ApplyResolutionSettings();
-			
-			InitializeSocketClient();
+
+            InitializeSocketClient();
 
             GameStateManager.AddGameState("MAIN_MENU_STATE", new MainMenuState());
+            GameStateManager.AddGameState("SETTINGS_MENU_STATE", new SettingsMenuState());
             GameStateManager.AddGameState("GAME_STATE", new GameState());
             GameStateManager.SwitchToState("MAIN_MENU_STATE");
         }
@@ -26,11 +27,11 @@ namespace BaseProject
             SocketClient.Instance.Initialize();
         }
 
-		protected override void OnExiting(object sender, EventArgs args)
-		{
-			base.OnExiting(sender, args);
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
 
-			//do something when the game exits
-		}
-	}
+            //do something when the game exits
+        }
+    }
 }

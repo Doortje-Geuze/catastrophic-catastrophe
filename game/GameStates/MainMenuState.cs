@@ -1,10 +1,5 @@
-using System;
-using System.Diagnostics;
-using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
 
 namespace Blok3Game.GameStates
 {
@@ -29,8 +24,8 @@ namespace Blok3Game.GameStates
         private void CreateButtons()
         {
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "START GAME", OnButtonCreateClicked);
-            // CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "SETTINGS", OnButtonSettingsClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "SETTINGS", OnButtonSettingsClicked);
+            // CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
         }
 
         private void ButtonNotImplimented(UIElement element)
@@ -48,7 +43,7 @@ namespace Blok3Game.GameStates
         private void OnButtonSettingsClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-            // nextScreenName = GameStateManager.SETTINGS_MENU_STATE;
+            nextScreenName = "SETTINGS_MENU_STATE";
             ButtonClicked();
         }
 

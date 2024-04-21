@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class GameStateManager : IGameLoopObject
 {
     public const string MAIN_MENU_STATE = "Main Menu";
-    public const string SETTINGS_STATE = "Settings";
+    public const string SETTINGS_MENU_STATE = "Settings Menu";
     public const string GAME_STATE = "Game";
     public const string GO_TO_PREVIOUS_SCREEN = "GO TO PREVIOUS SCREEN";
 
