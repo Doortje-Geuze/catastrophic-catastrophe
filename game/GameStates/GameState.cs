@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using System.Collections.Generic;
 using System.Numerics;
@@ -18,12 +18,14 @@ namespace Blok3Game.GameStates
         //Lijst met alle enemies
         private List<RedEnemies> redEnemiesList;
 
+        public readonly Player player;
 
         public override void Update(GameTime gameTime)
         {
             //Loop door de lijst met enemies
             foreach (var redEnemy in redEnemiesList)
             {
+                
 
                 //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
                 if(redEnemy.XPosition >= 375)
@@ -47,6 +49,7 @@ namespace Blok3Game.GameStates
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
             }   
+            
         }
         public GameState() : base()
 
@@ -91,13 +94,13 @@ namespace Blok3Game.GameStates
             redEnemiesList.Add(redEnemy);
             Add(redEnemy);
             }
-        }
 
-        {           
+            
             Player player = new(0, 0, 5);
             Add(player);
-        }        
-
+            Console.WriteLine(player.Position.X + player.Position.Y);
+        }
+        
     }
     
 }
