@@ -15,6 +15,7 @@ public class Player : GameObjectList
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
+    public new Vector2 Position = new();
 
     public Player(int X, int Y, int Health) : base()
     {
@@ -39,6 +40,11 @@ public class Player : GameObjectList
         }
         if (IsDashing)
         {
+            if (player.Position.X is <= 0 or >= 613 || player.Position.Y is <= 0 or >= 413) 
+            {
+                ResetDashValue();
+                return;
+            }
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
@@ -47,10 +53,10 @@ public class Player : GameObjectList
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
-        MoveSpeed = 25;
-        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
+        MoveSpeed = 25;
+        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
 
@@ -63,9 +69,7 @@ public class Player : GameObjectList
         }
         if (PlayerDashTimer > 3)
         {
-            IsDashing = false;
-            PlayerDashTimer = 0;
-            MoveSpeed = 5;
+            ResetDashValue();
             return;
         }
     }
@@ -94,5 +98,12 @@ public class Player : GameObjectList
             Direction = new Vector2(1, 0);
             player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
         }
+    }
+
+    private void ResetDashValue()
+    {
+        IsDashing = false;
+        PlayerDashTimer = 0;
+        MoveSpeed = 5;
     }
 }
