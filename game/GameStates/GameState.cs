@@ -58,7 +58,7 @@ namespace Blok3Game.GameStates
                 Add(redEnemy);
             }
 
-            Player player = new Player(5, new Microsoft.Xna.Framework.Vector2(50, 50));
+            player = new Player(5, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
         }
 
@@ -89,6 +89,7 @@ namespace Blok3Game.GameStates
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
             }
+            Debug.WriteLine(player.Position.X);
         }
     }
 }
