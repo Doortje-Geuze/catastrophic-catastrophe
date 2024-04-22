@@ -12,15 +12,14 @@ public class Player : GameObjectList
     //all variables that a player needs
     protected SpriteGameObject player;
     protected int HP;
-    protected int X;
-    protected int Y;
     protected int Size = 187;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new Vector2();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-
+    public bool IsShooting = false;
+    public int playerBulletCooldown = 2;
     public Player(int X, int Y, int Health) : base()
     {
         //initialises player with a sprite and position
@@ -47,6 +46,16 @@ public class Player : GameObjectList
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
+          
+
+        if (inputHelper.MouseLeftButtonPressed)
+        {
+            IsShooting = true;
+        }
+        if (IsShooting)
+        {
+            PlayerShoot();
+        }
     }
 
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
@@ -58,7 +67,10 @@ public class Player : GameObjectList
         DashCooldown = 60;
         return; 
     }
-
+    private void PlayerShoot()
+    { 
+        PlayerBullet playerBullet = new ((int)player.Position.X, (int)player.Position.Y);
+    }
     //Reduces DashCooldown every frame, and also stops the player from dashing once the dash duration limit is met
     private void CheckPlayerDashDuration()
     {
