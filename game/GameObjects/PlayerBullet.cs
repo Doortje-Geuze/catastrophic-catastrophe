@@ -9,13 +9,12 @@ public class PlayerBullet : GameObjectList
 
     public int y;
 
-    public bool isActive = false;
 
     public int playerBulletCooldown = 2;
-    
+
     public Vector2 Direction;
 
-    public int MoveSpeed = 10;
+    public int BulletMoveSpeed = 10;
 
     public PlayerBullet (int x, int y): base()
     {
@@ -23,10 +22,11 @@ public class PlayerBullet : GameObjectList
         {
             Position = new Vector2(x, y)
         };
+        Add(playerBullet);
     }
     public void CheckBulletMovement()
     {
-        playerBullet.Position = new Vector2(playerBullet.Position.X, playerBullet.Position.Y + MoveSpeed);
+        playerBullet.Position = new Vector2(playerBullet.Position.X, playerBullet.Position.Y + BulletMoveSpeed);
     }
 }
 

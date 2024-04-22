@@ -14,7 +14,7 @@ namespace Blok3Game.GameStates
 
         }
 
-        /*public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             
@@ -25,6 +25,6 @@ namespace Blok3Game.GameStates
                     playerBullet.CheckBulletMovement();
                 }
             }
-        }*/
+        }
     }
 }

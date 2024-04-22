@@ -18,7 +18,7 @@ public class Player : GameObjectList
     private Vector2 Direction = new Vector2();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-    public bool IsShooting = false;
+    private bool IsShooting = false;
     public int playerBulletCooldown = 2;
     public Player(int X, int Y, int Health) : base()
     {
@@ -69,7 +69,10 @@ public class Player : GameObjectList
     }
     private void PlayerShoot()
     { 
-        PlayerBullet playerBullet = new ((int)player.Position.X, (int)player.Position.Y);
+        PlayerBullet playerBullet = new((int)player.Position.X, (int)player.Position.Y);
+        playerBulletCooldown = 2;
+        Add(playerBullet);
+
     }
     //Reduces DashCooldown every frame, and also stops the player from dashing once the dash duration limit is met
     private void CheckPlayerDashDuration()
