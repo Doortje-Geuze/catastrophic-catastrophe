@@ -18,7 +18,7 @@ public class PlayerBullet : GameObjectList
 
     public PlayerBullet (int x, int y): base()
     {
-        playerBullet = new SpriteGameObject("Images/Characters/White-circle")
+        playerBullet = new SpriteGameObject("Images/Characters/Witte-circle")
         {
             Position = new Vector2(x, y)
         };
