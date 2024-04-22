@@ -8,13 +8,11 @@ public class Player : GameObjectList
 {
     //all variables that a player needs
     protected SpriteGameObject player;
-    protected int HP;
-    protected int X;
-    protected int Y;
-    protected int Size = 187;
+    public int HP;
+    private readonly int Size = 187;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
-    private Vector2 Direction = new Vector2();
+    private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
 
