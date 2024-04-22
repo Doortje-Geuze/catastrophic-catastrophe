@@ -49,7 +49,7 @@ public class Player : GameObjectList
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
-        MoveSpeed = 15;
+        MoveSpeed = 25;
         player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
@@ -63,7 +63,7 @@ public class Player : GameObjectList
         {
             DashCooldown--;
         }
-        if (PlayerDashTimer > 5)
+        if (PlayerDashTimer > 3)
         {
             IsDashing = false;
             PlayerDashTimer = 0;
