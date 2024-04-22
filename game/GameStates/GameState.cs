@@ -17,40 +17,6 @@ namespace Blok3Game.GameStates
     {
         //Lijst met alle enemies
         private List<RedEnemies> redEnemiesList;
-
-        public readonly Player player;
-
-        public override void Update(GameTime gameTime)
-        {
-            //Loop door de lijst met enemies
-            foreach (var redEnemy in redEnemiesList)
-            {
-                
-
-                //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
-                if(redEnemy.XPosition >= 375)
-                {
-                    redEnemy.XPosition -= redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
-                }
-                if(redEnemy.XPosition <= 375)
-                {
-                    redEnemy.XPosition += redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
-                }
-                if(redEnemy.YPosition >= 225)
-                {
-                    redEnemy.YPosition -= redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
-                }
-                if(redEnemy.YPosition <= 225)
-                {
-                    redEnemy.YPosition += redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
-                }
-            }   
-            
-        }
         public GameState() : base()
 
         {
@@ -100,7 +66,36 @@ namespace Blok3Game.GameStates
             Add(player);
             Console.WriteLine(player.Position.X + player.Position.Y);
         }
-        
+
+        public override void Update(GameTime gameTime)
+        {
+            //Loop door de lijst met enemies
+            foreach (var redEnemy in redEnemiesList)
+            {
+                //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
+                if(redEnemy.XPosition >= 375)
+                {
+                    redEnemy.XPosition -= redEnemy.EnemySpeed;
+                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                }
+                if(redEnemy.XPosition <= 375)
+                {
+                    redEnemy.XPosition += redEnemy.EnemySpeed;
+                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                }
+                if(redEnemy.YPosition >= 225)
+                {
+                    redEnemy.YPosition -= redEnemy.EnemySpeed;
+                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                }
+                if(redEnemy.YPosition <= 225)
+                {
+                    redEnemy.YPosition += redEnemy.EnemySpeed;
+                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                }
+            }   
+            
+        }
     }
     
 }

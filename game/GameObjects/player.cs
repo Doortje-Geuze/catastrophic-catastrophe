@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 public class Player : GameObjectList
 {
     //all variables that a player needs
-    protected SpriteGameObject player;
+    private SpriteGameObject player;
     public int HP;
     private readonly int Size = 187;
     private int MoveSpeed = 5;
@@ -15,7 +15,6 @@ public class Player : GameObjectList
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-    public new Vector2 Position = new();
 
     public Player(int X, int Y, int Health) : base()
     {
@@ -29,7 +28,6 @@ public class Player : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        Console.WriteLine(PlayerDashTimer);
         base.HandleInput(inputHelper);
         CheckPlayerDashDuration();
 
