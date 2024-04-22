@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.Input;
 public class Player : GameObjectList
 {
     //all variables that a player needs
-    protected SpriteGameObject player;
+    public SpriteGameObject player;
     protected int HP;
-    protected int X;
-    protected int Y;
+    public int X;
+    public int Y;
     protected int Size = 187;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
