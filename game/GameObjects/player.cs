@@ -1,32 +1,28 @@
 using System;
-using System.Drawing;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 public class Player : GameObjectList
 {
     //all variables that a player needs
-    public SpriteGameObject player;
-    protected int HP;
-    public int X;
-    public int Y;
-    protected int Size = 187;
+    protected SpriteGameObject player;
+    public int HP;
+    private readonly int Size = 187;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
-    private Vector2 Direction = new Vector2();
+    private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
+    public new Vector2 Position = new();
 
     public Player(int X, int Y, int Health) : base()
     {
         //initialises player with a sprite and position
         player = new SpriteGameObject("Images/Characters/circle", 1, "")
         {
-            Position = new Microsoft.Xna.Framework.Vector2(X, Y)
+            Position = new Vector2(X, Y)
         };
         Add(player);
     }
@@ -44,6 +40,11 @@ public class Player : GameObjectList
         }
         if (IsDashing)
         {
+            if (player.Position.X is <= 0 or >= 613 || player.Position.Y is <= 0 or >= 413) 
+            {
+                ResetDashValue();
+                return;
+            }
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
@@ -52,10 +53,10 @@ public class Player : GameObjectList
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
-        MoveSpeed = 15;
-        player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
+        MoveSpeed = 25;
+        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
 
@@ -66,11 +67,9 @@ public class Player : GameObjectList
         {
             DashCooldown--;
         }
-        if (PlayerDashTimer > 5)
+        if (PlayerDashTimer > 3)
         {
-            IsDashing = false;
-            PlayerDashTimer = 0;
-            MoveSpeed = 5;
+            ResetDashValue();
             return;
         }
     }
@@ -82,22 +81,29 @@ public class Player : GameObjectList
         if (inputHelper.IsKeyDown(Keys.W) && player.Position.Y > 0)
         {
             Direction = new Vector2(0, -1);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
+            player.Position = new Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.A) && player.Position.X > 0)
         {
             Direction = new Vector2(-1, 0);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
+            player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
         }
         if (inputHelper.IsKeyDown(Keys.S) && player.Position.Y < 600 - Size)
         {
             Direction = new Vector2(0, 1);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
+            player.Position = new Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.D) && player.Position.X < 800 - Size)
         {
             Direction = new Vector2(1, 0);
-            player.Position = new Microsoft.Xna.Framework.Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
+            player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
         }
+    }
+
+    private void ResetDashValue()
+    {
+        IsDashing = false;
+        PlayerDashTimer = 0;
+        MoveSpeed = 5;
     }
 }
