@@ -78,6 +78,7 @@ public class GameStateManager : IGameLoopObject
         if (currentGameState != null)
         {
             currentGameState.Update(gameTime);
+            
         }
     }
 
