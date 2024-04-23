@@ -93,7 +93,7 @@ namespace Blok3Game.GameStates
                 if (player.HP <= 0)
                 {
                     Console.WriteLine("player is dedge");
-                    SwitchToState("LOSE_SCREEN_STATE");
+                    GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 }
             }
         }

@@ -1,6 +1,5 @@
 using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
-using Blok3Game.GameStates;
 
 namespace Blok3Game.GameStates
 {
