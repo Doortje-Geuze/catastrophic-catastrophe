@@ -1,7 +1,7 @@
 using System.Numerics;
 using Blok3Game.Engine.GameObjects;
 
-public class PlayerBullet : GameObjectList
+public class PlayerBullet : SpriteGameObject
 {
     protected SpriteGameObject playerBullet;
 
@@ -20,7 +20,7 @@ public class PlayerBullet : GameObjectList
     {
         playerBullet = new SpriteGameObject("Images/Characters/Witte-circle")
         {
-            Position = new Vector2(x, y)
+            Position = new Vector2(x, y), 
         };
         Add(playerBullet);
     }

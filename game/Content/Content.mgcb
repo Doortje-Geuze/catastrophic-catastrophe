@@ -69,7 +69,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/Characters/circle.png
 
-#begin Images/Characters/white-circle.png
+#begin Images/Characters/witte-circle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -79,7 +79,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Characters/white-circle.png
+/build:Images/Characters/witte-circle.png
 
 #begin Images/Tiles/tilemap@12x11.png
 /importer:TextureImporter

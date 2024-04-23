@@ -71,6 +71,7 @@ public class Player : GameObjectList
     { 
         PlayerBullet playerBullet = new((int)player.Position.X, (int)player.Position.Y);
         playerBulletCooldown = 2;
+    
         Add(playerBullet);
 
     }
