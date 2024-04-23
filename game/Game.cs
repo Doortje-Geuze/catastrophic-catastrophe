@@ -17,6 +17,7 @@ namespace BaseProject
 			InitializeSocketClient();
 
             GameStateManager.AddGameState("GAME_STATE", new GameState());
+            GameStateManager.AddGameState("LOSE_SCREEN_STATE", new LoseScreenState());
             GameStateManager.SwitchToState("GAME_STATE");
         }
 

@@ -1,11 +1,12 @@
 using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
+using Blok3Game.GameStates;
 
 namespace Blok3Game.GameStates
 {
-    public class MainMenuState : MenuItem
+    public class LoseScreenState : MenuItem
     {
-        public MainMenuState() : base()
+        public LoseScreenState() : base()
         {
             CreateButtons();
             // CreateTitle();
