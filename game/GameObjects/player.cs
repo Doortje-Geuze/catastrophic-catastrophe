@@ -1,4 +1,3 @@
-using System;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
