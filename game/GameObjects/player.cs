@@ -4,26 +4,33 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 
-public class Player : GameObjectList
+public class Player : SpriteGameObject
 {
     //all variables that a player needs
-    private SpriteGameObject player;
-    public int HP;
-    private readonly int Size = 187;
+    protected int HP;
+    public int X;
+    public int Y;
+    protected int Size = 187;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
 
-    public Player(int X, int Y, int Health) : base()
+    // public Player(int X, int Y, int Health) : base()
+    // {
+    //     //initialises player with a sprite and position
+    //     player = new SpriteGameObject("Images/Characters/circle", 1, "")
+    //     {
+    //         Position = new Microsoft.Xna.Framework.Vector2(X, Y)
+    //     };
+    //     Add(player);
+    // }
+
+    public Player(int PlayerHealth, Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
     {
-        //initialises player with a sprite and position
-        player = new SpriteGameObject("Images/Characters/circle", 1, "")
-        {
-            Position = new Vector2(X, Y)
-        };
-        Add(player);
+        HP = PlayerHealth;
+        Position = position;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -51,6 +58,8 @@ public class Player : GameObjectList
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
+        MoveSpeed = 15;
+        Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
         MoveSpeed = 25;
@@ -76,25 +85,25 @@ public class Player : GameObjectList
     private void CheckForMovementInputs(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        if (inputHelper.IsKeyDown(Keys.W) && player.Position.Y > 0)
+        if (inputHelper.IsKeyDown(Keys.W) && Position.Y > 0)
         {
             Direction = new Vector2(0, -1);
-            player.Position = new Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.A) && player.Position.X > 0)
+        if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
             Direction = new Vector2(-1, 0);
-            player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.S) && player.Position.Y < 600 - Size)
+        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Size)
         {
             Direction = new Vector2(0, 1);
-            player.Position = new Vector2(player.Position.X, player.Position.Y + MoveSpeed * Direction.Y);
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.D) && player.Position.X < 800 - Size)
+        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Size)
         {
             Direction = new Vector2(1, 0);
-            player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y);
+            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
     }
 
