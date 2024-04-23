@@ -1,11 +1,8 @@
 using System;
-using System.Drawing;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 public class Player : SpriteGameObject
 {
@@ -16,7 +13,7 @@ public class Player : SpriteGameObject
     protected int Size = 187;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
-    private Vector2 Direction = new Vector2();
+    private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
 
@@ -48,6 +45,11 @@ public class Player : SpriteGameObject
         }
         if (IsDashing)
         {
+            if (player.Position.X is <= 0 or >= 613 || player.Position.Y is <= 0 or >= 413) 
+            {
+                ResetDashValue();
+                return;
+            }
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
@@ -60,6 +62,8 @@ public class Player : SpriteGameObject
         Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
+        MoveSpeed = 25;
+        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
 
@@ -70,11 +74,9 @@ public class Player : SpriteGameObject
         {
             DashCooldown--;
         }
-        if (PlayerDashTimer > 5)
+        if (PlayerDashTimer > 3)
         {
-            IsDashing = false;
-            PlayerDashTimer = 0;
-            MoveSpeed = 5;
+            ResetDashValue();
             return;
         }
     }
@@ -103,5 +105,12 @@ public class Player : SpriteGameObject
             Direction = new Vector2(1, 0);
             Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
+    }
+
+    private void ResetDashValue()
+    {
+        IsDashing = false;
+        PlayerDashTimer = 0;
+        MoveSpeed = 5;
     }
 }
