@@ -70,6 +70,7 @@ public class Player : SpriteGameObject
         }
     }
 
+    //Reduces InvulnerabilityCooldown every frame
     private void CheckPlayerInvulnerabilityCooldown()
     {
         if (InvulnerabilityCooldown > 0)

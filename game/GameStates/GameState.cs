@@ -58,7 +58,8 @@ namespace Blok3Game.GameStates
                 Add(redEnemy);
             }
 
-            player = new Player(5, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
+            player = new Player(5, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
+                                (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
         }
 
@@ -92,7 +93,6 @@ namespace Blok3Game.GameStates
 
                 if (player.HP <= 0)
                 {
-                    Remove(player);
                     Console.WriteLine("player is dedge");
                 }
             }
