@@ -7,24 +7,13 @@ using Microsoft.Xna.Framework;
 public class Player : SpriteGameObject
 {
     //all variables that a player needs
-    private SpriteGameObject player;
     public int HP;
-    private readonly int Size = 187;
+    private readonly int Size = 90;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-
-    // public Player(int X, int Y, int Health) : base()
-    // {
-    //     //initialises player with a sprite and position
-    //     player = new SpriteGameObject("Images/Characters/circle", 1, "")
-    //     {
-    //         Position = new Microsoft.Xna.Framework.Vector2(X, Y)
-    //     };
-    //     Add(player);
-    // }
 
     public Player(int PlayerHealth, Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
     {
@@ -44,7 +33,7 @@ public class Player : SpriteGameObject
         }
         if (IsDashing)
         {
-            if (player.Position.X is <= 0 or >= 613 || player.Position.Y is <= 0 or >= 413) 
+            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510) 
             {
                 ResetDashValue();
                 return;
@@ -57,12 +46,11 @@ public class Player : SpriteGameObject
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
-        MoveSpeed = 15;
         Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = 25;
-        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
+        MoveSpeed = 15;
+        Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
 
