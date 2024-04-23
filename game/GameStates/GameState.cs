@@ -68,22 +68,22 @@ namespace Blok3Game.GameStates
             foreach (var redEnemy in redEnemiesList)
             {
                 //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
-                if (redEnemy.XPosition >= 375)
+                if (redEnemy.XPosition >= player.Position.X)
                 {
                     redEnemy.XPosition -= redEnemy.EnemySpeed;
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
-                if (redEnemy.XPosition <= 375)
+                if (redEnemy.XPosition <= player.Position.X)
                 {
                     redEnemy.XPosition += redEnemy.EnemySpeed;
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
-                if (redEnemy.YPosition >= 225)
+                if (redEnemy.YPosition >= player.Position.Y)
                 {
                     redEnemy.YPosition -= redEnemy.EnemySpeed;
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
-                if (redEnemy.YPosition <= 225)
+                if (redEnemy.YPosition <= player.Position.Y)
                 {
                     redEnemy.YPosition += redEnemy.EnemySpeed;
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);

@@ -7,7 +7,6 @@ public class Player : SpriteGameObject
 {
     //all variables that a player needs
     public int HP;
-    private readonly int Size = 90;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
@@ -81,12 +80,12 @@ public class Player : SpriteGameObject
             Direction = new Vector2(-1, 0);
             Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Size)
+        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Width)
         {
             Direction = new Vector2(0, 1);
             Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Size)
+        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
         {
             Direction = new Vector2(1, 0);
             Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
