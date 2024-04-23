@@ -3,7 +3,6 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Blok3Game.GameStates;
-using System;
 
 public class Player : SpriteGameObject
 {
@@ -86,22 +85,22 @@ public class Player : SpriteGameObject
         if (inputHelper.IsKeyDown(Keys.W) && Position.Y > 0)
         {
             Direction = new Vector2(0, -1);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
             Direction = new Vector2(-1, 0);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
         if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Width)
         {
             Direction = new Vector2(0, 1);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
         {
             Direction = new Vector2(1, 0);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
     }
 

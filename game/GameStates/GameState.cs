@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using Blok3Game.Engine.GameObjects;
+using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
@@ -13,11 +13,13 @@ namespace Blok3Game.GameStates
     {
         //Lijst met alle enemies
         private List<RedEnemies> redEnemiesList;
+        private List<PlayerBullet> playerBulletList;
         public Player player;
         public GameState() : base()
         {
             //Aanmaken van een nieuwe lijst
             redEnemiesList = new List<RedEnemies>();
+            playerBulletList = new List<PlayerBullet>();
 
             Random random = new Random();
 
@@ -52,7 +54,7 @@ namespace Blok3Game.GameStates
                 } while (XPosition >= 50 && XPosition <= 700 && YPosition >= 50 && YPosition <= 500);
 
                 //Aanmaken van de enemies
-                RedEnemies redEnemy = new RedEnemies(100, 0.5, new Microsoft.Xna.Framework.Vector2(XPosition, YPosition));
+                RedEnemies redEnemy = new RedEnemies(100, 0.5, new Vector2(XPosition, YPosition));
                 redEnemiesList.Add(redEnemy);
                 Add(redEnemy);
             }
@@ -64,7 +66,7 @@ namespace Blok3Game.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            Console.WriteLine($"{player.HP}");
+            base.Update(gameTime);
             //Loop door de lijst met enemies
             foreach (var redEnemy in redEnemiesList)
             {
@@ -72,25 +74,32 @@ namespace Blok3Game.GameStates
                 if (redEnemy.XPosition >= player.Position.X)
                 {
                     redEnemy.XPosition -= redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                    redEnemy.Position = new Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
                 if (redEnemy.XPosition <= player.Position.X)
                 {
                     redEnemy.XPosition += redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                    redEnemy.Position = new Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
                 if (redEnemy.YPosition >= player.Position.Y)
                 {
                     redEnemy.YPosition -= redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                    redEnemy.Position = new Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
                 if (redEnemy.YPosition <= player.Position.Y)
                 {
                     redEnemy.YPosition += redEnemy.EnemySpeed;
-                    redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
+                    redEnemy.Position = new Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
                 player.CheckForEnemyCollision(redEnemy);
-
+                /*foreach (var playerBullet in playerBulletList)
+                {
+                    if (playerBullet.CheckForEnemyCollision(redEnemy))
+                    {
+                        playerBulletList.Remove(playerBullet);
+                        Remove(playerBullet);
+                    }
+                }*/
                 if (player.HP <= 0)
                 {
                     Console.WriteLine("player is dedge");
@@ -98,6 +107,28 @@ namespace Blok3Game.GameStates
                     player.HP = 3;
                 }
             }
+        }
+
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+
+            if (inputHelper.MouseLeftButtonPressed)
+            {
+                PlayerShoot(inputHelper.MousePosition.X, inputHelper.MousePosition.Y);
+            }
+        }
+
+        private void PlayerShoot(float MousePositionX, float MousePositionY)
+        {
+            float ShootPositionX = player.Position.X + player.Width / 2;
+            float ShootPositionY = player.Position.Y + player.Width / 2;
+            double bulletAngle = Math.Atan2(MousePositionY - ShootPositionY, MousePositionX - ShootPositionX);
+
+            PlayerBullet playerBullet = new PlayerBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle);
+
+            playerBulletList.Add(playerBullet);
+            Add(playerBullet);
         }
     }
 }
