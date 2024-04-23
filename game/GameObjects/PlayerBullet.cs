@@ -1,30 +1,34 @@
+using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
+using Microsoft.Xna.Framework;
 
-public class PlayerBullet : SpriteGameObject
+public class PlayerBullet : RotatingSpriteGameObject
 {
     public int playerBulletCooldown = 2;
     public Vector2 Direction;
-    public int BulletMoveSpeed = 10;
+    public int BulletMoveSpeed = 15;
 
-    // public PlayerBullet(int x, int y) : base()
-    // {
-    //     playerBullet = new SpriteGameObject("Images/Characters/Witte-circle")
-    //     {
-    //         Position = new Vector2(x, y),
-    //     };
-    //     Add(playerBullet);
-    // }
-
-    public PlayerBullet(Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/Witte-circle") : base(assetName)
+    public PlayerBullet(Vector2 position, double angle, string assetName = "Images/Characters/Witte-circle45") : base(assetName)
     {
         Position = position;
+        Angle = (float)angle;
+        velocity = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle)) * BulletMoveSpeed;
     }
 
-    public void CheckBulletMovement()
+    public override void Update(GameTime gameTime)
     {
-        Position = new Vector2(Position.X, Position.Y + BulletMoveSpeed);
+        base.Update(gameTime);
+
+        if ( Position.X > 0 - Width && Position.X < GameEnvironment.Screen.X + Width && Position.Y > 0 - Width && Position.Y < GameEnvironment.Screen.Y + Width)
+        {
+            position += velocity;
+        }
+        else
+        {
+            velocity = new Vector2(0,0);
+        }
     }
 }
 

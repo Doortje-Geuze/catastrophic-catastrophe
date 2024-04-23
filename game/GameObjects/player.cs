@@ -3,6 +3,7 @@ using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using Blok3Game.GameStates;
 
 public class Player : SpriteGameObject
 {
@@ -43,30 +44,20 @@ public class Player : SpriteGameObject
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
-
-
-        if (inputHelper.MouseLeftButtonPressed)
-        {
-            PlayerShoot();
-        }
     }
 
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
         MoveSpeed = 15;
-        Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
+        Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
         MoveSpeed = 25;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return;
     }
-    private void PlayerShoot()
-    {
-        // playerHand.Add(new Card($"Images/UI/Cards/{playerDeck[i]}", $"{playerDeck[i]}", ref player));
-        playerBulletList.Add(new )
-    }
+
     //Reduces DashCooldown every frame, and also stops the player from dashing once the dash duration limit is met
     private void CheckPlayerDashDuration()
     {
@@ -88,22 +79,22 @@ public class Player : SpriteGameObject
         if (inputHelper.IsKeyDown(Keys.W) && Position.Y > 0)
         {
             Direction = new Vector2(0, -1);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
             Direction = new Vector2(-1, 0);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
         if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Size)
         {
             Direction = new Vector2(0, 1);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Size)
         {
             Direction = new Vector2(1, 0);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
     }
 

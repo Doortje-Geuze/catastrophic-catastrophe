@@ -7,7 +7,7 @@ namespace Blok3Game.Engine.GameObjects
 	/// <summary>
 	/// SpriteGameObject that handles rotated sprites. Overrides Draw method WITHOUT call to base.Draw.
 	/// </summary>
-	class RotatingSpriteGameObject : SpriteGameObject
+	public class RotatingSpriteGameObject : SpriteGameObject
 	{
 		protected GameObject targetObject;
 		protected float offsetDegrees;
