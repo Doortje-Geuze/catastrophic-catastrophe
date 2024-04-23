@@ -14,6 +14,8 @@ namespace Blok3Game.GameStates
     {
         //Lijst met alle enemies
         private List<RedEnemies> redEnemiesList;
+        public List<PlayerBullet> playerBulletList;
+
         public Player player;
         public GameState() : base()
         {

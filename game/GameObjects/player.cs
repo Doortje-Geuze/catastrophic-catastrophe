@@ -17,16 +17,6 @@ public class Player : SpriteGameObject
     private bool IsDashing = false;
     private int DashCooldown = 0;
 
-    // public Player(int X, int Y, int Health) : base()
-    // {
-    //     //initialises player with a sprite and position
-    //     player = new SpriteGameObject("Images/Characters/circle", 1, "")
-    //     {
-    //         Position = new Microsoft.Xna.Framework.Vector2(X, Y)
-    //     };
-    //     Add(player);
-    // }
-
     public Player(int PlayerHealth, Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
     {
         HP = PlayerHealth;
@@ -45,7 +35,7 @@ public class Player : SpriteGameObject
         }
         if (IsDashing)
         {
-            if (Position.X is <= 0 or >= 613 || Position.Y is <= 0 or >= 413) 
+            if (Position.X is <= 0 or >= 613 || Position.Y is <= 0 or >= 413)
             {
                 ResetDashValue();
                 return;
@@ -53,13 +43,9 @@ public class Player : SpriteGameObject
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
-          
+
 
         if (inputHelper.MouseLeftButtonPressed)
-        {
-            IsShooting = true;
-        }
-        if (IsShooting)
         {
             PlayerShoot();
         }
@@ -74,15 +60,12 @@ public class Player : SpriteGameObject
         DashCooldown = 60;
         MoveSpeed = 25;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
-        return; 
+        return;
     }
     private void PlayerShoot()
-    { 
-        PlayerBullet playerBullet = new((int)Position.X, (int)Position.Y);
-        playerBulletCooldown = 2;
-    
-
-
+    {
+        // playerHand.Add(new Card($"Images/UI/Cards/{playerDeck[i]}", $"{playerDeck[i]}", ref player));
+        playerBulletList.Add(new )
     }
     //Reduces DashCooldown every frame, and also stops the player from dashing once the dash duration limit is met
     private void CheckPlayerDashDuration()
