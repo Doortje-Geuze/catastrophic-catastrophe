@@ -99,7 +99,7 @@ namespace Blok3Game.GameStates
         private void OnButtonCancelClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_cancel");
-            nextScreenName = GameStateManager.GO_TO_PREVIOUS_SCREEN;
+            nextScreenName = "MAIN_MENU_STATE";
             ButtonClicked();
         }
     }

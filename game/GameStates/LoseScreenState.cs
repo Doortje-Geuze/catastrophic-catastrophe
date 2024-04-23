@@ -24,7 +24,7 @@ namespace Blok3Game.GameStates
         private void CreateButtons()
         {
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "REVIVE?", OnButtonReviveClicked);
-            //CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "MAIN_MENU_STATE", OnButtonMainMenuClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "MAIN MENU", OnButtonMainMenuClicked);
             //CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
         }
 
