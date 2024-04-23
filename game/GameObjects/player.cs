@@ -2,6 +2,8 @@ using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using Blok3Game.GameStates;
+using System;
 
 public class Player : SpriteGameObject
 {
@@ -12,6 +14,7 @@ public class Player : SpriteGameObject
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
+    private int InvulnerabilityCooldown = 0;
 
     public Player(int PlayerHealth, Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
     {
@@ -39,6 +42,7 @@ public class Player : SpriteGameObject
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
+        CheckPlayerInvulnerabilityCooldown();
     }
 
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
@@ -63,6 +67,14 @@ public class Player : SpriteGameObject
         {
             ResetDashValue();
             return;
+        }
+    }
+
+    private void CheckPlayerInvulnerabilityCooldown()
+    {
+        if (InvulnerabilityCooldown > 0)
+        {
+            InvulnerabilityCooldown--;   
         }
     }
 
@@ -97,5 +109,16 @@ public class Player : SpriteGameObject
         IsDashing = false;
         PlayerDashTimer = 0;
         MoveSpeed = 5;
+    }
+
+    public void CheckForEnemyCollision(SpriteGameObject enemy)
+    {
+        if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
+        {
+            HP -= 1;
+            InvulnerabilityCooldown = 120;
+            Console.WriteLine($"collision at {Position}");
+            Console.WriteLine($"HP left: {HP}");
+        }
     }
 }

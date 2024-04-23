@@ -88,8 +88,14 @@ namespace Blok3Game.GameStates
                     redEnemy.YPosition += redEnemy.EnemySpeed;
                     redEnemy.Position = new Microsoft.Xna.Framework.Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
+                player.CheckForEnemyCollision(redEnemy);
+
+                if (player.HP <= 0)
+                {
+                    Remove(player);
+                    Console.WriteLine("player is dedge");
+                }
             }
-            Debug.WriteLine(player.Position.X);
         }
     }
 }
