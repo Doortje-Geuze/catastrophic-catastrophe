@@ -10,7 +10,7 @@ namespace Blok3Game.GameStates
 {
     public class MenuItem : GameObjectList
     {
-        private SpriteGameObject background;
+        //private SpriteGameObject background;
         protected int ButtonOffSet = 100;
         protected const float BUTTON_SCALE = 0.2f;
         protected List<Button> buttons;
@@ -73,7 +73,7 @@ namespace Blok3Game.GameStates
                 button.Disabled = true;
             }
 
-            GameEnvironment.GameStateManager.SwitchTo(nextScreenName);
+            GameEnvironment.GameStateManager.SwitchToState(nextScreenName);
             OnMenuItemStateActive();
         }
 

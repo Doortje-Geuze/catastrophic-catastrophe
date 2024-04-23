@@ -118,8 +118,6 @@ public class Player : SpriteGameObject
         {
             HP -= 1;
             InvulnerabilityCooldown = 120;
-            Console.WriteLine($"collision at {Position}");
-            Console.WriteLine($"HP left: {HP}");
         }
     }
 }

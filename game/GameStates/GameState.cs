@@ -57,13 +57,14 @@ namespace Blok3Game.GameStates
                 Add(redEnemy);
             }
 
-            player = new Player(5, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
+            player = new Player(3, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
                                 (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
         }
 
         public override void Update(GameTime gameTime)
         {
+            Console.WriteLine($"{player.HP}");
             //Loop door de lijst met enemies
             foreach (var redEnemy in redEnemiesList)
             {
@@ -93,7 +94,8 @@ namespace Blok3Game.GameStates
                 if (player.HP <= 0)
                 {
                     Console.WriteLine("player is dedge");
-                    GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                    GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                    player.HP = 3;
                 }
             }
         }

@@ -23,9 +23,9 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "RESTART GAME", OnButtonRestartClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "MAIN_MENU_STATE", OnButtonSettingsClicked);
-            // CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "REVIVE?", OnButtonReviveClicked);
+            //CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "MAIN_MENU_STATE", OnButtonMainMenuClicked);
+            //CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
         }
 
         private void ButtonNotImplimented(UIElement element)
@@ -33,14 +33,14 @@ namespace Blok3Game.GameStates
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_not_implimented");
         }
 
-        private void OnButtonRestartClicked(UIElement element)
+        private void OnButtonReviveClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "GAME_STATE";
             ButtonClicked();
         }
 
-        private void OnButtonSettingsClicked(UIElement element)
+        private void OnButtonMainMenuClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "MAIN_MENU_STATE";
