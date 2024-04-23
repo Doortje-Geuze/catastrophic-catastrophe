@@ -45,7 +45,7 @@ public class Player : SpriteGameObject
         }
         if (IsDashing)
         {
-            if (player.Position.X is <= 0 or >= 613 || player.Position.Y is <= 0 or >= 413) 
+            if (Position.X is <= 0 or >= 613 || Position.Y is <= 0 or >= 413) 
             {
                 ResetDashValue();
                 return;
@@ -73,15 +73,15 @@ public class Player : SpriteGameObject
         PlayerDashTimer++;
         DashCooldown = 60;
         MoveSpeed = 25;
-        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
+        Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
     private void PlayerShoot()
     { 
-        PlayerBullet playerBullet = new((int)player.Position.X, (int)player.Position.Y);
+        PlayerBullet playerBullet = new((int)Position.X, (int)Position.Y);
         playerBulletCooldown = 2;
     
-        Add(playerBullet);
+
 
     }
     //Reduces DashCooldown every frame, and also stops the player from dashing once the dash duration limit is met

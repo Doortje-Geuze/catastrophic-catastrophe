@@ -22,7 +22,7 @@ public class PlayerBullet : SpriteGameObject
         {
             Position = new Vector2(x, y), 
         };
-        Add(playerBullet);
+        
     }
     public void CheckBulletMovement()
     {
