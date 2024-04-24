@@ -13,6 +13,7 @@ namespace Blok3Game.GameStates
     {
         //Lijst met alle enemies
         private List<RedEnemies> redEnemiesList;
+        private List<RedEnemies> redEnemiesToRemove;
         private List<PlayerBullet> playerBulletList;
         public Player player;
         public GameState() : base()
@@ -20,6 +21,7 @@ namespace Blok3Game.GameStates
             //Aanmaken van een nieuwe lijst
             redEnemiesList = new List<RedEnemies>();
             playerBulletList = new List<PlayerBullet>();
+            redEnemiesToRemove = new List<RedEnemies>();
 
             Random random = new Random();
 
@@ -92,20 +94,28 @@ namespace Blok3Game.GameStates
                     redEnemy.Position = new Vector2((float)redEnemy.XPosition, (float)redEnemy.YPosition);
                 }
                 player.CheckForEnemyCollision(redEnemy);
-                /*foreach (var playerBullet in playerBulletList)
+                foreach (var playerBullet in playerBulletList)
                 {
                     if (playerBullet.CheckForEnemyCollision(redEnemy))
                     {
-                        playerBulletList.Remove(playerBullet);
-                        Remove(playerBullet);
+                        redEnemiesToRemove.Add(redEnemy);
                     }
-                }*/
-                if (player.HP <= 0)
-                {
-                    Console.WriteLine("player is dedge");
-                    GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                    player.HP = 3;
                 }
+            }
+            if (player.HP <= 0)
+            {
+                Console.WriteLine("player is dedge");
+                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                player.HP = 3;
+            }
+            foreach (var enemyToRemove in redEnemiesToRemove)
+            {
+                redEnemiesList.Remove(enemyToRemove);
+                Remove(enemyToRemove);
+            }
+            if (redEnemiesList.Count == 0)
+            {
+                GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
             }
         }
 
