@@ -1,31 +1,19 @@
-using System;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using Blok3Game.GameStates;
 
 public class Player : SpriteGameObject
 {
     //all variables that a player needs
-    protected int HP;
-    public int X;
-    public int Y;
-    protected int Size = 187;
+    public int HP;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-
-    // public Player(int X, int Y, int Health) : base()
-    // {
-    //     //initialises player with a sprite and position
-    //     player = new SpriteGameObject("Images/Characters/circle", 1, "")
-    //     {
-    //         Position = new Microsoft.Xna.Framework.Vector2(X, Y)
-    //     };
-    //     Add(player);
-    // }
+    private int InvulnerabilityCooldown = 0;
 
     public Player(int PlayerHealth, Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
     {
@@ -45,7 +33,7 @@ public class Player : SpriteGameObject
         }
         if (IsDashing)
         {
-            if (player.Position.X is <= 0 or >= 613 || player.Position.Y is <= 0 or >= 413) 
+            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510) 
             {
                 ResetDashValue();
                 return;
@@ -53,17 +41,17 @@ public class Player : SpriteGameObject
             PlayerDash();
         }
         CheckForMovementInputs(inputHelper);
+        CheckPlayerInvulnerabilityCooldown();
     }
 
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
-        MoveSpeed = 15;
         Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = 25;
-        player.Position = new Vector2(player.Position.X + MoveSpeed * Direction.X, player.Position.Y + MoveSpeed * Direction.Y);
+        MoveSpeed = 15;
+        Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
 
@@ -81,6 +69,15 @@ public class Player : SpriteGameObject
         }
     }
 
+    //Reduces InvulnerabilityCooldown every frame
+    private void CheckPlayerInvulnerabilityCooldown()
+    {
+        if (InvulnerabilityCooldown > 0)
+        {
+            InvulnerabilityCooldown--;   
+        }
+    }
+
     //checks for wasd movement, then sets position based on movespeed and direction (which is determined by what key on the keyboard is pressed)
     private void CheckForMovementInputs(InputHelper inputHelper)
     {
@@ -88,22 +85,22 @@ public class Player : SpriteGameObject
         if (inputHelper.IsKeyDown(Keys.W) && Position.Y > 0)
         {
             Direction = new Vector2(0, -1);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
         if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
             Direction = new Vector2(-1, 0);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Size)
+        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Width)
         {
             Direction = new Vector2(0, 1);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Size)
+        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
         {
             Direction = new Vector2(1, 0);
-            Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
     }
 
@@ -112,5 +109,14 @@ public class Player : SpriteGameObject
         IsDashing = false;
         PlayerDashTimer = 0;
         MoveSpeed = 5;
+    }
+
+    public void CheckForEnemyCollision(SpriteGameObject enemy)
+    {
+        if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
+        {
+            HP -= 1;
+            InvulnerabilityCooldown = 120;
+        }
     }
 }
