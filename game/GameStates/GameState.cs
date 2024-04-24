@@ -23,43 +23,7 @@ namespace Blok3Game.GameStates
             playerBulletList = new List<PlayerBullet>();
             redEnemiesToRemove = new List<RedEnemies>();
 
-            Random random = new Random();
-
-            int swap = 0;
-
-            //For-loop om meerdere enemies aan te maken
-            for (int i = 0; i < 20; i++)
-            {
-                int XPosition, YPosition;
-
-                //Willekeurige posities waar de enemies spawnen
-                XPosition = random.Next(0, 750);
-                YPosition = random.Next(0, 550);
-
-
-                //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
-                //De swap variabele zorgt ervoor dat de enemies evenredig worden verdeel aan alle kanten
-                do
-                {
-
-                    if (swap % 2 == 0)
-                    {
-                        XPosition = random.Next(0, 750);
-                        swap++;
-                    }
-                    else
-                    {
-                        YPosition = random.Next(0, 550);
-                        swap++;
-                    }
-
-                } while (XPosition >= 50 && XPosition <= 700 && YPosition >= 50 && YPosition <= 500);
-
-                //Aanmaken van de enemies
-                RedEnemies redEnemy = new RedEnemies(100, 0.5, new Vector2(XPosition, YPosition));
-                redEnemiesList.Add(redEnemy);
-                Add(redEnemy);
-            }
+            SpawnRedEnemies();
 
             player = new Player(3, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
                                 (GameEnvironment.Screen.Y / 2) - (90 / 2)));
@@ -116,6 +80,7 @@ namespace Blok3Game.GameStates
             if (redEnemiesList.Count == 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                SpawnRedEnemies();
             }
         }
 
@@ -139,6 +104,46 @@ namespace Blok3Game.GameStates
 
             playerBulletList.Add(playerBullet);
             Add(playerBullet);
+        }
+
+        private void SpawnRedEnemies()
+        {
+            Random random = new Random();
+
+            int swap = 0;
+            //For-loop om meerdere enemies aan te maken
+            for (int i = 0; i < 20; i++)
+            {
+                int XPosition, YPosition;
+
+                //Willekeurige posities waar de enemies spawnen
+                XPosition = random.Next(0, 750);
+                YPosition = random.Next(0, 550);
+
+
+                //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
+                //De swap variabele zorgt ervoor dat de enemies evenredig worden verdeel aan alle kanten
+                do
+                {
+
+                    if (swap % 2 == 0)
+                    {
+                        XPosition = random.Next(0, 750);
+                        swap++;
+                    }
+                    else
+                    {
+                        YPosition = random.Next(0, 550);
+                        swap++;
+                    }
+
+                } while (XPosition >= 50 && XPosition <= 700 && YPosition >= 50 && YPosition <= 500);
+
+                //Aanmaken van de enemies
+                RedEnemies redEnemy = new RedEnemies(100, 0.5, new Vector2(XPosition, YPosition));
+                redEnemiesList.Add(redEnemy);
+                Add(redEnemy);
+            }
         }
     }
 }

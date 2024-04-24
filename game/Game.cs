@@ -20,6 +20,7 @@ namespace BaseProject
             GameStateManager.AddGameState("SETTINGS_MENU_STATE", new SettingsMenuState());
             GameStateManager.AddGameState("GAME_STATE", new GameState());
             GameStateManager.AddGameState("LOSE_SCREEN_STATE", new LoseScreenState());
+            GameStateManager.AddGameState("WIN_SCREEN_STATE", new WinScreenState());
             GameStateManager.SwitchToState("MAIN_MENU_STATE");
         }
 
