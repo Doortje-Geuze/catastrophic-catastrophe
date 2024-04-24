@@ -1,1 +1,1 @@
-# Index voor sprint 1
+# Index voor groepsbestanden
