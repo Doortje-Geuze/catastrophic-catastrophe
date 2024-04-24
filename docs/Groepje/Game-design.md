@@ -1,14 +1,17 @@
 # Game design document voor Catastrophic Catastrophy
 
+## Concept en mechanics
+Het concept van ons spel is een competitie tussen verschillende huisdieren. De speler kiest, of krijgt, een huisdier toegewezen waarmee de speler het spel speelt. Dit huisdier zal in een top-down bullet hell game vechten tegen horden van enemies die proberen de speler aan te vallen. Na een aantal waves van deze enemies spawnt er een boss. Dit is een ander huisdier waartegen het huisdier van de speler moet vechten, om te bewijzen dat het huisdier van de speler superieur is. Als de speler een boss verslaat, dan krijgt hij/zij de kans om het wapen van deze boss op te pakken en te gebruiken in het vervolg van het spel. Ook verdient de speler na het verslaan van enemies/bosses in-game currency, die gebruikt kunnen worden voor stat/weapon upgrades.
+
 ## Formal elements
 - Players: Single player vs enemies
 - Objectives: Het verslaan van waves van enemies en bosses om verder te komen in het spel
 - Procedures: Lopen, schieten, dashen
-- Rules: Als de speler al zijn/haar levens verliest, dan stopt het spel (speler is dood).
-- Resources: 
-- Conflict
-- Outcome
-- Boundaries
+- Rules: Als de speler al zijn/haar levens verliest, dan stopt het spel (speler is dood)
+- Resources: HP, schiet-cooldown, invulnerability-cooldown
+- Conflict: Enemies proberen de speler te raken, met hun body of met hun kogels. De speler moet deze zien te ontwijken
+- Outcome: De speler verslaat alle enemies en voltooid een wave/verslaat een boss. Hierna wordt de speler beloond met in-game currency of het wapen van een boss
+- Boundaries: De speler kan niet van het scherm af lopen, en kan ook geen enemies raken buiten het scherm.
 
 ## Inspiratie analyse
 ### Vampire Survivors
@@ -31,4 +34,15 @@ Wij hebben inspriratie gehaald uit Enter The Gungeon. Dit spel is een bullet hel
 In Animal Restaurant run je een restaurant waar verschillende dieren komen. Deze dieren hebben allemaal hun eigen karakters. Zoals: een struisvogel die een papieren zak draagt omdat hij verlegen is, een stinkdier die niet te veel bonen mag eten omdat hij anders scheten laat en een flamingo die een influencer is. 
 
 Al deze dieren hebben hun eigen originele persoonlijkheid, wij willen ook onze eigen karakters hun eigen persoonlijkheid geven.
+
+## Game design theory
+### Flow state
+Flow state
+Een speler bereikt flow state als er een balans is tussen de moeilijkheidsgraad van het spel en de stress die een speler ervaart.
+
+Een game kan op 2 verschillende manieren flow state verstoren:
+
+1. De moeilijkheid van de game is relatief te hoog ten opzichte van de vaardigheden van de speler. Dit zorgt voor stress/spanning, waardoor de speler een spel niet voor langere tijd kan spelen.
+
+2. De moeilijkheid van de game is relatief te laag ten opzichte van de vaardigheden van de speler. Dit zorgt voor verveeldheid, waardoor de speler geen interesse heeft om een spel te spelen.
 
