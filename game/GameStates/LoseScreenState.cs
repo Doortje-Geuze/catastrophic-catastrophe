@@ -1,3 +1,4 @@
+using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
 
@@ -8,7 +9,7 @@ namespace Blok3Game.GameStates
         public LoseScreenState() : base()
         {
             CreateButtons();
-            // CreateTitle();
+            CreateTitle();
         }
 
         public override void Reset()
@@ -47,17 +48,17 @@ namespace Blok3Game.GameStates
             ButtonClicked();
         }
 
-        // private void CreateTitle()
-        // {
-        //     mainTitle = new SpriteGameObject("Images/UI/titleMainMenu", 0, "title")
-        //     {
-        //         Scale = 1,
-        //     };
+        private void CreateTitle()
+        {
+            SpriteGameObject defeatText = new ("Images/UI/DefeatText", 0, "defeat")
+            {
+                 Scale = 1,
+             };
 
-        //     //use the width and height of the title to position it in the center of the screen
-        //     mainTitle.Position = new Vector2((GameEnvironment.Screen.X / 2) - (mainTitle.Width / 2), GameEnvironment.Screen.Y / 7);
+             //use the width and height of the title to position it in the center of the screen
+             defeatText.Position = new Vector2((GameEnvironment.Screen.X / 2) - (defeatText.Width / 2), GameEnvironment.Screen.Y / 7);
 
-        //     Add(mainTitle);
-        // }
+        Add(defeatText);
+        }
     }
 }

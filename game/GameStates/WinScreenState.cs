@@ -1,5 +1,7 @@
+using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Blok3Game.GameStates
 {
@@ -8,7 +10,7 @@ namespace Blok3Game.GameStates
         public WinScreenState() : base()
         {
             CreateButtons();
-            // CreateTitle();
+            CreateTitle();
         }
 
         public override void Reset()
@@ -39,17 +41,17 @@ namespace Blok3Game.GameStates
             ButtonClicked();
         }
 
-        // private void CreateTitle()
-        // {
-        //     mainTitle = new SpriteGameObject("Images/UI/titleMainMenu", 0, "title")
-        //     {
-        //         Scale = 1,
-        //     };
+        private void CreateTitle()
+        {
+            SpriteGameObject victoryText = new ("Images/UI/VictoryText", 0, "victory")
+            {
+                 Scale = 1,
+             };
 
-        //     //use the width and height of the title to position it in the center of the screen
-        //     mainTitle.Position = new Vector2((GameEnvironment.Screen.X / 2) - (mainTitle.Width / 2), GameEnvironment.Screen.Y / 7);
+             //use the width and height of the title to position it in the center of the screen
+             victoryText.Position = new Vector2((GameEnvironment.Screen.X / 2) - (victoryText.Width / 2), GameEnvironment.Screen.Y / 7);
 
-        //     Add(mainTitle);
-        // }
+        Add(victoryText);
+        }
     }
 }
