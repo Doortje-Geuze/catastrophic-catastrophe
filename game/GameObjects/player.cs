@@ -15,7 +15,7 @@ public class Player : SpriteGameObject
     private int DashCooldown = 0;
     private int InvulnerabilityCooldown = 0;
 
-    public Player(int PlayerHealth, Microsoft.Xna.Framework.Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
+    public Player(int PlayerHealth, Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
     {
         HP = PlayerHealth;
         Position = position;
@@ -47,7 +47,7 @@ public class Player : SpriteGameObject
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
     private void PlayerDash()
     {
-        Position = new Microsoft.Xna.Framework.Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
+        Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
         MoveSpeed = 15;

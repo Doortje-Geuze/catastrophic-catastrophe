@@ -15,6 +15,7 @@ namespace Blok3Game.GameStates
         private List<RedEnemies> redEnemiesList;
         private List<RedEnemies> redEnemiesToRemove;
         private List<PlayerBullet> playerBulletList;
+        private List<PlayerBullet> playerBulletsToRemove;
         public Player player;
         public GameState() : base()
         {
@@ -22,10 +23,11 @@ namespace Blok3Game.GameStates
             redEnemiesList = new List<RedEnemies>();
             playerBulletList = new List<PlayerBullet>();
             redEnemiesToRemove = new List<RedEnemies>();
+            playerBulletsToRemove = new List<PlayerBullet>();
 
             SpawnRedEnemies();
 
-            player = new Player(3, new Microsoft.Xna.Framework.Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
+            player = new Player(3, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
                                 (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
         }
@@ -63,6 +65,7 @@ namespace Blok3Game.GameStates
                     if (playerBullet.CheckForEnemyCollision(redEnemy))
                     {
                         redEnemiesToRemove.Add(redEnemy);
+                        playerBulletsToRemove.Add(playerBullet);
                     }
                 }
             }
@@ -76,6 +79,11 @@ namespace Blok3Game.GameStates
             {
                 redEnemiesList.Remove(enemyToRemove);
                 Remove(enemyToRemove);
+            }
+            foreach (var playerBulletToRemove in playerBulletsToRemove)
+            {
+                playerBulletList.Remove(playerBulletToRemove);
+                Remove(playerBulletToRemove);
             }
             if (redEnemiesList.Count == 0)
             {
