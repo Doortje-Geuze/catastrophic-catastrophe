@@ -21,7 +21,7 @@ Wij hebben een onderzoek gedaan naar onze doelgroep, dit hebben we gedaan door m
 
 De uitslagen van deze survey kan je hieronder vinden.
 
-[uitslagen survey](https://icthva-my.sharepoint.com/:w:/r/personal/doortje_geuze_hva_nl/Documents/UItslagen%20survey%20sprint%201.docx?d=w143b0feba56243229cc580c6ca38994c&csf=1&web=1&e=xkGcKK)
+[uitslagen survey](https://icthva-my.sharepoint.com/:w:/g/personal/doortje_geuze_hva_nl/EesPOxRipSJDnMWAxso4mUwB2si3BOiy7bQWhq1Gserc2w)
 
 ## Powerpoint
 Hieronder staat de link naar de powerpoint van de product review op donderdag 25-4-2024.
