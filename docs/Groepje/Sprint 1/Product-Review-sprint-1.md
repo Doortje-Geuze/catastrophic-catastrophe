@@ -3,11 +3,11 @@
 ## K2
 Voor deze sprint hebben wij een prototype gemaakt, wij hebben gekozen om deze in Monogame te maken. Voor dit prototype hebben we simplistische en abstracte vormen gebruikt. Het prototype bestaat uit: een gameloop(de speler kan bewegen, winnen en verliezen), er zijn vijanden die bewegen en kunnen schieten en er is interactie tussen speler en vijand.
 
-![foto van prototype](...)
+![foto van prototype]()
 
 Verder is er ook een Database/EER ontwerp van analytics gemaakt voor deze game
 
-![foto EER](...)
+![foto EER](/docs/Groepje/Sprint%201/EER-Sprint-1.PNG)
 
 ## k4
 Voor ons project hebben we een game design document gemaakt. Hier staat een beschrijving in van onze concepten en machanics, een inspritaie analyse en 1 game desing theorie toegepast op ons project.
@@ -25,4 +25,4 @@ De uitslagen van deze servey kan je hieronder vinden
 
 ## Powerpoint
 Hieronder staat de link naar de powerpoint van de productreview op donderdag 24-4-2024
-[powerpoint](...)
+[powerpoint](https://icthva-my.sharepoint.com/:p:/r/personal/senna_de_vries_hva_nl/Documents/Product%20review%20blok%204%20sprint%201.pptx?d=w13b59c43550f401ebf200d6a1f5b86b9&csf=1&web=1&e=obhRoX)
