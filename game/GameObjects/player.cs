@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Blok3Game.GameStates;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class Player : SpriteGameObject
 {
@@ -24,7 +25,6 @@ public class Player : SpriteGameObject
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        Console.WriteLine(PlayerDashTimer);
         base.HandleInput(inputHelper);
         CheckPlayerDashDuration();
 
@@ -121,6 +121,7 @@ public class Player : SpriteGameObject
         {
             HP -= 1;
             InvulnerabilityCooldown = 120;
+            Console.WriteLine(HP);
         }
     }
 }
