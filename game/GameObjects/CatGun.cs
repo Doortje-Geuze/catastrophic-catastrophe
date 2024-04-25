@@ -8,6 +8,7 @@ public class CatGun : RotatingSpriteGameObject
 {
     Player playerPos;
     Crosshair crossHair;
+    bool CatArms = false;
     public CatGun(Player player, Crosshair crosshair, Vector2 position) : base("Images/Characters/GunCat@2x1")
     {
         playerPos = player;
@@ -28,6 +29,10 @@ public class CatGun : RotatingSpriteGameObject
         {
             Sprite.Mirror = false;
         }
+        if (inputHelper.IsKeyDown(Keys.X))
+        {
+            CatArms = true;
+        }
     }
 
     public override void Update(GameTime gameTime)
@@ -37,12 +42,18 @@ public class CatGun : RotatingSpriteGameObject
         if (Sprite.Mirror)
         {
             position = new Vector2(playerPos.Position.X - 28, playerPos.Position.Y + 40);
-            LookAt(crossHair, 180);
+            if (CatArms)
+            {
+                LookAt(crossHair, 180);
+            }
         }
         else
         {
             position = new Vector2(playerPos.Position.X + 28, playerPos.Position.Y + 40);
-            LookAt(crossHair);
+            if (CatArms)
+            {
+                LookAt(crossHair);
+            }
         }
     }
 }
