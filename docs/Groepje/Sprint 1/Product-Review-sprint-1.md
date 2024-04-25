@@ -3,11 +3,11 @@
 ## K2
 Voor deze sprint hebben wij een prototype gemaakt, wij hebben gekozen om deze in Monogame te maken. Voor dit prototype hebben we concept art gebruikt. Het prototype bestaat uit: een gameloop (de speler kan bewegen, winnen en verliezen), er zijn vijanden die bewegen en kunnen schieten en er is interactie tussen speler en vijand.
 
-![prototype](/docs/Groepje/Images/PrototypeGameSprint1.png)
+![prototype](/docs/Groepje/Sprint%201/PrototypeGameSprint1.png)
 
 Verder is er ook een Database/EER-ontwerp van analytics gemaakt voor deze game.
 
-![EER](/docs/Groepje/Images/EERSprint1.png)
+![EER](/docs/Groepje/Sprint%201/EERSprint1.PNG)
 
 ## K4
 Voor ons project hebben we een game design document gemaakt. Hier staat een beschrijving in van onze concepten en mechanics, een inspiratie analyse en 1 game design theorie toegepast op ons project.
