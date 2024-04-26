@@ -41,10 +41,29 @@ Tot het einde van het blok kijk ik elke begin van de schooldag naar de gemaakte 
 ## G2
 
 ### Samenwerking
+
 Voor dit blok heb ik de CEO planning van vorige blok sprint 3 uitgelegt aan mijn groepje en toegepast. De CEO planning houd in dat iedereen een deel van het project wordt toegewezen en daar dus de "CEO" van word, ik was bijvoorbeelde CEO van UI deze sprint. Elke begin van de week komen de CEOs dan samen om aan elkaar te vertellen hoever ze zijn gekomen, waar ze tegen op liepen en wat ze af willen hebben voor de volgende CEO meeting.
 
 Aan het einde van sprint 1 heb ik nog eens gevraagt hoe mijn team het planning systeem vonden en of ze er mee door wouden gaan. Ik kreeg positieve reacties terug en wij gaan daarom ook door met de CEO planning voor de komende sprints.
 
-### Samenwerkingcontract
+### Samenwerkingscontract
+
 Als aanpassing aan het samenwerkingscontract hebben wij gezamelijk besloten om de CEO planning toe te voegen aan het samenwerkingscontract. Dit zorgt voor duidelijke regels voor dit plannings systeem en wordt verwarring in het groepje tegengehouden.
 
+## Etiek onderzoek
+
+### Hoofdvraag
+
+Wat zijn de mogelijkheden om de LHBTI+ gemeenschap te representeren in een spel?
+
+### Deelvragen
+
+1.  Wat is de LHBTI+ gemeenschap?
+2.	Waar zien we al voorbeelden van LHBTI+ representatie?
+3.	Wat zijn de voordelen van LHBTI+ representatie in een spel? 
+4.	Welke eigenschappen heeft LHBTI+ representatie in een spel?
+
+
+## Aanleiding/Probleemstelling
+
+Ik behoor zelf ook tot de LHBTI+ gemeenschap en in (vooral rollen)spellen willen game ontwikkelaars graag dat ik mezelf terug zie in het karakter dat ik speel. Toch mis ik vaak in spellen de mogelijkheid om die herkenbaarheid ook te hebben in de vorm van bijvoorbeeld mijn seksualiteit. Het doel van het onderzoek is de lezer de kennis geven over waarom representatie van de LHBTI+ gemeenschap belangrijk is en hoe de lezer die representatie kan overbrengen aan de speler.
