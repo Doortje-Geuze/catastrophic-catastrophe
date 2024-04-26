@@ -18,16 +18,16 @@ Aan het einde van het blok wil ik een goed werkende bullet hell game met meerder
 ## Feedback van teamgenoten
 
 ### Doortje
-Verbeterpunt: Meer in classen werken dan veel code in de gamestate gooien.
-Compliment: Ik zie dat als je vastloop je nu anderen om hulp vraag, dat doe je erg goed vergeleken met vorig blok
+Verbeterpunt: Meer in classen werken dan veel code in de gamestate gooien.  
+Compliment: Ik zie dat als je vastloop je nu anderen om hulp vraag, dat doe je erg goed vergeleken met vorig blok  
 
 ### Sed
-Verbeterpunt: Werk meer met OOP. Je hebt nog veel de neiging om grote stukken code achterelkaar te schrijven wat zorgt voor onoverzichtelijkheid en verwarring.
-Compliment: Je doet goede research over onderwerpen waar je mee gaat programmeren. Dit was bijvoorbeeld te zien toen je de enemy movement moest maken.
+Verbeterpunt: Werk meer met OOP. Je hebt nog veel de neiging om grote stukken code achterelkaar te schrijven wat zorgt voor onoverzichtelijkheid en verwarring.  
+Compliment: Je doet goede research over onderwerpen waar je mee gaat programmeren. Dit was bijvoorbeeld te zien toen je de enemy movement moest maken.  
 
 ### Tijn
-Verbeterpunt: Minder code onnodig in gamestate zetten, het maakt de structuur hierin heel onoverzichtelijk. En maak class namen aub niet multiple (zoals enemies)
-Compliment: Goed hulp gezocht wanneer je er niet uitkwam
+Verbeterpunt: Minder code onnodig in gamestate zetten, het maakt de structuur hierin heel onoverzichtelijk. En maak class namen aub niet multiple (zoals enemies)  
+Compliment: Goed hulp gezocht wanneer je er niet uitkwam  
 
 ## Etiek onderzoek
 
