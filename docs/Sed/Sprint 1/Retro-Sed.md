@@ -2,9 +2,11 @@
 
 ## G1
 
-### Reflectatie
+### Reflectie
 
-Tijdens dit blok heb ik een stuk meer geleerd over monogame (en daardoor ook over C#). Vorig blok was ik een groot deel van het blok met mijn groepje bezig om precies te snappen hoe de code die we hadden gekregen werkte, dit zorgde voor een hoop verloren tijd die we liever in het maken van de game hadden gestopt. De tijd die vorig blok dus in het uitpluizen is gestopt heeft wel voor dit blok gezorgt dat ik al een redelijke basis voor het maken van een game in monogame. De basis zorgde ervoor dat ik al snel klaar was met mijn deel van het project en ik door kon gaan aan extra features die we eigenlijk pas voor de volgende sprint geplanned hadden. Zo ben ik bijvoorbeeld bezig geweest met dat de armen van de cat de muis van de speler volgen, ik kwam hier redelijk ver mee en tegelijk kwam ik allemaal functies tegen waarvan ik dacht dat die misschien wel te pas zouden komen in de aankomende sprint. Ik had ook veel vrije tijd over om mijn groepsleden te helpen waar nodig, ik werd bijvoorbeeld vaak gevraagt om gewoon even naast hun te komen zitten en mee te kijken met de code zodat ik misschien iets zou zien wat hun over het hoofd hadden gezien.
+Tijdens dit blok heb ik een stuk meer geleerd over monogame (en daardoor ook over C#). Vorig blok was ik een groot deel van het blok met mijn groepje bezig om precies te snappen hoe de code die we hadden gekregen werkte, dit zorgde voor een hoop verloren tijd die we liever in het maken van de game hadden gestopt. 
+
+De tijd die vorig blok dus in het uitpluizen is gestopt heeft wel voor dit blok gezorgt dat ik al een redelijke basis voor het maken van een game in monogame. De basis zorgde ervoor dat ik al snel klaar was met mijn deel van het project en ik door kon gaan aan extra features die we eigenlijk pas voor de volgende sprint geplanned hadden. Zo ben ik bijvoorbeeld bezig geweest met dat de armen van de cat de muis van de speler volgen, ik kwam hier redelijk ver mee en tegelijk kwam ik allemaal functies tegen waarvan ik dacht dat die misschien wel te pas zouden komen in de aankomende sprint. Ik had ook veel vrije tijd over om mijn groepsleden te helpen waar nodig, ik werd bijvoorbeeld vaak gevraagt om gewoon even naast hun te komen zitten en mee te kijken met de code zodat ik misschien iets zou zien wat hun over het hoofd hadden gezien.
 
 ### Feedback Teamgenoten
 
