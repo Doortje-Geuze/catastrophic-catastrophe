@@ -3,11 +3,11 @@
 ## K2
 Voor deze sprint hebben wij een prototype gemaakt, wij hebben gekozen om deze in Monogame te maken. Voor dit prototype hebben we concept art gebruikt. Het prototype bestaat uit: een gameloop (de speler kan bewegen, winnen en verliezen), er zijn vijanden die bewegen en kunnen schieten en er is interactie tussen speler en vijand.
 
-![foto van prototype](/docs/Groepje/Images/PrototypeGameSprint1.png)
+![Prototype](../../images/PrototypeGameSprint1.png)
 
 Verder is er ook een Database/EER-ontwerp van analytics gemaakt voor deze game.
 
-![foto EER](/docs/Groepje/Images/EERSprint1.png)
+![EER](../../images/EERSprint1.PNG)
 
 ## K4
 Voor ons project hebben we een game design document gemaakt. Hier staat een beschrijving in van onze concepten en mechanics, een inspiratie analyse en 1 game design theorie toegepast op ons project.
@@ -19,10 +19,11 @@ Wij hebben een onderzoek gedaan naar onze doelgroep, dit hebben we gedaan door m
 
 [survey](https://docs.google.com/forms/d/1FivExYb0LXbCOSD4Vz9-DgLNRBpKKrlBVcoj90mwMfI/viewform?edit_requested=true) 
 
-De uitslagen van deze servey kan je hieronder vinden.
+De uitslagen van deze survey kan je hieronder vinden.
 
-[uitslagen servey](....)
+[uitslagen survey](https://icthva-my.sharepoint.com/:w:/g/personal/doortje_geuze_hva_nl/EesPOxRipSJDnMWAxso4mUwB2si3BOiy7bQWhq1Gserc2w)
 
 ## Powerpoint
-Hieronder staat de link naar de powerpoint van de product review op donderdag 25-4-2024
-[powerpoint](https://icthva-my.sharepoint.com/:p:/r/personal/senna_de_vries_hva_nl/Documents/Product%20review%20blok%204%20sprint%201.pptx?d=w13b59c43550f401ebf200d6a1f5b86b9&csf=1&web=1&e=obhRoX)
+Hieronder staat de link naar de powerpoint van de product review op donderdag 25-4-2024.
+
+[powerpoint](https://icthva-my.sharepoint.com/:p:/g/personal/doortje_geuze_hva_nl/ET2KNq-a9dVCk9MSghZM9c0B4TnQk839jBKlGgmF1swbtw?e=cYC78s)
