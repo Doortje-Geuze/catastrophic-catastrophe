@@ -195,17 +195,17 @@ Nee
 #### Antwoorden op de vragen (tevredenheid)
 
 1. Hoe intuitief waren de controls om te vinden?  
-- De meeste controls waren goed te vinden. Alleen de dash mechanic was niet helemaal duidelijk.  
+De meeste controls waren goed te vinden. Alleen de dash mechanic was niet helemaal duidelijk.  
 2. Komen de hitboxes van de entities overeen met het uiterlijk van de entities? Zo nee, hoeveel maakte dit uit voor de speelervaring?  
-- De hitbox van de enemies was goed. De hitbox van de speler was niet altijd duidelijk aangezien je niet ziet wanneer een speler geraakt wordt/levens verliest.  
+De hitbox van de enemies was goed. De hitbox van de speler was niet altijd duidelijk aangezien je niet ziet wanneer een speler geraakt wordt/levens verliest.  
 3. Hoe was de moeilijkheidsgraad van het level?  
-- Zonder de revive optie zou het level te moeilijk zijn om te halen. Maar met de revive was het goed te doen.
+Zonder de revive optie zou het level te moeilijk zijn om te halen. Maar met de revive was het goed te doen.
 4. Hoe waren de waves van het level?  
-- De waves liepen goed op in moeilijkheid. Het begin was goed te doen naarmate je verder kwam werd het steeds een stuk moeilijker.  
+De waves liepen goed op in moeilijkheid. Het begin was goed te doen naarmate je verder kwam werd het steeds een stuk moeilijker.  
 5. Hoe was de UI in de menus?  
-- De basis (knoppen en tekst) zag er goed uit. Wel zou een achtergrond het afmaken.  
+De basis (knoppen en tekst) zag er goed uit. Wel zou een achtergrond het afmaken.  
 6. Hoe was de UI in het spel?  
-- De characters zien er leuk uit. Wel zou ik de muizen ook een wapen geven zodat ze niet uit het niks schieten. Ook in het spel zou ik een achtergrond toevoegen.  
+De characters zien er leuk uit. Wel zou ik de muizen ook een wapen geven zodat ze niet uit het niks schieten. Ook in het spel zou ik een achtergrond toevoegen.  
 
 **Sterke punten van het product:** 
 Het spel zag er goed uit met een goede gameloop die opliep in moeilijkheid.  
