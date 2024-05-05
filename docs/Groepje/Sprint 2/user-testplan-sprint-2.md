@@ -123,9 +123,9 @@ Nee, geen flauw idee wat dat is
 #### Observatietabel
 | # | Doel                                                  | Observatierating |
 |---|-------------------------------------------------------|------------------|
-| 1 | Begrijpen van game loop                               | 6/10              |
-| 2 | Gebruik van alle controls                             | Timer:  20         |
-| 3 | Voltooing van het level                               | Timer:    60       |
+| 1 | Begrijpen van game loop                               | 6/10             |
+| 2 | Gebruik van alle controls                             | Timer:  20       |
+| 3 | Voltooing van het level                               | Timer:  60       |
 
 #### Extra observaties (points of interest van de testpersoon)
 
@@ -168,4 +168,48 @@ Ratten heel cool, Het idee is leuk (iedereen huid van katten) het is origineel(v
 - ik was bang dat ik misschien al mijn kogels had gebruikt, dus dat kan wel een leuk punt zijn om op uit te breiden
 - Achtergrond voor storytelling maar ook voor ascetisch
 
+
+## Test resultaten van Linus
+#### Basisinformatie
+
+1. Wat is uw leeftijd?  				
+16 jaar  
+
+2. Speelt u weleens games?  
+Ja  
+
+3. Bent u bekend met de bullet hell genre?  
+Nee  
+
+#### Observatietabel
+| # | Doel                                                  | Observatierating |
+|---|-------------------------------------------------------|------------------|
+| 1 | Begrijpen van game loop                               | 5/10             |
+| 2 | Gebruik van alle controls                             | Timer:1 minuut   |
+| 3 | Voltooing van het level                               | Timer:40 seconden|
+
+#### Extra observaties (points of interest van de testpersoon)
+
+- Observaties: Erg aandacht aan het spelen (voorover gebogen, constant naar het scherm kijken). De speler bewoog het karakter maar had niet meteen door dat je kon schieten op de vijanden. Ook werd de dash-functie niet gebruikt.
+
+#### Antwoorden op de vragen (tevredenheid)
+
+1. Hoe intuitief waren de controls om te vinden?  
+- De meeste controls waren goed te vinden. Alleen de dash mechanic was niet helemaal duidelijk.  
+2. Komen de hitboxes van de entities overeen met het uiterlijk van de entities? Zo nee, hoeveel maakte dit uit voor de speelervaring?  
+- De hitbox van de enemies was goed. De hitbox van de speler was niet altijd duidelijk aangezien je niet ziet wanneer een speler geraakt wordt/levens verliest.  
+3. Hoe was de moeilijkheidsgraad van het level?  
+- Zonder de revive optie zou het level te moeilijk zijn om te halen. Maar met de revive was het goed te doen.
+4. Hoe waren de waves van het level?  
+- De waves liepen goed op in moeilijkheid. Het begin was goed te doen naarmate je verder kwam werd het steeds een stuk moeilijker.  
+5. Hoe was de UI in de menus?  
+- De basis (knoppen en tekst) zag er goed uit. Wel zou een achtergrond het afmaken.  
+6. Hoe was de UI in het spel?  
+- De characters zien er leuk uit. Wel zou ik de muizen ook een wapen geven zodat ze niet uit het niks schieten. Ook in het spel zou ik een achtergrond toevoegen.  
+
+**Sterke punten van het product:** 
+Het spel zag er goed uit met een goede gameloop die opliep in moeilijkheid.  
+
+**Verbeterpunten:**
+Een speluitleg, achtergrond en een indicatie van de levens van de speler zouden het spel afmaken.  
 
