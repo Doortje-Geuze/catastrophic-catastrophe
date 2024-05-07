@@ -40,7 +40,7 @@ Al deze dieren hebben hun eigen originele persoonlijkheid, wij willen ook onze e
 Flow state
 Een speler bereikt flow state als er een balans is tussen de moeilijkheidsgraad van het spel en de stress die een speler ervaart.
 
-![Flow state diagram](/docs/Groepje/Images/FlowState.png)
+![Flow state diagram](/docs/Groepje/Images/flowState.png)
 
 Een game kan op 2 verschillende manieren flow state verstoren:
 
@@ -53,7 +53,7 @@ Flow state wordt in onze game veroorzaakt door de kracht van de enemies zo te la
 ### Internal Economy
 Een internal economy van een game is een economisch systeem wat zich enkel en alleen in de game bevindt (met uitzonderingen op micro-transactions). Een economie binnen een spel gaat over de flow van resources tussen entities/de game. Binnen het spel zijn er meestal 4 componenten die bepalend zijn voor de economische flow: bronnen, vernietigingen, omvormers en ruilmogelijkheden. Bronnen zorgen voor een toegankelijkheid aan een resource, vernietigingen zorgen ervoor dat de resource niet in overvloed aanwezig is door het te verwijderen van het spel (zorgt tot op zekere hoogte tot schaarste). Omvormers zorgen dat een bepaalde resource omgevormd kan worden tot een andere resource. Deze actie is meestal irreversibel. Ruilmogelijkheden zorgen dat de speler resources kan in ruilen voor (meestal) niet-ruilbare items/resources.
 
-![In game currencies](/docs/Groepje/Images/InGameCurrency.png)
+![In game currencies](/docs/Groepje/Images/inGameCurrency.png)
 
 Wij gaan een internal economy in onze game voegen aan de hand van een in-game currency. Deze wordt verkregen door waves/bosses te verslaan. De speler kan ook (een deel van) deze currency verliezen door dood te gaan. Wij hebben nog geen plan om een omvormer specifiek toe te voegen, maar wel een ruilmogelijkheid die een belangrijke rol vervult; de shop. Deze zorgt er namelijk voor dat de in-game currency nuttig is voor de speler. Hier kan de speler zijn/haar karakter sterker maken door de currency in te ruilen voor stat/weapon upgrades.
 

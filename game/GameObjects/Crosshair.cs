@@ -9,7 +9,7 @@ namespace Blok3Game.GameObjects
 {
     public class Crosshair : SpriteGameObject
     {
-        public Crosshair(Vector2 position, string assetName = "Images/UI/Crosshair") : base(assetName)
+        public Crosshair(Vector2 position, string assetName = "Images/UI/crosshair") : base(assetName)
         {
             Position = position;
         }

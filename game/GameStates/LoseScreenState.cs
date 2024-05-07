@@ -50,7 +50,7 @@ namespace Blok3Game.GameStates
 
         private void CreateTitle()
         {
-            SpriteGameObject defeatText = new ("Images/UI/DefeatText", 0, "defeat")
+            SpriteGameObject defeatText = new ("Images/UI/defeatText", 0, "defeat")
             {
                  Scale = 1,
              };

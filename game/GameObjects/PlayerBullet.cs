@@ -11,7 +11,7 @@ public class PlayerBullet : RotatingSpriteGameObject
     public Vector2 Direction;
     public int BulletMoveSpeed = 15;
 
-    public PlayerBullet(Vector2 position, double angle, string assetName = "Images/Characters/Witte-circle45") : base(assetName)
+    public PlayerBullet(Vector2 position, double angle, string assetName = "Images/Characters/whiteCircle45") : base(assetName)
     {
         Position = position;
         Angle = (float)angle;

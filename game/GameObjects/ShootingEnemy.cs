@@ -13,7 +13,7 @@ public class ShootingEnemies : Enemies
 
     public double XPosition { get; set; }
     public double YPosition { get; set; }
-    public ShootingEnemies(int hp, float speed, Vector2 position, string assetName = "Images/Characters/Rat") : base(hp, speed, position, assetName)
+    public ShootingEnemies(int hp, float speed, Vector2 position, string assetName = "Images/Characters/rat") : base(hp, speed, position, assetName)
     {
         EnemyHp = hp;
         EnemySpeed = speed;

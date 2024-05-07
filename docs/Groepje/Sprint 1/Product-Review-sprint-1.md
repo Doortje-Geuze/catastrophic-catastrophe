@@ -3,7 +3,7 @@
 ## K2
 Voor deze sprint hebben wij een prototype gemaakt, wij hebben gekozen om deze in Monogame te maken. Voor dit prototype hebben we concept art gebruikt. Het prototype bestaat uit: een gameloop (de speler kan bewegen, winnen en verliezen), er zijn vijanden die bewegen en kunnen schieten en er is interactie tussen speler en vijand.
 
-![Prototype](../../images/PrototypeGameSprint1.png)
+![Prototype](../../images/prototypeGameSprint1.png)
 
 Verder is er ook een Database/EER-ontwerp van analytics gemaakt voor deze game.
 
