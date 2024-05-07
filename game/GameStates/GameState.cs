@@ -15,17 +15,17 @@ namespace Blok3Game.GameStates
     public class GameState : GameObjectList
     {
         //Lijst met alle enemies
-        private List<RedEnemies> redEnemiesList;
-        private List<ShootingEnemies> enemiesToRemove;
+        private List<StandardEnemy> standardEnemyList;
+        private List<ShootingEnemy> enemiesToRemove;
         private List<PlayerBullet> playerBulletList;
         private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;
-        private List<ShootingEnemies> shootingEnemyList;
+        private List<ShootingEnemy> shootingEnemyList;
         public Player player;
-        public RedEnemies redEnemies;
+        public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
-        public ShootingEnemies shootingEnemy;
+        public ShootingEnemy shootingEnemy;
         public int e = 0;
         public int frameCounter = 0;
         public int WaveCounter = 1;
@@ -33,13 +33,13 @@ namespace Blok3Game.GameStates
         public GameState() : base()
         {
             //Aanmaken van een nieuwe lijst
-            redEnemiesList = new List<RedEnemies>();
-            shootingEnemyList = new List<ShootingEnemies>();
+            standardEnemyList = new List<StandardEnemy>();
+            shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
-            enemiesToRemove = new List<ShootingEnemies>();
+            enemiesToRemove = new List<ShootingEnemy>();
             playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
-            SpawnRedEnemies();
+            SpawnStandardEnemies();
 
             player = new Player(3, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
                                 (GameEnvironment.Screen.Y / 2) - (90 / 2)));
@@ -128,13 +128,13 @@ namespace Blok3Game.GameStates
             {
                 WaveCounter++;
                 ResetBullets();
-                SpawnRedEnemies();
+                SpawnStandardEnemies();
             }
             if (shootingEnemyList.Count == 0 && WaveCounter == 3)
             {
                 GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
                 ResetBullets();
-                SpawnRedEnemies();
+                SpawnStandardEnemies();
             }
             foreach (var playerBulletToRemove in playerBulletsToRemove)
             {
@@ -153,7 +153,7 @@ namespace Blok3Game.GameStates
             }
         }
 
-        private void SpawnRedEnemies()
+        private void SpawnStandardEnemies()
         {
             Random random = new Random();
 
@@ -186,7 +186,7 @@ namespace Blok3Game.GameStates
                 } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
 
                 //Aanmaken van de enemies
-                shootingEnemy = new ShootingEnemies(1, 1, new Vector2(XPosition, YPosition));
+                shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
                 shootingEnemyList.Add(shootingEnemy);
 
                 Add(shootingEnemy);
@@ -205,10 +205,10 @@ namespace Blok3Game.GameStates
             Add(playerBullet);
         }
 
-        private void EnemyShoots(ShootingEnemies shootingEnemies)
+        private void EnemyShoots(ShootingEnemy shootingEnemy)
         {
-            float ShootPositionX = shootingEnemies.Position.X + shootingEnemies.Width / 2;
-            float ShootPositionY = shootingEnemies.Position.Y + shootingEnemies.Height / 2;
+            float ShootPositionX = shootingEnemy.Position.X + shootingEnemy.Width / 2;
+            float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
             double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
 
             EnemyBullet enemyBullet = new EnemyBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle);
