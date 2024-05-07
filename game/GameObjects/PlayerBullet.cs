@@ -2,19 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
+using Blok3Game.GameObjects;
 using Blok3Game.GameStates;
 using Microsoft.Xna.Framework;
 
-public class PlayerBullet : RotatingSpriteGameObject
+public class PlayerBullet : Bullet
 {
     public int playerBulletCooldown = 2;
     public Vector2 Direction;
     public int BulletMoveSpeed = 15;
 
-    public PlayerBullet(Vector2 position, double angle, string assetName = "Images/Characters/whiteCircle45") : base(assetName)
+    public PlayerBullet(Vector2 position, double angle, string assetName = "Images/Characters/whiteCircle45") : base(position, angle, assetName)
     {
-        Position = position;
-        Angle = (float)angle;
         // velocity = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle)) * BulletMoveSpeed;
     }
 

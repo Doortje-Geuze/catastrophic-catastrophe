@@ -10,10 +10,8 @@ namespace Blok3Game.GameObjects
         public int BulletMoveSpeed = 8;
         //private float Angle;
         
-        public EnemyBullet(Vector2 position, double angle, string assetName = "Images/Bullets/enemyBullet") : base(position, assetName)
+        public EnemyBullet(Vector2 position, double angle, string assetName = "Images/Bullets/enemyBullet") : base(position, angle, assetName)
         {
-            Position = position;
-            Angle = (float)angle;
             velocity = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle)) * BulletMoveSpeed;
         }
 
