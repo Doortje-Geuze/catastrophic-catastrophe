@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Blok3Game.GameObjects
 {
-    public class RedEnemies : Enemies
+    public class RedEnemies : Enemy
     {
         private int EnemyHp;
         public double EnemySpeed;

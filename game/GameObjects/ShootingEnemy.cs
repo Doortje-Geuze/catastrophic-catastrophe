@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Blok3Game.GameObjects;
 
 
-public class ShootingEnemies : Enemies
+public class ShootingEnemies : Enemy
 {
     public int EnemyHp;
     public float EnemySpeed;
