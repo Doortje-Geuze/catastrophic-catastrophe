@@ -192,7 +192,7 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
     <h3>Conclusie</h3>
     Het is voor de speler nog niet duidelijk welke controls er zijn.
 
-=== "Proefpersoon 2"
+=== "Proefpersoon 3"
 
     <h3>Basisinformatie</h3>
 
