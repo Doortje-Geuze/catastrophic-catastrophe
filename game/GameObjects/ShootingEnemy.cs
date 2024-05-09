@@ -8,20 +8,9 @@ using Blok3Game.GameObjects;
 
 public class ShootingEnemy : Enemy
 {
-    public int EnemyHp;
-    public float EnemySpeed;
-
-    public double XPosition { get; set; }
-    public double YPosition { get; set; }
-    public ShootingEnemy(int hp, float speed, Vector2 position, string assetName = "Images/Characters/rat") : base(hp, speed, position, assetName)
+    public int EnemyHitPoints;
+    public ShootingEnemy(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position, "Images/Characters/rat", 0, " ", 0)
     {
-        EnemyHp = hp;
-        EnemySpeed = speed;
-        Position = position;
-        XPosition = position.X;
-        YPosition = position.Y;
+        EnemyHitPoints = hitPoints;
     }
-
 }
-
-

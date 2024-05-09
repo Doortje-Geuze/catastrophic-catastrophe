@@ -41,8 +41,7 @@ namespace Blok3Game.GameStates
             enemyBulletList = new List<EnemyBullet>();
             SpawnStandardEnemies();
 
-            player = new Player(3, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2),
-                                (GameEnvironment.Screen.Y / 2) - (90 / 2)));
+            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
@@ -66,24 +65,24 @@ namespace Blok3Game.GameStates
                 //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
                 if (Enemy.XPosition >= player.Position.X)
                 {
-                    Enemy.XPosition -= Enemy.EnemySpeed;
+                    Enemy.XPosition -= Enemy.EnemyMoveSpeed;
                     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
                     Enemy.Sprite.Mirror = false;
                 }
                 if (Enemy.XPosition <= player.Position.X)
                 {
-                    Enemy.XPosition += Enemy.EnemySpeed;
+                    Enemy.XPosition += Enemy.EnemyMoveSpeed;
                     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
                     Enemy.Sprite.Mirror = true;
                 }
                 if (Enemy.YPosition >= player.Position.Y)
                 {
-                    Enemy.YPosition -= Enemy.EnemySpeed;
+                    Enemy.YPosition -= Enemy.EnemyMoveSpeed;
                     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
                 }
                 if (Enemy.YPosition <= player.Position.Y)
                 {
-                    Enemy.YPosition += Enemy.EnemySpeed;
+                    Enemy.YPosition += Enemy.EnemyMoveSpeed;
                     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
                 }
                 if (e % 120 == 0 && ChosenEnemy % 3 == 0)
@@ -108,10 +107,10 @@ namespace Blok3Game.GameStates
                 player.CheckForEnemyCollision(enemyBullet);
             }
 
-            if (player.HP <= 0)
+            if (player.PlayerHitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                player.HP = 3;
+                player.PlayerHitPoints = 3;
                 ResetBullets();
             }
             foreach (var enemyToRemove in enemiesToRemove)
