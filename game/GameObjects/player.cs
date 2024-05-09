@@ -5,16 +5,20 @@ using Microsoft.Xna.Framework;
 using Blok3Game.GameStates;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Blok3Game.GameObjects;
 
 public class Player : Character
 {
     //all variables that a player needs
     public int PlayerHitPoints;
+    public PlayerShield playerShield;
+    public int HP;
+    private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-    private int InvulnerabilityCooldown = 0;
+    public int InvulnerabilityCooldown = 0;
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
     {
@@ -75,6 +79,7 @@ public class Player : Character
         if (InvulnerabilityCooldown > 0)
         {
             InvulnerabilityCooldown--;
+            playerShield ??= new(Position);
         }
     }
 

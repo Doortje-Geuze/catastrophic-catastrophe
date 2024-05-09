@@ -113,6 +113,20 @@ namespace Blok3Game.GameStates
                 player.PlayerHitPoints = 3;
                 ResetBullets();
             }
+            if (player.InvulnerabilityCooldown >= 0)
+            {
+                if (player.InvulnerabilityCooldown == 0 && player.playerShield != null)
+                {
+                    Remove(player.playerShield);
+                }
+                if (player.InvulnerabilityCooldown == 119)
+                {
+                    Add(player.playerShield);
+                } else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
+                {
+                    player.playerShield.Position = player.Position + player.playerShield.Offset;
+                }
+            }
             foreach (var enemyToRemove in enemiesToRemove)
             {
                 shootingEnemyList.Remove(enemyToRemove);
