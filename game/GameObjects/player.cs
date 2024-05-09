@@ -12,8 +12,6 @@ public class Player : Character
     //all variables that a player needs
     public int PlayerHitPoints;
     public PlayerShield playerShield;
-    public int HP;
-    private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
