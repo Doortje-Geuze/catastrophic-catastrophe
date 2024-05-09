@@ -114,6 +114,20 @@ namespace Blok3Game.GameStates
                 player.HP = 3;
                 ResetBullets();
             }
+            if (player.InvulnerabilityCooldown >= 0)
+            {
+                if (player.InvulnerabilityCooldown == 0 && player.playerShield != null)
+                {
+                    Remove(player.playerShield);
+                }
+                if (player.InvulnerabilityCooldown == 119)
+                {
+                    Add(player.playerShield);
+                } else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
+                {
+                    player.playerShield.Position = player.Position + player.playerShield.Offset;
+                }
+            }
             foreach (var enemyToRemove in enemiesToRemove)
             {
                 shootingEnemyList.Remove(enemyToRemove);
@@ -199,7 +213,7 @@ namespace Blok3Game.GameStates
             float ShootPositionY = player.Position.Y + player.Height / 2;
             double bulletAngle = Math.Atan2(MousePositionY - ShootPositionY, MousePositionX - ShootPositionX);
 
-            PlayerBullet playerBullet = new PlayerBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle);
+            PlayerBullet playerBullet = new PlayerBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
 
             playerBulletList.Add(playerBullet);
             Add(playerBullet);
@@ -211,7 +225,7 @@ namespace Blok3Game.GameStates
             float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
             double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
 
-            EnemyBullet enemyBullet = new EnemyBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle);
+            EnemyBullet enemyBullet = new EnemyBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
 
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);
