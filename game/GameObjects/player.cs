@@ -3,19 +3,23 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Blok3Game.GameStates;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Blok3Game.GameObjects;
 
 public class Player : SpriteGameObject
 {
     //all variables that a player needs
+    public PlayerShield playerShield;
     public int HP;
     private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
-    private int InvulnerabilityCooldown = 0;
+    public int InvulnerabilityCooldown = 0;
 
-    public Player(int PlayerHealth, Vector2 position, string assetName = "Images/Characters/circle90") : base(assetName)
+    public Player(int PlayerHealth, Vector2 position, int layer = 0, string id = "") : base("Images/Characters/playerCat@2x1", layer, id, 0)
     {
         HP = PlayerHealth;
         Position = position;
@@ -33,7 +37,7 @@ public class Player : SpriteGameObject
         }
         if (IsDashing)
         {
-            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510) 
+            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510)
             {
                 ResetDashValue();
                 return;
@@ -50,7 +54,7 @@ public class Player : SpriteGameObject
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = 15;
+        MoveSpeed = 10;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
@@ -74,7 +78,8 @@ public class Player : SpriteGameObject
     {
         if (InvulnerabilityCooldown > 0)
         {
-            InvulnerabilityCooldown--;   
+            InvulnerabilityCooldown--;
+            playerShield ??= new(Position);
         }
     }
 
@@ -89,6 +94,7 @@ public class Player : SpriteGameObject
         }
         if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
+            Sprite.SheetIndex = 1;
             Direction = new Vector2(-1, 0);
             Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
@@ -99,6 +105,7 @@ public class Player : SpriteGameObject
         }
         if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
         {
+            Sprite.SheetIndex = 0;
             Direction = new Vector2(1, 0);
             Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
@@ -117,6 +124,7 @@ public class Player : SpriteGameObject
         {
             HP -= 1;
             InvulnerabilityCooldown = 120;
+            Console.WriteLine(HP);
         }
     }
 }

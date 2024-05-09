@@ -51,7 +51,7 @@ namespace Blok3Game.Engine.UI
 
         private void AddBackground(float scale)
         {
-            background = new SpriteGameObject("Images/UI/TextInput@1x2", 0, "background");
+            background = new SpriteGameObject("Images/UI/textInput@1x2", 0, "background");
             background.Scale = scale;
             AddBackground(background);
         }
