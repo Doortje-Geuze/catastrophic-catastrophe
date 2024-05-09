@@ -62,34 +62,35 @@ namespace Blok3Game.GameStates
             //Loop door de lijst met enemies
             foreach (var Enemy in shootingEnemyList)
             {
-                //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
-                if (Enemy.XPosition >= player.Position.X)
-                {
-                    Enemy.XPosition -= Enemy.EnemyMoveSpeed;
-                    Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                    Enemy.Sprite.Mirror = false;
-                }
-                if (Enemy.XPosition <= player.Position.X)
-                {
-                    Enemy.XPosition += Enemy.EnemyMoveSpeed;
-                    Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                    Enemy.Sprite.Mirror = true;
-                }
-                if (Enemy.YPosition >= player.Position.Y)
-                {
-                    Enemy.YPosition -= Enemy.EnemyMoveSpeed;
-                    Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                }
-                if (Enemy.YPosition <= player.Position.Y)
-                {
-                    Enemy.YPosition += Enemy.EnemyMoveSpeed;
-                    Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                }
-                if (e % 120 == 0 && ChosenEnemy % 3 == 0)
-                {
-                    EnemyShoots(Enemy);
-                }
-                ChosenEnemy++;
+                Enemy.EnemySeeking(player.Position);
+                // //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
+                // if (Enemy.XPosition >= player.Position.X)
+                // {
+                //     Enemy.XPosition -= Enemy.EnemyMoveSpeed;
+                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
+                //     Enemy.Sprite.Mirror = false;
+                // }
+                // if (Enemy.XPosition <= player.Position.X)
+                // {
+                //     Enemy.XPosition += Enemy.EnemyMoveSpeed;
+                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
+                //     Enemy.Sprite.Mirror = true;
+                // }
+                // if (Enemy.YPosition >= player.Position.Y)
+                // {
+                //     Enemy.YPosition -= Enemy.EnemyMoveSpeed;
+                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
+                // }
+                // if (Enemy.YPosition <= player.Position.Y)
+                // {
+                //     Enemy.YPosition += Enemy.EnemyMoveSpeed;
+                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
+                // }
+                // if (e % 120 == 0 && ChosenEnemy % 3 == 0)
+                // {
+                //     EnemyShoots(Enemy);
+                // }
+                // ChosenEnemy++;
 
                 player.CheckForEnemyCollision(Enemy);
                 foreach (var playerBullet in playerBulletList)
