@@ -26,9 +26,9 @@ namespace Blok3Game.GameStates
         public Crosshair crosshair;
         public CatGun catGun;
         public ShootingEnemy shootingEnemy;
-        public int e = 0;
-        public int frameCounter = 0;
+        public int EnemyShoot = 0;
         public int WaveCounter = 1;
+        public int ChosenEnemy = 0;
 
         public GameState() : base()
         {
@@ -55,42 +55,17 @@ namespace Blok3Game.GameStates
         {
             base.Update(gameTime);
 
-            e++;
-            frameCounter++;
-            int ChosenEnemy = 0;
-
             //Loop door de lijst met enemies
             foreach (var Enemy in shootingEnemyList)
             {
                 Enemy.EnemySeeking(player.Position);
-                // //If-statements om te checken wat de positie van de enemies is ten opzichte van een bepaald punt
-                // if (Enemy.XPosition >= player.Position.X)
-                // {
-                //     Enemy.XPosition -= Enemy.EnemyMoveSpeed;
-                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                //     Enemy.Sprite.Mirror = false;
-                // }
-                // if (Enemy.XPosition <= player.Position.X)
-                // {
-                //     Enemy.XPosition += Enemy.EnemyMoveSpeed;
-                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                //     Enemy.Sprite.Mirror = true;
-                // }
-                // if (Enemy.YPosition >= player.Position.Y)
-                // {
-                //     Enemy.YPosition -= Enemy.EnemyMoveSpeed;
-                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                // }
-                // if (Enemy.YPosition <= player.Position.Y)
-                // {
-                //     Enemy.YPosition += Enemy.EnemyMoveSpeed;
-                //     Enemy.Position = new Vector2((float)Enemy.XPosition, (float)Enemy.YPosition);
-                // }
-                // if (e % 120 == 0 && ChosenEnemy % 3 == 0)
-                // {
-                //     EnemyShoots(Enemy);
-                // }
-                // ChosenEnemy++;
+
+                if (Enemy.EnemyShootCooldown >= 120)
+                {
+                    EnemyShoots(Enemy);
+                    Enemy.EnemyShootCooldown = 0;
+                }
+                Enemy.EnemyShootCooldown++;
 
                 player.CheckForEnemyCollision(Enemy);
                 foreach (var playerBullet in playerBulletList)
@@ -123,7 +98,8 @@ namespace Blok3Game.GameStates
                 if (player.InvulnerabilityCooldown == 119)
                 {
                     Add(player.playerShield);
-                } else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
+                }
+                else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
                 {
                     player.playerShield.Position = player.Position + player.playerShield.Offset;
                 }
@@ -239,5 +215,5 @@ namespace Blok3Game.GameStates
             }
         }
     }
-    
+
 }
