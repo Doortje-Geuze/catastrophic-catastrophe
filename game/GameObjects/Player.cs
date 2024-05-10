@@ -7,22 +7,20 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Blok3Game.GameObjects;
 
-public class Player : SpriteGameObject
+public class Player : Character
 {
     //all variables that a player needs
+    public int PlayerHitPoints;
     public PlayerShield playerShield;
-    public int HP;
-    private int MoveSpeed = 5;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
 
-    public Player(int PlayerHealth, Vector2 position, int layer = 0, string id = "") : base("Images/Characters/playerCat@2x1", layer, id, 0)
+    public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
     {
-        HP = PlayerHealth;
-        Position = position;
+        PlayerHitPoints = hitPoints;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -122,9 +120,9 @@ public class Player : SpriteGameObject
     {
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
         {
-            HP -= 1;
+            PlayerHitPoints -= 1;
             InvulnerabilityCooldown = 120;
-            Console.WriteLine(HP);
+            Console.WriteLine(PlayerHitPoints);
         }
     }
 }
