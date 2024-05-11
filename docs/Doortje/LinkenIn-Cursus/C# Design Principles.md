@@ -81,7 +81,7 @@
 het design principle: encapsute what varies zouden wij kunnen toepassen op onze enemies. stel al maken we 3 vershillende enemies, die samen in 1 enemy class zitten en we moeten deze steeds aanpassen omdat we verschillnde enemies willen uit proberen. Dan zouden we het kennen toepassen net zoals het voorbeeld van de pancake factory in de cursus. zo kunnen we de enemies veranderen zonder dat het rest van de code beinvloed
 
 ## Resultaten LinkedIn Learning cursus
-![Certifikaat](/docs/Doortje/LinkenIn-Cursus/C#%20Design%20Principles.png)
+![](/docs/Doortje/LinkenIn-Cursus/C#%20Design%20Principles.png) 
 
 
 ## Vragen voor expert review
