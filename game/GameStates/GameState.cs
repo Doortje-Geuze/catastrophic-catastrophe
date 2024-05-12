@@ -93,6 +93,7 @@ namespace Blok3Game.GameStates
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 player.PlayerHitPoints = 3;
+                player.playerHealth.Text = $"{player.PlayerHitPoints}";
                 ResetBullets();
             } else
             {
