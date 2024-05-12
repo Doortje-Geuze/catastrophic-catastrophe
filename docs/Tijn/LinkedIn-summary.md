@@ -37,7 +37,7 @@ TrueForAll returns true when every value in a list meets a certain requirement
 LinkedList works in sequence, instead of with an index like List
 LinkedListNodes are points in a linked list that are set by the user, and any value can be added, removed or checked before and after these nodes
 Lists vs LinkedList: Lists are faster at looking up items, as well as adding items at the end of the list. LinkedList is best used when adding / removing items from the last and first positions of the list
-Stack, queue and dictionary are already covered in [C# Interfaces and generics]()
+Stack, queue and dictionary are already covered in [C# Interfaces and generics](https://suuleewooyaa34-propedeuse-hbo-ict-onderwijs-2023-379a4339aa11c7.dev.hihva.nl/Tijn/LinkedIn-summary/#c-interfaces-and-generics)
 ListDictionary implements a dictionary as a linked list, which is faster up to about 100 elements
 HybridDictionary starts out as a ListDictionary, until that is no longer faster, and then switches to a Dictionary
 OrderedDictionary keeps entries in the dictionary in order of when they were added
