@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework;
 
 namespace Blok3Game.GameObjects
 {
-
-    public class Enemy : SpriteGameObject
+    public class Enemy : Character
     {
-        public Enemy(int hp, double speed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName, layer, id, sheetIndex)
+        public int EnemyMoveSpeed;
+        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(hitPoints, moveSpeed, position, assetName)
         {
-
+            EnemyMoveSpeed = moveSpeed;
         }
     }
 }
