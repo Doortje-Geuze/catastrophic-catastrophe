@@ -49,6 +49,13 @@ namespace Blok3Game.GameStates
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
+
+            player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
+            {
+                Text = $"{player.PlayerHitPoints}",
+                Color = new(255, 255, 255),
+            };
+            Add(player.playerHealth);
         }
 
         public override void Update(GameTime gameTime)
@@ -82,12 +89,14 @@ namespace Blok3Game.GameStates
             {
                 player.CheckForEnemyCollision(enemyBullet);
             }
-
             if (player.PlayerHitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 player.PlayerHitPoints = 3;
                 ResetBullets();
+            } else
+            {
+                player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
             }
             if (player.InvulnerabilityCooldown >= 0)
             {

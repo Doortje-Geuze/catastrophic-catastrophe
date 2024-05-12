@@ -23,8 +23,8 @@ public class ShootingEnemy : Enemy
 
         steering = desired_velocity - velocity;
 
-        steering = steering / 5;
-        velocity = velocity + steering;
+        steering /= 5;
+        velocity += steering;
         position += velocity;
     }
 }
