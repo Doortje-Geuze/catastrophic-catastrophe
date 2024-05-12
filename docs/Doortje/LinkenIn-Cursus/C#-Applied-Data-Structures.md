@@ -101,7 +101,7 @@ Dictionary< string, string > fileType = new Dictionary< string, string >();
 
 
 ## Resultaten LinkedIn Learning cursus
-
+![certivicaat](/docs/Doortje/LinkenIn-Cursus/Certificaat-Applied-Data-Structures.png)
 
 ## Resultaten quiz op DLO
 [Plak hier een screenshot van je quizresultaat]
