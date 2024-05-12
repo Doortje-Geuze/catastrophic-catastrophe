@@ -1,15 +1,25 @@
 using System;
 using Blok3Game.Engine.GameObjects;
+using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 
-namespace Blok3Game.GameObjects
+namespace Blok3Game.SpriteGameObjects
 {
 
-    public class Box : SpriteGameObject
+  abstract class Box : SpriteGameObject
     {
-        public Box(Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName, layer, id, sheetIndex)
+        public  Box ( Vector2 position, int layer = 0, string id = "") : base("Images/Tiles/SquareYellow", layer, id, 0)
         {
-
+            // I Store
         }
     }
+
+
+ class BoxYelllow : Box
+{
+    public BoxYelllow (Vector2 position, int layer = 0, string id = "") : base(position, layer, id)
+    {
+
+    }
+}
 }

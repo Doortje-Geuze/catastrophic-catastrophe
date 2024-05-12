@@ -57,7 +57,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/Bullets/enemyBullet.png
 
-#begin Images/Characters/characters@8x12.png
+#begin Images/Bullets/PinkSquare.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -67,10 +67,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Characters/characters@8x12.png
+/build:Images/Bullets/PinkSquare.png
 
 #begin Images/Characters/blueCircle.png
-
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -80,7 +79,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-
 /build:Images/Characters/blueCircle.png
 
 #begin Images/Characters/blueCircle90.png
@@ -94,6 +92,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Characters/blueCircle90.png
+
+#begin Images/Characters/characters@8x12.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Characters/characters@8x12.png
 
 #begin Images/Characters/gunCat@2x1.png
 /importer:TextureImporter
@@ -203,6 +213,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Enemies/standardEnemy.png
 
+#begin Images/Tiles/SquareYellow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Tiles/SquareYellow.png
+
 #begin Images/Tiles/tilemap@12x11.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -215,18 +237,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/Tiles/tilemap@12x11.png
 
-#begin Images/UI/buttonBig@1x4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/UI/buttonBig@1x4.png
-
 #begin Images/UI/button@1x4.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -238,6 +248,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/UI/button@1x4.png
+
+#begin Images/UI/buttonBig@1x4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/buttonBig@1x4.png
 
 #begin Images/UI/crosshair.png
 /importer:TextureImporter

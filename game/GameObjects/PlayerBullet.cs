@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.GameStates;
 using Microsoft.Xna.Framework;
-
+ 
 public class PlayerBullet : RotatingSpriteGameObject
 {
     public int playerBulletCooldown = 2;

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 
 public class Player : SpriteGameObject
-{
+{ 
     //all variables that a player needs
     public int HP;
     private int MoveSpeed = 5;

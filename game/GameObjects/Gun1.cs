@@ -1,0 +1,31 @@
+using System;
+using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
+using Blok3Game.Engine.GameObjects;
+using Blok3Game.GameObjects;
+using Microsoft.Xna.Framework;
+
+
+public class PinkGun : PlayerBullet
+{
+   
+   PinkGun active;
+   PinkGun  new BulletMoveSpeed;
+
+    public PinkGun(Vector2 position, double angle, string assetName = "Images/Bullet/PInkSquare") : base(position, angle, assetName)
+    {
+        Position = position;
+        Angle = (float)angle;
+        BulletMoveSpeed = 10;
+
+    }
+
+
+    public void Active();
+    {
+
+    }
+
+    
+}
+
