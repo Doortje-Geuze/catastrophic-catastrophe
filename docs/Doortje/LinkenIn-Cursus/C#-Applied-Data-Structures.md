@@ -74,12 +74,28 @@ mylist.AddLast("7");
 - Stack: zie 'Linked In cursus C#: Interfaces and Generics'
 - Queue: zie 'Linked In cursus C#: Interfaces and Generics'
 - Dictionary:
+- 
 ```cs
 
 //Dictionaries map key to values
 Dictionary< string, string > fileType = new Dictionary< string, string >();
 
 ```
+- OrderedDictionary 
+    - houdt de order in de values die zijn toegevoegd
+
+### Olders Data structures
+- werden in oudere versies van het framwork vaak gebruikt
+- worden niet vaak meer gebruikt in new app development
+- handig om er van te weten al kom je het tegeb in oudere code
+    - ListDictionary   `ListDictionary`
+    - HybridDictionary `HybridDictionary`
+    - OrderedDictionary 
+        - houdt de order in de values die zijn toegevoegd
+    - StringCollection
+        - gebruikt om groepen van stringobjecten te manipuleren
+    - StringBuilder
+        - eficient voor het maken van meerdere wijzegingen
 
 ## Relevantie tot je project en praktische toepassing
 

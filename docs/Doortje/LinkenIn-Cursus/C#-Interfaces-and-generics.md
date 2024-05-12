@@ -125,6 +125,7 @@ i2.SomeMethode();
   Console.WriteLine(...Stack.Contains(" "));
 
   ```
+
 - Queue:
   
 ```cs
@@ -146,6 +147,8 @@ i2.SomeMethode();
 ```
 
 ### Dictionary
+
+- mapping an unique key to an asociated value
 
 propertys:
   ![](/docs/Doortje/LinkenIn-Cursus/Dictonary-genaric-interfaces.png)
