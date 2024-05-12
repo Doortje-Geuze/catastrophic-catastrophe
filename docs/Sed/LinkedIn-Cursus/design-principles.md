@@ -41,3 +41,13 @@ Betekent eigenlijk "Program to a super type". Het helpt met het toepassen van po
 Een class moet maar 1 reden hebben om te veranderen. De verantwoordelijkheid van een class limiteren zodat de verandering in die class zo min mogelijk is. Dit principe heeft geen duidelijke richtlijn en is daarom moeilijk om correct te krijgen. Door dit principe toe te passen kunnen er delen van je code hergebruikt worden zonder dat er veel verandert hoeft te worden.
 
 #### Open-closed Principle
+Object georienteerde designs zijn open voor uitbreiding maar dicht voor veranderingen. Dit principe zorgt ervoor dat bestaande code niet hoeft te worden verandert om nieuw gedrag toe te voegen.
+
+#### Liskov's Substitution Principle
+Subtypes moeten altijd vervangbaar kunnen zijn voor hun base type.
+
+#### Interface Segregation Principle
+Scheid code in de interface waar nodig zodat het samenhangend blijft en makkelijker te onderhouden.
+
+#### Dependency Inversion Principle
+Hight tier modules zouden niet moet afhangen van low tier moduels. Dit kan gedaan worden aan de hand van een abstrabte class. De abstractie volgt ervoor dat code dat niet gezien hoeft te woorden door andere delen in de code dat ook zo blijft.
