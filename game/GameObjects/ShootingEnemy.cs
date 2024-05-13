@@ -3,6 +3,7 @@ using Blok3Game.GameObjects;
 
 
 
+
 public class ShootingEnemy : Enemy
 {
     public int EnemyHitPoints;
