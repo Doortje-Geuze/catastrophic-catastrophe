@@ -84,7 +84,7 @@ i2.SomeMethode();
 
 ### Using .NET-defined interfaces
 
-![.NET-Defined Interfaces](/docs/Doortje/LinkenIn-Cursus/Built%20in%20.NET%20interfaces.png)
+![](/docs/Doortje/LinkenIn-Cursus/images/Built%20in%20.NET%20interfaces.png)
 
 ## Generics
 
@@ -151,11 +151,11 @@ i2.SomeMethode();
 - mapping an unique key to an asociated value
 
 propertys:
-  ![](/docs/Doortje/LinkenIn-Cursus/Dictonary-genaric-interfaces.png)
+  ![](/docs/Doortje/LinkenIn-Cursus/images/Dictonary-genaric-interfaces.png)
 
 ## Resultaten LinkedIn Learning cursus
 
-![](/docs/Doortje/LinkenIn-Cursus/C#%20Interfaces%20and%20Generics%20certivicaat.png) 
+![](/docs/Doortje/LinkenIn-Cursus/images/C#%20Interfaces%20and%20Generics%20certivicaat.png) 
 
 ## Toepassing op eigen project
 

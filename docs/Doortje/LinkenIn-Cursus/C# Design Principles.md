@@ -95,7 +95,7 @@ het design principle: encapsute what varies zouden wij kunnen toepassen op onze 
 
 ## Resultaten LinkedIn Learning cursus
 
-![](/docs/Doortje/LinkenIn-Cursus/C#%20Design%20Principles.png) 
+![](/docs/Doortje/LinkenIn-Cursus/Images/C#%20Design%20Principles.png) 
 
 
 ## Vragen voor expert review

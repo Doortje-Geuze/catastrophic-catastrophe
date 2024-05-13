@@ -30,7 +30,7 @@
       - wordt de data structure gebouwd met content? of word er gezocht/toegang gemaakt er na?
   
 
-![](/docs/Doortje/LinkenIn-Cursus/genaric-non-genaric.png)
+![](/docs/Doortje/LinkenIn-Cursus/Images/genaric-non-genaric.png)
 
 ## Basic data structures
 - List operations
@@ -101,7 +101,7 @@ Dictionary< string, string > fileType = new Dictionary< string, string >();
 
 
 ## Resultaten LinkedIn Learning cursus
-![certivicaat](/docs/Doortje/LinkenIn-Cursus/Certificaat-Applied-Data-Structures.png)
+![](/docs/Doortje/LinkenIn-Cursus/images/Certificaat-Applied-Data-Structures.png)
 
 ## Resultaten quiz op DLO
 [Plak hier een screenshot van je quizresultaat]
