@@ -21,7 +21,7 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 [Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
 
 ### Resultaten LinkedIn Learning cursus
-[Plak hier een screenshot of link naar het certificaat]
+[Evidence of linkedIn-course completion](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
 
 ### Resultaten quiz op DLO
 [Plak hier een screenshot van je quizresultaat]
@@ -54,7 +54,7 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 [Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
 
 ### Resultaten LinkedIn Learning cursus
-[Plak hier een screenshot of link naar het certificaat]
+[Evidence of linkedIn-course completion](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
 
 ### Resultaten quiz op DLO
 [Plak hier een screenshot van je quizresultaat]
@@ -94,7 +94,7 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 [Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
 
 ### Resultaten LinkedIn Learning cursus
-[Plak hier een screenshot of link naar het certificaat]
+[Evidence of linkedIn-course completion](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
 
 ### Resultaten quiz op DLO
 [Plak hier een screenshot van je quizresultaat]
