@@ -101,18 +101,15 @@ namespace Blok3Game.GameStates
             }
             if (player.InvulnerabilityCooldown >= 0)
             {
-                if (player.InvulnerabilityCooldown == 0 && player.playerShield != null)
+                if (player.InvulnerabilityCooldown % 30 > 15)
                 {
-                    Remove(player.playerShield);
+                    player.Shade = new Color(255, 0, 0);
                 }
-                if (player.InvulnerabilityCooldown == 119)
+                if (player.InvulnerabilityCooldown % 30 < 15)
                 {
-                    Add(player.playerShield);
+                    player.Shade = new Color(255, 255, 255);
                 }
-                else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
-                {
-                    player.playerShield.Position = player.Position + player.playerShield.Offset;
-                }
+
             }
             foreach (var enemyToRemove in enemiesToRemove)
             {
@@ -227,3 +224,5 @@ namespace Blok3Game.GameStates
     }
 
 }
+
+

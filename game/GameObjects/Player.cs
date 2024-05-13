@@ -11,7 +11,6 @@ public class Player : Character
     public int PlayerHitPoints;
     public TextGameObject playerHealth;
     public Vector2 PlayerHealthOffset = new(40, 100);
-    public PlayerShield playerShield;
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
@@ -77,7 +76,6 @@ public class Player : Character
         if (InvulnerabilityCooldown > 0)
         {
             InvulnerabilityCooldown--;
-            playerShield ??= new(Position);
         }
     }
 
