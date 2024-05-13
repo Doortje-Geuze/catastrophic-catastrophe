@@ -1,27 +1,29 @@
-using System;
-using Blok3Game.Engine.GameObjects;
-using Blok3Game.Engine.Helpers;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Blok3Game.GameObjects;
 
 
+
 public class ShootingEnemy : Enemy
 {
-    public int EnemyHp;
-    public float EnemySpeed;
-
-    public double XPosition { get; set; }
-    public double YPosition { get; set; }
-    public ShootingEnemy(int hp, float speed, Vector2 position, string assetName = "Images/Characters/rat") : base(hp, speed, position, assetName)
+    public int EnemyHitPoints;
+    public Vector2 steering;
+    public Vector2 desired_velocity;
+    public int EnemyShootCooldown = 120;
+    public ShootingEnemy(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position, "Images/Characters/rat", 0, " ", 0)
     {
-        EnemyHp = hp;
-        EnemySpeed = speed;
-        Position = position;
-        XPosition = position.X;
-        YPosition = position.Y;
+        EnemyHitPoints = hitPoints;
     }
 
+    public void EnemySeeking(Vector2 PlayerPosition) // Made with the help of https://code.tutsplus.com/understanding-steering-behaviors-seek--gamedev-849t
+    {
+        desired_velocity = PlayerPosition - position;
+        desired_velocity.Normalize();
+        desired_velocity *= EnemyMoveSpeed;
+
+        steering = desired_velocity - velocity;
+
+        steering = steering / 5;
+        velocity = velocity + steering;
+        position += velocity;
+    }
 }
-
-
