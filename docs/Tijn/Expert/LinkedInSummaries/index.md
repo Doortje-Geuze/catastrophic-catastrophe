@@ -1,0 +1,1 @@
+# Index voor de LinkedIn summaries map

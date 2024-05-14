@@ -15,12 +15,11 @@ namespace Blok3Game.GameStates
     public class GameState : GameObjectList
     {
         //Lijst met alle enemies
-        private List<StandardEnemy> standardEnemyList;
-        private List<ShootingEnemy> enemiesToRemove;
         private List<PlayerBullet> playerBulletList;
         private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
+        private List<GameObject> toRemoveList;
         public Player player;
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
@@ -33,12 +32,12 @@ namespace Blok3Game.GameStates
         public GameState() : base()
         {
             //Aanmaken van een nieuwe lijst
-            standardEnemyList = new List<StandardEnemy>();
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
-            enemiesToRemove = new List<ShootingEnemy>();
             playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            toRemoveList = new List<GameObject>();
+
             SpawnStandardEnemies();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
@@ -49,6 +48,13 @@ namespace Blok3Game.GameStates
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
+
+            player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
+            {
+                Text = $"{player.PlayerHitPoints}",
+                Color = new(255, 255, 255),
+            };
+            Add(player.playerHealth);
         }
 
         public override void Update(GameTime gameTime)
@@ -72,8 +78,8 @@ namespace Blok3Game.GameStates
                 {
                     if (playerBullet.CheckForEnemyCollision(Enemy))
                     {
-                        enemiesToRemove.Add(Enemy);
-                        playerBulletsToRemove.Add(playerBullet);
+                        toRemoveList.Add(Enemy);
+                        toRemoveList.Add(playerBullet);
                     }
                 }
             }
@@ -87,50 +93,51 @@ namespace Blok3Game.GameStates
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 player.PlayerHitPoints = 3;
+                player.playerHealth.Text = $"{player.PlayerHitPoints}";
                 ResetBullets();
+            }
+            else
+            {
+                player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
             }
             if (player.InvulnerabilityCooldown >= 0)
             {
-                if (player.InvulnerabilityCooldown == 0 && player.playerShield != null)
+                if (player.InvulnerabilityCooldown % 30 > 15)
                 {
-                    Remove(player.playerShield);
+                    player.Shade = new Color(255, 0, 0);
                 }
-                if (player.InvulnerabilityCooldown == 119)
+                if (player.InvulnerabilityCooldown % 30 < 15)
                 {
-                    Add(player.playerShield);
+                    player.Shade = new Color(255, 255, 255);
                 }
-                else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
+
+            }
+
+            foreach (var gameObject in toRemoveList)
+            {
+                if (gameObject is PlayerBullet playerBullet)
                 {
-                    player.playerShield.Position = player.Position + player.playerShield.Offset;
+                    playerBulletList.Remove(playerBullet);
                 }
+                if (gameObject is ShootingEnemy shootingEnemy)
+                {
+                    shootingEnemyList.Remove(shootingEnemy);
+                }
+                Remove(gameObject);
             }
-            foreach (var enemyToRemove in enemiesToRemove)
-            {
-                shootingEnemyList.Remove(enemyToRemove);
-                Remove(enemyToRemove);
-            }
-            foreach (var playerBulletToRemove in playerBulletsToRemove)
-            {
-                playerBulletList.Remove(playerBulletToRemove);
-                Remove(playerBulletToRemove);
-            }
-            if (shootingEnemyList.Count == 0 && WaveCounter != 3)
-            {
-                WaveCounter++;
-                ResetBullets();
-                SpawnStandardEnemies();
-            }
-            if (shootingEnemyList.Count == 0 && WaveCounter == 3)
-            {
-                GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-                ResetBullets();
-                SpawnStandardEnemies();
-            }
-            foreach (var playerBulletToRemove in playerBulletsToRemove)
-            {
-                Remove(playerBulletToRemove);
-                playerBulletList.Remove(playerBulletToRemove);
-            }
+
+            // if (shootingEnemyList.Count == 0 && WaveCounter != 3)
+            // {
+            //     WaveCounter++;
+            //     ResetBullets();
+            //     SpawnStandardEnemies();
+            // }
+            // if (shootingEnemyList.Count == 0 && WaveCounter == 3)
+            // {
+            //     GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+            //     ResetBullets();
+            //     SpawnStandardEnemies();
+            // }
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -217,3 +224,5 @@ namespace Blok3Game.GameStates
     }
 
 }
+
+
