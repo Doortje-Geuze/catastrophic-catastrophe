@@ -5,12 +5,13 @@ using Microsoft.Xna.Framework;
 
 namespace Blok3Game.SpriteGameObjects
 {
-
+ 
   abstract class Box : SpriteGameObject
     {
         public  Box ( Vector2 position, int layer = 0, string id = "") : base("Images/Tiles/SquareYellow", layer, id, 0)
         {
             // I Store
+            // position 
         }
     }
 
