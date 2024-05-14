@@ -89,6 +89,7 @@ namespace Blok3Game.GameStates
                 player.CheckForEnemyCollision(enemyBullet);
             }
 
+            //switches to lose screen if player's HP falls below 0
             if (player.PlayerHitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
@@ -100,6 +101,7 @@ namespace Blok3Game.GameStates
             {
                 player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
             }
+            //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
             {
                 if (player.InvulnerabilityCooldown % 30 > 15)

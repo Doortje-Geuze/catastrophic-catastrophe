@@ -114,6 +114,7 @@ public class Player : Character
         MoveSpeed = 5;
     }
 
+    //checks player-enemy collision, then activates HP loss and invulnerability timer
     public void CheckForEnemyCollision(SpriteGameObject enemy)
     {
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
