@@ -2,8 +2,6 @@ using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using Blok3Game.GameStates;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Blok3Game.GameObjects;
 
@@ -11,7 +9,8 @@ public class Player : Character
 {
     //all variables that a player needs
     public int PlayerHitPoints;
-    public PlayerShield playerShield;
+    public TextGameObject playerHealth;
+    public Vector2 PlayerHealthOffset = new(40, 100);
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
@@ -77,7 +76,6 @@ public class Player : Character
         if (InvulnerabilityCooldown > 0)
         {
             InvulnerabilityCooldown--;
-            playerShield ??= new(Position);
         }
     }
 
@@ -121,6 +119,7 @@ public class Player : Character
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
         {
             PlayerHitPoints -= 1;
+            playerHealth.Text = $"{PlayerHitPoints}";
             InvulnerabilityCooldown = 120;
             Console.WriteLine(PlayerHitPoints);
         }
