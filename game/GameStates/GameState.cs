@@ -51,7 +51,7 @@ namespace Blok3Game.GameStates
 
             player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
             {
-                Text = $"{player.PlayerHitPoints}",
+                Text = $"{player.HitPoints}",
                 Color = new(255, 255, 255),
             };
             Add(player.playerHealth);
@@ -90,11 +90,11 @@ namespace Blok3Game.GameStates
             }
 
             //switches to lose screen if player's HP falls below 0
-            if (player.PlayerHitPoints <= 0)
+            if (player.HitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                player.PlayerHitPoints = 3;
-                player.playerHealth.Text = $"{player.PlayerHitPoints}";
+                player.HitPoints = 3;
+                player.playerHealth.Text = $"{player.HitPoints}";
                 ResetBullets();
             }
             else
