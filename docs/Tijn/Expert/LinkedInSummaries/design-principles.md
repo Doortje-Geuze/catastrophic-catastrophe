@@ -3,8 +3,7 @@
 ## C# Design principles
 
 ### Inleiding
-
-Deze documentatie dient als leidraad om theoretische concepten in onder meer object georiënteerd programmeren, databases en infrastructuur te begrijpen en toe te passen. Het benadrukt de relevantie van theoretische kennis voor praktische toepassingen in je project en biedt een gestructureerde aanpak voor het documenteren van je voortgang.
+Deze samenvatting gaat over de [linkedIn-course Design Principles](https://www.linkedin.com/learning/advanced-design-patterns-design-principles/). Hierin wordt de theorie rondom Design Principles in het kort verteld.
 
 ### Samenvatting van de cursus in ongeveer 300 woorden
 - Encapsulate what varies: when a certain block of code changes constantly, it is best to encapsulate that block of code to another class or method so there is less risk of the base code getting influenced by the changes, which would result in crashes.
@@ -18,6 +17,20 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 - Dependency inversion: high-level modules should not depend on low-level modules, they should both depend on abstractions. Abstractions should not depend on details, but the other way around.
 
 ### Relevantie tot je project en praktische toepassing
+De Design Principles zijn algemene guidelines om aan te houden tijdens het coderen. Het gebruik van alle principles moet daarom altijd in acht genomen worden. Neem 'Program to interfaces, not implementations' als voorbeeld:
+
+```C#
+public abstract class Character : SpriteGameObject
+{
+    //all variables that a character needs
+    protected int HitPoints;
+    protected int MoveSpeed;
+    //rest of code
+}
+```
+
+De character class is een abstracte class. Dit betekent dat hier geen instanties van kunnen worden gemaakt. Alle character-type objecten in onze game (zoals de speler of enemies) kunnen hier vervolgens van overerven om character-unique methods en/of variable te krijgen.
+
 [Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
 
 ### Resultaten LinkedIn Learning cursus
