@@ -51,7 +51,7 @@ namespace Blok3Game.GameStates
 
             player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
             {
-                Text = $"{player.PlayerHitPoints}",
+                Text = $"{player.HitPoints}",
                 Color = new(255, 255, 255),
             };
             Add(player.playerHealth);
@@ -89,17 +89,19 @@ namespace Blok3Game.GameStates
                 player.CheckForEnemyCollision(enemyBullet);
             }
 
-            if (player.PlayerHitPoints <= 0)
+            //switches to lose screen if player's HP falls below 0
+            if (player.HitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                player.PlayerHitPoints = 3;
-                player.playerHealth.Text = $"{player.PlayerHitPoints}";
+                player.HitPoints = 3;
+                player.playerHealth.Text = $"{player.HitPoints}";
                 ResetBullets();
             }
             else
             {
                 player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
             }
+            //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
             {
                 if (player.InvulnerabilityCooldown % 30 > 15)
