@@ -8,7 +8,6 @@ using Blok3Game.GameObjects;
 public class Player : Character
 {
     //all variables that a player needs
-    public int PlayerHitPoints;
     public TextGameObject playerHealth;
     public Vector2 PlayerHealthOffset = new(40, 100);
     private int PlayerDashTimer = 0;
@@ -19,7 +18,7 @@ public class Player : Character
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
     {
-        PlayerHitPoints = hitPoints;
+        HitPoints = hitPoints;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -114,14 +113,15 @@ public class Player : Character
         MoveSpeed = 5;
     }
 
+    //checks player-enemy collision, then activates HP loss and invulnerability timer
     public void CheckForEnemyCollision(SpriteGameObject enemy)
     {
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
         {
-            PlayerHitPoints -= 1;
-            playerHealth.Text = $"{PlayerHitPoints}";
+            HitPoints -= 1;
+            playerHealth.Text = $"{HitPoints}";
             InvulnerabilityCooldown = 120;
-            Console.WriteLine(PlayerHitPoints);
+            Console.WriteLine(HitPoints);
         }
     }
 }

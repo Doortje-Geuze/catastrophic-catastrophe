@@ -3,8 +3,7 @@
 ## C# Design principles
 
 ### Inleiding
-
-Deze documentatie dient als leidraad om theoretische concepten in onder meer object georiënteerd programmeren, databases en infrastructuur te begrijpen en toe te passen. Het benadrukt de relevantie van theoretische kennis voor praktische toepassingen in je project en biedt een gestructureerde aanpak voor het documenteren van je voortgang.
+Deze samenvatting gaat over de [linkedIn-course Design Principles](https://www.linkedin.com/learning/advanced-design-patterns-design-principles/). Hierin wordt de theorie rondom Design Principles in het kort verteld.
 
 ### Samenvatting van de cursus in ongeveer 300 woorden
 - Encapsulate what varies: when a certain block of code changes constantly, it is best to encapsulate that block of code to another class or method so there is less risk of the base code getting influenced by the changes, which would result in crashes.
@@ -18,7 +17,33 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 - Dependency inversion: high-level modules should not depend on low-level modules, they should both depend on abstractions. Abstractions should not depend on details, but the other way around.
 
 ### Relevantie tot je project en praktische toepassing
-[Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
+De Design Principles zijn algemene guidelines om aan te houden tijdens het coderen. Het gebruik van alle principles moet daarom altijd in acht genomen worden. Neem 'Program to interfaces, not implementations' als voorbeeld:
+
+```C#
+public abstract class Character : SpriteGameObject
+{
+    //all variables that a character needs
+    public int HitPoints;
+    protected int MoveSpeed;
+    //rest of code
+}
+```
+
+De character class is een abstracte class. Dit betekent dat hier geen instanties van kunnen worden gemaakt. Alle character-type objecten in onze game (zoals de speler of enemies) kunnen hier vervolgens van overerven om character-unique methods en/of variable te krijgen. Bij de creatie van een nieuwe player in de Player class, hoeft bijvoorbeeld geen extra variable aangemaakt te worden voor HitPoints, sinds die al bestaat door de Character class.
+
+```C#
+public class Player : Character
+{
+    //assignment of new variables
+    public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
+    {
+        HitPoints = hitPoints;
+    }
+    //rest of code
+}
+```
+
+Bij deze voorbeeld code komt ook 'Interface segregation' aan bod. Door nieuwe variables niet te verwerken in IGameLoopObject, maar in een nieuwe abstracte class, blijft de IGameLoopObject code schoon voor andere classes die alleen deze interface nodig hebben, en niet de Character.
 
 ### Resultaten LinkedIn Learning cursus
 [Bewijs van LinkedIn-course voltooiing](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
@@ -27,4 +52,4 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 ![Bewijs van DLO quiz over K1](../LinkedInSummaries/DLOQuizBlok4.png)
 
 ### Vragen voor expert review
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
+Hoe wordt composition aangeduid in C#? Hoe werkt de syntax hiervoor, of is het meer een concept dan een echte feature van C#?

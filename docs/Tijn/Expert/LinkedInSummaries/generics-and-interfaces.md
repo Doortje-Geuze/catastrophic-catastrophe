@@ -22,7 +22,71 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 - Dictionary has the Count method, as well as a few different ones like ContainsKey, ContainsValue, Add and Remove
 
 ### Relevantie tot je project en praktische toepassing
-[Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
+Voor onze game is het gebruik van Lists extreem belangrijk. Lists worden voornamelijk gebruikt in de gamestate class, om objecten toe te voegen aan de GameObjectList (dit is een soort List, die uniek is aan deze codebase). De GameObjectList loopt door alle elementen in de list heen om functies uit te voeren als de Update en HandleInput. Voor het toevoegen van elementen aan de lijst wordt Add() gebruikt, en Remove() om elementen weg te halen. Elementen die in de lijst staan worden gedisplayed in de gamestate. Naast de GameobjectList voor de gamestate, gebruiken we ook reguliere Lists.
+
+```C#
+private List<PlayerBullet> playerBulletList;
+private List<PlayerBullet> playerBulletsToRemove;
+private List<EnemyBullet> enemyBulletList;
+private List<ShootingEnemy> shootingEnemyList;
+private List<GameObject> toRemoveList;
+```
+
+Deze lijsten zijn vrij vanzelfsprekend; playerBulletList is een lijst voor alle playerbullets, etc. De toRemoveList is een lijst voor alle objecten van het type GameObject. Deze wordt gebruikt om objects te verwijderen na een foreach loop over de lijst heen. Dit hebben wij zo gecodeerd, aangezien het verwijderen van elementen uit een lijst tijdens een loop zorgt voor een crash.
+
+```C#
+foreach (var playerBullet in playerBulletList)
+{
+    if (playerBullet.CheckForEnemyCollision(Enemy))
+    {
+        toRemoveList.Add(Enemy);
+        toRemoveList.Add(playerBullet);
+    }
+}
+```
+
+De code hierboven laat een collision check plaatsvinden tussen enemies en playerBullets. Omdat er een foreach over de playerBulletList wordt uitgevoerd, kunnen hier niet direct elementen uit verwijderd worden. Daarom worden deze later verwijderd.
+
+```C#
+foreach (var gameObject in toRemoveList)
+{
+    if (gameObject is PlayerBullet playerBullet)
+    {
+        playerBulletList.Remove(playerBullet);
+    }
+    if (gameObject is ShootingEnemy shootingEnemy)
+    {
+        shootingEnemyList.Remove(shootingEnemy);
+    }
+    Remove(gameObject);
+}
+```
+
+Interfaces en abstracte classes zijn enorm handig met het herbruikbaar maken van code, als er veel soortgelijke objecten gebruikt worden. Een interface geeft methods en variablen mee die een overervende class MOET overnemen op zijn eigen manier (met het 'override' keyword). Een abstract class heeft gelijke functionaliteit, maar er verschillen ook wat dingen. Zo kan er maar 1 class worden overgeerfd, en meerdere interfaces. Ook kan een abstracte class van tevoren al methods definieeren, wat een interface niet kan. Er kunnen van beide soorten geen instanties gemaakt worden, wat de kans op fouten verkleint.
+
+```C#
+public abstract class Character : SpriteGameObject
+{
+    //all variables that a character needs
+    public int HitPoints;
+    protected int MoveSpeed;
+    //rest of code
+}
+```
+
+De character class is een abstracte class. Dit betekent dat hier geen instanties van kunnen worden gemaakt. Alle character-type objecten in onze game (zoals de speler of enemies) kunnen hier vervolgens van overerven om character-unique methods en/of variable te krijgen. Bij de creatie van een nieuwe player in de Player class, hoeft bijvoorbeeld geen extra variable aangemaakt te worden voor HitPoints, sinds die al bestaat door de Character class.
+
+```C#
+public class Player : Character
+{
+    //assignment of new variables
+    public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
+    {
+        HitPoints = hitPoints;
+    }
+    //rest of code
+}
+```
 
 ### Resultaten LinkedIn Learning cursus
 [Bewijs van LinkedIn-course voltooiing](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
@@ -31,4 +95,4 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 ![Bewijs van DLO quiz over K1](../LinkedInSummaries/DLOQuizBlok4.png)
 
 ### Vragen voor expert review
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
+Is het gebruik van een abstrace class of interface beter als je nog niet weet wat er later met de class gebeurt? Is het dan beter om te beginnen op interface en eventueel te veranderen naar abstracte class of is het niet te bepalen?
