@@ -14,7 +14,7 @@ namespace Blok3Game.GameStates
 {
     public class GameState : GameObjectList
     {
-        //Lijst met alle enemies
+        //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
         private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;

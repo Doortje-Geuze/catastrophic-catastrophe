@@ -23,15 +23,27 @@ De Design Principles zijn algemene guidelines om aan te houden tijdens het coder
 public abstract class Character : SpriteGameObject
 {
     //all variables that a character needs
-    protected int HitPoints;
+    public int HitPoints;
     protected int MoveSpeed;
     //rest of code
 }
 ```
 
-De character class is een abstracte class. Dit betekent dat hier geen instanties van kunnen worden gemaakt. Alle character-type objecten in onze game (zoals de speler of enemies) kunnen hier vervolgens van overerven om character-unique methods en/of variable te krijgen.
+De character class is een abstracte class. Dit betekent dat hier geen instanties van kunnen worden gemaakt. Alle character-type objecten in onze game (zoals de speler of enemies) kunnen hier vervolgens van overerven om character-unique methods en/of variable te krijgen. Bij de creatie van een nieuwe player in de Player class, hoeft bijvoorbeeld geen extra variable aangemaakt te worden voor HitPoints, sinds die al bestaat door de Character class.
 
-[Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
+```C#
+public class Player : Character
+{
+    //assignment of new variables
+    public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
+    {
+        HitPoints = hitPoints;
+    }
+    //rest of code
+}
+```
+
+Bij deze voorbeeld code komt ook 'Interface segregation' aan bod. Door nieuwe variables niet te verwerken in IGameLoopObject, maar in een nieuwe abstracte class, blijft de IGameLoopObject code schoon voor andere classes die alleen deze interface nodig hebben, en niet de Character.
 
 ### Resultaten LinkedIn Learning cursus
 [Bewijs van LinkedIn-course voltooiing](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
@@ -40,4 +52,4 @@ De character class is een abstracte class. Dit betekent dat hier geen instanties
 ![Bewijs van DLO quiz over K1](../LinkedInSummaries/DLOQuizBlok4.png)
 
 ### Vragen voor expert review
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
+Hoe wordt composition aangeduid in C#? Hoe werkt de syntax hiervoor, of is het meer een concept dan een echte feature van C#?
