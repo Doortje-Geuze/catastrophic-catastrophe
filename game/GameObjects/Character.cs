@@ -6,9 +6,9 @@ using Blok3Game.GameStates;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-public class Character : SpriteGameObject
+public abstract class Character : SpriteGameObject
 {
-    //all variables that a player needs
+    //all variables that a character needs
     protected int HitPoints;
     protected int MoveSpeed;
 
