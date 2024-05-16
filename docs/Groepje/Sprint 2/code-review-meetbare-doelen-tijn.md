@@ -1,4 +1,4 @@
-# Peer Code Review Template
+# Peer Code Review Tijn
 
 ## Introductie
 
