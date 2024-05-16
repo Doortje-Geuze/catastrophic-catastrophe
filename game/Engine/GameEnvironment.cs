@@ -13,7 +13,7 @@ public class GameEnvironment : Game
     protected Matrix spriteScale;
     protected Point windowSize;
 
-    protected static Point screen;
+    public static Point screen;
     protected static GameStateManager gameStateManager;
     protected static Random random;
     protected static AssetManager assetManager;

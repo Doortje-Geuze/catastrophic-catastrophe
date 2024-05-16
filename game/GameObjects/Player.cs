@@ -6,6 +6,7 @@ using Blok3Game.GameStates;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Blok3Game.GameObjects;
+using Blok3Game.Engine.UI;
 
 public class Player : Character
 {
@@ -18,9 +19,12 @@ public class Player : Character
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
 
+    private Camera camera;
+
     public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
     {
         PlayerHitPoints = hitPoints;
+        
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -129,6 +133,8 @@ public class Player : Character
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        
+        PlayerPositionManager.PlayerPosition = new Vector2(position.X, position.Y);
     }
+
+
 }

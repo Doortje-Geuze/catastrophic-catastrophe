@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
+using Blok3Game.Engine.UI;
 using Blok3Game.GameObjects;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 namespace Blok3Game.GameStates
 {
@@ -21,6 +25,8 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
+        private Camera camera;
+        //private List<Component> components;
         public Player player;
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
@@ -29,6 +35,9 @@ namespace Blok3Game.GameStates
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
+        
+
+        
 
         public GameState() : base()
         {
@@ -40,9 +49,15 @@ namespace Blok3Game.GameStates
             playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
             SpawnStandardEnemies();
+            camera = new Camera();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
+
+            // components = new List<Component>()
+            // {
+            //     player, 
+            // };
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);
@@ -53,7 +68,13 @@ namespace Blok3Game.GameStates
 
         public override void Update(GameTime gameTime)
         {
+            //foreach (var Component in components)
+            //Component.Update(gameTime);
+
+            camera.Follow(player);
             base.Update(gameTime);
+
+            
 
             //Loop door de lijst met enemies
             foreach (var Enemy in shootingEnemyList)
@@ -131,6 +152,16 @@ namespace Blok3Game.GameStates
                 Remove(playerBulletToRemove);
                 playerBulletList.Remove(playerBulletToRemove);
             }
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.End();
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+            //component.Draw(gameTime, spriteBatch);
+            
+            spriteBatch.End();
+            base.Draw(gameTime, spriteBatch);
         }
 
         public override void HandleInput(InputHelper inputHelper)
