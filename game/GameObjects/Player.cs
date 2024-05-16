@@ -53,7 +53,7 @@ public class Player : Character
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = BaseMoveSpeed * 2;
+        MoveSpeed = BaseMoveSpeed * 3;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
@@ -65,7 +65,7 @@ public class Player : Character
         {
             DashCooldown--;
         }
-        if (PlayerDashTimer > 3)
+        if (PlayerDashTimer > 5)
         {
             ResetDashValue();
             return;
@@ -84,29 +84,29 @@ public class Player : Character
     //checks for wasd movement, then sets position based on movespeed and direction (which is determined by what key on the keyboard is pressed)
     private void CheckForMovementInputs(InputHelper inputHelper)
     {
+        var dir = Vector2.Zero;
         base.HandleInput(inputHelper);
         if (inputHelper.IsKeyDown(Keys.W) && Position.Y > 0)
         {
-            Direction = new Vector2(0, -1);
-            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            dir.Y = -1;
         }
         if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
             Sprite.SheetIndex = 1;
-            Direction = new Vector2(-1, 0);
-            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            dir.X = -1;
         }
         if (inputHelper.IsKeyDown(Keys.S) && Position.Y < GameEnvironment.Screen.Y - Height)
         {
-            Direction = new Vector2(0, 1);
-            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            dir.Y = 1;
         }
         if (inputHelper.IsKeyDown(Keys.D) && Position.X < GameEnvironment.Screen.X - Width)
         {
             Sprite.SheetIndex = 0;
-            Direction = new Vector2(1, 0);
-            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            dir.X = 1;
         }
+        if (dir == Vector2.Zero) return;
+        dir.Normalize();
+        Position += dir * MoveSpeed;
     }
 
     private void ResetDashValue()
