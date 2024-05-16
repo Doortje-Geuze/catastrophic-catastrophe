@@ -1,10 +1,5 @@
-using System.Diagnostics;
-using System.Security.Cryptography;
 using Blok3Game.Engine.GameObjects;
-using Blok3Game.Engine.Helpers;
-using Blok3Game.GameStates;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 
 namespace Blok3Game.GameObjects
 {
