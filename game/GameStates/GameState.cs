@@ -177,7 +177,8 @@ namespace Blok3Game.GameStates
                         swap++;
                     }
 
-                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
+                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && 
+                         YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
 
                 //Aanmaken van de enemies
                 shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
@@ -193,7 +194,7 @@ namespace Blok3Game.GameStates
             float ShootPositionY = player.Position.Y + player.Height / 2;
             double bulletAngle = Math.Atan2(MousePositionY - ShootPositionY, MousePositionX - ShootPositionX);
 
-            PlayerBullet playerBullet = new PlayerBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+            PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
 
             playerBulletList.Add(playerBullet);
             Add(playerBullet);
@@ -205,7 +206,7 @@ namespace Blok3Game.GameStates
             float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
             double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
 
-            EnemyBullet enemyBullet = new EnemyBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
+            EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
 
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);

@@ -3,7 +3,6 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
-using Blok3Game.GameObjects;
 
 public class Player : Character
 {
@@ -16,7 +15,8 @@ public class Player : Character
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
 
-    public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
+    public Player(int hitPoints, int moveSpeed, Vector2 position) : 
+                  base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
     {
         HitPoints = hitPoints;
     }
