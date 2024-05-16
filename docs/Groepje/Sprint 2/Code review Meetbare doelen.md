@@ -6,14 +6,13 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 ## Weight
 
-| **Feature**                                    | **Weight** | **Commit/Link**                     |
-|------------------------------------------------|------------|--------------------------------------|
-| `Feature 1 beschrijving`                       | `_____`    | `[Link naar commit](URL)`            |
-| `Feature 2 beschrijving`                       | `_____`    | `[Link naar commit](URL)`            |
-| `Feature 3 beschrijving`                       | `_____`    | `[Link naar commit](URL)`            |
-| `Feature 4 beschrijving`                       | `_____`    | `[Link naar commit](URL)`            |
-| `Feature 5 beschrijving`                       | `_____`    | `[Link naar commit](URL)`            |
-| **Totaal Weight:**                             | `_____`    |                                      |
+| **Feature**                                                   | **Weight** | **Commit/Link**                      |
+|---------------------------------------------------------------|------------|--------------------------------------|
+| `Feature 1 Hitmark/Cursor/crosshair`                          | `3`        | `[Link naar commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/918fbc993da7f08badc02b7e4eb52a094e2a38f1?page=2)`            |
+| `Feature 2 character/player/enemy/shootingenemy hierarchy`    | `1`        | `nvt`            |
+| `Feature 3 Enemy Seeking`                                     | `4`        | `[Link naar commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/ed5911e34e368803e65f2032e285ebbef04d62e6)`            |
+| `Feature 4 Bullets`                                           | `3`        | `[Link naar commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/ef04303fad8d1346df6245f2a7d3c2b63a301b8a)`            |
+| **Totaal Weight:**                                            | `11`       |                                      |
 
 ---
 
@@ -21,18 +20,18 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                             | **Evaluatie**                         |
 |-------------------------------------------------|--------------------------------------|
-| Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `__________` |
-| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `__________` |
+| Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `Ja` |
+| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `Ja` |
 
 **Concrete Verbeterpunten:**
-1. `________________________________________________________________________`
-2. `________________________________________________________________________`
-3. `________________________________________________________________________`
+1. `-`
+2. `-`
+3. `-`
 
-**Compliance Score:** `_____`%
+**Compliance Score:** `100`%
 
 **Actieplan:**
-- `________________________________________________________________________`
+- `Ga zo door :D`
 
 ---
 
@@ -41,52 +40,52 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | **Meetbare doelen**                             | **Evaluatie**                             |
 |-------------------------------------------------|------------------------------------------|
 | **Minstens 1x per sprint**                         |                                          |
-| - OOP toegepast                                 | `__________` |
-| - Minstens 1 stukje logica geschreven           | `__________` |
+| - OOP toegepast                                 | `Ja` |
+| - Minstens 1 stukje logica geschreven           | `Ja` |
 | **Code Conventies**                                |                                          |
-| - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `__________` |
-| - Gebruik van indentatie zoals afgesproken met je groep | `__________` |
-| - C# algemene code conventies toegepast         | `__________` |
-| - Ingewikkelde code is gecomment                | `__________` |
-| - Alleen public wanneer nodig                   | `__________` |
-| - Magic numbers vermeden                        | `__________` |
+| - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `Ja` |
+| - Gebruik van indentatie zoals afgesproken met je groep | `Ja` |
+| - C# algemene code conventies toegepast         | `Ja` |
+| - Ingewikkelde code is gecomment                | `Nee` |
+| - Alleen public wanneer nodig                   | `Ja` |
+| - Magic numbers vermeden                        | `Nee` |
 | **Onderhoudbaarheid/Bruikbaarheid**                |  |
-| - Je kan makkelijk iets aanpassen zonder dat het breekt | `__________` |
-| - Geen dubbele code                             | `__________` |
-| - Weinig of geen bugs                           | `__________` |
-| - Nagedacht over toekomstig gebruik             | `__________` |
-| - Weinig directe referenties                    | `__________` |
+| - Je kan makkelijk iets aanpassen zonder dat het breekt | `Ja` |
+| - Geen dubbele code                             | `Ja` |
+| - Weinig of geen bugs                           | `Ja` |
+| - Nagedacht over toekomstig gebruik             | `Ja` |
+| - Weinig directe referenties                    | `Ja` |
 
 **Concrete Verbeterpunten:**
-1. `________________________________________________________________________`
-2. `________________________________________________________________________`
-3. `________________________________________________________________________`
+1. `Comments schrijven bij code`
+2. `Vermijd magic numbers`
+3. `-`
 
-**Compliance Score:** `_____`%
+**Compliance Score:** `85`%
 
 **Actieplan:**
-- `________________________________________________________________________`
+- `Schrijf na elk stuk gemaakte code comments die uitleggen wat de code doet. Probeer ook magic numbers te vermijden`
 
 ---
 
 ## Complexiteit
 
-| **Meetbare doelen**                            | **Evaluatie**                                    |
-|------------------------------------------------|-------------------------------------------------|
-| Op basis van je actieplan (toets, code review) | `__________` |
-| Technische uitdagingen overwonnen              | `__________` |
-| Gebruik van effectieve algoritmen en datastructuren | `__________` |
-| Samenwerking met andere delen van het systeem  | `__________` |
+| **Meetbare doelen**                                   | **Evaluatie**                                    |
+|-------------------------------------------------------|-------------------------------------------------|
+| Op basis van je actieplan (toets, code review)        | `nvt` |
+| Technische uitdagingen overwonnen                     | `Ja`  |
+| Gebruik van effectieve algoritmen en datastructuren   | `Gedeeltelijk` |
+| Samenwerking met andere delen van het systeem         | `Ja`  |
 
 **Concrete Verbeterpunten:**
-1. `________________________________________________________________________`
-2. `________________________________________________________________________`
-3. `________________________________________________________________________`
+1. `Gebruik van interfaces`
+2. `Gebruik meer verschillende generics`
+3. `Maak de classes gesloten voor veranderingen`
 
-**Compliance Score:** `_____`%
+**Compliance Score:** `90`%
 
 **Actieplan:**
-- `________________________________________________________________________`
+- `Gebruik meer interfaces, generics en maak de classes gesloten voor veranderingen`
 
 ---
 
@@ -94,19 +93,19 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                             | **Evaluatie**                          |
 |-------------------------------------------------|---------------------------------------|
-| Elke feature is binnen een week voorzien van context en documentatie. | `__________` |
-| Gebruik van code fragmenten en andere relevante documentatiemiddelen (diagrammen, etc.). | `__________` |
-| Voor elke feature van weight > 2 is er documentatie inclusief gebruiksinstructies (denk aan gifs, screenshots). | `__________` |
-| Minstens 1 feature gedocumenteerd & uitgelegd.  | `__________` |
+| Elke feature is binnen een week voorzien van context en documentatie. | `Nee` |
+| Gebruik van code fragmenten en andere relevante documentatiemiddelen (diagrammen, etc.). | `Gedeeltelijk` |
+| Voor elke feature van weight > 2 is er documentatie inclusief gebruiksinstructies (denk aan gifs, screenshots). | `Nee` |
+| Minstens 1 feature gedocumenteerd & uitgelegd.  | `Nee` |
 
 **Concrete Verbeterpunten:**
-1. `________________________________________________________________________`
-2. `________________________________________________________________________`
-3. `________________________________________________________________________`
+1. `Documentatie code`
+2. `Documentatie features`
+3. `-`
 
-**Compliance Score:** `_____`%
+**Compliance Score:** `20`%
 
 **Actieplan:**
-- `________________________________________________________________________`
+- `Documenteer elke feature als deze af is. Documenteer ook apart de features`
 
 ---
