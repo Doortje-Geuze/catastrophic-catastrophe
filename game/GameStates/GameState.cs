@@ -23,6 +23,7 @@ namespace Blok3Game.GameStates
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
+        public int FramesPerSecond = 60;
 
         public GameState() : base()
         {
@@ -88,7 +89,7 @@ namespace Blok3Game.GameStates
             if (player.HitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                player.HitPoints = 3;
+                player.HitPoints = player.BaseHitPoints;
                 player.playerHealth.Text = $"{player.HitPoints}";
                 ResetBullets();
             }
@@ -99,11 +100,11 @@ namespace Blok3Game.GameStates
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
             {
-                if (player.InvulnerabilityCooldown % 30 > 15)
+                if (player.InvulnerabilityCooldown % (FramesPerSecond / 2) > (FramesPerSecond / 4))
                 {
                     player.Shade = new Color(255, 0, 0);
                 }
-                if (player.InvulnerabilityCooldown % 30 < 15)
+                if (player.InvulnerabilityCooldown % (FramesPerSecond / 2) < (FramesPerSecond / 4))
                 {
                     player.Shade = new Color(255, 255, 255);
                 }

@@ -14,6 +14,9 @@ public class Player : Character
     private bool IsDashing = false;
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
+    public int BaseHitPoints = 3;
+    public const int BaseMoveSpeed = 5;
+    public const int BaseInvulnerabilityCooldown = 120;
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) : 
                   base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
@@ -50,7 +53,7 @@ public class Player : Character
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = 10;
+        MoveSpeed = BaseMoveSpeed * 2;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
@@ -93,12 +96,12 @@ public class Player : Character
             Direction = new Vector2(-1, 0);
             Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Width)
+        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < GameEnvironment.Screen.Y - Height)
         {
             Direction = new Vector2(0, 1);
             Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
         }
-        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
+        if (inputHelper.IsKeyDown(Keys.D) && Position.X < GameEnvironment.Screen.X - Width)
         {
             Sprite.SheetIndex = 0;
             Direction = new Vector2(1, 0);
@@ -110,7 +113,7 @@ public class Player : Character
     {
         IsDashing = false;
         PlayerDashTimer = 0;
-        MoveSpeed = 5;
+        MoveSpeed = BaseMoveSpeed;
     }
 
     //checks player-enemy collision, then activates HP loss and invulnerability timer
@@ -120,7 +123,7 @@ public class Player : Character
         {
             HitPoints -= 1;
             playerHealth.Text = $"{HitPoints}";
-            InvulnerabilityCooldown = 120;
+            InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
             Console.WriteLine(HitPoints);
         }
     }
