@@ -23,7 +23,7 @@ namespace Blok3Game.Engine.UI
 
         public override void Update(GameTime gameTime)
         {
-            centre = new Vector2(player.Position.X + (player.Width / 2), player.Position.Y + (player.Height / 2));
+            centre = new Vector2(PlayerPositionManager.PlayerPosition.X, PlayerPositionManager.PlayerPosition.Y);
             transform = Matrix.CreateScale(new Vector3(1,1,0)) * Matrix.CreateTranslation(new Vector3(-centre.X, -centre.Y, 0));
 
         }

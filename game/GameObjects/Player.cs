@@ -125,4 +125,10 @@ public class Player : Character
             Console.WriteLine(PlayerHitPoints);
         }
     }
+
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+        
+    }
 }
