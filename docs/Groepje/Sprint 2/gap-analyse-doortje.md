@@ -8,9 +8,9 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Feature**                                    | **Weight** | **Commit/Link**                     |
 |------------------------------------------------|------------|--------------------------------------|
-| `Feature 1 beschrijving`                       | `5`    | [Bullet class aangemaakt](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/9ebe3b9f99015e6b3f110ca64508cdd880c3b14d)           |
-| `Feature 2 beschrijving`                       | `3`    | [Bullets schieten naar muis](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/3d0f603a58e2366c4a4e960398816cd47c4ddba8) PS: Deze staat onder Seds naam maar heeft Doortje geschreven           |
-| **Totaal Weight:**                             | `8`    |                                      |
+| `PlayerBullet wordt gespawnt`                       | `2`    | [PlayerBullet wordt gespawnt](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/9ebe3b9f99015e6b3f110ca64508cdd880c3b14d)           |
+| `Bullets schieten naar muis`                       | `4`    | [Bullets schieten naar muis](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/3d0f603a58e2366c4a4e960398816cd47c4ddba8) PS: Deze staat onder Seds naam maar heeft Doortje geschreven           |
+| **Totaal Weight:**                             | `6`    |                                      |
 
 ---
 
