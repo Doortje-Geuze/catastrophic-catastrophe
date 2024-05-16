@@ -4,7 +4,7 @@
 
 ### Inleiding
 
-Deze documentatie dient als leidraad om theoretische concepten in onder meer object georiënteerd programmeren, databases en infrastructuur te begrijpen en toe te passen. Het benadrukt de relevantie van theoretische kennis voor praktische toepassingen in je project en biedt een gestructureerde aanpak voor het documenteren van je voortgang.
+Deze samenvatting gaat over de [linkedIn-course Data Structures](https://www.linkedin.com/learning/c-sharp-applied-data-structures/). Hierin wordt de theorie rondom Data Structures in het kort verteld.
 
 ### Samenvatting van de cursus in ongeveer 300 woorden
 - Strings cannot be modified once they are created; immutable
@@ -28,8 +28,45 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 - StringBuilder is more efficient at modifying strings multiple times than string functions
 
 ### Relevantie tot je project en praktische toepassing
-[Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
+Voor onze game is het gebruik van Lists extreem belangrijk. Lists worden voornamelijk gebruikt in de gamestate class, om objecten toe te voegen aan de GameObjectList (dit is een soort List, die uniek is aan deze codebase). De GameObjectList loopt door alle elementen in de list heen om functies uit te voeren als de Update en HandleInput. Voor het toevoegen van elementen aan de lijst wordt Add() gebruikt, en Remove() om elementen weg te halen. Elementen die in de lijst staan worden gedisplayed in de gamestate. Naast de GameobjectList voor de gamestate, gebruiken we ook reguliere Lists.
 
+```C#
+private List<PlayerBullet> playerBulletList;
+private List<PlayerBullet> playerBulletsToRemove;
+private List<EnemyBullet> enemyBulletList;
+private List<ShootingEnemy> shootingEnemyList;
+private List<GameObject> toRemoveList;
+```
+
+Deze lijsten zijn vrij vanzelfsprekend; playerBulletList is een lijst voor alle playerbullets, etc. De toRemoveList is een lijst voor alle objecten van het type GameObject. Deze wordt gebruikt om objects te verwijderen na een foreach loop over de lijst heen. Dit hebben wij zo gecodeerd, aangezien het verwijderen van elementen uit een lijst tijdens een loop zorgt voor een crash.
+
+```C#
+foreach (var playerBullet in playerBulletList)
+{
+    if (playerBullet.CheckForEnemyCollision(Enemy))
+    {
+        toRemoveList.Add(Enemy);
+        toRemoveList.Add(playerBullet);
+    }
+}
+```
+
+De code hierboven laat een collision check plaatsvinden tussen enemies en playerBullets. Omdat er een foreach over de playerBulletList wordt uitgevoerd, kunnen hier niet direct elementen uit verwijderd worden. Daarom worden deze later verwijderd.
+
+```C#
+foreach (var gameObject in toRemoveList)
+{
+    if (gameObject is PlayerBullet playerBullet)
+    {
+        playerBulletList.Remove(playerBullet);
+    }
+    if (gameObject is ShootingEnemy shootingEnemy)
+    {
+        shootingEnemyList.Remove(shootingEnemy);
+    }
+    Remove(gameObject);
+}
+```
 ### Resultaten LinkedIn Learning cursus
 [Bewijs van LinkedIn-course voltooiing](https://www.linkedin.com/learning/me/my-library/completed?u=2132228)
 
@@ -37,4 +74,4 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 ![Bewijs van DLO quiz over K1](../LinkedInSummaries/DLOQuizBlok4.png)
 
 ### Vragen voor expert review
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
+Is er een manier om ervoor te zorgen dat er wel elementen uit een lijst verwijderd kunnen worden tijdens een foreach loop? Zo niet, is er een mogelijkheid om de foreach loop door de toRemoveList schoner te schrijven, zodat er niet bij elke nieuwe gameObject soort een loop hoeft worden uitgevoerd?
