@@ -1,10 +1,5 @@
 using Blok3Game.Engine.GameObjects;
-using Blok3Game.Engine.Helpers;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using Blok3Game.GameStates;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 
 public abstract class Character : SpriteGameObject
 {

@@ -3,7 +3,7 @@
  
 ## Introductie 
 
- ### Wat zijn Design principles?:
+### Wat zijn Design principles?:
 
 - Guidelines (bedoeld als advies niet als een regel)
 - Geconstateerd dat het tot een goed object oriented design

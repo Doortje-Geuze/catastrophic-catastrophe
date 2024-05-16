@@ -1,5 +1,3 @@
-using System;
-using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace Blok3Game.GameObjects
