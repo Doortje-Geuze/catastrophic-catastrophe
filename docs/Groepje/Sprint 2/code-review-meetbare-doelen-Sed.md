@@ -1,4 +1,4 @@
-# GAP-analyse voor Doortje, van Tijn
+# Peer Code Review Template
 
 ## Introductie
 
@@ -6,11 +6,13 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 ## Weight
 
-| **Feature**                                    | **Weight** | **Commit/Link**                     |
-|------------------------------------------------|------------|--------------------------------------|
-| `PlayerBullet wordt gespawnt`                       | `2`    | [PlayerBullet wordt gespawnt](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/9ebe3b9f99015e6b3f110ca64508cdd880c3b14d)           |
-| `Bullets schieten naar muis`                       | `4`    | [Bullets schieten naar muis](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/3d0f603a58e2366c4a4e960398816cd47c4ddba8) PS: Deze staat onder Seds naam maar heeft Doortje geschreven           |
-| **Totaal Weight:**                             | `6`    |                                      |
+| **Feature**                                                   | **Weight** | **Commit/Link**                      |
+|---------------------------------------------------------------|------------|--------------------------------------|
+| `Feature 1 Hitmark/Cursor/crosshair`                          | `3`        | `[Link naar commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/918fbc993da7f08badc02b7e4eb52a094e2a38f1?page=2)`            |
+| `Feature 2 character/player/enemy/shootingenemy hierarchy`    | `1`        | `nvt`            |
+| `Feature 3 Enemy Seeking`                                     | `4`        | `[Link naar commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/ed5911e34e368803e65f2032e285ebbef04d62e6)`            |
+| `Feature 4 Bullets`                                           | `3`        | `[Link naar commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/ef04303fad8d1346df6245f2a7d3c2b63a301b8a)`            |
+| **Totaal Weight:**                                            | `11`       |                                      |
 
 ---
 
@@ -18,17 +20,18 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                             | **Evaluatie**                         |
 |-------------------------------------------------|--------------------------------------|
-| Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `nee` |
-| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `nee` |
+| Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `Ja` |
+| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `Ja` |
 
 **Concrete Verbeterpunten:**
-1. `De activiteit rondom het project gaat meestal naar documentatie of theorie toe. Hierdoor wordt er vanuit Doortje onvoldoende bijgedragen aan de game zelf (bijdrage ligt rond de 10-15%).`
-2. `Er is in sprint 1 gewerkt aan een user story weight van ongeveer , verspreid over 2 weken. Dit voldoet niet aan de gestelde eis van een weight van 6 per week.`
+1. `-`
+2. `-`
+3. `-`
 
-**Compliance Score:** `25`%
+**Compliance Score:** `100`%
 
 **Actieplan:**
-- `Zoek tijd thuis om user stories te vinden die jij niet alleen leuk vindt om te doen, maar die je ook binnen een dag zou kunnen afronden. Als dit niet mogelijk is, probeer dan de user story op te splitten of meldt het bij de rest van het team, zodat deze user story zwaarder wordt meegeteld. Als thuis werken lastig gaat doordeweeks, dan is het weekend altijd een mogelijkheid om op je eigen tempo naar de code te kijken, en nog te zien of je iets extra's kan bijdragen.`
+- `Ga zo door :D`
 
 ---
 
@@ -37,50 +40,52 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | **Meetbare doelen**                             | **Evaluatie**                             |
 |-------------------------------------------------|------------------------------------------|
 | **Minstens 1x per sprint**                         |                                          |
-| - OOP toegepast                                 | `deels` |
-| - Minstens 1 stukje logica geschreven           | `ja` |
+| - OOP toegepast                                 | `Ja` |
+| - Minstens 1 stukje logica geschreven           | `Ja` |
 | **Code Conventies**                                |                                          |
-| - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `ja` |
-| - Gebruik van indentatie zoals afgesproken met je groep | `ja` |
-| - C# algemene code conventies toegepast         | `ja` |
-| - Ingewikkelde code is gecomment                | `nee` |
-| - Alleen public wanneer nodig                   | `ja` |
-| - Magic numbers vermeden                        | `ja` |
+| - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `Ja` |
+| - Gebruik van indentatie zoals afgesproken met je groep | `Ja` |
+| - C# algemene code conventies toegepast         | `Ja` |
+| - Ingewikkelde code is gecomment                | `Nee` |
+| - Alleen public wanneer nodig                   | `Ja` |
+| - Magic numbers vermeden                        | `Nee` |
 | **Onderhoudbaarheid/Bruikbaarheid**                |  |
-| - Je kan makkelijk iets aanpassen zonder dat het breekt | `ja` |
-| - Geen dubbele code                             | `ja` |
-| - Weinig of geen bugs                           | `ja` |
-| - Nagedacht over toekomstig gebruik             | `ja` |
-| - Weinig directe referenties                    | `ja` |
+| - Je kan makkelijk iets aanpassen zonder dat het breekt | `Ja` |
+| - Geen dubbele code                             | `Ja` |
+| - Weinig of geen bugs                           | `Ja` |
+| - Nagedacht over toekomstig gebruik             | `Ja` |
+| - Weinig directe referenties                    | `Ja` |
 
 **Concrete Verbeterpunten:**
-1. `Er is geen ingewikkelde code om te commenten, dus er zijn geen comments`
-2. `OOP is deels toegepast; polymorphism en abstraction zijn niet/nauwelijks aanwezig`
+1. `Comments schrijven bij code`
+2. `Vermijd magic numbers`
+3. `-`
 
 **Compliance Score:** `85`%
 
 **Actieplan:**
-- `Zoek naar opties om polymorphism te gebruiken, zoals bij het gebruik van interfaces (wat ook handig is). Kijk eventueel naar of de bullet class niet naar een interface veranderd kan worden`
-- `Probeer voor volgende sprint een user story te kiezen waarbij ingewikkelde code aan te pas komt, zodat deze ook gecomment kan worden.`
+- `Schrijf na elk stuk gemaakte code comments die uitleggen wat de code doet. Probeer ook magic numbers te vermijden`
 
 ---
 
 ## Complexiteit
 
-| **Meetbare doelen**                            | **Evaluatie**                                    |
-|------------------------------------------------|-------------------------------------------------|
-| Op basis van je actieplan (toets, code review) | `n.v.t` |
-| Technische uitdagingen overwonnen              | `ja` |
-| Gebruik van effectieve algoritmen en datastructuren | `nee` |
-| Samenwerking met andere delen van het systeem  | `ja` |
+| **Meetbare doelen**                                   | **Evaluatie**                                    |
+|-------------------------------------------------------|-------------------------------------------------|
+| Op basis van je actieplan (toets, code review)        | `nvt` |
+| Technische uitdagingen overwonnen                     | `Ja`  |
+| Gebruik van effectieve algoritmen en datastructuren   | `Gedeeltelijk` |
+| Samenwerking met andere delen van het systeem         | `Ja`  |
 
 **Concrete Verbeterpunten:**
-1. `Gebruik van generics zoals List<> helpen bij kennis over datastructuren`
+1. `Gebruik van interfaces`
+2. `Gebruik meer verschillende generics`
+3. `Maak de classes gesloten voor veranderingen`
 
-**Compliance Score:** `50`%
+**Compliance Score:** `90`%
 
 **Actieplan:**
-- `Zoek voor volgende sprint naar user stories waar ingewikkelde algoritmen van pas komen, en probeer hier ook generics in te gebruiken`
+- `Gebruik meer interfaces, generics en maak de classes gesloten voor veranderingen`
 
 ---
 
@@ -88,17 +93,19 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                             | **Evaluatie**                          |
 |-------------------------------------------------|---------------------------------------|
-| Elke feature is binnen een week voorzien van context en documentatie. | `nee` |
-| Gebruik van code fragmenten en andere relevante documentatiemiddelen (diagrammen, etc.). | `ja` |
-| Voor elke feature van weight > 2 is er documentatie inclusief gebruiksinstructies (denk aan gifs, screenshots). | `nee` |
-| Minstens 1 feature gedocumenteerd & uitgelegd.  | `nee` |
+| Elke feature is binnen een week voorzien van context en documentatie. | `Nee` |
+| Gebruik van code fragmenten en andere relevante documentatiemiddelen (diagrammen, etc.). | `Gedeeltelijk` |
+| Voor elke feature van weight > 2 is er documentatie inclusief gebruiksinstructies (denk aan gifs, screenshots). | `Nee` |
+| Minstens 1 feature gedocumenteerd & uitgelegd.  | `Nee` |
 
 **Concrete Verbeterpunten:**
-1. `Features documenteren wanneer ze af zijn`
+1. `Documentatie code`
+2. `Documentatie features`
+3. `-`
 
-**Compliance Score:** `25`%
+**Compliance Score:** `20`%
 
 **Actieplan:**
-- `Features direct commenten en documenteren wanneer ze af zijn, zodat hiernaar gerefereerd kan worden bij een expert`
+- `Documenteer elke feature als deze af is. Documenteer ook apart de features`
 
 ---
