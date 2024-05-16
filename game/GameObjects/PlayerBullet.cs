@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.GameObjects;
-using Blok3Game.GameStates;
 using Microsoft.Xna.Framework;
 
 public class PlayerBullet : Bullet
