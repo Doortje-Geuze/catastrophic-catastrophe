@@ -3,7 +3,7 @@
 ## C# Interfaces and generics
 
 ### Inleiding
-Deze documentatie dient als leidraad om theoretische concepten in onder meer object georiënteerd programmeren, databases en infrastructuur te begrijpen en toe te passen. Het benadrukt de relevantie van theoretische kennis voor praktische toepassingen in je project en biedt een gestructureerde aanpak voor het documenteren van je voortgang.
+Deze samenvatting gaat over de [linkedIn-course Interfaces & Generics](https://www.linkedin.com/learning/c-sharp-interfaces-and-generics/). Hierin wordt de theorie rondom Interfaces en Generics in het kort verteld.
 
 ### Samenvatting van de cursus in ongeveer 300 woorden
 - Interfaces: determines behaviour instead of objects that other classes can inherit from. They contain no code themselves. Interfaces can be used multiple times, and one class can use multiple interfaces as well
