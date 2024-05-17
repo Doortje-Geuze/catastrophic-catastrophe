@@ -3,6 +3,7 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
+using Blok3Game.GameObjects;
 
 public class Player : Character
 {
