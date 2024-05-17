@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
+using Blok3Game.SpriteGameObjects;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -25,10 +26,12 @@ namespace Blok3Game.GameStates
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
+        public YellowBox yellowbox;
         public ShootingEnemy shootingEnemy;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
+
 
         public GameState() : base()
         {
@@ -49,6 +52,8 @@ namespace Blok3Game.GameStates
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
+            yellowbox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 3) - (90 / 2), (GameEnvironment.Screen.Y / 3)- (90  /2)));
+            yellowbox.Save();
         }
 
         public override void Update(GameTime gameTime)
