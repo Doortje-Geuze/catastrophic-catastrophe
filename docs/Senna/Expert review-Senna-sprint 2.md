@@ -137,6 +137,119 @@ Alle classes die ik heb aangemaakt in dit blok inheriten van een andere class. Z
 ```
 
 ### Polymorphism
+Binnen het project worden verschillende classes herbruikt door middel van inheritance en override statements. Zo wordt de Update functie op meerdere plekken ge-override.
+
+=== "GameState"
+```csharp
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.End();
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+            //component.Draw(gameTime, spriteBatch);
+            
+            spriteBatch.End();
+            base.Draw(gameTime, spriteBatch);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //foreach (var Component in components)
+            //Component.Update(gameTime);
+
+            camera.Follow(player);
+            base.Update(gameTime);
+
+            
+
+            //Loop door de lijst met enemies
+            foreach (var Enemy in shootingEnemyList)
+            {
+                Enemy.EnemySeeking(player.Position);
+
+                if (Enemy.EnemyShootCooldown >= 120)
+                {
+                    EnemyShoots(Enemy);
+                    Enemy.EnemyShootCooldown = 0;
+                }
+                Enemy.EnemyShootCooldown++;
+
+                player.CheckForEnemyCollision(Enemy);
+                foreach (var playerBullet in playerBulletList)
+                {
+                    if (playerBullet.CheckForEnemyCollision(Enemy))
+                    {
+                        enemiesToRemove.Add(Enemy);
+                        playerBulletsToRemove.Add(playerBullet);
+                    }
+                }
+            }
+
+            foreach (var enemyBullet in enemyBulletList)
+            {
+                player.CheckForEnemyCollision(enemyBullet);
+            }
+
+            if (player.PlayerHitPoints <= 0)
+            {
+                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                player.PlayerHitPoints = 3;
+                ResetBullets();
+            }
+            if (player.InvulnerabilityCooldown >= 0)
+            {
+                if (player.InvulnerabilityCooldown == 0 && player.playerShield != null)
+                {
+                    Remove(player.playerShield);
+                }
+                if (player.InvulnerabilityCooldown == 119)
+                {
+                    Add(player.playerShield);
+                }
+                else if (player.InvulnerabilityCooldown <= 118 && player.InvulnerabilityCooldown > 0)
+                {
+                    player.playerShield.Position = player.Position + player.playerShield.Offset;
+                }
+            }
+            foreach (var enemyToRemove in enemiesToRemove)
+            {
+                shootingEnemyList.Remove(enemyToRemove);
+                Remove(enemyToRemove);
+            }
+            foreach (var playerBulletToRemove in playerBulletsToRemove)
+            {
+                playerBulletList.Remove(playerBulletToRemove);
+                Remove(playerBulletToRemove);
+            }
+            if (shootingEnemyList.Count == 0 && WaveCounter != 3)
+            {
+                WaveCounter++;
+                ResetBullets();
+                SpawnStandardEnemies();
+            }
+            if (shootingEnemyList.Count == 0 && WaveCounter == 3)
+            {
+                GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                ResetBullets();
+                SpawnStandardEnemies();
+            }
+            foreach (var playerBulletToRemove in playerBulletsToRemove)
+            {
+                Remove(playerBulletToRemove);
+                playerBulletList.Remove(playerBulletToRemove);
+            }
+        }
+```
+
+=== "Polymorphism hightlighted"
+```csharp
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+    }
+    public override void Update(GameTime gameTime)
+    {
+    }
+```
+
 
 ## UML diagrammen
 ### Class diagram
