@@ -63,7 +63,6 @@ namespace Blok3Game.GameStates
                 Position = new Vector2(10, 10)
             };
             Add(Score);
-
         }
 
         public override void Update(GameTime gameTime)
