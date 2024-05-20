@@ -350,3 +350,9 @@ Ik heb gekozon voor een Sequence diagram zodat ik één structuurdiagram en éé
 ![Sequence diagram](../Groepje/Images/Sequence-diagram-blok-4-jaar-1-Senna-de-Vries.png)
 
 ## Database
+Voor de database heb ik een EER gemaakt in mySQL, een connection opgezet met de HBO-ICT cloud, de database gerealiseerd door middel van forward engineeren en met SQL statements data toegevoegd aan de database.  
+
+
+![EER](../images/EERSprint2.png)  
+![Connection](../images/DatabaseConnection.png)  
+![TabelData](../images/TabelData.png)  
