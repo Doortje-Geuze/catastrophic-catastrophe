@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
+using Blok3Game.SpriteGameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 namespace Blok3Game.GameStates
@@ -39,6 +40,8 @@ namespace Blok3Game.GameStates
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
+
+            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);

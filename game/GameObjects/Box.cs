@@ -26,7 +26,7 @@ namespace Blok3Game.SpriteGameObjects
 {
     public YellowBox (Vector2 position, int layer = 0, string id = "") : base(position, layer, "Images/Tiles/SquareYellow")
     {
-        
+         
        
     }
 }

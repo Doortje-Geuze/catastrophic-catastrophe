@@ -35,13 +35,13 @@ public class PinkGun : PlayerBullet, Istorable
              } 
 
     }
-     interface  Istorable
-    {
+    
+}
+
+ interface Istorable
+{
     void save();
     void PickUp();
 
      bool NeedSave { get; set;}
-
-  }
 }
-
