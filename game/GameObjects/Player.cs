@@ -2,25 +2,26 @@ using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using Blok3Game.GameStates;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using Blok3Game.GameObjects;
 
 public class Player : Character
 {
     //all variables that a player needs
-    public int PlayerHitPoints;
-    public PlayerShield playerShield;
+    public TextGameObject playerHealth;
+    public Vector2 PlayerHealthOffset = new(40, 100);
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
+    public int BaseHitPoints = 3;
+    public const int BaseMoveSpeed = 5;
+    public const int BaseInvulnerabilityCooldown = 120;
 
-    public Player(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
+    public Player(int hitPoints, int moveSpeed, Vector2 position) : 
+                  base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
     {
-        PlayerHitPoints = hitPoints;
+        HitPoints = hitPoints;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -52,7 +53,7 @@ public class Player : Character
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = 10;
+        MoveSpeed = BaseMoveSpeed * 3;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
@@ -64,7 +65,7 @@ public class Player : Character
         {
             DashCooldown--;
         }
-        if (PlayerDashTimer > 3)
+        if (PlayerDashTimer > 5)
         {
             ResetDashValue();
             return;
@@ -77,52 +78,53 @@ public class Player : Character
         if (InvulnerabilityCooldown > 0)
         {
             InvulnerabilityCooldown--;
-            playerShield ??= new(Position);
         }
     }
 
     //checks for wasd movement, then sets position based on movespeed and direction (which is determined by what key on the keyboard is pressed)
     private void CheckForMovementInputs(InputHelper inputHelper)
     {
+        var dir = Vector2.Zero;
         base.HandleInput(inputHelper);
         if (inputHelper.IsKeyDown(Keys.W) && Position.Y > 0)
         {
-            Direction = new Vector2(0, -1);
-            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            dir.Y = -1;
         }
         if (inputHelper.IsKeyDown(Keys.A) && Position.X > 0)
         {
             Sprite.SheetIndex = 1;
-            Direction = new Vector2(-1, 0);
-            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            dir.X = -1;
         }
-        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < 600 - Width)
+        if (inputHelper.IsKeyDown(Keys.S) && Position.Y < GameEnvironment.Screen.Y - Height)
         {
-            Direction = new Vector2(0, 1);
-            Position = new Vector2(Position.X, Position.Y + MoveSpeed * Direction.Y);
+            dir.Y = 1;
         }
-        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
+        if (inputHelper.IsKeyDown(Keys.D) && Position.X < GameEnvironment.Screen.X - Width)
         {
             Sprite.SheetIndex = 0;
-            Direction = new Vector2(1, 0);
-            Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y);
+            dir.X = 1;
         }
+        if (dir == Vector2.Zero) return;
+        dir.Normalize();
+        Position += dir * MoveSpeed;
     }
 
     private void ResetDashValue()
     {
         IsDashing = false;
         PlayerDashTimer = 0;
-        MoveSpeed = 5;
+        MoveSpeed = BaseMoveSpeed;
     }
 
+    //checks player-enemy collision, then activates HP loss and invulnerability timer
     public void CheckForEnemyCollision(SpriteGameObject enemy)
     {
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
         {
-            PlayerHitPoints -= 1;
-            InvulnerabilityCooldown = 120;
-            Console.WriteLine(PlayerHitPoints);
+            HitPoints -= 1;
+            playerHealth.Text = $"{HitPoints}";
+            InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
+            Console.WriteLine(HitPoints);
         }
     }
 }

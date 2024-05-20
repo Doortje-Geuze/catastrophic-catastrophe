@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Blok3Game.Engine.Helpers;
+﻿using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
