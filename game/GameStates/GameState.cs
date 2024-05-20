@@ -25,7 +25,7 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
-        public int HighScore = 0;
+        public int EnemiesKilled = 0;
         public TextGameObject Score;
 
 
@@ -58,7 +58,7 @@ namespace Blok3Game.GameStates
 
             Score = new TextGameObject("Fonts/SpriteFont@20px", 1)
             {
-                Text = $"{HighScore}",
+                Text = $"{EnemiesKilled * 5}",
                 Color = new(255, 255, 255),
                 Position = new Vector2(10, 10)
             };
@@ -87,8 +87,8 @@ namespace Blok3Game.GameStates
                 {
                     if (playerBullet.CheckForEnemyCollision(Enemy))
                     {
-                        HighScore += 5;
-                        Score.Text =  $"{HighScore}";
+                        EnemiesKilled++;
+                        Score.Text =  $"{EnemiesKilled * 5}";
                         toRemoveList.Add(Enemy);
                         toRemoveList.Add(playerBullet);
                     }
