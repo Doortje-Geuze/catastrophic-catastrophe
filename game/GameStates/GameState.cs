@@ -139,18 +139,17 @@ namespace Blok3Game.GameStates
                 Remove(gameObject);
             }
 
-            // if (shootingEnemyList.Count == 0 && WaveCounter != 3)
-            // {
-            //     WaveCounter++;
-            //     ResetBullets();
-            //     SpawnStandardEnemies();
-            // }
-            // if (shootingEnemyList.Count == 0 && WaveCounter == 3)
-            // {
-            //     GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-            //     ResetBullets();
-            //     SpawnStandardEnemies();
-            // }
+            if (shootingEnemyList.Count == 0 && WaveCounter != 3)
+            {
+                WaveCounter++;
+                ResetBullets();
+                SpawnStandardEnemies();
+            }
+            if (shootingEnemyList.Count == 0 && WaveCounter == 3)
+            {
+                GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                ResetBullets();
+            }
         }
 
         public override void HandleInput(InputHelper inputHelper)
