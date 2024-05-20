@@ -1,6 +1,93 @@
 # Expert review sprint 2
 ## OOP
 ### Abstraction
+Binnen OOP is abstraction het verbergen van complexe en onnodige informatie voor de gebruiker. Ik heb dit gedaan door middel van private methods en een static class die de playerPosition bijhoudt.
+
+=== "GameState"
+```csharp
+    private void SpawnStandardEnemies()
+    {
+        Random random = new Random();
+
+        int swap = 0;
+        //For-loop om meerdere enemies aan te maken
+        for (int i = 0; i < 10 * WaveCounter; i++)
+        {
+            int XPosition, YPosition;
+
+            //Willekeurige posities waar de enemies spawnen
+            XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+            YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+
+
+            //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
+            //De swap variabele zorgt ervoor dat de enemies evenredig worden verdeel aan alle kanten
+            do
+            {
+                if (swap % 2 == 0)
+                {
+                    XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                    swap++;
+                }
+                else
+                {
+                    YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                    swap++;
+                }
+
+            } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
+
+            //Aanmaken van de enemies
+            shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
+            shootingEnemyList.Add(shootingEnemy);
+
+            Add(shootingEnemy);
+        }
+    }
+
+    private void EnemyShoots(ShootingEnemy shootingEnemy)
+    {
+        float ShootPositionX = shootingEnemy.Position.X + shootingEnemy.Width / 2;
+        float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
+        double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
+
+        EnemyBullet enemyBullet = new EnemyBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
+
+        enemyBulletList.Add(enemyBullet);
+        Add(enemyBullet);
+    }
+
+```
+=== "PlayerPositionManager" 
+```csharp
+
+    public static class PlayerPositionManager
+	{
+        private static Vector2 playerPosition;
+
+        public static Vector2 PlayerPosition 
+        {
+            get { return playerPosition; }
+            set { playerPosition = value; }
+        }
+
+ 
+	}
+```
+
+=== "Abstraction highlighted"
+```csharp
+    public static class PlayerPositionManager
+	{
+        private static Vector2 playerPosition;
+    }
+    private void EnemyShoots(ShootingEnemy shootingEnemy)
+    {
+    }
+    private void SpawnStandardEnemies()
+    {
+    }
+```
 
 ### Encapsulation
 Binnen het project is ervoor gekozen om veel classes public te maken. Hiervoor is gekozen omdat de classes op meerdere plekken gebruikt moeten kunnen worden. Enkele methods zijn private gemaakt zoals de spawn en de shoot method. Deze methods dienen niet van buitenaf aangepast te kunnen worden.  
