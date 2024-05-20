@@ -57,7 +57,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/Bullets/enemyBullet.png
 
-#begin Images/Characters/blueCircle.png
 #begin Images/Bullets/PinkSquare.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -68,11 +67,21 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Characters/blueCircle.png
 /build:Images/Bullets/PinkSquare.png
 
-#begin Images/Characters/blueCircle90.png
 #begin Images/Characters/blueCircle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Characters/blueCircle.png
+
+#begin Images/Characters/blueCircle90.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -203,6 +212,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Enemies/standardEnemy.png
+
+#begin Images/Tiles/PurpleSquare.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Tiles/PurpleSquare.png
 
 #begin Images/Tiles/SquareYellow.png
 /importer:TextureImporter

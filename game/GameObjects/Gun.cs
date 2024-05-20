@@ -10,8 +10,6 @@ public class PinkGun : PlayerBullet, Istorable
 {
    
    PinkGun active;
-   PinkGun  new int BulletMoveSpeed;
-
     public PinkGun(Vector2 position, double angle, string assetName = "Images/Bullet/PInkSquare") : base(position, angle, assetName)
     {
         Position = position;
@@ -35,7 +33,8 @@ public class PinkGun : PlayerBullet, Istorable
              } 
 
     }
-    
+
+   
 }
 
  interface Istorable

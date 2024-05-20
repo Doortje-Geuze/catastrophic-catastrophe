@@ -21,7 +21,8 @@ namespace Blok3Game.GameStates
         public Crosshair crosshair;
         public CatGun catGun;
         public PinkGun pinkGun;
-        public YellowBox yellowbox;
+        public YellowBox yellowBox;
+        public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
@@ -41,7 +42,9 @@ namespace Blok3Game.GameStates
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
 
-            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
+            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - (90 / 3), (GameEnvironment.Screen.Y / 2) - (90 / 3)));
+
+            purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) - (90 / 4), (GameEnvironment.Screen.Y / 2) - (90 / 4)));
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);

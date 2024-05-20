@@ -9,7 +9,7 @@ namespace Blok3Game.SpriteGameObjects
 {
   
 
-    class Box : SpriteGameObject
+    abstract class Box : SpriteGameObject
        {
         public  Box ( Vector2 position, int layer = 0, string id = "") : base( position, layer, id, 0)
         {
@@ -25,6 +25,14 @@ namespace Blok3Game.SpriteGameObjects
  class YellowBox : Box
 {
     public YellowBox (Vector2 position, int layer = 0, string id = "") : base(position, layer, "Images/Tiles/SquareYellow")
+    {
+         
+       
+    }
+}
+class PurpleBox : Box
+{
+    public PurpleBox (Vector2 position, int layer = 0, string id = "") : base(position, layer, "Images/Tiles/PurpleSquare")
     {
          
        
