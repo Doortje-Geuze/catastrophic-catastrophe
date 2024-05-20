@@ -6,41 +6,41 @@ using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 
  
-public class PinkGun : PlayerBullet, Istorable
-{
-   
-   PinkGun active;
-    public PinkGun(Vector2 position, double angle, string assetName = "Images/Bullet/PInkSquare") : base(position, angle, assetName)
-    {
-        Position = position;
-        Angle = (float)angle;
-        BulletMoveSpeed = 10;
-          
-          void save()
-          {
-            Console.WriteLine("save"); 
-          }
+  //public class PinkGun : PlayerBullet, Istorable
+  //{
+    
+  //  PinkGun active;
+     // public PinkGun(Vector2 position, double angle, string assetName = "Images/Bullet/PInkSquare") : base(position, angle, assetName)
+      //{
+        //  Position = position;
+          //Angle = (float)angle;
+          //BulletMoveSpeed = 10;
+            
+            //void save()
+            //{
+              //Console.WriteLine("save"); 
+            //}
 
-        void pickUp()
-          {
-            Console.WriteLine("pickup");
-          }
+          //void pickUp()
+            //{
+              //Console.WriteLine("pickup");
+            //}
 
-       
+        
 
-         bool NeedSave {
-                get; set;
-             } 
+          //bool NeedSave {
+            //      get; set;
+              //} 
+//
+  //    }
 
-    }
+    
+ // }
+//
+  //interface Istorable
+  //{
+    //  void save();
+      //void PickUp();
 
-   
-}
-
- interface Istorable
-{
-    void save();
-    void PickUp();
-
-     bool NeedSave { get; set;}
-}
+      //bool NeedSave { get; set;}
+  //}

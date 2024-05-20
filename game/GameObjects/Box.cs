@@ -14,6 +14,13 @@ namespace Blok3Game.SpriteGameObjects
         public  Box ( Vector2 position, int layer = 0, string id = "") : base( position, layer, id, 0)
         {
           
+         bool CheckForPlayerCollision(SpriteGameObject player)
+    {
+        if (CollidesWith(player))
+        {
+            return true;
+        } return false;
+    }
            
             
         }
@@ -27,7 +34,6 @@ namespace Blok3Game.SpriteGameObjects
     public YellowBox (Vector2 position, int layer = 0, string id = "") : base(position, layer, "Images/Tiles/SquareYellow")
     {
          
-       
     }
 }
 class PurpleBox : Box

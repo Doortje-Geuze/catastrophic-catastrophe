@@ -20,7 +20,7 @@ namespace Blok3Game.GameStates
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
-        public PinkGun pinkGun;
+        //public PinkGun pinkGun;
         public YellowBox yellowBox;
         public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
