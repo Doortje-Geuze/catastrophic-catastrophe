@@ -6,7 +6,7 @@ using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 
  
-public class PinkGun : PlayerBullet
+public class PinkGun : PlayerBullet, Istorable
 {
    
    PinkGun active;
@@ -17,15 +17,31 @@ public class PinkGun : PlayerBullet
         Position = position;
         Angle = (float)angle;
         BulletMoveSpeed = 10;
+          
+          void save()
+          {
+            Console.WriteLine("save"); 
+          }
+
+        void pickUp()
+          {
+            Console.WriteLine("pickup");
+          }
+
+       
+
+         bool NeedSave {
+                get; set;
+             } 
 
     }
-
-
-     private void Active();
+     interface  Istorable
     {
+    void save();
+    void PickUp();
 
-    }
+     bool NeedSave { get; set;}
 
-    
+  }
 }
 

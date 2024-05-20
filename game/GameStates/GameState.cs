@@ -26,6 +26,7 @@ namespace Blok3Game.GameStates
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
+        public PinkGun pinkGun;
         public YellowBox yellowbox;
         public ShootingEnemy shootingEnemy;
         public int EnemyShoot = 0;
@@ -52,8 +53,10 @@ namespace Blok3Game.GameStates
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
-            yellowbox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 3) - (90 / 2), (GameEnvironment.Screen.Y / 3)- (90  /2)));
-            yellowbox.Save();
+            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 3) - (90 / 2), (GameEnvironment.Screen.Y / 3)- (90  /2)));
+            pinkGun.Save();
+            pinkGun.pickUp();
+            pinkGun.needSave = false;
         }
 
         public override void Update(GameTime gameTime)
