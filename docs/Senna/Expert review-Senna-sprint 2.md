@@ -3,6 +3,91 @@
 ### Abstraction
 
 ### Encapsulation
+Binnen het project is ervoor gekozen om veel classes public te maken. Hiervoor is gekozen omdat de classes op meerdere plekken gebruikt moeten kunnen worden. Enkele methods zijn private gemaakt zoals de spawn en de shoot method. Deze methods dienen niet van buitenaf aangepast te kunnen worden.  
+
+=== "Enemy class"
+```csharp
+// Enemy class
+
+public class Enemy : Character
+    {
+        public int EnemyMoveSpeed;
+        public Vector2 steering;
+        public Vector2 desired_velocity;
+        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(hitPoints, moveSpeed, position, assetName)
+        {
+            EnemyMoveSpeed = moveSpeed;
+        }
+        public void EnemySeeking(Vector2 PlayerPosition)
+        {
+            desired_velocity = PlayerPosition - position;
+            desired_velocity.Normalize();
+            desired_velocity *= EnemyMoveSpeed;
+
+            steering = desired_velocity - velocity;
+
+            steering = steering / 5;
+            velocity = velocity + steering;
+            position += velocity;
+        }
+    }
+
+```
+=== "GameState methods"
+```csharp
+    // GameState methods
+            private void SpawnStandardEnemies()
+        {
+            Random random = new Random();
+
+            int swap = 0;
+            //For-loop om meerdere enemies aan te maken
+            for (int i = 0; i < 10 * WaveCounter; i++)
+            {
+                int XPosition, YPosition;
+
+                //Willekeurige posities waar de enemies spawnen
+                XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+
+
+                //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
+                //De swap variabele zorgt ervoor dat de enemies evenredig worden verdeel aan alle kanten
+                do
+                {
+                    if (swap % 2 == 0)
+                    {
+                        XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                        swap++;
+                    }
+                    else
+                    {
+                        YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                        swap++;
+                    }
+
+                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
+
+                //Aanmaken van de enemies
+                shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
+                shootingEnemyList.Add(shootingEnemy);
+
+                Add(shootingEnemy);
+            }
+        }
+
+        private void EnemyShoots(ShootingEnemy shootingEnemy)
+        {
+            float ShootPositionX = shootingEnemy.Position.X + shootingEnemy.Width / 2;
+            float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
+            double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
+
+            EnemyBullet enemyBullet = new EnemyBullet(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
+
+            enemyBulletList.Add(enemyBullet);
+            Add(enemyBullet);
+        }
+```
 
 ### inheritance
 
