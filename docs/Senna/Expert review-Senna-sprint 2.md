@@ -91,7 +91,50 @@ Binnen het project is ervoor gekozen om veel classes public te maken. Hiervoor i
     }
 ```
 
+=== "Encapsulation highlighted"
+```csharp
+public class Enemy : Character
+        {
+            public int EnemyMoveSpeed;
+            public Vector2 steering;
+            public Vector2 desired_velocity;
+            public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(hitPoints, moveSpeed, position, assetName)
+            public void EnemySeeking(Vector2 PlayerPosition)
+            {
+            }
+        }
+        private void SpawnStandardEnemies()
+        {
+        }
+        private void EnemyShoots(ShootingEnemy shootingEnemy)
+        {
+        }
+```
+
 ### inheritance
+Alle classes die ik heb aangemaakt in dit blok inheriten van een andere class. Ze nemen de methods en variabelen van andere classes over. Hieronder zijn voorbeelden weergegeven.
+
+=== "Inheritance highlighted"
+```csharp
+    public class Enemy : Character
+    {
+    }
+    public class EnemyBullet : Bullet
+    {
+    }
+    public class ShootingEnemy : Enemy
+    {
+    }
+    public class StandardEnemy : Enemy
+    {
+    }
+    public class Camera : GameObject
+    {
+    }
+    public static class PlayerPositionManager
+    {
+    }
+```
 
 ### Polymorphism
 
