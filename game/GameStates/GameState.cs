@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
@@ -24,6 +25,9 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
+        public int HighScore = 0;
+        public TextGameObject Score;
+
 
         public GameState() : base()
         {
@@ -51,6 +55,15 @@ namespace Blok3Game.GameStates
                 Color = new(255, 255, 255),
             };
             Add(player.playerHealth);
+
+            Score = new TextGameObject("Fonts/SpriteFont@20px", 1)
+            {
+                Text = $"{HighScore}",
+                Color = new(255, 255, 255),
+                Position = new Vector2(10, 10)
+            };
+            Add(Score);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -74,6 +87,8 @@ namespace Blok3Game.GameStates
                 {
                     if (playerBullet.CheckForEnemyCollision(Enemy))
                     {
+                        HighScore += 5;
+                        Score.Text =  $"{HighScore}";
                         toRemoveList.Add(Enemy);
                         toRemoveList.Add(playerBullet);
                     }
@@ -178,7 +193,7 @@ namespace Blok3Game.GameStates
                         swap++;
                     }
 
-                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && 
+                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X &&
                          YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
 
                 //Aanmaken van de enemies
