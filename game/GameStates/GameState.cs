@@ -21,6 +21,7 @@ namespace Blok3Game.GameStates
         public Crosshair crosshair;
         public CatGun catGun;
         //public PinkGun pinkGun;
+        public Box box;
         public YellowBox yellowBox;
         public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
@@ -85,6 +86,7 @@ namespace Blok3Game.GameStates
                         toRemoveList.Add(playerBullet);
                     }
                 }
+                player.CheckForPlayerCollision(box);
             }
 
             foreach (var enemyBullet in enemyBulletList)

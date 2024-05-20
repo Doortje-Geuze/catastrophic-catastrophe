@@ -3,6 +3,8 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
+using System.Data;
+using Blok3Game.SpriteGameObjects;
 
 public class Player : Character
 {
@@ -126,5 +128,9 @@ public class Player : Character
             InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
             Console.WriteLine(HitPoints);
         }
+    }
+    public void CheckForPlayerCollision(SpriteGameObject box)
+    {
+        Console.WriteLine("box gone!");
     }
 }
