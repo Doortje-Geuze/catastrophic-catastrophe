@@ -72,6 +72,15 @@ Core mechanics zijn de acties die een speler moet uitvoeren om verder te komen i
 
 In onze game zijn de core mechanics rondlopen en het schieten van een geweer. De secondary mechanics die hieruit voortvloeien zijn een player dash, een in-game currency en verschillende wapentypes.
 
+### Level structure
+Level structure houdt zich bezig met de wijze waarop de speler aan mechanics wordt blootgesteld. Een goede level structure introduceert stapsgewijs de mechanics, en het hoofddoel hierbij is het ontwikkelen van de vaardigheden van de speler. Met een level wordt een afgebakend deel van een spel bedoeld. Denk hierbij aan een level in mario, maar ook een wave van een zombie survival game bijvoorbeeld. De basismechanics die nodig zijn om het spel te spelen (core mechanics) worden meestal aan het begin geintroduceerd en zijn niet heel lastig om te begrijpen op laag niveau. Optionele mechanics die leuk zijn voor het spel (secondary mechanics) worden vaak later in het spel vrijgegeven.
+
+In onze game krijgt de speler op het beginscherm te zien welke knoppen gebruikt worden voor welke basisacties. Hierin leggen wij uit hoe de speler loopt, schiet en een eventuele dash doet. Er wordt pas later in de levels iets gedaan met betrekking tot wapens oppakken en upgrades kopen, maar deze mechanics heeft de speler niet per se nodig om het spel te spelen. Ook kan het overweldigend zijn om alle mechanics aan het begin te proppen. Hierom spreiden wij het uit.
+
+### Polish
+Met polish wordt bedoeld dat effecten in het spel op een positieve manier overgedragen worden aan de speler. Dit wordt gedaan aan de hand van UI-elementen of geluidseffecten. Denk hierbij aan elementen als damage indicators als de speler of enemies geraakt worden, een pick-up sound effect of een visueel effect bij het oppakken van een extraordinair item. Polish is heel belangrijk voor het informeren van de speler wat er gaande is in een spel. Het geeft feedback op de speler wanneer deze positieve/negatieve acties uitvoert. Zonder polish voelt een spel heel eenzijdig; het spel communiceert niet terug naar de speler wanneer de speler iets naar het spel communiceerd.
+
+In ons spel hanteren wij polish door enemies die geraakt zijn van het spel te verwijderen. Als de speler geraakt is, dan flasht hij/zij in een bloedrode kleur, zodat te zien is dat de speler HP is verloren. Naast onze speler staat een health counter en een dash cooldown indicator. Deze helpen de speler met het correct weergeven van de resources die hij/zij op elk moment bezit. Hierdoor kan de speler beter geinfomeerd keuzes maken.
 
 
 
