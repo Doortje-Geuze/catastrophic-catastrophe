@@ -110,7 +110,7 @@ namespace Blok3Game.GameStates
                 }
 
             }
-
+            //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)
             {
                 if (gameObject is PlayerBullet playerBullet)
