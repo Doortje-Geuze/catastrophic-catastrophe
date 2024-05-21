@@ -13,7 +13,6 @@ namespace Blok3Game.GameStates
     {
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
-        private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
         private List<GameObject> toRemoveList;
@@ -27,6 +26,8 @@ namespace Blok3Game.GameStates
         public YellowBox yellowBox;
         public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
+        public DashIndicator dashIndicator;
+        public TextGameObject playerHealth;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
@@ -42,7 +43,6 @@ namespace Blok3Game.GameStates
             //Aanmaken van een nieuwe lijst
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
-            playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
             enemyBulletList = new List<EnemyBullet>();
             boxlist = new List<Box>();
@@ -50,7 +50,10 @@ namespace Blok3Game.GameStates
 
             // SpawnStandardEnemies();
 
-            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
+            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
+            {
+                Gamestate = this
+            };
             Add(player);
 
             yellowBox = new YellowBox(new Vector2(10, 10));
@@ -69,12 +72,15 @@ namespace Blok3Game.GameStates
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
 
-            player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
-            {
-                Text = $"{player.HitPoints}",
-                Color = new(255, 255, 255),
-            };
-            Add(player.playerHealth);
+            playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1);
+            Add(playerHealth);
+            playerHealth.Text = $"{player.HitPoints}";
+            playerHealth.Color = new(255, 255, 255);
+            playerHealth.Parent = player;
+
+            dashIndicator = new DashIndicator(Vector2.Zero);
+            Add(dashIndicator);
+            dashIndicator.Parent = player;
         }
 
         public override void Update(GameTime gameTime)
@@ -135,12 +141,8 @@ namespace Blok3Game.GameStates
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 player.HitPoints = player.BaseHitPoints;
-                player.playerHealth.Text = $"{player.HitPoints}";
+                playerHealth.Text = $"{player.HitPoints}";
                 ResetBullets();
-            }
-            else
-            {
-                player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
             }
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
@@ -274,7 +276,7 @@ namespace Blok3Game.GameStates
         {
             float ShootPositionX = shootingEnemy.Position.X + shootingEnemy.Width / 2;
             float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
-            double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
+            double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
 
             EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
 
@@ -286,7 +288,7 @@ namespace Blok3Game.GameStates
         {
             foreach (PlayerBullet playerBullet in playerBulletList)
             {
-                playerBulletsToRemove.Add(playerBullet);
+                toRemoveList.Add(playerBullet);
             }
         }
     }

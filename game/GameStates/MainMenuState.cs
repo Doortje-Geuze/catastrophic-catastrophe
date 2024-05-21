@@ -8,7 +8,7 @@ namespace Blok3Game.GameStates
         public MainMenuState() : base()
         {
             CreateButtons();
-            // CreateTitle();
+            CreateTexts();
         }
 
         public override void Reset()
@@ -25,7 +25,14 @@ namespace Blok3Game.GameStates
         {
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "NEW GAME/CONTINUE", OnButtonCreateClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "SETTINGS", OnButtonSettingsClicked);
-            // CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "CONTROLS", OnButtonControlsClicked);
+        }
+
+        private void CreateTexts()
+        {
+            CreateText(new Vector2((GameEnvironment.Screen.X / 4) + 50, 50), "Move around using WASD");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 4) - 60, 100), "Move crosshair with mouse and shoot with left-click");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 4), 150), "Dash using left-shift whilst moving");
         }
 
         private void ButtonNotImplimented(UIElement element)
@@ -47,17 +54,11 @@ namespace Blok3Game.GameStates
             ButtonClicked();
         }
 
-        // private void CreateTitle()
-        // {
-        //     mainTitle = new SpriteGameObject("Images/UI/titleMainMenu", 0, "title")
-        //     {
-        //         Scale = 1,
-        //     };
-
-        //     //use the width and height of the title to position it in the center of the screen
-        //     mainTitle.Position = new Vector2((GameEnvironment.Screen.X / 2) - (mainTitle.Width / 2), GameEnvironment.Screen.Y / 7);
-
-        //     Add(mainTitle);
-        // }
+        private void OnButtonControlsClicked(UIElement element)
+        {
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            nextScreenName = "CONTROLS_MENU_STATE";
+            ButtonClicked();
+        }
     }
 }
