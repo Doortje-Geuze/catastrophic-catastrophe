@@ -15,6 +15,7 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
+        private List<FastEnemy> fastEnemyList;
         private List<GameObject> toRemoveList;
         private List<Box> boxlist;
         public Player player;
@@ -45,6 +46,7 @@ namespace Blok3Game.GameStates
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            fastEnemyList = new List<FastEnemy>();
             boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
@@ -103,6 +105,8 @@ namespace Blok3Game.GameStates
                     Enemy.EnemyShootCooldown = 0;
                 }
                 Enemy.EnemyShootCooldown++;
+
+                
 
                 player.CheckForEnemyCollision(Enemy);
                 foreach (var playerBullet in playerBulletList)
