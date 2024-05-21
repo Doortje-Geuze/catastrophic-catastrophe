@@ -23,9 +23,17 @@ namespace Blok3Game.Engine.GameObjects
 			{
 				sprite = null;
 			}
-		}    
+		}
 
-		public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public SpriteGameObject(Vector2 position, int layer, string id, int v)
+        {
+            this.position = position;
+            this.layer = layer;
+            this.id = id;
+            V = v;
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
 		{
 			if (!visible || sprite == null)
 			{
@@ -98,7 +106,9 @@ namespace Blok3Game.Engine.GameObjects
 			}
 		}
 
-		public bool CollidesWith(SpriteGameObject obj)
+        public int V { get; }
+
+        public bool CollidesWith(SpriteGameObject obj)
 		{
 			if (!visible || !obj.visible || !BoundingBox.Intersects(obj.BoundingBox))
 			{

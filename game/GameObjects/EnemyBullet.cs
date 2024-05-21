@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
-
-
+ 
 namespace Blok3Game.GameObjects
 {
     public class EnemyBullet : Bullet

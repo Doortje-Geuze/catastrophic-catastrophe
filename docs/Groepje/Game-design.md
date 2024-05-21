@@ -57,5 +57,23 @@ Een internal economy van een game is een economisch systeem wat zich enkel en al
 
 Wij gaan een internal economy in onze game voegen aan de hand van een in-game currency. Deze wordt verkregen door waves/bosses te verslaan. De speler kan ook (een deel van) deze currency verliezen door dood te gaan. Wij hebben nog geen plan om een omvormer specifiek toe te voegen, maar wel een ruilmogelijkheid die een belangrijke rol vervult; de shop. Deze zorgt er namelijk voor dat de in-game currency nuttig is voor de speler. Hier kan de speler zijn/haar karakter sterker maken door de currency in te ruilen voor stat/weapon upgrades.
 
+### Feedback Loops
+Feedback loops zijn de manier hoe de speler feedback krijgt van het spel, op basis van hoe goed/slecht de speler speelt. De positieve feedback loop geeft positieve feedback als de speler goeie acties uitvoert. Het geeft de speler een overwinningsgevoel als hij/zij iets goeds doet. Denk hierbij bijvoorbeeld aan Monopoly. Als een speler veel straten in zijn bezit heeft, dan krijgt hij/zij meer geld van de anderen, waarmee deze speler weer meer straten kan kopen, enz. Een positieve feedback loop zorgt er meestal voor dat de spelers die niet zo goed gaan, nog verder achter komen te liggen. Een negatieve feedback loop geeft de speler die het beste bezig is, een (kleine) hindernis zodat het geen 'smooth sailing' is als een speler aan kop loopt. Dit geeft andere spelers nog mogelijkheden om een comeback te maken, als het om een multiplayer game gaat. Denk hierbij bijvoorbeeld aan Mario Kart. De spelers voorop krijgen slechtere items dan de spelers achterop. Dit geeft de spelers achterin meer kans om anderen in te halen. Als het om een single player game gaat, worden negatieve feedback loops veroorzaakt door bijvoorbeeld diminishing returns. Dit houdt in dat een herhaalde actie, steeds minder oplevert voor de speler.
+
+In onze game gaan wij verschillende feedback loops verwerken. Allereerst een positieve feedback loop. Hoe sterker de speler wordt, hoe meer enemies hij/zij kan vermoorden, hoe meer in-game currency de speler krijgt, waardoor de speler weer sterker kan worden aan de hand van upgrades. Onze negatieve feedback loop zijn de diminishing returns op de prijs van de upgrades. Deze schaalt exponentieel, waardoor het steeds langer duurt om upgrades te kopen.
+
+### Design Goal
+Design goal is het doel wat bereikt moet worden als het ontwerpdoel, de mechanics en de motivatie op elkaar af zijn gestemt en elkaar complementeren. Hierin is het ontwerpdoel hetgeen wat je wilt bereiken met het spel, de mechanics zijn de verhoudingen tussen speler en spel om het ontwerpdoel te bereiken en de motivatie is de reden waarom een speler het spel zou willen spelen.
+
+Wij willen een competitie tussen verschillende huisdieren met onze game bereiken, aan de hand van een top-down bullet hell game. De mechanics die wij hiervoor gebruiken, zijn boss fights tussen de speler en andere huisdieren, waves bij deze bossfights en upgrades die je kan kopen om je eigen huisdier sterker te maken. De motivatie in onze game is het feit dat de bosses hun wapens droppen wanneer ze zijn geelimineerd. Het meesteren van deze nieuwe wapens is iets waar de speler aan moet wennen. Ook hebben wij een shop waar je stat buffs kan kopen (en misschien nog andere zaken later). Dit geeft de speler het gevoel dat ze altijd sterker kunnen worden, waardoor ze blijven spelen.
+
+### Core mechanics & secondary mechanics
+Core mechanics zijn de acties die een speler moet uitvoeren om verder te komen in het spel. Deze worden veel gebruikt door de speler. Secondary mechanics zijn mechanics die inwerken op de core mechanics. Secondary mechanics zijn (meestal) optioneel om verder te komen in het spel of het spel uit te spelen.
+
+In onze game zijn de core mechanics rondlopen en het schieten van een geweer. De secondary mechanics die hieruit voortvloeien zijn een player dash, een in-game currency en verschillende wapentypes.
+
+
+
+
 ## Bronnenlijst
 [Internal economy how-to design](https://www.peachpit.com/articles/article.aspx?p=1925649)
