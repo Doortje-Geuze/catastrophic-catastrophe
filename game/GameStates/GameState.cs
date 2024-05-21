@@ -100,7 +100,10 @@ namespace Blok3Game.GameStates
 
             foreach (Box box in boxlist)
             {
-                player.CheckForPlayerCollision(box);
+                if(player.CheckForPlayerCollision(box))
+                {
+                    toRemoveList.Add(box);
+                }
             }
 
             foreach (var enemyBullet in enemyBulletList)
@@ -143,6 +146,10 @@ namespace Blok3Game.GameStates
                 if (gameObject is ShootingEnemy shootingEnemy)
                 {
                     shootingEnemyList.Remove(shootingEnemy);
+                }
+                if(gameObject is Box box)
+                {
+                    boxlist.Remove(box);
                 }
                 Remove(gameObject);
             }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Data;
 using Blok3Game.SpriteGameObjects;
+using Blok3Game.GameStates;
 
 public class Player : Character
 {
@@ -129,11 +130,12 @@ public class Player : Character
             Console.WriteLine(HitPoints);
         }
     }
-    public void CheckForPlayerCollision(SpriteGameObject box)
+    public bool CheckForPlayerCollision(SpriteGameObject box)
     {
         if (CollidesWith(box))
         {
-            Console.WriteLine("box gone!");
+            return true;
         }
+        return false;
     }
 }
