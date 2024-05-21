@@ -11,7 +11,6 @@ namespace Blok3Game.GameStates
     {
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
-        private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
         private List<GameObject> toRemoveList;
@@ -30,7 +29,6 @@ namespace Blok3Game.GameStates
             //Aanmaken van een nieuwe lijst
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
-            playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
             toRemoveList = new List<GameObject>();
 
@@ -217,7 +215,7 @@ namespace Blok3Game.GameStates
         {
             foreach (PlayerBullet playerBullet in playerBulletList)
             {
-                playerBulletsToRemove.Add(playerBullet);
+                toRemoveList.Add(playerBullet);
             }
         }
     }
