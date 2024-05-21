@@ -19,6 +19,7 @@ namespace Blok3Game.GameStates
         public Crosshair crosshair;
         public CatGun catGun;
         public ShootingEnemy shootingEnemy;
+        public DashIndicator dashIndicator;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
@@ -49,6 +50,10 @@ namespace Blok3Game.GameStates
                 Color = new(255, 255, 255),
             };
             Add(player.playerHealth);
+
+            dashIndicator = new DashIndicator(Vector2.Zero);
+            Add(dashIndicator);
+            dashIndicator.Parent = player;
         }
 
         public override void Update(GameTime gameTime)
