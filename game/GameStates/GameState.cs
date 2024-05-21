@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
@@ -30,6 +31,11 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
+        public int PlayerShootCooldown = 0;
+        public int PlayerAttackTimes = 0;
+        private bool pickedUpPurple = false;
+        private bool pickedUpYellow = false;
+
 
         public GameState() : base()
         {
@@ -52,7 +58,7 @@ namespace Blok3Game.GameStates
 
             Add(yellowBox);
 
-            purpleBox = new PurpleBox(new Vector2(50, 50));
+            purpleBox = new PurpleBox(new Vector2(200, 200));
             boxlist.Add(purpleBox);
 
             Add(purpleBox);
@@ -74,6 +80,11 @@ namespace Blok3Game.GameStates
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (PlayerShootCooldown != 0)
+            {
+                PlayerShootCooldown--;
+            }
 
             //Loop door de lijst met enemies
             foreach (var Enemy in shootingEnemyList)
@@ -100,8 +111,16 @@ namespace Blok3Game.GameStates
 
             foreach (Box box in boxlist)
             {
-                if(player.CheckForPlayerCollision(box))
+                if (player.CheckForPlayerCollision(box))
                 {
+                    if (box is YellowBox yellowBox)
+                    {
+                        pickedUpYellow = true;
+                    }
+                    if (box is PurpleBox purpleBoxBox)
+                    {
+                        pickedUpPurple = true;
+                    }
                     toRemoveList.Add(box);
                 }
             }
@@ -147,7 +166,7 @@ namespace Blok3Game.GameStates
                 {
                     shootingEnemyList.Remove(shootingEnemy);
                 }
-                if(gameObject is Box box)
+                if (gameObject is Box box)
                 {
                     boxlist.Remove(box);
                 }
@@ -172,7 +191,7 @@ namespace Blok3Game.GameStates
         {
             base.HandleInput(inputHelper);
 
-            if (inputHelper.MouseLeftButtonPressed)
+            if (inputHelper.MouseLeftButtonPressed && PlayerShootCooldown == 0)
             {
                 PlayerShoot(inputHelper.MousePosition.X, inputHelper.MousePosition.Y);
             }
@@ -225,10 +244,30 @@ namespace Blok3Game.GameStates
             float ShootPositionY = player.Position.Y + player.Height / 2;
             double bulletAngle = Math.Atan2(MousePositionY - ShootPositionY, MousePositionX - ShootPositionX);
 
-            PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+            if (pickedUpPurple)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.5f * i, 18);
+                    playerBulletList.Add(playerBullet);
+                    Add(playerBullet);
+                }
+            }
+            else
+            {
+                PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+                playerBulletList.Add(playerBullet);
+                Add(playerBullet);
+            }
 
-            playerBulletList.Add(playerBullet);
-            Add(playerBullet);
+            if (pickedUpYellow)
+            {
+                PlayerShootCooldown = 5;
+            }
+            else
+            {
+                PlayerShootCooldown = 8;
+            }
         }
 
         private void EnemyShoots(ShootingEnemy shootingEnemy)
