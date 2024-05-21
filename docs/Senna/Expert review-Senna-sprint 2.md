@@ -1,4 +1,12 @@
 # Expert review sprint 2
+## LinkedIn certificaten + quiz resultaat
+Resultaat quiz: In ontwikkeling  
+
+
+![interfaces and generics](../images/certificaat-interfaces-and-generics-Senna-de-Vries.png)  
+![applied data structures](../images/certificaat-applied-data-structures-Senna-de-Vries.png)  
+![advanced design patterns design principles](../images/certificaat-advanced-design-patterns-design-principles-Senna-de-Vries.png)  
+
 ## OOP
 ### Abstraction
 Binnen OOP is abstraction het verbergen van complexe en onnodige informatie voor de gebruiker. Ik heb dit gedaan door middel van private methods en een static class die de playerPosition bijhoudt.

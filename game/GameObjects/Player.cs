@@ -3,12 +3,13 @@ using Blok3Game.Engine.Helpers;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
+using Blok3Game.GameObjects;
+using Blok3Game.GameStates;
 
 public class Player : Character
 {
     //all variables that a player needs
-    public TextGameObject playerHealth;
-    public Vector2 PlayerHealthOffset = new(40, 100);
+    public GameState Gamestate { get; set; }
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
@@ -53,7 +54,7 @@ public class Player : Character
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = BaseMoveSpeed * 3;
+        MoveSpeed = BaseMoveSpeed * 5;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
@@ -64,6 +65,7 @@ public class Player : Character
         if (DashCooldown > 0)
         {
             DashCooldown--;
+            Gamestate.dashIndicator.SwitchSprites(DashCooldown);
         }
         if (PlayerDashTimer > 5)
         {
@@ -122,7 +124,7 @@ public class Player : Character
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
         {
             HitPoints -= 1;
-            playerHealth.Text = $"{HitPoints}";
+            Gamestate.playerHealth.Text = $"{HitPoints}";
             InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
             Console.WriteLine(HitPoints);
         }
