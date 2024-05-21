@@ -100,7 +100,7 @@ namespace Blok3Game.GameStates
 
         protected TextGameObject CreateText(Vector2 position, string text)
         {
-            TextGameObject textObject = new TextGameObject("Fonts/SpriteFont", 1, "text");
+            TextGameObject textObject = new TextGameObject("Fonts/SpriteFont@20px", 1, "text");
             textObject.Position = position;
             textObject.Color = Color.White;
             textObject.Text = text;
