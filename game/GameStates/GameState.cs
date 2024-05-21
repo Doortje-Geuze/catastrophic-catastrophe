@@ -16,6 +16,7 @@ namespace Blok3Game.GameStates
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
         private List<GameObject> toRemoveList;
+        private List<Box> boxlist;
         public Player player;
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
@@ -28,6 +29,7 @@ namespace Blok3Game.GameStates
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
+        public int FramesPerSecond = 60;
 
         public GameState() : base()
         {
@@ -36,16 +38,24 @@ namespace Blok3Game.GameStates
             playerBulletList = new List<PlayerBullet>();
             playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            enemyBulletList = new List<EnemyBullet>();
+            boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
-            SpawnStandardEnemies();
+            // SpawnStandardEnemies();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
 
-            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - (90 / 3), (GameEnvironment.Screen.Y / 2) - (90 / 3)));
+            yellowBox = new YellowBox(new Vector2(10, 10));
+            boxlist.Add(yellowBox);
 
-            purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) - (90 / 4), (GameEnvironment.Screen.Y / 2) - (90 / 4)));
+            Add(yellowBox);
+
+            purpleBox = new PurpleBox(new Vector2(50, 50));
+            boxlist.Add(purpleBox);
+
+            Add(purpleBox);
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);
@@ -86,6 +96,10 @@ namespace Blok3Game.GameStates
                         toRemoveList.Add(playerBullet);
                     }
                 }
+            }
+
+            foreach (Box box in boxlist)
+            {
                 player.CheckForPlayerCollision(box);
             }
 
@@ -187,7 +201,7 @@ namespace Blok3Game.GameStates
                         swap++;
                     }
 
-                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && 
+                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X &&
                          YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
 
                 //Aanmaken van de enemies

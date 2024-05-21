@@ -20,8 +20,8 @@ public class Player : Character
     public const int BaseMoveSpeed = 5;
     public const int BaseInvulnerabilityCooldown = 120;
 
-    public Player(int hitPoints, int moveSpeed, Vector2 position) : 
-                  base(hitPoints, moveSpeed, position,"Images/Characters/playerCat@2x1", 0, " ", 0)
+    public Player(int hitPoints, int moveSpeed, Vector2 position) :
+                  base(hitPoints, moveSpeed, position, "Images/Characters/playerCat@2x1", 0, " ", 0)
     {
         HitPoints = hitPoints;
     }
@@ -57,7 +57,7 @@ public class Player : Character
         DashCooldown = 60;
         MoveSpeed = BaseMoveSpeed * 3;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
-        return; 
+        return;
     }
 
     //Reduces DashCooldown every frame, and also stops the player from dashing once the dash duration limit is met
@@ -131,6 +131,9 @@ public class Player : Character
     }
     public void CheckForPlayerCollision(SpriteGameObject box)
     {
-        Console.WriteLine("box gone!");
+        if (CollidesWith(box))
+        {
+            Console.WriteLine("box gone!");
+        }
     }
 }

@@ -7,43 +7,26 @@ using Microsoft.Xna.Framework;
 
 namespace Blok3Game.SpriteGameObjects
 {
-  
-
-    abstract class Box : SpriteGameObject
-       {
-        public  Box ( Vector2 position, int layer = 0, string id = "") : base( position, layer, id, 0)
-        {
-          
-         bool CheckForPlayerCollision(SpriteGameObject player)
+    public abstract class Box : SpriteGameObject
     {
-        if (CollidesWith(player))
+        public Box(Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName)
         {
-            return true;
-        } return false;
-    }
-           
-            
+            Position = position;
         }
-
-        
     }
-
-
- class YellowBox : Box
-{
-    public YellowBox (Vector2 position, int layer = 0, string id = "") : base(position, layer, "Images/Tiles/SquareYellow")
+    public class YellowBox : Box
     {
-         
+        public YellowBox(Vector2 position) : base(position, "Images/Tiles/SquareYellow", 0, " ", 0)
+        {
+        }
     }
-}
-class PurpleBox : Box
-{
-    public PurpleBox (Vector2 position, int layer = 0, string id = "") : base(position, layer, "Images/Tiles/PurpleSquare")
+    public class PurpleBox : Box
     {
-         
-       
+        public PurpleBox(Vector2 position) : base(position, "Images/Tiles/PurpleSquare", 0, " ", 0)
+        {
+
+        }
     }
-}
 }
 
 
