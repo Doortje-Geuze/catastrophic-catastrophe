@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Xml.Serialization;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
@@ -105,10 +106,13 @@ namespace Blok3Game.GameStates
             if (player.HitPoints <= 0)
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                
                 SocketClient.Instance.SendDataPacket(new MatchData()
                 {
                     TotalWavesSurvived = WaveCounter, KilledBy = "Bullet", Kills = EnemiesKilled, HealthLeft = player.HitPoints,
                 });
+                
+
                 player.HitPoints = player.BaseHitPoints;
                 player.playerHealth.Text = $"{player.HitPoints}";
                 ResetBullets();

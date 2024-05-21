@@ -10,7 +10,7 @@ namespace Blok3Game.Engine.JSON
 
         public MatchData() : base()
         {
-            EventName = "end game";
+            EventName = "Example";
         }
     }
 }
