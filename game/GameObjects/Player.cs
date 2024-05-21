@@ -54,7 +54,7 @@ public class Player : Character
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
         DashCooldown = 60;
-        MoveSpeed = BaseMoveSpeed * 3;
+        MoveSpeed = BaseMoveSpeed * 5;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return; 
     }
@@ -65,6 +65,7 @@ public class Player : Character
         if (DashCooldown > 0)
         {
             DashCooldown--;
+            Gamestate.dashIndicator.SwitchSprites(DashCooldown);
         }
         if (PlayerDashTimer > 5)
         {
