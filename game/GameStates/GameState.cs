@@ -48,7 +48,7 @@ namespace Blok3Game.GameStates
             enemiesToRemove = new List<ShootingEnemy>();
             playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
-            SpawnStandardEnemies();
+            SpawnStandardEnemies(); 
             camera = new Camera();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
