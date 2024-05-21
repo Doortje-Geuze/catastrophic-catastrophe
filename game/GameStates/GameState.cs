@@ -25,7 +25,6 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
-        private Vector2 PlayerHealthOffset = new(40, 100);
 
         public GameState() : base()
         {
