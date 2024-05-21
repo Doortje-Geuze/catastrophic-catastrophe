@@ -20,10 +20,12 @@ namespace Blok3Game.GameStates
         public CatGun catGun;
         public ShootingEnemy shootingEnemy;
         public DashIndicator dashIndicator;
+        public TextGameObject playerHealth;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
+        private Vector2 PlayerHealthOffset = new(40, 100);
 
         public GameState() : base()
         {
@@ -35,7 +37,10 @@ namespace Blok3Game.GameStates
 
             SpawnStandardEnemies();
 
-            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
+            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
+            {
+                Gamestate = this
+            };
             Add(player);
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
@@ -44,12 +49,11 @@ namespace Blok3Game.GameStates
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
 
-            player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
-            {
-                Text = $"{player.HitPoints}",
-                Color = new(255, 255, 255),
-            };
-            Add(player.playerHealth);
+            playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1);
+            Add(playerHealth);
+            playerHealth.Text = $"{player.HitPoints}";
+            playerHealth.Color = new(255, 255, 255);
+            playerHealth.Parent = player;
 
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
@@ -93,12 +97,8 @@ namespace Blok3Game.GameStates
             {
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 player.HitPoints = player.BaseHitPoints;
-                player.playerHealth.Text = $"{player.HitPoints}";
+                playerHealth.Text = $"{player.HitPoints}";
                 ResetBullets();
-            }
-            else
-            {
-                player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
             }
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)

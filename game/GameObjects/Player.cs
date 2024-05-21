@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
 using Blok3Game.GameObjects;
+using Blok3Game.GameStates;
 
 public class Player : Character
 {
     //all variables that a player needs
-    public TextGameObject playerHealth;
-    public Vector2 PlayerHealthOffset = new(40, 100);
+    public GameState Gamestate { get; set; }
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
@@ -123,7 +123,7 @@ public class Player : Character
         if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
         {
             HitPoints -= 1;
-            playerHealth.Text = $"{HitPoints}";
+            Gamestate.playerHealth.Text = $"{HitPoints}";
             InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
             Console.WriteLine(HitPoints);
         }
