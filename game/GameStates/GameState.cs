@@ -207,7 +207,7 @@ namespace Blok3Game.GameStates
         {
             float ShootPositionX = shootingEnemy.Position.X + shootingEnemy.Width / 2;
             float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
-            double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
+            double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
 
             EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
 
