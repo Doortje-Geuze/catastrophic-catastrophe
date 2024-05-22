@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
@@ -77,7 +77,7 @@ namespace Blok3Game.GameStates
             Add(playerCurrency);
             playerCurrency.Text = $"you collected {player.currencyCounter} currency";
             playerHealth.Color = new(255, 255, 255);
-            playerCurrency.Position = new Vector2(0, 10);
+            playerCurrency.Position = new Vector2(5, 5);
 
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
