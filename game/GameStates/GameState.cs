@@ -26,9 +26,11 @@ namespace Blok3Game.GameStates
         public int FramesPerSecond = 60;
         public int WaveIndicatorShowTime = -20;
         private bool NewWave = true;
+        private SpriteGameObject background;
 
         public GameState() : base()
         {
+            CreateBackground();
             //Aanmaken van een nieuwe lijst
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
@@ -269,6 +271,20 @@ namespace Blok3Game.GameStates
             }
         }
 
+        private void CreateBackground()
+        {
+            background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -1, "background")
+            {
+                Scale = 2.1f,
+            };
+
+            //use the width and height of the background to position it in the center of the screen
+            background.Position = new Vector2((GameEnvironment.Screen.X / 2) - (background.Width / 2), 0);
+
+            Add(background);
+        }
+
+
         public void Retry()
         {
             ResetBullets();
@@ -277,6 +293,7 @@ namespace Blok3Game.GameStates
             player.InvulnerabilityCooldown = 0;
             player.HitPoints = player.BaseHitPoints;
             playerHealth.Text = $"{player.HitPoints}";
+            waveIndicator.Sprite.SheetIndex = 0;
         }
 
         private void ResetBullets()
