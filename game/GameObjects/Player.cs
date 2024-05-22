@@ -123,27 +123,26 @@ public class Player : Character, ICollidable
         if (CollidesWith(spriteGameObject) == false) return;
         switch (spriteGameObject)
         {
-            case Enemy enemy:
+            case Enemy:
                 if (InvulnerabilityCooldown <= 0)
                 {
-                    HitPoints -= 1;
-                    Gamestate.playerHealth.Text = $"{HitPoints}";
-                    InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-                    Console.WriteLine(HitPoints);
+                    UpdatePlayerHealth();
                 }
                 break;
-            case EnemyBullet enemyBullet:
+            case EnemyBullet:
                 if (InvulnerabilityCooldown <= 0)
                 {
-                    HitPoints -= 1;
-                    Gamestate.playerHealth.Text = $"{HitPoints}";
-                    InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-                    Console.WriteLine(HitPoints);
+                    UpdatePlayerHealth();
                 }
-                break;
-            default:
-            Console.WriteLine("No collision detected");
                 break;
         }
+    }
+
+    private void UpdatePlayerHealth()
+    {
+        HitPoints -= 1;
+        Gamestate.playerHealth.Text = $"{HitPoints}";
+        InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
+        Console.WriteLine(HitPoints);
     }
 }
