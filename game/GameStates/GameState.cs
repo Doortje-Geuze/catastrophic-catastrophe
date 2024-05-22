@@ -46,7 +46,7 @@ namespace Blok3Game.GameStates
         {
             CreateBackground();
 
-            //Aanmaken van een nieuwe lijst
+            //List creator
             EnemyList = new List<Enemy>();
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
@@ -60,11 +60,13 @@ namespace Blok3Game.GameStates
             };
             Add(player);
 
+            //Lower Cooldown Upgrade
             yellowBox = new YellowBox(new Vector2(10, 10));
             boxlist.Add(yellowBox);
 
             Add(yellowBox);
 
+            //Shotgun upgrade
             purpleBox = new PurpleBox(new Vector2(200, 200));
             boxlist.Add(purpleBox);
 
@@ -91,17 +93,16 @@ namespace Blok3Game.GameStates
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
-
-            ShowWaveIndicator();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
+            //The Waves controller
             switch (WaveCounter)
             {
-                case 0:
+                case 0: //Wave 1
                     if (EnemyList.Count == 0)
                     {
                         WaveCounter++;
@@ -111,7 +112,7 @@ namespace Blok3Game.GameStates
                         SpawnStandardEnemies();
                     }
                     break;
-                case 1: //Wave 1
+                case 1: //Wave 2
                     if (EnemyList.Count == 0)
                     {
                         WaveCounter++;
@@ -121,7 +122,7 @@ namespace Blok3Game.GameStates
                         SpawnFastEnemies();
                     }
                     break;
-                case 2: //Wave 2
+                case 2: //Wave 3
                     if (EnemyList.Count == 0)
                     {
                         WaveCounter++;
@@ -131,7 +132,7 @@ namespace Blok3Game.GameStates
                         SpawnStandardEnemies();
                     }
                     break;
-                case 3: //Wave 3
+                case 3: //Player Wins
                     if (EnemyList.Count == 0)
                     {
                         ResetBullets();
@@ -155,7 +156,7 @@ namespace Blok3Game.GameStates
                 PlayerShootCooldown--;
             }
 
-            //Loop door de lijst met enemies
+            //Tells every enemy where to go, when to shoot and what to do when it collides with the player. Does the same for the PlayerBullets
             foreach (Enemy enemy in EnemyList)
             {
                 enemy.EnemySeeking(player.Position);
@@ -224,6 +225,7 @@ namespace Blok3Game.GameStates
                     player.Shade = new Color(255, 255, 255);
                 }
             }
+
             //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)
             {
@@ -351,6 +353,7 @@ namespace Blok3Game.GameStates
             float ShootPositionY = player.Position.Y + player.Height / 2;
             double bulletAngle = Math.Atan2(MousePositionY - ShootPositionY, MousePositionX - ShootPositionX);
 
+            //Shotgun Upgrade
             if (pickedUpPurple)
             {
                 for (int i = -1; i < 2; i++)
@@ -367,6 +370,7 @@ namespace Blok3Game.GameStates
                 Add(playerBullet);
             }
 
+            //Lower Cooldown Upgrade
             if (pickedUpYellow)
             {
                 PlayerShootCooldown = 5;
@@ -391,6 +395,7 @@ namespace Blok3Game.GameStates
 
         private void ShowWaveIndicator()
         {
+            //Spawns the wave indicator on the screen
             if (WaveIndicatorShowTime == 0)
             {
                 waveIndicator = new WaveIndicator(new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 2), WaveCounter - 1);
@@ -400,6 +405,7 @@ namespace Blok3Game.GameStates
                 waveIndicator.Sprite.SheetIndex = WaveCounter - 1;
             }
 
+            //Timer till the Wave Indicator needs to be removed
             if (NewWave && WaveIndicatorShowTime <= 120)
             {
                 WaveIndicatorShowTime++;
@@ -426,13 +432,19 @@ namespace Blok3Game.GameStates
 
         public void Retry()
         {
+            //Reset Entities
             ResetBullets();
             ResetEnemies();
-            WaveCounter = 0;
+
+            //Reset everything Player
             player.InvulnerabilityCooldown = 0;
             player.HitPoints = player.BaseHitPoints;
             playerHealth.Text = $"{player.HitPoints}";
+            player.currencyCounter = 0;
+
+            //Reset the waves
             waveIndicator.Sprite.SheetIndex = 0;
+            WaveCounter = 0;
         }
 
         private void ResetBullets()
