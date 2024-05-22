@@ -118,6 +118,7 @@ public class Player : Character, ICollidable
         MoveSpeed = BaseMoveSpeed;
     }
 
+    //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
     public void HandleCollision(SpriteGameObject spriteGameObject)
     {
         if (CollidesWith(spriteGameObject) == false) return;
@@ -138,6 +139,7 @@ public class Player : Character, ICollidable
         }
     }
 
+    //updates the playerHealth when the player is hit by an enemy or enemyBullet
     private void UpdatePlayerHealth()
     {
         HitPoints -= 1;
