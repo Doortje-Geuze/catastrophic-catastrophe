@@ -1,6 +1,6 @@
 # Resultaten quiz 14-5-2024
 
-![](/docs/Doortje/sprint%202/images/Quiz-uitslag-14-5-2024.png)
+![](../sprint%202/images/Quiz-uitslag-14-5-2024.png)
 
 19,6 punten van de 30
 
