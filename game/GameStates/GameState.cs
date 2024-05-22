@@ -46,6 +46,8 @@ namespace Blok3Game.GameStates
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            currencyList = new List<Currency>();
+            boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
             // SpawnStandardEnemies();
