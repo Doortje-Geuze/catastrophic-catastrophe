@@ -15,7 +15,8 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
-        private List<GameObject> toRemoveList;
+        private List<Currency> currencyList;
+        public List<GameObject> toRemoveList;
         private List<Box> boxlist;
         public Player player;
         public StandardEnemy standardEnemy;
@@ -28,6 +29,7 @@ namespace Blok3Game.GameStates
         public ShootingEnemy shootingEnemy;
         public DashIndicator dashIndicator;
         public TextGameObject playerHealth;
+        public TextGameObject playerCurrency;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
@@ -44,8 +46,6 @@ namespace Blok3Game.GameStates
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
-            enemyBulletList = new List<EnemyBullet>();
-            boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
             // SpawnStandardEnemies();
@@ -78,6 +78,12 @@ namespace Blok3Game.GameStates
             playerHealth.Color = new(255, 255, 255);
             playerHealth.Parent = player;
 
+            playerCurrency = new TextGameObject("Fonts/SpriteFont@20px", 1);
+            Add(playerCurrency);
+            playerCurrency.Text = $"you collected {player.currencyCounter} currency";
+            playerHealth.Color = new(255, 255, 255);
+            playerCurrency.Position = new Vector2(0, 20);
+
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
@@ -93,23 +99,29 @@ namespace Blok3Game.GameStates
             }
 
             //Loop door de lijst met enemies
-            foreach (var Enemy in shootingEnemyList)
+            foreach (var enemy in shootingEnemyList)
             {
-                Enemy.EnemySeeking(player.Position);
+                enemy.EnemySeeking(player.Position);
 
-                if (Enemy.EnemyShootCooldown >= 120)
+                if (enemy.EnemyShootCooldown >= 120)
                 {
-                    EnemyShoots(Enemy);
-                    Enemy.EnemyShootCooldown = 0;
+                    EnemyShoots(enemy);
+                    enemy.EnemyShootCooldown = 0;
                 }
-                Enemy.EnemyShootCooldown++;
+                enemy.EnemyShootCooldown++;
 
-                player.CheckForEnemyCollision(Enemy);
+                player.HandleCollision(enemy);
                 foreach (var playerBullet in playerBulletList)
                 {
-                    if (playerBullet.CheckForEnemyCollision(Enemy))
+                    if (playerBullet.CheckForEnemyCollision(enemy))
                     {
-                        toRemoveList.Add(Enemy);
+                        Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                        {
+                            Scale = 2
+                        };
+                        currencyList.Add(currency);
+                        Add(currency);
+                        toRemoveList.Add(enemy);
                         toRemoveList.Add(playerBullet);
                     }
                 }
@@ -133,7 +145,12 @@ namespace Blok3Game.GameStates
 
             foreach (var enemyBullet in enemyBulletList)
             {
-                player.CheckForEnemyCollision(enemyBullet);
+                player.HandleCollision(enemyBullet);
+            }
+
+            foreach (var currency in currencyList)
+            {
+                player.HandleCollision(currency);
             }
 
             //switches to lose screen if player's HP falls below 0
@@ -157,7 +174,7 @@ namespace Blok3Game.GameStates
                 }
 
             }
-
+            //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)
             {
                 if (gameObject is PlayerBullet playerBullet)
@@ -167,6 +184,10 @@ namespace Blok3Game.GameStates
                 if (gameObject is ShootingEnemy shootingEnemy)
                 {
                     shootingEnemyList.Remove(shootingEnemy);
+                }
+                if (gameObject is Currency currency)
+                {
+                    currencyList.Remove(currency);
                 }
                 if (gameObject is Box box)
                 {
@@ -292,7 +313,6 @@ namespace Blok3Game.GameStates
             }
         }
     }
-
 }
 
 

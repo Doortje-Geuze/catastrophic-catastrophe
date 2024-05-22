@@ -8,7 +8,7 @@ using Blok3Game.SpriteGameObjects;
 using Blok3Game.GameObjects;
 using Blok3Game.GameStates;
 
-public class Player : Character
+public class Player : Character, ICollidable
 {
     //all variables that a player needs
     public GameState Gamestate { get; set; }
@@ -18,6 +18,7 @@ public class Player : Character
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
     public int BaseHitPoints = 3;
+    public int currencyCounter = 0;
     public const int BaseMoveSpeed = 5;
     public const int BaseInvulnerabilityCooldown = 120;
 
@@ -120,16 +121,39 @@ public class Player : Character
         MoveSpeed = BaseMoveSpeed;
     }
 
-    //checks player-enemy collision, then activates HP loss and invulnerability timer
-    public void CheckForEnemyCollision(SpriteGameObject enemy)
+    //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
+    public void HandleCollision(SpriteGameObject spriteGameObject)
     {
-        if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
+        if (CollidesWith(spriteGameObject) == false) return;
+        switch (spriteGameObject)
         {
-            HitPoints -= 1;
-            Gamestate.playerHealth.Text = $"{HitPoints}";
-            InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-            Console.WriteLine(HitPoints);
+            case Enemy:
+                if (InvulnerabilityCooldown <= 0)
+                {
+                    UpdatePlayerHealth();
+                }
+                break;
+            case EnemyBullet:
+                if (InvulnerabilityCooldown <= 0)
+                {
+                    UpdatePlayerHealth();
+                }
+                break;
+            case Currency:
+                currencyCounter++;
+                Gamestate.playerCurrency.Text = $"you collected {currencyCounter} currency";
+                Gamestate.toRemoveList.Add(spriteGameObject);
+                break;
         }
+    }
+
+    //updates the playerHealth when the player is hit by an enemy or enemyBullet
+    private void UpdatePlayerHealth()
+    {
+        HitPoints -= 1;
+        Gamestate.playerHealth.Text = $"{HitPoints}";
+        InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
+        Console.WriteLine(HitPoints);
     }
     public bool CheckForPlayerCollision(SpriteGameObject box)
     {
