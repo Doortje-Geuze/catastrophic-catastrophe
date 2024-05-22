@@ -88,8 +88,8 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     <h3>Basisinformatie</h3>
 
-    Getest door: Senna<br>
-    Naam proefpersoon: Linus<br>
+    Getest door: Tijn<br>
+    Naam proefpersoon: Jens<br>
     Datum test: 04/05/2024
 
     <h4>Antwoorden op de vragen </h4>
@@ -196,8 +196,8 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     <h3>Basisinformatie</h3>
 
-    Getest door: Tijn<br>
-    Naam proefpersoon: Jens<br>
+    Getest door: Senna<br>
+    Naam proefpersoon: Linus<br>
     Datum test: 05/05/2024
 
     <h4>Antwoorden op de vragen </h4>
