@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
 using Blok3Game.SpriteGameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 namespace Blok3Game.GameStates
 {
     public class GameState : GameObjectList
@@ -103,7 +103,6 @@ namespace Blok3Game.GameStates
         {
             base.Update(gameTime);
 
-<<<<<<< game/GameStates/GameState.cs
             ShowWaveIndicator();
 
             switch (WaveCounter)
@@ -144,7 +143,7 @@ namespace Blok3Game.GameStates
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
             }
 
-            
+
             if (PlayerShootCooldown != 0)
             {
                 PlayerShootCooldown--;
@@ -234,7 +233,6 @@ namespace Blok3Game.GameStates
                     enemyBulletList.Remove(enemyBullet);
                 }
                 Remove(gameObject);
-                }
                 if (gameObject is FastEnemy fastEnemy)
                 {
                     fastEnemyList.Remove(fastEnemy);
@@ -251,7 +249,7 @@ namespace Blok3Game.GameStates
             }
         }
 
-        public override void HandleInput(InputHelper inputHelper)
+    public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
 
