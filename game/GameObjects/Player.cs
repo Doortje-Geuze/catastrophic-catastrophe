@@ -16,6 +16,7 @@ public class Player : Character, ICollidable
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
     public int BaseHitPoints = 3;
+    public int currencyCounter = 0;
     public const int BaseMoveSpeed = 5;
     public const int BaseInvulnerabilityCooldown = 120;
 
@@ -135,6 +136,11 @@ public class Player : Character, ICollidable
                 {
                     UpdatePlayerHealth();
                 }
+                break;
+            case Currency:
+                currencyCounter++;
+                Gamestate.playerCurrency.Text = $"you collected {currencyCounter} currency";
+                Gamestate.toRemoveList.Add(spriteGameObject);
                 break;
         }
     }
