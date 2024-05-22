@@ -6,7 +6,7 @@
 	},
 	"release":
 	{
-		"location": "[...]",
+		"location": "https://suuleewooyaa34-pb4gdd2324.hbo-ict.cloud/api/",
 		"path": "/api/socket.io"
 	}
 }
