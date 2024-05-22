@@ -19,10 +19,13 @@ namespace Blok3Game.GameStates
         public CatGun catGun;
         public ShootingEnemy shootingEnemy;
         public DashIndicator dashIndicator;
+        public WaveIndicator waveIndicator;
         public TextGameObject playerHealth;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
+        public int ShowWaveIndicatorTime = 0;
+        private bool NewWave = true;
 
         public GameState() : base()
         {
@@ -55,11 +58,46 @@ namespace Blok3Game.GameStates
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
+
+            ShowWaveIndicator();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            ShowWaveIndicator();
+
+
+            switch (WaveCounter)
+            {
+                case 1:
+                    if (shootingEnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        NewWave = true;
+                        ShowWaveIndicatorTime = 0;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 2:
+                    if (shootingEnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        NewWave = true;
+                        ShowWaveIndicatorTime = 0;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 3:
+                    if (shootingEnemyList.Count == 0)
+                    {
+                        ResetBullets();
+                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                    }
+                    break;
+            }
 
             //Loop door de lijst met enemies
             foreach (var Enemy in shootingEnemyList)
@@ -123,33 +161,6 @@ namespace Blok3Game.GameStates
                     enemyBulletList.Remove(enemyBullet);
                 }
                 Remove(gameObject);
-            }
-
-            switch (WaveCounter)
-            {
-                case 1:
-                    if (shootingEnemyList.Count == 0)
-                    {
-                        WaveCounter++;
-                        ResetBullets();
-                        SpawnStandardEnemies();
-                    }
-                    break;
-                case 2:
-                    if (shootingEnemyList.Count == 0)
-                    {
-                        WaveCounter++;
-                        ResetBullets();
-                        SpawnStandardEnemies();
-                    }
-                    break;
-                case 3:
-                    if (shootingEnemyList.Count == 0)
-                    {
-                        ResetBullets();
-                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-                    }
-                    break;
             }
 
             //switches to lose screen if player's HP falls below 0
@@ -233,6 +244,27 @@ namespace Blok3Game.GameStates
 
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);
+        }
+
+        private void ShowWaveIndicator()
+        {
+            if (ShowWaveIndicatorTime == 0)
+            {
+                waveIndicator = new WaveIndicator(new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 2));
+                Add(waveIndicator);
+
+                ShowWaveIndicatorTime++;
+            }
+
+            if (NewWave && ShowWaveIndicatorTime <= 120)
+            {
+                ShowWaveIndicatorTime++;
+            }
+            else
+            {
+                NewWave = false;
+                toRemoveList.Add(waveIndicator);
+            }
         }
 
         private void Retry()
