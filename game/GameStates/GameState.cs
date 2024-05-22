@@ -15,18 +15,20 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
+        private List<FastEnemy> fastEnemyList;
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
         public Player player;
+        public PlayerBullet playerBullet;
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
-        //public PinkGun pinkGun;
         public Box box;
         public YellowBox yellowBox;
         public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
+        public FastEnemy fastEnemy;
         public DashIndicator dashIndicator;
         public TextGameObject playerHealth;
         public TextGameObject playerCurrency;
@@ -47,6 +49,7 @@ namespace Blok3Game.GameStates
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
             currencyList = new List<Currency>();
+            fastEnemyList = new List<FastEnemy>();
             boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
@@ -126,8 +129,28 @@ namespace Blok3Game.GameStates
                         toRemoveList.Add(enemy);
                         toRemoveList.Add(playerBullet);
                     }
+
                 }
             }
+
+                foreach (var Enemy in fastEnemyList)
+            {
+                Enemy.EnemySeeking(player.Position);
+
+                
+
+                player.CheckForEnemyCollision(Enemy); //Checks if player and enemy collide
+                foreach (var playerBullet in playerBulletList)
+                {
+                    if (playerBullet.CheckForEnemyCollision(Enemy)) //Checks if bullet from the player and enemy collide
+                    {
+                        toRemoveList.Add(Enemy);
+                        toRemoveList.Add(playerBullet);
+                    }
+                }
+            }
+
+
 
             foreach (Box box in boxlist)
             {
@@ -137,7 +160,7 @@ namespace Blok3Game.GameStates
                     {
                         pickedUpYellow = true;
                     }
-                    if (box is PurpleBox purpleBoxBox)
+                    if (box is PurpleBox purpleBox)
                     {
                         pickedUpPurple = true;
                     }
@@ -187,6 +210,10 @@ namespace Blok3Game.GameStates
                 {
                     shootingEnemyList.Remove(shootingEnemy);
                 }
+                if (gameObject is FastEnemy fastEnemy)
+                {
+                    fastEnemyList.Remove(fastEnemy);
+                }
                 if (gameObject is Currency currency)
                 {
                     currencyList.Remove(currency);
@@ -198,18 +225,20 @@ namespace Blok3Game.GameStates
                 Remove(gameObject);
             }
 
-            // if (shootingEnemyList.Count == 0 && WaveCounter != 3)
-            // {
-            //     WaveCounter++;
-            //     ResetBullets();
-            //     SpawnStandardEnemies();
-            // }
-            // if (shootingEnemyList.Count == 0 && WaveCounter == 3)
-            // {
-            //     GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-            //     ResetBullets();
-            //     SpawnStandardEnemies();
-            // }
+            if (shootingEnemyList.Count == 0 && WaveCounter != 3)
+            {
+                WaveCounter++;
+                ResetBullets();
+                SpawnStandardEnemies();
+                SpawnFastEnemies();
+            }
+            if (shootingEnemyList.Count == 0 && WaveCounter == 3)
+            {
+                GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                ResetBullets();
+                SpawnStandardEnemies();
+                SpawnFastEnemies();
+            }
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -258,8 +287,51 @@ namespace Blok3Game.GameStates
                 //Aanmaken van de enemies
                 shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
                 shootingEnemyList.Add(shootingEnemy);
-
                 Add(shootingEnemy);
+
+            }
+        }
+
+        private void SpawnFastEnemies()
+        {
+            Random random = new Random();
+
+            int swap = 0;
+            //For-loop om meerdere enemies aan te maken
+            for (int i = 0; i < 10 * WaveCounter; i++)
+            {
+                int XPosition, YPosition;
+
+                //Willekeurige posities waar de enemies spawnen
+                XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+
+
+                //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
+                //De swap variabele zorgt ervoor dat de enemies evenredig worden verdeel aan alle kanten
+                do
+                {
+                    if (swap % 2 == 0)
+                    {
+                        XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                        swap++;
+                    }
+                    else
+                    {
+                        YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                        swap++;
+                    }
+
+                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X &&
+                         YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
+
+                //Aanmaken van de enemies
+                fastEnemy = new FastEnemy(1, 4, new Vector2(XPosition, YPosition));
+                fastEnemyList.Add(fastEnemy);
+                Add(fastEnemy);
+
+
+
             }
         }
 
