@@ -139,7 +139,7 @@ namespace Blok3Game.GameStates
 
                 
 
-                player.CheckForEnemyCollision(Enemy); //Checks if player and enemy collide
+                player.HandleCollision(Enemy); //Checks if player and enemy collide
                 foreach (var playerBullet in playerBulletList)
                 {
                     if (playerBullet.CheckForEnemyCollision(Enemy)) //Checks if bullet from the player and enemy collide
