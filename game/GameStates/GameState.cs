@@ -251,7 +251,7 @@ namespace Blok3Game.GameStates
                 //Aanmaken van de enemies
                 shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
                 shootingEnemyList.Add(shootingEnemy);
-
+                Add(shootingEnemy);
                 
             }
         }
