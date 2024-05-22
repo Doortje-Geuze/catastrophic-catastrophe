@@ -462,6 +462,9 @@ namespace Blok3Game.GameStates
             player.InvulnerabilityCooldown = 0;
             player.HitPoints = player.BaseHitPoints;
             playerHealth.Text = $"{player.HitPoints}";
+            pickedUpPurple = false;
+            pickedUpYellow = false;
+
 
             //Reset the waves
             waveIndicator.Sprite.SheetIndex = 0;
@@ -495,6 +498,7 @@ namespace Blok3Game.GameStates
                 toRemoveList.Add(currency);
             }
             player.currencyCounter = 0;
+            playerCurrency.Text = $"you collected {player.currencyCounter} currency";
         }
     }
 }
