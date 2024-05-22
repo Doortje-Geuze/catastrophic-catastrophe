@@ -52,9 +52,9 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
     | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
-    | Doel 1 | Speler loopt                                            | ja / nee                                | xx:xx                                     | --/10                                        |
-    | Doel 2 | Speler schiet                                            | ja / nee                                | xx:xx                                     | --/10                                        |
-    | Doel 3 | Spel gewonnen                                   | ja / nee                                | xx:xx                                     | --/10                                        |
+    | Doel 1 | Speler loopt                                                | ja / nee                                | xx:xx                                     | --/10                                        |
+    | Doel 2 | Speler schiet                                               | ja / nee                                | xx:xx                                     | --/10                                        |
+    | Doel 3 | Spel gewonnen                                               | ja / nee                                | xx:xx                                     | --/10                                        |
 
     <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
     
@@ -102,9 +102,9 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
     | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
-    | Doel 1 | Speler loopt                                            | ja                                | 00:30                                     | 3/10                                        |
-    | Doel 2 | Speler schiet                                            | ja                                | 00:00                                     | 7/10                                        |
-    | Doel 3 | Spel gewonnen                                   | ja                                | 00:40 (met 2 revives)                                     | 7/10                                        |
+    | Doel 1 | Speler loopt                                                | ja                                      | 00:30                                     | 3/10                                         |
+    | Doel 2 | Speler schiet                                               | ja                                      | 00:00                                     | 7/10                                         |
+    | Doel 3 | Spel gewonnen                                               | ja                                      | 00:40 (met 2 revives)                     | 7/10                                         |
 
 
     <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
@@ -155,9 +155,9 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
     | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
-    | Doel 1 | Speler loopt                                            | nee                                | xx:xx                                     | 1/10                                        |
-    | Doel 2 | Speler schiet                                            | ja                                | 00:20                                     | 6/10                                        |
-    | Doel 3 | Spel gewonnen                                   | ja                                | 00:60                                     | 7/10                                        |
+    | Doel 1 | Speler loopt                                                | nee                                     | xx:xx                                     | 1/10                                         |
+    | Doel 2 | Speler schiet                                               | ja                                      | 00:20                                     | 6/10                                         |
+    | Doel 3 | Spel gewonnen                                               | ja                                      | 00:60                                     | 7/10                                         |
 
 
     <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
@@ -210,9 +210,9 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
     | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
-    | Doel 1 | Speler loopt                                            | ja                                | 00:05                                     | 6/10                                        |
-    | Doel 2 | Speler schiet                                            | ja                                | 00:40                                     | 3/10                                        |
-    | Doel 3 | Spel gewonnen                                   | ja                                | 1:00                                     | 6/10                                        |
+    | Doel 1 | Speler loopt                                                | ja                                      | 00:05                                     | 6/10                                         |
+    | Doel 2 | Speler schiet                                               | ja                                      | 00:40                                     | 3/10                                         |
+    | Doel 3 | Spel gewonnen                                               | ja                                      | 1:00                                      | 6/10                                         |
 
 
     <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
@@ -246,3 +246,58 @@ Wij geloven dat het voor de speler duidelijk is dat hij op de vijanden moet schi
 
     <h3>Conclusie</h3>
     Het is voor de speler nog niet duidelijk welke controls er zijn en zou graag iets van een uitleg willen zien om dat te voorkomen.
+
+=== "Proefpersoon 4"
+
+    <h3>Basisinformatie</h3>
+
+    Getest door: Sed<br>
+    Naam proefpersoon: Leanne<br>
+    Datum test: 05/05/2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1:</b><br>20
+    - <b>Vraag 2:</b><br>Ja
+    - <b>Vraag 3:</b><br>Nee
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | Speler loopt                                                | ja                                      | 00:05                                     | 7/10                                         |
+    | Doel 2 | Speler schiet                                               | ja                                      | 00:10                                     | 7/10                                         |
+    | Doel 3 | Spel gewonnen                                               | ja                                      | 00:57 (3 revives)                         | 5/10                                         |
+
+
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+
+    - <b>Observatie 1:</b><br>Leanne heeft de dash functie niet gebruikt. Na afloop heb ik gevraagt of hun wist dat de dash een functie was, waarop ik terug kreeg dat hun geen idee had.
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1:</b><br>De controls zijn controls die meestal gebruikt worden voor schieten en lopen. 
+    - <b>Vraag 2:</b><br>Ik had geen idee dat de speler geraakt werdt todat ik dood ging en zelfs toen wist ik niet precies wat er gebeurt was.
+    - <b>Vraag 3:</b><br>Makkelijk te doen.
+    - <b>Vraag 4:</b><br>Ik wist niet dat er waves waren, ik heb gewoon op de vijanden geschoten toen ze op het scherm kwamen.
+    - <b>Vraag 5:</b><br>De achtergrond is heel leeg maar de knopjes zijn leuk.
+    - <b>Vraag 6:</b><br>De Crosshair hielp met het mikken maar voorderest was er niet zo heel veel.
+
+    <h4>Sterke punten:</h4>
+
+    - Rat
+    - Crosshair
+
+    <h4>Verbeterpunten:</h4>
+
+    - Uitleg over controls
+    - Health van de speler op het scherm
+    - Een groot plaatje met WAVE 'NUMMER' die vertelt dat er een nieuwe wave begint
+
+    <h4>Bewijsmateriaal</h4>
+
+    <h3>Criteria</h3>
+    De hypothesis die wij aan het begin hebben vastgesteld is correct als de speler de vijanden verslaat door erop te schieten en wint in het spel.
+
+    <h3>Conclusie</h3>
+    De speler heeft de vijanden verslagen en het spel gewonnen na een paar keer dood te gaan. Dit had kunnen worden verholpen als hij wist van de dash functie.
