@@ -19,6 +19,7 @@ namespace Blok3Game.GameStates
         private List<GameObject> toRemoveList;
         private List<Box> boxlist;
         public Player player;
+        public PlayerBullet playerBullet;
         public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
@@ -115,15 +116,28 @@ namespace Blok3Game.GameStates
                         toRemoveList.Add(Enemy);
                         toRemoveList.Add(playerBullet);
                     }
+
                 }
             }
 
-            foreach (var Enemy in fastEnemyList)
+                foreach (var Enemy in fastEnemyList)
             {
                 Enemy.EnemySeeking(player.Position);
+
                 
-               
+
+                player.CheckForEnemyCollision(Enemy); //Checks if player and enemy collide
+                foreach (var playerBullet in playerBulletList)
+                {
+                    if (playerBullet.CheckForEnemyCollision(Enemy)) //Checks if bullet from the player and enemy collide
+                    {
+                        toRemoveList.Add(Enemy);
+                        toRemoveList.Add(playerBullet);
+                    }
+                }
             }
+
+
 
             foreach (Box box in boxlist)
             {
@@ -178,7 +192,7 @@ namespace Blok3Game.GameStates
                 {
                     shootingEnemyList.Remove(shootingEnemy);
                 }
-                if( gameObject is FastEnemy fastEnemy)
+                if (gameObject is FastEnemy fastEnemy)
                 {
                     fastEnemyList.Remove(fastEnemy);
                 }
@@ -252,7 +266,7 @@ namespace Blok3Game.GameStates
                 shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
                 shootingEnemyList.Add(shootingEnemy);
                 Add(shootingEnemy);
-                
+
             }
         }
 
@@ -290,12 +304,12 @@ namespace Blok3Game.GameStates
                          YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
 
                 //Aanmaken van de enemies
-                fastEnemy = new FastEnemy(2, 4, new Vector2(XPosition, YPosition));
+                fastEnemy = new FastEnemy(1, 4, new Vector2(XPosition, YPosition));
                 fastEnemyList.Add(fastEnemy);
                 Add(fastEnemy);
 
 
-                
+
             }
         }
 

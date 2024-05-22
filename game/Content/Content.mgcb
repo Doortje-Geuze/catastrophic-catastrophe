@@ -105,7 +105,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/Characters/characters@8x12.png
 
-#begin Images/Characters/FastEnemy.png
+#begin Images/Characters/fastEnemy.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -115,19 +115,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Characters/FastEnemy.png
-
-#begin Images/Characters/FastEnemy.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/Characters/FastEnemy.png
+/build:Images/Characters/fastEnemy.png
 
 #begin Images/Characters/gunCat@2x1.png
 /importer:TextureImporter
