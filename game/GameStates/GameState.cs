@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO.Compression;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
@@ -26,7 +24,7 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
-        public int WaveIndicatorShowTime = 0;
+        public int WaveIndicatorShowTime = -20;
         private bool NewWave = true;
 
         public GameState() : base()
