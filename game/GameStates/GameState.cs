@@ -15,13 +15,11 @@ namespace Blok3Game.GameStates
         private List<ShootingEnemy> shootingEnemyList;
         private List<GameObject> toRemoveList;
         public Player player;
-        public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
         public ShootingEnemy shootingEnemy;
         public DashIndicator dashIndicator;
         public TextGameObject playerHealth;
-        public int EnemyShoot = 0;
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
@@ -68,12 +66,12 @@ namespace Blok3Game.GameStates
             {
                 Enemy.EnemySeeking(player.Position);
 
-                if (Enemy.EnemyShootCooldown >= 120)
+                if (Enemy.EnemyShootCooldown == 0)
                 {
                     EnemyShoots(Enemy);
-                    Enemy.EnemyShootCooldown = 0;
+                    Enemy.EnemyShootCooldown = 140;
                 }
-                Enemy.EnemyShootCooldown++;
+                Enemy.EnemyShootCooldown--;
 
                 player.CheckForEnemyCollision(Enemy);
                 foreach (var playerBullet in playerBulletList)
@@ -89,16 +87,13 @@ namespace Blok3Game.GameStates
             foreach (var enemyBullet in enemyBulletList)
             {
                 player.CheckForEnemyCollision(enemyBullet);
+                if (enemyBullet.CheckForEnemyCollision(player))
+                {
+                    toRemoveList.Add(enemyBullet);
+                }
             }
 
-            //switches to lose screen if player's HP falls below 0
-            if (player.HitPoints <= 0)
-            {
-                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                player.HitPoints = player.BaseHitPoints;
-                playerHealth.Text = $"{player.HitPoints}";
-                ResetBullets();
-            }
+
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
             {
@@ -123,21 +118,46 @@ namespace Blok3Game.GameStates
                 {
                     shootingEnemyList.Remove(shootingEnemy);
                 }
+                if (gameObject is EnemyBullet enemyBullet)
+                {
+                    enemyBulletList.Remove(enemyBullet);
+                }
                 Remove(gameObject);
             }
 
-            // if (shootingEnemyList.Count == 0 && WaveCounter != 3)
-            // {
-            //     WaveCounter++;
-            //     ResetBullets();
-            //     SpawnStandardEnemies();
-            // }
-            // if (shootingEnemyList.Count == 0 && WaveCounter == 3)
-            // {
-            //     GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-            //     ResetBullets();
-            //     SpawnStandardEnemies();
-            // }
+            switch (WaveCounter)
+            {
+                case 1:
+                    if (shootingEnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 2:
+                    if (shootingEnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 3:
+                    if (shootingEnemyList.Count == 0)
+                    {
+                        ResetBullets();
+                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                    }
+                    break;
+            }
+
+            //switches to lose screen if player's HP falls below 0
+            if (player.HitPoints <= 0)
+            {
+                Retry();
+                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+            }
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -161,8 +181,8 @@ namespace Blok3Game.GameStates
                 int XPosition, YPosition;
 
                 //Willekeurige posities waar de enemies spawnen
-                XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
-                YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                XPosition = random.Next(0 - 250, GameEnvironment.Screen.X + 650);
+                YPosition = random.Next(0 - 250, GameEnvironment.Screen.Y + 650);
 
 
                 //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
@@ -171,17 +191,17 @@ namespace Blok3Game.GameStates
                 {
                     if (swap % 2 == 0)
                     {
-                        XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                        XPosition = random.Next(0 - 250, GameEnvironment.Screen.X + 650);
                         swap++;
                     }
                     else
                     {
-                        YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                        YPosition = random.Next(0 - 250, GameEnvironment.Screen.Y + 650);
                         swap++;
                     }
 
-                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X && 
-                         YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
+                } while (XPosition >= 0 - 150 && XPosition <= GameEnvironment.Screen.X + 150 &&
+                         YPosition >= 0 - 150 && YPosition <= GameEnvironment.Screen.Y + 150);
 
                 //Aanmaken van de enemies
                 shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
@@ -215,11 +235,32 @@ namespace Blok3Game.GameStates
             Add(enemyBullet);
         }
 
+        private void Retry()
+        {
+            ResetBullets();
+            ResetEnemies();
+            WaveCounter = 1;
+            player.InvulnerabilityCooldown = 0;
+            player.HitPoints = player.BaseHitPoints;
+            playerHealth.Text = $"{player.HitPoints}";
+        }
+
         private void ResetBullets()
         {
             foreach (PlayerBullet playerBullet in playerBulletList)
             {
                 toRemoveList.Add(playerBullet);
+            }
+            foreach (EnemyBullet enemyBullet in enemyBulletList)
+            {
+                toRemoveList.Add(enemyBullet);
+            }
+        }
+        private void ResetEnemies()
+        {
+            foreach (ShootingEnemy shootingEnemy in shootingEnemyList)
+            {
+                toRemoveList.Add(shootingEnemy);
             }
         }
     }
