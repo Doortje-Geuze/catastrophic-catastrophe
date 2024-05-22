@@ -6,7 +6,7 @@ using System;
 using Blok3Game.GameObjects;
 using Blok3Game.GameStates;
 
-public class Player : Character
+public class Player : Character, ICollidable
 {
     //all variables that a player needs
     public GameState Gamestate { get; set; }
@@ -118,15 +118,32 @@ public class Player : Character
         MoveSpeed = BaseMoveSpeed;
     }
 
-    //checks player-enemy collision, then activates HP loss and invulnerability timer
-    public void CheckForEnemyCollision(SpriteGameObject enemy)
+    public void HandleCollision(SpriteGameObject spriteGameObject)
     {
-        if (CollidesWith(enemy) && InvulnerabilityCooldown <= 0)
+        if (CollidesWith(spriteGameObject) == false) return;
+        switch (spriteGameObject)
         {
-            HitPoints -= 1;
-            Gamestate.playerHealth.Text = $"{HitPoints}";
-            InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-            Console.WriteLine(HitPoints);
+            case Enemy enemy:
+                if (InvulnerabilityCooldown <= 0)
+                {
+                    HitPoints -= 1;
+                    Gamestate.playerHealth.Text = $"{HitPoints}";
+                    InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
+                    Console.WriteLine(HitPoints);
+                }
+                break;
+            case EnemyBullet enemyBullet:
+                if (InvulnerabilityCooldown <= 0)
+                {
+                    HitPoints -= 1;
+                    Gamestate.playerHealth.Text = $"{HitPoints}";
+                    InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
+                    Console.WriteLine(HitPoints);
+                }
+                break;
+            default:
+            Console.WriteLine("No collision detected");
+                break;
         }
     }
 }

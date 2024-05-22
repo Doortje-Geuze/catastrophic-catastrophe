@@ -13,6 +13,7 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<ShootingEnemy> shootingEnemyList;
+        private List<Currency> currencyList;
         private List<GameObject> toRemoveList;
         public Player player;
         public StandardEnemy standardEnemy;
@@ -32,6 +33,7 @@ namespace Blok3Game.GameStates
             shootingEnemyList = new List<ShootingEnemy>();
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            currencyList = new List<Currency>();
             toRemoveList = new List<GameObject>();
 
             SpawnStandardEnemies();
@@ -64,23 +66,26 @@ namespace Blok3Game.GameStates
             base.Update(gameTime);
 
             //Loop door de lijst met enemies
-            foreach (var Enemy in shootingEnemyList)
+            foreach (var enemy in shootingEnemyList)
             {
-                Enemy.EnemySeeking(player.Position);
+                enemy.EnemySeeking(player.Position);
 
-                if (Enemy.EnemyShootCooldown >= 120)
+                if (enemy.EnemyShootCooldown >= 120)
                 {
-                    EnemyShoots(Enemy);
-                    Enemy.EnemyShootCooldown = 0;
+                    EnemyShoots(enemy);
+                    enemy.EnemyShootCooldown = 0;
                 }
-                Enemy.EnemyShootCooldown++;
+                enemy.EnemyShootCooldown++;
 
-                player.CheckForEnemyCollision(Enemy);
+                player.HandleCollision(enemy);
                 foreach (var playerBullet in playerBulletList)
                 {
-                    if (playerBullet.CheckForEnemyCollision(Enemy))
+                    if (playerBullet.CheckForEnemyCollision(enemy))
                     {
-                        toRemoveList.Add(Enemy);
+                        Currency currency = new(enemy.Position - new Vector2(enemy.Width, enemy.Height));
+                        currencyList.Add(currency);
+                        Add(currency);
+                        toRemoveList.Add(enemy);
                         toRemoveList.Add(playerBullet);
                     }
                 }
@@ -88,7 +93,7 @@ namespace Blok3Game.GameStates
 
             foreach (var enemyBullet in enemyBulletList)
             {
-                player.CheckForEnemyCollision(enemyBullet);
+                player.HandleCollision(enemyBullet);
             }
 
             //switches to lose screen if player's HP falls below 0
