@@ -90,8 +90,6 @@ namespace Blok3Game.GameStates
         {
             base.Update(gameTime);
 
-            Debug.WriteLine(toRemoveList.Count);
-
             //The Waves controller
             switch (WaveCounter)
             {
