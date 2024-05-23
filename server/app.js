@@ -37,7 +37,7 @@ async function listen(port, callback) {
     const server = app.listen(port, callback);
 	const socketConnectionListener = new SocketConnectionListener();
 	const mySqlDatabase = new MySqlDatabase();
-	//await mySqlDatabase.initializeDatabase();
+	await mySqlDatabase.initializeDatabase();
 
 	socketConnectionListener.initializeServer(server, mySqlDatabase);
 }
