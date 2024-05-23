@@ -251,6 +251,7 @@ namespace Blok3Game.GameStates
                 }
                 Remove(gameObject);
             }
+            toRemoveList.Clear();
         }
 
         public override void HandleInput(InputHelper inputHelper)
