@@ -3,9 +3,8 @@ class MessageHandler {
 	_rooms = { };
 	_socketConnectionListener;
 
-	constructor(io, rooms, socketConnectionListener) {
+	constructor(io, socketConnectionListener) {
 		this._io = io;
-		this._rooms = rooms;
 		this._socketConnectionListener = socketConnectionListener;
 	}
 }
