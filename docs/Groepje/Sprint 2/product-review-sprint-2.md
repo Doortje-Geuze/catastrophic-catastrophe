@@ -1,4 +1,6 @@
 # Product review sprint 2
+Op dinsdag 13-5 hebben wij een product review gehouden aan de hand van deze [powerpoint](https://icthva-my.sharepoint.com/:p:/r/personal/doortje_geuze_hva_nl/Documents/Presentatie%20product%20review%20sprint%202.pptx?d=we14ddaeed3ce4d3383ede2c90c91f82c&csf=1&web=1&e=QP1x02 )
+
 
 ## K2: Gebruikersinteractie en Prototyping
 Wij hebben aan het begin van de sprint user tests uitgevoerd. De resultaten van de tests zijn gedocumenteerd in het [Gebruikerstest document](Gebruikerstest - Sprint 2 - HBO-ICT Digitale turn based multiplayer game (hihva.nl))  
