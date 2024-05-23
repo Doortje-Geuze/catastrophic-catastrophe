@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.GameObjects;
@@ -42,6 +43,7 @@ namespace Blok3Game.GameStates
         public int PlayerAttackTimes = 0;
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
+        private bool waveRemoved = false;
 
         public GameState() : base()
         {
@@ -132,6 +134,7 @@ namespace Blok3Game.GameStates
                             ResetBullets();
                             SpawnFastEnemies();
                         }
+
                         boxCollision();
                     }
                     break;
@@ -425,6 +428,7 @@ namespace Blok3Game.GameStates
 
                 WaveIndicatorShowTime++;
                 waveIndicator.Sprite.SheetIndex = WaveCounter - 1;
+                waveRemoved = false;
             }
 
             //Timer till the Wave Indicator needs to be removed
@@ -432,10 +436,11 @@ namespace Blok3Game.GameStates
             {
                 WaveIndicatorShowTime++;
             }
-            else
+            else if (!waveRemoved)
             {
                 NewWave = false;
                 toRemoveList.Add(waveIndicator);
+                waveRemoved = true;
             }
         }
 
