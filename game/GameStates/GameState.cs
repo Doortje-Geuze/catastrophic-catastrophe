@@ -1,49 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Xml.Serialization;
+using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.Engine.JSON;
 using Blok3Game.Engine.SocketIOClient;
 using Blok3Game.GameObjects;
+using Blok3Game.SpriteGameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 namespace Blok3Game.GameStates
 {
     public class GameState : GameObjectList
     {
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
-        private List<PlayerBullet> playerBulletsToRemove;
         private List<EnemyBullet> enemyBulletList;
-        private List<ShootingEnemy> shootingEnemyList;
-        private List<GameObject> toRemoveList;
+        private List<Enemy> EnemyList;
+        private List<Currency> currencyList;
+        public List<GameObject> toRemoveList;
+        private List<Box> boxlist;
         public Player player;
-        public StandardEnemy standardEnemy;
         public Crosshair crosshair;
         public CatGun catGun;
+        public Box box;
+        public YellowBox yellowBox;
+        public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
-        public int EnemyShoot = 0;
-        public int WaveCounter = 1;
+        public FastEnemy fastEnemy;
+        public DashIndicator dashIndicator;
+        public WaveIndicator waveIndicator;
+        public TextGameObject playerHealth;
+        public int WaveCounter = 0;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
-        public int EnemiesKilled = 0;
-        public TextGameObject Score;
-
+        public int WaveIndicatorShowTime = -20;
+        private bool NewWave = true;
+        private SpriteGameObject background;
+        public TextGameObject playerCurrency;
+        public TextGameObject chooseUpgrade;
+        public int EnemyShoot = 0;
+        public int PlayerShootCooldown = 0;
+        public int PlayerAttackTimes = 0;
+        private bool pickedUpPurple = false;
+        private bool pickedUpYellow = false;
+        private bool waveRemoved = false;
 
         public GameState() : base()
         {
-            //Aanmaken van een nieuwe lijst
-            shootingEnemyList = new List<ShootingEnemy>();
+            CreateBackground();
+
+            //List creator
+            EnemyList = new List<Enemy>();
             playerBulletList = new List<PlayerBullet>();
-            playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            currencyList = new List<Currency>();
+            boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
-            SpawnStandardEnemies();
-
-            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
+            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
+            {
+                Gamestate = this
+            };
             Add(player);
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
@@ -52,75 +71,149 @@ namespace Blok3Game.GameStates
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
 
-            player.playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1)
-            {
-                Text = $"{player.HitPoints}",
-                Color = new(255, 255, 255),
-            };
-            Add(player.playerHealth);
+            playerHealth = new TextGameObject("Fonts/SpriteFont@20px", 1);
+            Add(playerHealth);
+            playerHealth.Text = $"{player.HitPoints}";
+            playerHealth.Color = new(255, 255, 255);
+            playerHealth.Parent = player;
 
-            Score = new TextGameObject("Fonts/SpriteFont@20px", 1)
-            {
-                Text = $"{EnemiesKilled * 5}",
-                Color = new(255, 255, 255),
-                Position = new Vector2(10, 10)
-            };
-            Add(Score);
+            playerCurrency = new TextGameObject("Fonts/SpriteFont@20px", 1);
+            Add(playerCurrency);
+            playerCurrency.Text = $"you collected {player.currencyCounter} currency";
+            playerHealth.Color = new(255, 255, 255);
+            playerCurrency.Position = new Vector2(5, 5);
+
+            dashIndicator = new DashIndicator(Vector2.Zero);
+            Add(dashIndicator);
+            dashIndicator.Parent = player;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            //Loop door de lijst met enemies
-            foreach (var Enemy in shootingEnemyList)
+            //The Waves controller
+            switch (WaveCounter)
             {
-                Enemy.EnemySeeking(player.Position);
+                case 0: //Wave 1
+                    if (EnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        NewWave = true;
+                        WaveIndicatorShowTime = 0;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 1: //Wave 2
+                    if (EnemyList.Count == 0)
+                    {
+                        if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
+                        {
+                            //Lower Cooldown Upgrade
+                            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
+                            boxlist.Add(yellowBox);
 
-                if (Enemy.EnemyShootCooldown >= 120)
+                            Add(yellowBox);
+
+                            //Shotgun upgrade
+                            purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) + 100, 150));
+                            boxlist.Add(purpleBox);
+
+                            Add(purpleBox);
+
+                            chooseUpgrade = new TextGameObject("Fonts/SpriteFont@20px", 1);
+                            Add(chooseUpgrade);
+                            chooseUpgrade.Text = $"Choose your upgrade!";
+                            chooseUpgrade.Color = new(255, 255, 255);
+                            chooseUpgrade.Position = new Vector2((GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2) + 20, 200);
+                        }
+                        else if (pickedUpPurple || pickedUpYellow)
+                        {
+                            WaveCounter++;
+                            NewWave = true;
+                            WaveIndicatorShowTime = 0;
+                            ResetBullets();
+                            SpawnFastEnemies();
+                        }
+
+                        boxCollision();
+                    }
+                    break;
+                case 2: //Wave 3
+                    if (EnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        NewWave = true;
+                        WaveIndicatorShowTime = 0;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 3: //Player Wins
+                    if (EnemyList.Count == 0)
+                    {
+                        ResetBullets();
+                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                    }
+                    break;
+            }
+
+            //Shows to the player which wave it is
+            ShowWaveIndicator();
+
+            //switches to lose screen if player's HP falls below 0
+            if (player.HitPoints <= 0)
+            {
+                Retry();
+                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+            }
+
+            if (PlayerShootCooldown != 0)
+            {
+                PlayerShootCooldown--;
+            }
+
+            //Tells every enemy where to go, when to shoot and what to do when it collides with the player. Does the same for the PlayerBullets
+            foreach (Enemy enemy in EnemyList)
+            {
+                enemy.EnemySeeking(player.Position);
+
+                if (enemy.EnemyShootCooldown >= 120 && enemy is not FastEnemy fastEnemy)
                 {
-                    EnemyShoots(Enemy);
-                    Enemy.EnemyShootCooldown = 0;
+                    EnemyShoots(enemy);
+                    enemy.EnemyShootCooldown = 0;
                 }
-                Enemy.EnemyShootCooldown++;
+                enemy.EnemyShootCooldown++;
 
-                player.CheckForEnemyCollision(Enemy);
+                player.HandleCollision(enemy);
                 foreach (var playerBullet in playerBulletList)
                 {
-                    if (playerBullet.CheckForEnemyCollision(Enemy))
+                    if (playerBullet.CheckForEnemyCollision(enemy))
                     {
-                        EnemiesKilled++;
-                        Score.Text =  $"{EnemiesKilled * 5}";
-                        toRemoveList.Add(Enemy);
+                        Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                        {
+                            Scale = 2
+                        };
+                        currencyList.Add(currency);
+                        Add(currency);
+                        toRemoveList.Add(enemy);
                         toRemoveList.Add(playerBullet);
                     }
+
                 }
             }
 
             foreach (var enemyBullet in enemyBulletList)
             {
-                player.CheckForEnemyCollision(enemyBullet);
+                player.HandleCollision(enemyBullet);
             }
 
-            //switches to lose screen if player's HP falls below 0
-            if (player.HitPoints <= 0)
+            foreach (var currency in currencyList)
             {
-                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                
-                SocketClient.Instance.SendDataPacket(new MatchData()
-                {
-                    TotalWavesSurvived = WaveCounter, KilledBy = "Bullet", Kills = EnemiesKilled, HealthLeft = player.HitPoints,
-                });
-                
+                player.HandleCollision(currency);
+            }
 
-                player.HitPoints = player.BaseHitPoints;
-                player.playerHealth.Text = $"{player.HitPoints}";
-                ResetBullets();
-            }
-            else
-            {
-                player.playerHealth.Position = player.Position + player.PlayerHealthOffset;
-            }
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
             {
@@ -132,9 +225,9 @@ namespace Blok3Game.GameStates
                 {
                     player.Shade = new Color(255, 255, 255);
                 }
-
             }
 
+            //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)
             {
                 if (gameObject is PlayerBullet playerBullet)
@@ -143,29 +236,34 @@ namespace Blok3Game.GameStates
                 }
                 if (gameObject is ShootingEnemy shootingEnemy)
                 {
-                    shootingEnemyList.Remove(shootingEnemy);
+                    EnemyList.Remove(shootingEnemy);
+                }
+                if (gameObject is FastEnemy fastEnemy)
+                {
+                    EnemyList.Remove(fastEnemy);
+                }
+                if (gameObject is EnemyBullet enemyBullet)
+                {
+                    enemyBulletList.Remove(enemyBullet);
+                }
+                if (gameObject is Currency currency)
+                {
+                    currencyList.Remove(currency);
+                }
+                if (gameObject is Box box)
+                {
+                    boxlist.Remove(box);
                 }
                 Remove(gameObject);
             }
-
-            if (shootingEnemyList.Count == 0 && WaveCounter != 3)
-            {
-                WaveCounter++;
-                ResetBullets();
-                SpawnStandardEnemies();
-            }
-            if (shootingEnemyList.Count == 0 && WaveCounter == 3)
-            {
-                GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-                ResetBullets();
-            }
+            toRemoveList.Clear();
         }
 
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
 
-            if (inputHelper.MouseLeftButtonPressed)
+            if (inputHelper.MouseLeftButtonPressed && PlayerShootCooldown == 0)
             {
                 PlayerShoot(inputHelper.MousePosition.X, inputHelper.MousePosition.Y);
             }
@@ -182,8 +280,47 @@ namespace Blok3Game.GameStates
                 int XPosition, YPosition;
 
                 //Willekeurige posities waar de enemies spawnen
-                XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
-                YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                XPosition = random.Next(0 - 250, GameEnvironment.Screen.X + 650);
+                YPosition = random.Next(0 - 250, GameEnvironment.Screen.Y + 650);
+
+                //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
+                //De swap variabele zorgt ervoor dat de enemies evenredig worden verdeel aan alle kanten
+                do
+                {
+                    if (swap % 2 == 0)
+                    {
+                        XPosition = random.Next(0 - 250, GameEnvironment.Screen.X + 650);
+                        swap++;
+                    }
+                    else
+                    {
+                        YPosition = random.Next(0 - 250, GameEnvironment.Screen.Y + 650);
+                        swap++;
+                    }
+                } while (XPosition >= 0 - 150 && XPosition <= GameEnvironment.Screen.X + 150 &&
+                         YPosition >= 0 - 150 && YPosition <= GameEnvironment.Screen.Y + 150);
+
+                //Aanmaken van de enemies
+                shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
+                EnemyList.Add(shootingEnemy);
+
+                Add(shootingEnemy);
+            }
+        }
+
+        private void SpawnFastEnemies()
+        {
+            Random random = new Random();
+
+            int swap = 0;
+            //For-loop om meerdere enemies aan te maken
+            for (int i = 0; i < 10 * WaveCounter; i++)
+            {
+                int XPosition, YPosition;
+
+                //Willekeurige posities waar de enemies spawnen
+                XPosition = random.Next(0 - 300, GameEnvironment.Screen.X + 700);
+                YPosition = random.Next(0 - 300, GameEnvironment.Screen.Y + 700);
 
 
                 //Do-While loop die ervoor zorgt dat de enemies aan de buiten randen spawnen 
@@ -192,23 +329,23 @@ namespace Blok3Game.GameStates
                 {
                     if (swap % 2 == 0)
                     {
-                        XPosition = random.Next(0 - 100, GameEnvironment.Screen.X + 500);
+                        XPosition = random.Next(0 - 300, GameEnvironment.Screen.X + 700);
                         swap++;
                     }
                     else
                     {
-                        YPosition = random.Next(0 - 100, GameEnvironment.Screen.Y + 500);
+                        YPosition = random.Next(0 - 300, GameEnvironment.Screen.Y + 700);
                         swap++;
                     }
 
-                } while (XPosition >= 0 && XPosition <= GameEnvironment.Screen.X &&
-                         YPosition >= 0 && YPosition <= GameEnvironment.Screen.Y);
+                } while (XPosition >= 0 - 200 && XPosition <= GameEnvironment.Screen.X + 200 &&
+                         YPosition >= 0 - 200 && YPosition <= GameEnvironment.Screen.Y + 200);
 
                 //Aanmaken van de enemies
-                shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
-                shootingEnemyList.Add(shootingEnemy);
+                fastEnemy = new FastEnemy(1, 3, new Vector2(XPosition, YPosition));
 
-                Add(shootingEnemy);
+                EnemyList.Add(fastEnemy);
+                Add(fastEnemy);
             }
         }
 
@@ -218,17 +355,39 @@ namespace Blok3Game.GameStates
             float ShootPositionY = player.Position.Y + player.Height / 2;
             double bulletAngle = Math.Atan2(MousePositionY - ShootPositionY, MousePositionX - ShootPositionX);
 
-            PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+            //Shotgun Upgrade
+            if (pickedUpPurple)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.3f * i, 18);
+                    playerBulletList.Add(playerBullet);
+                    Add(playerBullet);
+                }
+            }
+            else
+            {
+                PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+                playerBulletList.Add(playerBullet);
+                Add(playerBullet);
+            }
 
-            playerBulletList.Add(playerBullet);
-            Add(playerBullet);
+            //Lower Cooldown Upgrade
+            if (pickedUpYellow)
+            {
+                PlayerShootCooldown = 5;
+            }
+            else
+            {
+                PlayerShootCooldown = 8;
+            }
         }
 
-        private void EnemyShoots(ShootingEnemy shootingEnemy)
+        private void EnemyShoots(Enemy enemy)
         {
-            float ShootPositionX = shootingEnemy.Position.X + shootingEnemy.Width / 2;
-            float ShootPositionY = shootingEnemy.Position.Y + shootingEnemy.Height / 2;
-            double bulletAngle = Math.Atan2(player.Position.Y - ShootPositionY, player.Position.X - ShootPositionX);
+            float ShootPositionX = enemy.Position.X + enemy.Width / 2;
+            float ShootPositionY = enemy.Position.Y + enemy.Height / 2;
+            double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
 
             EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
 
@@ -236,15 +395,120 @@ namespace Blok3Game.GameStates
             Add(enemyBullet);
         }
 
+        private void boxCollision()
+        {
+            foreach (Box box in boxlist)
+            {
+                if (player.CheckForPlayerCollision(box))
+                {
+                    if (box is YellowBox)
+                    {
+                        pickedUpYellow = true;
+                    }
+
+                    if (box is PurpleBox)
+                    {
+                        pickedUpPurple = true;
+                    }
+                }
+
+                if (pickedUpPurple || pickedUpYellow)
+                {
+                    toRemoveList.Add(box);
+                    toRemoveList.Add(chooseUpgrade);
+                }
+            }
+        }
+
+        private void ShowWaveIndicator()
+        {
+            //Spawns the wave indicator on the screen
+            if (WaveIndicatorShowTime == 0)
+            {
+                waveIndicator = new WaveIndicator(new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 2), WaveCounter - 1);
+                Add(waveIndicator);
+
+                WaveIndicatorShowTime++;
+                waveIndicator.Sprite.SheetIndex = WaveCounter - 1;
+                waveRemoved = false;
+            }
+
+            //Timer till the Wave Indicator needs to be removed
+            if (NewWave && WaveIndicatorShowTime <= 120)
+            {
+                WaveIndicatorShowTime++;
+            }
+            else if (!waveRemoved)
+            {
+                NewWave = false;
+                toRemoveList.Add(waveIndicator);
+                waveRemoved = true;
+            }
+        }
+
+        private void CreateBackground()
+        {
+            background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -1, "background")
+            {
+                Scale = 2.1f,
+            };
+
+            //use the width and height of the background to position it in the center of the screen
+            background.Position = new Vector2((GameEnvironment.Screen.X / 2) - (background.Width / 2), 0);
+
+            Add(background);
+        }
+
+        public void Retry()
+        {
+            //Reset Entities
+            ResetEnemies();
+            ResetBullets();
+            ResetCurrency();
+
+            //Reset everything Player
+            player.InvulnerabilityCooldown = 0;
+            player.HitPoints = player.BaseHitPoints;
+            playerHealth.Text = $"{player.HitPoints}";
+            pickedUpPurple = false;
+            pickedUpYellow = false;
+
+
+            //Reset the waves
+            waveIndicator.Sprite.SheetIndex = 0;
+            WaveCounter = 0;
+        }
+
+        private void ResetEnemies()
+        {
+            foreach (Enemy enemy in EnemyList)
+            {
+                toRemoveList.Add(enemy);
+            }
+        }
+
         private void ResetBullets()
         {
             foreach (PlayerBullet playerBullet in playerBulletList)
             {
-                playerBulletsToRemove.Add(playerBullet);
+                toRemoveList.Add(playerBullet);
+            }
+            foreach (EnemyBullet enemyBullet in enemyBulletList)
+            {
+                toRemoveList.Add(enemyBullet);
             }
         }
-    }
 
+        private void ResetCurrency()
+        {
+            foreach (Currency currency in currencyList)
+            {
+                toRemoveList.Add(currency);
+            }
+            player.currencyCounter = 0;
+            playerCurrency.Text = $"you collected {player.currencyCounter} currency";
+        }
+    }
 }
 
 

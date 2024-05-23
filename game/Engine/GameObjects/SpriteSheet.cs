@@ -73,6 +73,14 @@ namespace Blok3Game.Engine.GameObjects
 			int column_index = sheetIndex % sheetColumns;
 			int row_index = sheetIndex / sheetColumns % sheetRows;
 
+			int index = column_index * Width + x + (row_index * Height + y) * sprite.Width;
+
+			if (index < 0 || index >= collisionMask.Length)
+			{
+				// Handle out-of-bounds index
+				return false; // or throw an exception, or handle it in some other way
+			}
+
 			return collisionMask[column_index * Width + x + (row_index * Height + y) * sprite.Width];
 		}
 
