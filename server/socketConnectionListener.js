@@ -1,7 +1,11 @@
+const ExampleMessageHandler = require("./api/exampleMessageHandler");
+
 class SocketConnectionListener {
 	#databaseConnector;
 
-	#io = null;	
+	#exampleMessageHandler;
+
+	#io = null;
 	#cryptoHelper = require("./framework/utils/cryptoHelper");
 	#sessionStore = require("./framework/utils/sessionStore");
 
@@ -10,7 +14,9 @@ class SocketConnectionListener {
 	async initializeServer(server, databaseConnector) {
 		this.#databaseConnector = databaseConnector;
 		this.#io = require("socket.io")(server);
-		
+
+		this.#exampleMessageHandler = new ExampleMessageHandler(this.#io, this, this.#databaseConnector);
+
 		this.#handleSocketSession();
 		this.#handleIncomingConnections(this.#io);
 	}
@@ -32,11 +38,13 @@ class SocketConnectionListener {
 				//restore the session id and user id on the socket.
 				socket.sessionId = sessionId;
 				socket.userId = session.userId;
-                console.log(socket.sessionId, "restored");
+				console.log(socket.sessionId, "restored");
 			} else {
 				//If the session id is not present, create a new one.
 				socket.sessionId = this.#getRandomId();
 				socket.userId = this.#getRandomId();
+
+				this.#databaseConnector.executePreparedQuery();
 
 				console.log(socket.sessionId, "connected");
 			}
@@ -50,7 +58,7 @@ class SocketConnectionListener {
 			//make sure that this socket can receive id based messages by entering the room.
 			socket.join(socket.userId);
 			this.#storeSession(socket);
-			this.#handleDisconnect(socket);			
+			this.#handleDisconnect(socket);
 
 			socket.emit("session established", {
 				sessionId: socket.sessionId,
@@ -59,7 +67,7 @@ class SocketConnectionListener {
 		});
 	}
 
-	#handleDisconnect(socket) { 
+	#handleDisconnect(socket) {
 		socket.on("disconnect", async () => {
 			console.log(socket.sessionId, "disconnected");
 
