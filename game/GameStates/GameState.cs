@@ -166,7 +166,7 @@ namespace Blok3Game.GameStates
             if (player.HitPoints <= 0)
             {
                 Retry();
-                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
             }
 
             if (PlayerShootCooldown != 0)

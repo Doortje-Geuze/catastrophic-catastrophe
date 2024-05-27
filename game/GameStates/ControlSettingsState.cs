@@ -43,7 +43,5 @@ namespace Blok3Game.GameStates
             nextScreenName = "MAIN_MENU_STATE";
             ButtonClicked();
         }
-
-        
     }
 }
