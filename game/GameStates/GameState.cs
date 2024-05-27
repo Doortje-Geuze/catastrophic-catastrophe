@@ -86,6 +86,11 @@ namespace Blok3Game.GameStates
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
+
+            shootingEnemy = new ShootingEnemy(5, 1, new Vector2(10, 10));
+            EnemyList.Add(shootingEnemy);
+
+            Add(shootingEnemy);
         }
 
         public override void Update(GameTime gameTime)
@@ -93,71 +98,71 @@ namespace Blok3Game.GameStates
             base.Update(gameTime);
 
             //The Waves controller
-            switch (WaveCounter)
-            {
-                case 0: //Wave 1
-                    if (EnemyList.Count == 0)
-                    {
-                        WaveCounter++;
-                        NewWave = true;
-                        WaveIndicatorShowTime = 0;
-                        ResetBullets();
-                        SpawnStandardEnemies();
-                    }
-                    break;
-                case 1: //Wave 2
-                    if (EnemyList.Count == 0)
-                    {
-                        if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
-                        {
-                            //Lower Cooldown Upgrade
-                            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
-                            boxlist.Add(yellowBox);
+            // switch (WaveCounter)
+            // {
+            //     case 0: //Wave 1
+            //         if (EnemyList.Count == 0)
+            //         {
+            //             WaveCounter++;
+            //             NewWave = true;
+            //             WaveIndicatorShowTime = 0;
+            //             ResetBullets();
+            //             SpawnStandardEnemies();
+            //         }
+            //         break;
+            //     case 1: //Wave 2
+            //         if (EnemyList.Count == 0)
+            //         {
+            //             if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
+            //             {
+            //                 //Lower Cooldown Upgrade
+            //                 yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
+            //                 boxlist.Add(yellowBox);
 
-                            Add(yellowBox);
+            //                 Add(yellowBox);
 
-                            //Shotgun upgrade
-                            purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) + 100, 150));
-                            boxlist.Add(purpleBox);
+            //                 //Shotgun upgrade
+            //                 purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) + 100, 150));
+            //                 boxlist.Add(purpleBox);
 
-                            Add(purpleBox);
+            //                 Add(purpleBox);
 
-                            chooseUpgrade = new TextGameObject("Fonts/SpriteFont@20px", 1);
-                            Add(chooseUpgrade);
-                            chooseUpgrade.Text = $"Choose your upgrade!";
-                            chooseUpgrade.Color = new(255, 255, 255);
-                            chooseUpgrade.Position = new Vector2((GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2) + 20, 200);
-                        }
-                        else if (pickedUpPurple || pickedUpYellow)
-                        {
-                            WaveCounter++;
-                            NewWave = true;
-                            WaveIndicatorShowTime = 0;
-                            ResetBullets();
-                            SpawnFastEnemies();
-                        }
+            //                 chooseUpgrade = new TextGameObject("Fonts/SpriteFont@20px", 1);
+            //                 Add(chooseUpgrade);
+            //                 chooseUpgrade.Text = $"Choose your upgrade!";
+            //                 chooseUpgrade.Color = new(255, 255, 255);
+            //                 chooseUpgrade.Position = new Vector2((GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2) + 20, 200);
+            //             }
+            //             else if (pickedUpPurple || pickedUpYellow)
+            //             {
+            //                 WaveCounter++;
+            //                 NewWave = true;
+            //                 WaveIndicatorShowTime = 0;
+            //                 ResetBullets();
+            //                 SpawnFastEnemies();
+            //             }
 
-                        boxCollision();
-                    }
-                    break;
-                case 2: //Wave 3
-                    if (EnemyList.Count == 0)
-                    {
-                        WaveCounter++;
-                        NewWave = true;
-                        WaveIndicatorShowTime = 0;
-                        ResetBullets();
-                        SpawnStandardEnemies();
-                    }
-                    break;
-                case 3: //Player Wins
-                    if (EnemyList.Count == 0)
-                    {
-                        ResetBullets();
-                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-                    }
-                    break;
-            }
+            //             boxCollision();
+            //         }
+            //         break;
+            //     case 2: //Wave 3
+            //         if (EnemyList.Count == 0)
+            //         {
+            //             WaveCounter++;
+            //             NewWave = true;
+            //             WaveIndicatorShowTime = 0;
+            //             ResetBullets();
+            //             SpawnStandardEnemies();
+            //         }
+            //         break;
+            //     case 3: //Player Wins
+            //         if (EnemyList.Count == 0)
+            //         {
+            //             ResetBullets();
+            //             GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+            //         }
+            //         break;
+            // }
 
             //Shows to the player which wave it is
             ShowWaveIndicator();
@@ -191,13 +196,22 @@ namespace Blok3Game.GameStates
                 {
                     if (playerBullet.CheckForEnemyCollision(enemy))
                     {
-                        Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                        if (enemy.HitPoints > 0)
                         {
-                            Scale = 2
-                        };
-                        currencyList.Add(currency);
-                        Add(currency);
-                        toRemoveList.Add(enemy);
+                            enemy.HitPoints--;
+                        }
+                        else if (enemy.HitPoints <= 0)
+                        {
+                            Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                            {
+                                Scale = 2
+                            };
+                            currencyList.Add(currency);
+                            Add(currency);
+
+                            toRemoveList.Add(enemy);
+                        }
+
                         toRemoveList.Add(playerBullet);
                     }
 
@@ -342,7 +356,7 @@ namespace Blok3Game.GameStates
                          YPosition >= 0 - 200 && YPosition <= GameEnvironment.Screen.Y + 200);
 
                 //Aanmaken van de enemies
-                fastEnemy = new FastEnemy(1, 3, new Vector2(XPosition, YPosition));
+                fastEnemy = new FastEnemy(1, 4, new Vector2(XPosition, YPosition));
 
                 EnemyList.Add(fastEnemy);
                 Add(fastEnemy);
