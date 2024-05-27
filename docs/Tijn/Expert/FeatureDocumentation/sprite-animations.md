@@ -26,6 +26,7 @@ public Currency(Vector2 position, string assetName = "Images/UI/animalCoin") : b
 Hierin wordt de animalCoin.png meegegeven aan een currency object. De .png hoeft hier niet meegegeven te worden omdat de library deze niet nodig heeft om het plaatje in te laden.
 
 Het gebruik van single-frame plaatjes is handig tijdens het developmentproces, maar het kan ervoor zorgen dat het spel minder levendig overkomt.
+
 ## Oplossing
 De oplossing voor dit probleem, is het gebruik van animaties voor bepaalde objecten. Dit kan worden bereikt door het gebruik van spritesheets. Dit is 1 .png file, waarin meerdere plaatjes zijn verwerkt en overheen wordt gecheckt aan de hand van een index die begint bij 0.
 
@@ -72,4 +73,6 @@ Hier wordt een multiplier van 2 gebruikt op de Switcher, zodat elke frame net zo
 ![currency animation showcase](./Images/currencyAnimationShowcase.gif)
 
 Dit geeft de speler een onbewust gevoel om de currency op te pakken omdat de muntjes bewegen op het scherm. Ook ziet het er leuker uit dan een statisch plaatje.
+
 ## Referentie en bronnen
+[How to add drawins in microsoft Clipchamp](https://youtu.be/CvnWKZnO0-A)
