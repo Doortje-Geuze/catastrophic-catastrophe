@@ -9,7 +9,6 @@ using Blok3Game.GameObjects;
 using Blok3Game.GameStates;
 
 public class Player : Character, ICollidable
-public class Player : Character, ICollidable
 {
     //all variables that a player needs
     public GameState Gamestate { get; set; }
@@ -19,7 +18,6 @@ public class Player : Character, ICollidable
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
     public int BaseHitPoints = 3;
-    public int currencyCounter = 0;
     public int currencyCounter = 0;
     public const int BaseMoveSpeed = 5;
     public const int BaseInvulnerabilityCooldown = 120;
@@ -122,9 +120,6 @@ public class Player : Character, ICollidable
         PlayerDashTimer = 0;
         MoveSpeed = BaseMoveSpeed;
     }
-
-    //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
-    public void HandleCollision(SpriteGameObject spriteGameObject)
     //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
     public void HandleCollision(SpriteGameObject spriteGameObject)
     {
@@ -159,4 +154,14 @@ public class Player : Character, ICollidable
         InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
         Console.WriteLine(HitPoints);
     }
+
+    public bool CheckForPlayerCollision(SpriteGameObject box)
+    {
+        if (CollidesWith(box))
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

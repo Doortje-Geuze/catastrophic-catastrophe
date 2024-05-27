@@ -39,7 +39,6 @@ namespace Blok3Game.GameStates
         public int WaveIndicatorShowTime = -20;
         private bool NewWave = true;
         private SpriteGameObject background;
-        public TextGameObject playerCurrency;
         public TextGameObject chooseUpgrade;
         public int EnemyShoot = 0;
         public int PlayerShootCooldown = 0;
@@ -266,11 +265,6 @@ namespace Blok3Game.GameStates
                 if (gameObject is Box box)
                 {
                     boxlist.Remove(box);
-                }
-
-                if (gameObject is Currency)
-                {
-                    currencyList.Remove(currency);
                 }
 
             }
