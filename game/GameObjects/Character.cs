@@ -5,9 +5,9 @@ public abstract class Character : SpriteGameObject
 {
     //all variables that a character needs
     public int HitPoints;
-    protected int MoveSpeed;
+    protected float MoveSpeed;
 
-    public Character(int hitPoints, int moveSpeed, Vector2 position, string assetName = " ", int layer = 0, string id = "", int sheetIndex = 0) : base(assetName)
+    public Character(int hitPoints, float moveSpeed, Vector2 position, string assetName = " ", int layer = 0, string id = "", int sheetIndex = 0) : base(assetName)
     {
         HitPoints = hitPoints;
         MoveSpeed = moveSpeed;

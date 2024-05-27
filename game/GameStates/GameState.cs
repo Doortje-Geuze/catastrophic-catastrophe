@@ -301,7 +301,7 @@ namespace Blok3Game.GameStates
                          YPosition >= 0 - 150 && YPosition <= GameEnvironment.Screen.Y + 150);
 
                 //Aanmaken van de enemies
-                shootingEnemy = new ShootingEnemy(1, 1, new Vector2(XPosition, YPosition));
+                shootingEnemy = new ShootingEnemy(1, 1.5f, new Vector2(XPosition, YPosition));
                 EnemyList.Add(shootingEnemy);
 
                 Add(shootingEnemy);
@@ -342,7 +342,7 @@ namespace Blok3Game.GameStates
                          YPosition >= 0 - 200 && YPosition <= GameEnvironment.Screen.Y + 200);
 
                 //Aanmaken van de enemies
-                fastEnemy = new FastEnemy(1, 3, new Vector2(XPosition, YPosition));
+                fastEnemy = new FastEnemy(1, 4, new Vector2(XPosition, YPosition));
 
                 EnemyList.Add(fastEnemy);
                 Add(fastEnemy);
@@ -389,7 +389,7 @@ namespace Blok3Game.GameStates
             float ShootPositionY = enemy.Position.Y + enemy.Height / 2;
             double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
 
-            EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
+            EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 13);
 
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);
