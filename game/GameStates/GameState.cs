@@ -220,12 +220,6 @@ namespace Blok3Game.GameStates
             {
                 player.HandleCollision(currency);
             }
-
-            foreach (var currency in currencyList)
-            {
-                player.HandleCollision(currency);
-            }
-
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
             {
@@ -246,13 +240,9 @@ namespace Blok3Game.GameStates
                 {
                     playerBulletList.Remove(playerBullet);
                 }
-                if (gameObject is ShootingEnemy shootingEnemy)
+                if (gameObject is Enemy enemy)
                 {
-                    EnemyList.Remove(shootingEnemy);
-                }
-                if (gameObject is FastEnemy fastEnemy)
-                {
-                    EnemyList.Remove(fastEnemy);
+                    EnemyList.Remove(enemy);
                 }
                 if (gameObject is EnemyBullet enemyBullet)
                 {
@@ -265,8 +255,8 @@ namespace Blok3Game.GameStates
                 if (gameObject is Box box)
                 {
                     boxlist.Remove(box);
-                }
-
+                }  
+                Remove(gameObject);
             }
             toRemoveList.Clear();
         }
@@ -456,6 +446,7 @@ namespace Blok3Game.GameStates
                 toRemoveList.Add(waveIndicator);
                 waveRemoved = true;
             }
+            Console.WriteLine(WaveIndicatorShowTime);
         }
 
         private void CreateBackground()
