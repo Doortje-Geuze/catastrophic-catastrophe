@@ -18,7 +18,11 @@ Wij geloven dat de moeilijkheidsgraat van het spel op niveau is met de doelgroep
 
 ### Vragen na het testen (tevredenheid)
 
-1. 
+1. Hoe vond je de moeilijkheid van de waves?
+2. Wat vond je van de vershillende enemies?
+3. Wat vond je van de vershillende upgrades?
+4. Wat vind je van de niewe indicators(hp/dash)?
+5. Wat vind je van de currency?
 
 
 ## Resultaten:
@@ -73,6 +77,5 @@ Wij geloven dat de moeilijkheidsgraat van het spel op niveau is met de doelgroep
 
 
     <h3>Criteria</h3>
-    De hypothesis die wij aan het begin hebben vastgesteld is correct als de speler de vijanden verslaat door erop te schieten en wint in het spel
-
+    De hypothesis die wij aan het begin hebben vastgesteld is correct de spelers de moeilijkheids graat van het spel voldoende vinden
     <h3>Conclusie</h3>
