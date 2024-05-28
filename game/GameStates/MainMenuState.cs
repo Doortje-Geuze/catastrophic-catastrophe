@@ -1,4 +1,5 @@
 using Blok3Game.Engine.UI;
+using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace Blok3Game.GameStates
@@ -37,6 +38,7 @@ namespace Blok3Game.GameStates
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "GAME_STATE";
+            GameStartManager.gameStarted = true;
             ButtonClicked();
         }
 

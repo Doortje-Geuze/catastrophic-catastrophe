@@ -2,6 +2,7 @@
 using Blok3Game.Engine.AssetHandler;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.Engine.UI;
+using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,6 +20,7 @@ public class GameEnvironment : Game
     protected static Random random;
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
+
 
     public GameEnvironment()
     {
@@ -137,19 +139,23 @@ public class GameEnvironment : Game
     {
         HandleInput();
         gameStateManager.Update(gameTime);
+        Draw(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
+        Console.WriteLine(GameStartManager.gameStarted);
         GraphicsDevice.Clear(Color.Black);
-        if (gameStateManager is IScene)
+        if (GameStartManager.gameStarted == true)
         {
-            Camera camera = (gameStateManager as IScene).Camera;
-            spriteBatch.Begin(transformMatrix: camera.Transform);
+            Camera camera = new Camera();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, transformMatrix: camera.Transform);
+            
         }
         else spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
-        //
+    
         gameStateManager.Draw(gameTime, spriteBatch);
         spriteBatch.End();
+        
     }
 }

@@ -34,8 +34,7 @@ namespace Blok3Game.GameStates
         public ShootingEnemy shootingEnemy;
         public int EnemyShoot = 0;
         public int WaveCounter = 1;
-        public int ChosenEnemy = 0;
-        
+        public int ChosenEnemy = 0;        
         public Vector2 cameraPosition = new();
 
         public Camera Camera => camera;
@@ -51,7 +50,6 @@ namespace Blok3Game.GameStates
             enemyBulletList = new List<EnemyBullet>();
             SpawnStandardEnemies();
             camera = new Camera();
-
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
@@ -72,9 +70,9 @@ namespace Blok3Game.GameStates
         {
             //foreach (var Component in components)
             //Component.Update(gameTime);
-
-            camera.Follow(player);
             base.Update(gameTime);
+            camera.Follow(player);
+            
 
             
 

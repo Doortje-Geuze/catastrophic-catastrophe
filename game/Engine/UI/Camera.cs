@@ -15,12 +15,14 @@ namespace Blok3Game.Engine.UI
         //Viewport view;
         Vector2 centre;
 
-        public void Follow(Character target)
+        public void Follow(Player target)
         {
             var position = Matrix.CreateTranslation(new Vector3(-target.Position.X, -target.Position.Y, 0));
             var offset = Matrix.CreateTranslation(GameEnvironment.screen.X / 2, GameEnvironment.screen.Y / 2, 0);
 
             Transform = position * offset;
+
+            //Console.WriteLine(position);
         }
         // public Camera(Viewport newView)
         // {
