@@ -17,9 +17,10 @@ public class Player : Character, ICollidable
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
     public int BaseHitPoints = 3;
-    public int currencyCounter = 0;
+    public int currencyCounter;
     public int BaseMoveSpeed = 5;
     public int BaseInvulnerabilityCooldown = 120;
+    public int BaseDashCooldown = 60;
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) :
                   base(hitPoints, moveSpeed, position, "Images/Characters/playerCat@2x1", 0, " ", 0)
@@ -55,7 +56,7 @@ public class Player : Character, ICollidable
     {
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
-        DashCooldown = 60;
+        DashCooldown = BaseDashCooldown;
         MoveSpeed = BaseMoveSpeed * 5;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return;
@@ -67,7 +68,7 @@ public class Player : Character, ICollidable
         if (DashCooldown > 0)
         {
             DashCooldown--;
-            GameState.Instance.dashIndicator.SwitchSprites(DashCooldown);
+            GameState.Instance.dashIndicator.SwitchSprites(DashCooldown, BaseDashCooldown);
         }
         if (PlayerDashTimer > 5)
         {
@@ -76,11 +77,19 @@ public class Player : Character, ICollidable
         }
     }
 
-    //Reduces InvulnerabilityCooldown every frame
+    //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
     private void CheckPlayerInvulnerabilityCooldown()
     {
         if (InvulnerabilityCooldown > 0)
         {
+            if (InvulnerabilityCooldown % (BaseInvulnerabilityCooldown / 2) > (BaseInvulnerabilityCooldown / 4))
+            {
+                Shade = new Color(255, 0, 0);
+            }
+            if (InvulnerabilityCooldown % (BaseInvulnerabilityCooldown / 2) < (BaseInvulnerabilityCooldown / 4))
+            {
+                Shade = new Color(255, 255, 255);
+            }
             InvulnerabilityCooldown--;
         }
     }
@@ -174,7 +183,12 @@ public class Player : Character, ICollidable
                 BaseMoveSpeed += value;
                 MoveSpeed += value;
                 break;
+            case "InvulnerabilityCooldown":
+                BaseInvulnerabilityCooldown += value;
+                break;
+            case "DashCooldown":
+                BaseDashCooldown -= value;
+                break;
         }
     }
-
 }

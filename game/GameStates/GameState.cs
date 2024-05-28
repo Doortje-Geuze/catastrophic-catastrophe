@@ -225,18 +225,6 @@ namespace Blok3Game.GameStates
             {
                 player.HandleCollision(currency);
             }
-            //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
-            if (player.InvulnerabilityCooldown >= 0)
-            {
-                if (player.InvulnerabilityCooldown % (FramesPerSecond / 2) > (FramesPerSecond / 4))
-                {
-                    player.Shade = new Color(255, 0, 0);
-                }
-                if (player.InvulnerabilityCooldown % (FramesPerSecond / 2) < (FramesPerSecond / 4))
-                {
-                    player.Shade = new Color(255, 255, 255);
-                }
-            }
 
             //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)

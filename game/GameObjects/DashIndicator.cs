@@ -17,9 +17,9 @@ namespace Blok3Game.GameObjects
             base.Update(gameTime);
         }
 
-        public void SwitchSprites(int dashCooldown)
+        public void SwitchSprites(int dashCooldown, int baseDashCooldown)
         {
-            var Switcher = Math.Floor((float)(dashCooldown / 8));
+            var Switcher = Math.Floor((float)(dashCooldown / (baseDashCooldown / 7)));
             switch(Switcher)
             {
             case 0:
