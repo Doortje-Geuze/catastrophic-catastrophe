@@ -191,7 +191,9 @@ namespace Blok3Game.GameStates
                 {
                     if (playerBullet.CheckForEnemyCollision(enemy))
                     {
-                        Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                        if (enemy.HitPoints <= 0)
+                        {
+                            Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
                         {
                             Scale = 2
                         };
@@ -199,6 +201,11 @@ namespace Blok3Game.GameStates
                         Add(currency);
                         toRemoveList.Add(enemy);
                         toRemoveList.Add(playerBullet);
+                        } else 
+                        {
+                            enemy.HitPoints -= playerBullet.damage;
+                        }
+                        
                     }
 
                 }
