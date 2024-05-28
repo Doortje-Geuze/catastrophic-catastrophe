@@ -27,7 +27,9 @@ namespace Blok3Game.GameStates
         private void CreateButtons()
         {
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5), "SHOP", OnButtonShopClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2 / (float)1.5), "BULLET SPEED INCREASE", OnButtonBulletSpeedClicked);
+            CreateButton(new Vector2(0 - ButtonOffSet, GameEnvironment.Screen.Y / 2 / (float)1.5), "BULLET SPEED INCREASE", OnButtonBulletSpeedClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 4 - ButtonOffSet, GameEnvironment.Screen.Y / 2 / (float)1.5), "PLAYER HEALTH INCREASE", OnButtonPlayerHealthClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2 / (float)1.5), "PLAYER SPEED INCREASE", OnButtonPlayerSpeedClicked);
         }
 
         private void OnButtonShopClicked(UIElement element)
@@ -42,6 +44,26 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.currencyCounter <= 0) return;
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             GameState.Instance.PlayerBulletSpeed += 5;
+            GameState.Instance.player.currencyCounter -= 1;
+            nextScreenName = "UPGRADE_STATE";
+            ButtonClicked();
+        }
+
+        private void OnButtonPlayerSpeedClicked(UIElement element)
+        {
+            if (GameState.Instance.player.currencyCounter <= 0) return;
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            GameState.Instance.player.UpdateValue(1, "MoveSpeed");
+            GameState.Instance.player.currencyCounter -= 1;
+            nextScreenName = "UPGRADE_STATE";
+            ButtonClicked();
+        }
+
+        private void OnButtonPlayerHealthClicked(UIElement element)
+        {
+            if (GameState.Instance.player.currencyCounter <= 0) return;
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            GameState.Instance.player.UpdateValue(1, "HitPoints");
             GameState.Instance.player.currencyCounter -= 1;
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();

@@ -18,8 +18,8 @@ public class Player : Character, ICollidable
     public int InvulnerabilityCooldown = 0;
     public int BaseHitPoints = 3;
     public int currencyCounter = 0;
-    public const int BaseMoveSpeed = 5;
-    public const int BaseInvulnerabilityCooldown = 120;
+    public int BaseMoveSpeed = 5;
+    public int BaseInvulnerabilityCooldown = 120;
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) :
                   base(hitPoints, moveSpeed, position, "Images/Characters/playerCat@2x1", 0, " ", 0)
@@ -160,6 +160,21 @@ public class Player : Character, ICollidable
             return true;
         }
         return false;
+    }
+
+    public void UpdateValue(int value, string type)
+    {
+        switch (type)
+        {
+            case "HitPoints":
+                HitPoints += value;
+                GameState.Instance.playerHealth.Text = $"{HitPoints}";
+                break;
+            case "MoveSpeed":
+                BaseMoveSpeed += value;
+                MoveSpeed += value;
+                break;
+        }
     }
 
 }
