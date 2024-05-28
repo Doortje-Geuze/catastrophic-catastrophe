@@ -156,7 +156,6 @@ namespace Blok3Game.GameStates
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.End();
             spriteBatch.Begin(transformMatrix: camera.Transform);
             //component.Draw(gameTime, spriteBatch);
             
