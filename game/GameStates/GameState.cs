@@ -457,10 +457,11 @@ namespace Blok3Game.GameStates
         {
             background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -1, "background")
             {
-                Scale = 2.1f,
+                Scale = 3.75f,
             };
 
             //use the width and height of the background to position it in the center of the screen
+            
             background.Position = new Vector2((GameEnvironment.Screen.X / 2) - (background.Width / 2), 0);
 
             Add(background);
