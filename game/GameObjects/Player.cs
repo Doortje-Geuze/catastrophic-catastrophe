@@ -11,7 +11,6 @@ using Blok3Game.GameStates;
 public class Player : Character, ICollidable
 {
     //all variables that a player needs
-    public GameState Gamestate { get; set; }
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
@@ -68,7 +67,7 @@ public class Player : Character, ICollidable
         if (DashCooldown > 0)
         {
             DashCooldown--;
-            Gamestate.dashIndicator.SwitchSprites(DashCooldown);
+            GameState.Instance.dashIndicator.SwitchSprites(DashCooldown);
         }
         if (PlayerDashTimer > 5)
         {
@@ -140,8 +139,8 @@ public class Player : Character, ICollidable
                 break;
             case Currency:
                 currencyCounter++;
-                Gamestate.playerCurrency.Text = $"you collected {currencyCounter} currency";
-                Gamestate.toRemoveList.Add(spriteGameObject);
+                GameState.Instance.playerCurrency.Text = $"you collected {currencyCounter} currency";
+                GameState.Instance.toRemoveList.Add(spriteGameObject);
                 break;
         }
     }
@@ -150,9 +149,8 @@ public class Player : Character, ICollidable
     private void UpdatePlayerHealth()
     {
         HitPoints -= 1;
-        Gamestate.playerHealth.Text = $"{HitPoints}";
+        GameState.Instance.playerHealth.Text = $"{HitPoints}";
         InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-        Console.WriteLine(HitPoints);
     }
 
     public bool CheckForPlayerCollision(SpriteGameObject box)

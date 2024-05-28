@@ -27,12 +27,20 @@ namespace Blok3Game.GameStates
         private void CreateButtons()
         {
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5), "UPGRADES", OnButtonUpgradesClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet, GameEnvironment.Screen.Y / 2 + (ButtonOffSet * 2)), "Main Menu", OnButtonMainMenuClicked);
         }
 
         private void OnButtonUpgradesClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "UPGRADE_STATE";
+            ButtonClicked();
+        }
+
+        private void OnButtonMainMenuClicked(UIElement element)
+        {
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_cancel");
+            nextScreenName = "MAIN_MENU_STATE";
             ButtonClicked();
         }
     }

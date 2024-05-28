@@ -6,7 +6,7 @@ namespace Blok3Game.GameObjects
 {
     public class Bullet : RotatingSpriteGameObject
     {
-        protected int BulletMoveSpeed = 0;
+        public int BulletMoveSpeed = 0;
 
         public Bullet(Vector2 position, double angle, int bulletMoveSpeed, string assetName) : base(assetName)
         {

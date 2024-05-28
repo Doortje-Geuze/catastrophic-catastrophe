@@ -21,6 +21,7 @@ namespace Blok3Game.GameStates
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
+        public static GameState Instance { get; private set;}
         public Player player;
         public Crosshair crosshair;
         public CatGun catGun;
@@ -43,12 +44,19 @@ namespace Blok3Game.GameStates
         public int EnemyShoot = 0;
         public int PlayerShootCooldown = 0;
         public int PlayerAttackTimes = 0;
+        public int PlayerBulletSpeed = 18;
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
 
         public GameState() : base()
         {
+            if (Instance != null)
+            {
+                throw new Exception("Only one instance of GameState is allowed.");
+            }
+
+            Instance = this;
             CreateBackground();
 
             //List creator
@@ -59,10 +67,7 @@ namespace Blok3Game.GameStates
             boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
-            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
-            {
-                Gamestate = this
-            };
+            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
@@ -362,14 +367,14 @@ namespace Blok3Game.GameStates
             {
                 for (int i = -1; i < 2; i++)
                 {
-                    PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.3f * i, 18);
+                    PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.3f * i, PlayerBulletSpeed);
                     playerBulletList.Add(playerBullet);
                     Add(playerBullet);
                 }
             }
             else
             {
-                PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+                PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, PlayerBulletSpeed);
                 playerBulletList.Add(playerBullet);
                 Add(playerBullet);
             }
@@ -446,7 +451,6 @@ namespace Blok3Game.GameStates
                 toRemoveList.Add(waveIndicator);
                 waveRemoved = true;
             }
-            Console.WriteLine(WaveIndicatorShowTime);
         }
 
         private void CreateBackground()
@@ -508,7 +512,7 @@ namespace Blok3Game.GameStates
             {
                 toRemoveList.Add(currency);
             }
-            player.currencyCounter = 0;
+            //player.currencyCounter = 0;
             playerCurrency.Text = $"you collected {player.currencyCounter} currency";
         }
     }
