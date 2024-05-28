@@ -1,6 +1,7 @@
 ﻿using System;
 using Blok3Game.Engine.AssetHandler;
 using Blok3Game.Engine.Helpers;
+using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -141,7 +142,13 @@ public class GameEnvironment : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
+        if (gameStateManager is IScene)
+        {
+            Camera camera = (gameStateManager as IScene).Camera;
+            spriteBatch.Begin(transformMatrix: camera.Transform);
+        }
+        else spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, spriteScale);
+        //
         gameStateManager.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }

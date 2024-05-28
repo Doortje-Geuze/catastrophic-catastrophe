@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 namespace Blok3Game.GameStates
 {
-    public class GameState : GameObjectList
+    public class GameState : GameObjectList, IScene
     {
         //Lijst met alle enemies
         private List<StandardEnemy> standardEnemyList;
@@ -36,8 +36,9 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         
+        public Vector2 cameraPosition = new();
 
-        
+        public Camera Camera => camera;
 
         public GameState() : base()
         {
@@ -48,8 +49,9 @@ namespace Blok3Game.GameStates
             enemiesToRemove = new List<ShootingEnemy>();
             playerBulletsToRemove = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
-            SpawnStandardEnemies(); 
+            SpawnStandardEnemies();
             camera = new Camera();
+
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
@@ -156,10 +158,10 @@ namespace Blok3Game.GameStates
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(transformMatrix: camera.Transform);
+            
             //component.Draw(gameTime, spriteBatch);
             
-            spriteBatch.End();
+            
             base.Draw(gameTime, spriteBatch);
         }
 
