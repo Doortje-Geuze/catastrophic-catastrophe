@@ -36,7 +36,6 @@ namespace Blok3Game.GameStates
                 Position = new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 6)
             };
             Add(CurrencyCount);
-            Console.WriteLine(GameState.Instance.player.currencyCounter);
         }
 
         private void CreateButtons()
