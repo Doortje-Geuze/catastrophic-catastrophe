@@ -53,7 +53,7 @@ namespace Blok3Game.GameStates
         {
             if (Instance != null)
             {
-                throw new Exception("Only one instance of GameState is allowed.");
+                throw new Exception("Only one instance of GameState is allowed");
             }
 
             Instance = this;
@@ -91,6 +91,7 @@ namespace Blok3Game.GameStates
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
+
         }
 
         public override void Update(GameTime gameTime)
@@ -142,7 +143,7 @@ namespace Blok3Game.GameStates
                             SpawnFastEnemies();
                         }
 
-                        boxCollision();
+                        BoxCollision();
                     }
                     break;
                 case 2: //Wave 3
@@ -166,13 +167,6 @@ namespace Blok3Game.GameStates
 
             //Shows to the player which wave it is
             ShowWaveIndicator();
-
-            //switches to lose screen if player's HP falls below 0
-            if (player.HitPoints <= 0)
-            {
-                Retry();
-                GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
-            }
 
             if (PlayerShootCooldown != 0)
             {
@@ -252,6 +246,13 @@ namespace Blok3Game.GameStates
                 Remove(gameObject);
             }
             toRemoveList.Clear();
+
+            //switches to lose screen if player's HP falls below 0
+            if (player.HitPoints <= 0)
+            {
+                Retry();
+                GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
+            }
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -390,7 +391,7 @@ namespace Blok3Game.GameStates
             Add(enemyBullet);
         }
 
-        private void boxCollision()
+        private void BoxCollision()
         {
             foreach (Box box in boxlist)
             {
@@ -462,7 +463,7 @@ namespace Blok3Game.GameStates
             ResetCurrency();
 
             //Reset everything Player
-            player.InvulnerabilityCooldown = 0;
+            player.InvulnerabilityCooldown = 30;
             player.HitPoints = player.BaseHitPoints;
             playerHealth.Text = $"{player.HitPoints}";
             pickedUpPurple = false;
@@ -500,7 +501,6 @@ namespace Blok3Game.GameStates
             {
                 toRemoveList.Add(currency);
             }
-            //player.currencyCounter = 0;
             playerCurrency.Text = $"you collected {player.currencyCounter} currency";
         }
     }

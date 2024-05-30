@@ -27,7 +27,8 @@ namespace Blok3Game.GameStates
         private void CreateButtons()
         {
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5), "UPGRADES", OnButtonUpgradesClicked);
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet, GameEnvironment.Screen.Y / 2 + (ButtonOffSet * 2)), "Main Menu", OnButtonMainMenuClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet, GameEnvironment.Screen.Y / 2 + (ButtonOffSet * 2)), "MAIN MENU", OnButtonMainMenuClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "RESTART?", OnButtonReviveClicked);
         }
 
         private void OnButtonUpgradesClicked(UIElement element)
@@ -41,6 +42,13 @@ namespace Blok3Game.GameStates
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_cancel");
             nextScreenName = "MAIN_MENU_STATE";
+            ButtonClicked();
+        }
+
+        private void OnButtonReviveClicked(UIElement element)
+        {
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            nextScreenName = "GAME_STATE";
             ButtonClicked();
         }
     }

@@ -33,7 +33,7 @@ namespace Blok3Game.GameStates
             CurrencyCount = new TextGameObject("Fonts/SpriteFont@20px")
             {
                 Text = $"Currency counter: You have {GameState.Instance.player.currencyCounter}",
-                Position = new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 6)
+                Position = new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 6)
             };
             Add(CurrencyCount);
             Console.WriteLine(GameState.Instance.player.currencyCounter);
@@ -41,12 +41,12 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5), "SHOP", OnButtonShopClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5 + ButtonOffSet), "SHOP", OnButtonShopClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / (float)1.5 - ButtonOffSet * (float)1.5, GameEnvironment.Screen.Y / 2 / (float)1.5), "BULLET SPEED INCREASE", OnButtonBulletSpeedClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 4 - ButtonOffSet * 2, GameEnvironment.Screen.Y / 2 / (float)1.5), "PLAYER HEALTH INCREASE", OnButtonPlayerHealthClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet * 2, GameEnvironment.Screen.Y / 2 / (float)1.5), "PLAYER SPEED INCREASE", OnButtonPlayerSpeedClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X - ButtonOffSet * 2, GameEnvironment.Screen.Y / 2 / (float)1.5), "INVULNERABILITY INCREASE", OnButtonInvulnerabilityCooldownClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2 + ButtonOffSet / 2), "DASH COOLDOWN DECREASE", OnButtonDashCooldownClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2 + ButtonOffSet / 3), "DASH COOLDOWN DECREASE", OnButtonDashCooldownClicked);
         }
 
         private void OnButtonShopClicked(UIElement element)
@@ -104,6 +104,7 @@ namespace Blok3Game.GameStates
         private void CurrencyCountUpdate()
         {
             CurrencyCount.Text = $"Currency counter: You have {GameState.Instance.player.currencyCounter}";
+            GameState.Instance.playerCurrency.Text = $"you collected {GameState.Instance.player.currencyCounter} currency";
         }
     }
 }
