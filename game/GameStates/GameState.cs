@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
+using Blok3Game.Engine.JSON;
+using Blok3Game.Engine.SocketIOClient;
 using Blok3Game.GameObjects;
 using Blok3Game.SpriteGameObjects;
 using Microsoft.Xna.Framework;
@@ -18,6 +21,7 @@ namespace Blok3Game.GameStates
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
+        public static GameState Instance { get; private set;}
         public Player player;
         public Crosshair crosshair;
         public CatGun catGun;
@@ -29,22 +33,30 @@ namespace Blok3Game.GameStates
         public DashIndicator dashIndicator;
         public WaveIndicator waveIndicator;
         public TextGameObject playerHealth;
+        public TextGameObject playerCurrency;
         public int WaveCounter = 0;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
         public int WaveIndicatorShowTime = -20;
         private bool NewWave = true;
         private SpriteGameObject background;
-        public TextGameObject playerCurrency;
         public TextGameObject chooseUpgrade;
         public int EnemyShoot = 0;
         public int PlayerShootCooldown = 0;
         public int PlayerAttackTimes = 0;
+        public int PlayerBulletSpeed = 18;
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
+        private bool waveRemoved = false;
 
         public GameState() : base()
         {
+            if (Instance != null)
+            {
+                throw new Exception("Only one instance of GameState is allowed");
+            }
+
+            Instance = this;
             CreateBackground();
 
             //List creator
@@ -55,10 +67,7 @@ namespace Blok3Game.GameStates
             boxlist = new List<Box>();
             toRemoveList = new List<GameObject>();
 
-            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
-            {
-                Gamestate = this
-            };
+            player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)));
             Add(player);
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
@@ -77,11 +86,12 @@ namespace Blok3Game.GameStates
             Add(playerCurrency);
             playerCurrency.Text = $"you collected {player.currencyCounter} currency";
             playerHealth.Color = new(255, 255, 255);
-            playerCurrency.Position = new Vector2(0, 10);
+            playerCurrency.Position = new Vector2(5, 5);
 
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
+
         }
 
         public override void Update(GameTime gameTime)
@@ -132,7 +142,8 @@ namespace Blok3Game.GameStates
                             ResetBullets();
                             SpawnFastEnemies();
                         }
-                        boxCollision();
+
+                        BoxCollision();
                     }
                     break;
                 case 2: //Wave 3
@@ -157,13 +168,6 @@ namespace Blok3Game.GameStates
             //Shows to the player which wave it is
             ShowWaveIndicator();
 
-            //switches to lose screen if player's HP falls below 0
-            if (player.HitPoints <= 0)
-            {
-                Retry();
-                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-            }
-
             if (PlayerShootCooldown != 0)
             {
                 PlayerShootCooldown--;
@@ -186,7 +190,9 @@ namespace Blok3Game.GameStates
                 {
                     if (playerBullet.CheckForEnemyCollision(enemy))
                     {
-                        Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                        if (enemy.HitPoints <= 0)
+                        {
+                            Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
                         {
                             Scale = 2
                         };
@@ -194,6 +200,11 @@ namespace Blok3Game.GameStates
                         Add(currency);
                         toRemoveList.Add(enemy);
                         toRemoveList.Add(playerBullet);
+                        } else 
+                        {
+                            enemy.HitPoints -= playerBullet.damage;
+                        }
+                        
                     }
 
                 }
@@ -209,19 +220,6 @@ namespace Blok3Game.GameStates
                 player.HandleCollision(currency);
             }
 
-            //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
-            if (player.InvulnerabilityCooldown >= 0)
-            {
-                if (player.InvulnerabilityCooldown % (FramesPerSecond / 2) > (FramesPerSecond / 4))
-                {
-                    player.Shade = new Color(255, 0, 0);
-                }
-                if (player.InvulnerabilityCooldown % (FramesPerSecond / 2) < (FramesPerSecond / 4))
-                {
-                    player.Shade = new Color(255, 255, 255);
-                }
-            }
-
             //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)
             {
@@ -229,13 +227,9 @@ namespace Blok3Game.GameStates
                 {
                     playerBulletList.Remove(playerBullet);
                 }
-                if (gameObject is ShootingEnemy shootingEnemy)
+                if (gameObject is Enemy enemy)
                 {
-                    EnemyList.Remove(shootingEnemy);
-                }
-                if (gameObject is FastEnemy fastEnemy)
-                {
-                    EnemyList.Remove(fastEnemy);
+                    EnemyList.Remove(enemy);
                 }
                 if (gameObject is EnemyBullet enemyBullet)
                 {
@@ -248,8 +242,16 @@ namespace Blok3Game.GameStates
                 if (gameObject is Box box)
                 {
                     boxlist.Remove(box);
-                }
+                }  
                 Remove(gameObject);
+            }
+            toRemoveList.Clear();
+
+            //switches to lose screen if player's HP falls below 0
+            if (player.HitPoints <= 0)
+            {
+                Retry();
+                GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
             }
         }
 
@@ -354,14 +356,14 @@ namespace Blok3Game.GameStates
             {
                 for (int i = -1; i < 2; i++)
                 {
-                    PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.3f * i, 18);
+                    PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.3f * i, PlayerBulletSpeed);
                     playerBulletList.Add(playerBullet);
                     Add(playerBullet);
                 }
             }
             else
             {
-                PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 18);
+                PlayerBullet playerBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, PlayerBulletSpeed);
                 playerBulletList.Add(playerBullet);
                 Add(playerBullet);
             }
@@ -389,7 +391,7 @@ namespace Blok3Game.GameStates
             Add(enemyBullet);
         }
 
-        private void boxCollision()
+        private void BoxCollision()
         {
             foreach (Box box in boxlist)
             {
@@ -424,6 +426,7 @@ namespace Blok3Game.GameStates
 
                 WaveIndicatorShowTime++;
                 waveIndicator.Sprite.SheetIndex = WaveCounter - 1;
+                waveRemoved = false;
             }
 
             //Timer till the Wave Indicator needs to be removed
@@ -431,10 +434,11 @@ namespace Blok3Game.GameStates
             {
                 WaveIndicatorShowTime++;
             }
-            else
+            else if (!waveRemoved)
             {
                 NewWave = false;
                 toRemoveList.Add(waveIndicator);
+                waveRemoved = true;
             }
         }
 
@@ -459,7 +463,7 @@ namespace Blok3Game.GameStates
             ResetCurrency();
 
             //Reset everything Player
-            player.InvulnerabilityCooldown = 0;
+            player.InvulnerabilityCooldown = 30;
             player.HitPoints = player.BaseHitPoints;
             playerHealth.Text = $"{player.HitPoints}";
             pickedUpPurple = false;
