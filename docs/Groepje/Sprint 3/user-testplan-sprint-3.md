@@ -25,7 +25,7 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
 5. Wat vind je van de currency?
 
 
-## Resultaten:
+## Resultaten template:
 
 === "Sjabloon"
 
@@ -79,8 +79,9 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
     <h3>Conclusie</h3>
 
+## Resultaten:
 
-    === "Persoon 1"
+=== "Persoon 1"
 
     
 
@@ -131,9 +132,6 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
 
     <h3>Conclusie</h3>
-
-
-## Resultaten:
 
 === "Persoon 2"
 
