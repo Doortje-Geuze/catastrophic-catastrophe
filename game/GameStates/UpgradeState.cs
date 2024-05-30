@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -9,6 +10,7 @@ namespace Blok3Game.GameStates
 {
     public class UpgradeState : MenuItem
     {
+        TextGameObject CurrencyCount;
         public UpgradeState() : base()
         {
             CreateButtons();
@@ -23,11 +25,17 @@ namespace Blok3Game.GameStates
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            CurrencyCountUpdate();
         }
 
         private void CreateTexts()
         {
-            CreateText(new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 6), $"Currency counter: You have {GameState.Instance.player.currencyCounter}");
+            CurrencyCount = new TextGameObject("Fonts/SpriteFont@20px")
+            {
+                Text = $"Currency counter: You have {GameState.Instance.player.currencyCounter}",
+                Position = new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 6)
+            };
+            Add(CurrencyCount);
             Console.WriteLine(GameState.Instance.player.currencyCounter);
         }
 
@@ -91,6 +99,11 @@ namespace Blok3Game.GameStates
             GameState.Instance.player.currencyCounter -= currencyRequirement;
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
+        }
+
+        private void CurrencyCountUpdate()
+        {
+            CurrencyCount.Text = $"Currency counter: You have {GameState.Instance.player.currencyCounter}";
         }
     }
 }
