@@ -191,12 +191,4 @@ public class Player : Character, ICollidable
                 break;
         }
     }
-    public bool CheckForPlayerCollision(SpriteGameObject box)
-    {
-        if (CollidesWith(box))
-        {
-            return true;
-        }
-        return false;
-    }
 }
