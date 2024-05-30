@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
@@ -501,7 +501,6 @@ namespace Blok3Game.GameStates
             {
                 toRemoveList.Add(currency);
             }
-            player.currencyCounter = 0;
             playerCurrency.Text = $"you collected {player.currencyCounter} currency";
         }
     }
