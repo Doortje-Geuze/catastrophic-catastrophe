@@ -190,3 +190,104 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     <h3>Criteria</h3>
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
     <h3>Conclusie</h3>
+
+=== "persoon 3"
+
+    <h3>Basisinformatie</h4>
+
+    Getest door: Tijn
+    Naam proefpersoon: Lennon Stolk Stolk
+    Datum test: 30-5-2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1: 22
+    - <b>Vraag 2: Ja, half uurtje gespeeld
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | speler heeft kunnen winnen                                              | nee                                | -                                     | 1/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja                                | 30 sec                                     | 8/10                                        |
+   
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+    
+    - <b>Observatie 1: Gelijk de controls lezen, betekent dat ze opvallen. Eventueel op een andere achtergrond dan de rest voor extra pop
+    - <b>Observatie 2: Snapte de basiscontrols en kon goed richten, maar gebruikte de dash nauwelijks
+    - <b>Observatie 3: Kwam elke keer tot wave 3, maar heeft het niet gehaald
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1: Wave 1 & 2 redelijk te doen, wave 3 was vrij lastig
+    - <b>Vraag 2: Ratten schieten erg snel, komkommers waren makkelijk te verslaan
+    - <b>Vraag 3: Upgrade maakte het spel leuker om te spelen
+    - <b>Vraag 4: Goeie indicators, maar waren me niet opgevallen in de eerste playthrough
+    - <5>Vraag 5: Het was interessant, enemies komen snel genoeg dat het tactiek nodig heeft om ze op te pakken
+
+    <h4>Sterke punten:</h4>
+
+    - De art was aandoenlijk
+    - Gelijk in de actie
+    - 
+
+    <h4>Verbeterpunten:</h4>
+
+    - Muntjes deden niks
+    - Je weet niet waar de enemies vandaan komen aan het begin van elke wave
+
+    <h4>Foto/Video/Beschrijving (bewijsmateriaal)</h4>
+
+
+    <h3>Criteria</h3>
+    De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
+    <h3>Conclusie</h3>
+
+=== "persoon 4"
+
+    <h3>Basisinformatie</h4>
+
+    Getest door: Tijn
+    Naam proefpersoon: Leonard
+    Datum test: 30-5-2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1: 18
+    - <b>Vraag 2: Ja, heb veel gespeeld
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | speler heeft kunnen winnen                                              | ja                                | 1 min                                     | 1/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja                                | direct                                      | 10/10                                        |
+   
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+    
+    - <b>Observatie 1: Gelijk de controls lezen, betekent dat ze opvallen. Eventueel op een andere achtergrond dan de rest voor extra pop
+    - <b>Observatie 2: Ging gelijk op zoek naar attack patterns en vond ze snel
+    - <b>Observatie 3: Haalde het spel in 1x, gebruik van de strategie van enemies vermoorden voordat ze op het scherm zijn, is vrij sterk
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1: Waves waren vrij te doen, wave 2 was vooral erg makkelijk
+    - <b>Vraag 2: Komkommers waren erg makkelijk, rattenschoten waren makkelijk te ontwijken door het patroon te zien
+    - <b>Vraag 3: Was wel fijn, extra kills per schot
+    - <b>Vraag 4: HP kan groter of healthbar, en het liefst niet vast aan de speler
+    - <5>Vraag 5: Was wel leuk om te verzamelen, maar als enemy spawns random zijn, is de difficulty van de levels ook random
+
+    <h4>Sterke punten:</h4>
+
+    - Leuk om dingen neer te knallen
+
+    <h4>Verbeterpunten:</h4>
+
+    - Enemies zijn niet echt uniek en erg predictable
+
+    <h4>Foto/Video/Beschrijving (bewijsmateriaal)</h4>
+
+
+    <h3>Criteria</h3>
+    De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
+    <h3>Conclusie</h3>
