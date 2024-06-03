@@ -152,6 +152,6 @@ public GameState() : base()
 }
 ```
 
-Deze code maakt een static variable aan genaamd GameState, die vervolgens bij creatie van de GameState meekrijgt dat het ook een GameState is (door gebruik van 'this'). Vervolgens kan elke public variable worden aangeroepen in een andere state. De (UpgradeButtonClicked)[https://suuleewooyaa34-propedeuse-hbo-ict-onderwijs-2023-379a4339aa11c7.dev.hihva.nl/Tijn/Expert/FeatureDocumentation/different-game-screens/#oplossing] functie maakt hier effectief gebruik van.
+Deze code maakt een static variable aan genaamd GameState, die vervolgens bij creatie van de GameState meekrijgt dat het ook een GameState is (door gebruik van 'this'). Vervolgens kan elke public variable worden aangeroepen in een andere state. De [UpgradeButtonClicked](https://suuleewooyaa34-propedeuse-hbo-ict-onderwijs-2023-379a4339aa11c7.dev.hihva.nl/Tijn/Expert/FeatureDocumentation/different-game-screens/#oplossing) functie maakt hier effectief gebruik van.
 
 Ik heb binnen de code nog meer gebruik gemaakt van verschillende schermen, maar dit was mijn meest nuttige invulling van deze feature.
