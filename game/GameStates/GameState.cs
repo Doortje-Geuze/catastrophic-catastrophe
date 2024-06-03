@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blok3Game.GameStates
 {
-    public class GameState : GameObjectList
+    public class GameState : MenuItem
     {
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
