@@ -40,67 +40,65 @@ Het gebruik van alleen de gamestate voor de hele game kan maar voor een korte ti
 De oplossing hiervoor is op papier vrij simpel; het gebruik van meerdere states voor bepaalde schermdisplays in de game. Hiervoor moeten allereerst nieuwe game states gedefinieerd worden. Voor dit voorbeeld wordt gekeken naar de losescreen- en upgrade state. Hieronder de code ervoor.
 
 === "UpgradeState"
-
-```C#
-public class UpgradeState : MenuItem
-{
-    TextGameObject CurrencyCount;
-    public UpgradeState() : base()
+    ```C#
+    public class UpgradeState : MenuItem
     {
-        CreateButtons();
-        CreateTexts();
+        TextGameObject CurrencyCount;
+        public UpgradeState() : base()
+        {
+            CreateButtons();
+            CreateTexts();
+        }
+
+        //updating and resetting of this state goes here
+
+        private void CreateTexts()
+        {
+            //creation of the updateable currency text goes here
+        }
+
+        private void CreateButtons()
+        {
+            //creation of all the upgrade buttons and buttons to go back to the main shop
+        }
+
+        private void OnButtonShopClicked(UIElement element)
+        {
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            nextScreenName = "SHOP_STATE";
+            ButtonClicked();
+        }
+
+        //functionality of different upgrade buttons goes here, not shown because the code itself is not important for this documentation
+
+        private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
+        {
+            if (GameState.Instance.player.currencyCounter < currencyRequirement) return;
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            GameState.Instance.player.UpdateValue(value, type);
+            GameState.Instance.player.currencyCounter -= currencyRequirement;
+            nextScreenName = "UPGRADE_STATE";
+            ButtonClicked();
+        }
     }
-
-    //updating and resetting of this state goes here
-
-    private void CreateTexts()
-    {
-        //creation of the updateable currency text goes here
-    }
-
-    private void CreateButtons()
-    {
-        //creation of all the upgrade buttons and buttons to go back to the main shop
-    }
-
-    private void OnButtonShopClicked(UIElement element)
-    {
-        GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-        nextScreenName = "SHOP_STATE";
-        ButtonClicked();
-    }
-
-    //functionality of different upgrade buttons goes here, not shown because the code itself is not important for this documentation
-
-    private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
-    {
-        if (GameState.Instance.player.currencyCounter < currencyRequirement) return;
-        GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-        GameState.Instance.player.UpdateValue(value, type);
-        GameState.Instance.player.currencyCounter -= currencyRequirement;
-        nextScreenName = "UPGRADE_STATE";
-        ButtonClicked();
-    }
-}
-```
+    ```
 
 === "ShopState"
-
-```C#
-public class ShopState : MenuItem
-{
-    public ShopState() : base()
+    ```C#
+    public class ShopState : MenuItem
     {
-        CreateButtons();
+        public ShopState() : base()
+        {
+            CreateButtons();
+        }
+
+        //updating and resetting of this state goes here
+
+        private void CreateButtons()
+        {
+            //creation of all the buttons goes here
+        }
+
+        //code for buttons to go to main menu, upgrade state and restart the level would be here
     }
-
-    //updating and resetting of this state goes here
-
-    private void CreateButtons()
-    {
-        //creation of all the buttons goes here
-    }
-
-    //code for buttons to go to main menu, upgrade state and restart the level would be here
-}
-```
+    ```
