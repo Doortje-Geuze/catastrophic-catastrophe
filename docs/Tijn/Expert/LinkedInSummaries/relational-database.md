@@ -86,7 +86,7 @@ These databases are called NoSQL Databases, but are more non-relational than the
 
 ## Resultaten quiz op DLO
 
-[Plak hier een screenshot van je quizresultaat]
+![Bewijs van DLO quiz over K1 & K3](../LinkedInSummaries/DLOQuiz2Blok4.png)
 
 ## Vragen voor expert review
 
