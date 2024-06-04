@@ -11,6 +11,11 @@ namespace Blok3Game.GameStates
     public class UpgradeState : MenuItem
     {
         TextGameObject CurrencyCount;
+        private int BulletSpeedUpgradeCost = 1;
+        private int PlayerSpeedUpgradeCost = 1;
+        private int PlayerHealthUpgradeCost = 1;
+        private int InvulnerabilityCooldownUpgradeCost = 1;
+        private int DashCooldownUpgradeCost = 1;
         public UpgradeState() : base()
         {
             CreateButtons();
@@ -61,7 +66,8 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.currencyCounter < 1) return;
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             GameState.Instance.PlayerBulletSpeed += 3;
-            GameState.Instance.player.currencyCounter -= 1;
+            GameState.Instance.player.currencyCounter -= BulletSpeedUpgradeCost;
+            BulletSpeedUpgradeCost *= 2;
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
         }
@@ -69,25 +75,29 @@ namespace Blok3Game.GameStates
         private void OnButtonPlayerSpeedClicked(UIElement element)
         {
             if (GameState.Instance.player.BaseMoveSpeed >= 9) return;
-            UpgradeButtonClicked(1, "MoveSpeed", 1);
+            UpgradeButtonClicked(1, "MoveSpeed", PlayerSpeedUpgradeCost);
+            PlayerSpeedUpgradeCost *= 2;
         }
 
         private void OnButtonPlayerHealthClicked(UIElement element)
         {
             if (GameState.Instance.player.HitPoints >= 5) return;
-            UpgradeButtonClicked(1, "HitPoints", 1);
+            UpgradeButtonClicked(1, "HitPoints", PlayerHealthUpgradeCost);
+            PlayerHealthUpgradeCost *= 2;
         }
 
         private void OnButtonInvulnerabilityCooldownClicked(UIElement element)
         {
             if (GameState.Instance.player.BaseInvulnerabilityCooldown >= 180) return;
-            UpgradeButtonClicked(15, "InvulnerabilityCooldown", 1);
+            UpgradeButtonClicked(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
+            InvulnerabilityCooldownUpgradeCost *= 2;
         }
 
         private void OnButtonDashCooldownClicked(UIElement element)
         {
             if (GameState.Instance.player.BaseDashCooldown <= 20) return;
-            UpgradeButtonClicked(10, "DashCooldown", 1);
+            UpgradeButtonClicked(10, "DashCooldown", DashCooldownUpgradeCost);
+            DashCooldownUpgradeCost *= 2;
         }
 
         private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
@@ -98,6 +108,7 @@ namespace Blok3Game.GameStates
             GameState.Instance.player.currencyCounter -= currencyRequirement;
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
+            Console.WriteLine($"{currencyRequirement} currency was removed from the player");
         }
 
         private void CurrencyCountUpdate()
