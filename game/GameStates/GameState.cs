@@ -19,6 +19,7 @@ namespace Blok3Game.GameStates
         private List<EnemyBullet> enemyBulletList;
         private List<Enemy> EnemyList;
         private List<Currency> currencyList;
+        private List<Explosion> explosionList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
         public Player player;
@@ -46,6 +47,7 @@ namespace Blok3Game.GameStates
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
+        private int BossCooldown = 0;
 
         public GameState() : base()
         {
@@ -57,6 +59,7 @@ namespace Blok3Game.GameStates
             enemyBulletList = new List<EnemyBullet>();
             currencyList = new List<Currency>();
             boxlist = new List<Box>();
+            explosionList = new List<Explosion>();
             toRemoveList = new List<GameObject>();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
@@ -281,6 +284,13 @@ namespace Blok3Game.GameStates
             {
                 PlayerShoot(inputHelper.MousePosition.X, inputHelper.MousePosition.Y);
             }
+            if (inputHelper.KeyPressed(Keys.V))
+            {
+                foreach (Enemy enemy in EnemyList)
+                {
+                    BirdAirstrike(enemy);
+                }
+            }
         }
 
         private void SpawnStandardEnemies()
@@ -407,6 +417,28 @@ namespace Blok3Game.GameStates
 
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);
+        }
+
+        private void BirdAirstrike(Enemy enemy)
+        {
+            float ShootPositionX = player.Position.X;
+            float ShootPositionY = player.Position.Y;
+
+            if (BossCooldown <= 0)
+            {
+                for (int i = 0; i < GameEnvironment.Screen.X; i++)
+                {
+                    Explosion explosion = new(new Vector2(0 + 20 * i, ShootPositionY));
+
+                    explosionList.Add(explosion);
+                    Add(explosion);
+                    BossCooldown = 100;
+                }
+            }
+            else
+            {
+                BossCooldown--;
+            }
         }
 
         private void boxCollision()
