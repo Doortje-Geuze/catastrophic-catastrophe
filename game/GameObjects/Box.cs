@@ -14,12 +14,16 @@ namespace Blok3Game.SpriteGameObjects
             Position = position;
         }
     }
+
+    // yelow box gives Lower Cooldown Upgrade
     public class YellowBox : Box
     {
         public YellowBox(Vector2 position) : base(position, "Images/Tiles/SquareYellow", 0, " ", 0)
         {
         }
     }
+
+    // purple box gives Shotgun upgrade 
     public class PurpleBox : Box
     {
         public PurpleBox(Vector2 position) : base(position, "Images/Tiles/PurpleSquare", 0, " ", 0)

@@ -402,6 +402,7 @@ namespace Blok3Game.GameStates
             Add(enemyBullet);
         }
 
+
         private void boxCollision()
         {
             foreach (Box box in boxlist)
