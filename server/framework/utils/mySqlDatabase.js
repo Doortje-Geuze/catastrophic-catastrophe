@@ -1,16 +1,15 @@
 const mySql = require("mysql2/promise");
 
 class MySqlDatabase {
-
-	#connection;
+	#pool;
 
 	async initializeDatabase() {
-		await this.#createConnection();
+		await this.#createPool();
 	}
 
-	async #createConnection() {
+	async #createPool() {
 		const serverConfig = global.serverConfig;
-		this.#connection = await mySql.createConnection({
+		this.#pool = mySql.createPool({
 			host: serverConfig.database.host,
 			port: serverConfig.database.port,
 			user: serverConfig.database.username,
@@ -18,20 +17,25 @@ class MySqlDatabase {
 			database: serverConfig.database.database,
 			connectionLimit: serverConfig.database.connectionLimit,
 			timezone: "UTC",
-			multipleStatements: true
+			multipleStatements: true,
+			waitForConnections: true
 		});
 		console.log('connection established');
 	}
 
 	async executePreparedQuery(query, parameters) {
+		let connection;
 		try	{
-			const [rows, fields] = await this.#connection.execute(query, parameters);
+			connection = await this.#pool.getConnection();
+			const [rows, fields] = await connection.execute(query, parameters);
 			return {
 				rows: rows,
 				fields: fields
 			};
 		} catch (err) {
 			console.log(`An error occurred while executing prepared query: ${err.code} (${err.errno}): ${err.message}`);
+		} finally {
+			if (connection) connection.release();
 		}
 	};
 }

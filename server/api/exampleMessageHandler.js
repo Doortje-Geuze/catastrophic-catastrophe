@@ -2,11 +2,8 @@ const MessageHandler = require("./messageHandler");
 
 class ExampleMessageHandler extends MessageHandler
 {
-    #databaseConnector;
-
-    constructor(io, rooms, socketConnectionListener, databaseConnector) {
+    constructor(io, rooms, socketConnectionListener) {
         super(io, rooms, socketConnectionListener);
-        this.#databaseConnector = databaseConnector;
     }
 
     handleIncomingMessages(socket) {
@@ -14,14 +11,10 @@ class ExampleMessageHandler extends MessageHandler
     }
 
     #handleIncomingPlayerChatMessages(socket) {
-        socket.on("Example", (data) => {
+        socket.on("Example", async(data) => {
+            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [8, "rat", 4, 4])
             console.log(data);
         });
-
-        this.#databaseConnector.executePreparedQuery(
-            "INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (?, ?, ?, ?)", 
-            [6, 'bullet', 6, 6], 
-        );
     }
 }
 

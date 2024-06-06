@@ -1,11 +1,11 @@
 {
   "database": {
-    "host": "",
+    "host": "db.hbo-ict.cloud",
     "port": 3366,
     "timeout": 30000,
-    "username": "",
-    "password": "",
-    "database": "",
+    "username": "pb4gdd2324_suuleewooyaa34",
+    "password": "1Dou0cvsNfTiiDES",
+    "database": "pb4gdd2324_suuleewooyaa34_live",
     "connectionLimit": 10
   }
 }
