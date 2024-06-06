@@ -26,9 +26,9 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5), "UPGRADES", OnButtonUpgradesClicked);
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet, GameEnvironment.Screen.Y / 2 + (ButtonOffSet * 2)), "MAIN MENU", OnButtonMainMenuClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "RESTART?", OnButtonReviveClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / (float)1.5), "UPGRADES", OnButtonUpgradesClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X, GameEnvironment.Screen.Y / 2 + (ButtonOffSet.X * 2)), "MAIN MENU", OnButtonMainMenuClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.X), "RESTART?", OnButtonReviveClicked);
         }
 
         private void OnButtonUpgradesClicked(UIElement element)
