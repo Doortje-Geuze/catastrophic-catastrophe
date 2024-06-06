@@ -10,12 +10,18 @@ namespace Blok3Game.GameStates
 {
     public class UpgradeState : MenuItem
     {
-        TextGameObject CurrencyCount;
+        TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
+        TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
+        TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
+        TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
+        TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
+        TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
         private int BulletSpeedUpgradeCost = 1;
         private int PlayerSpeedUpgradeCost = 1;
         private int PlayerHealthUpgradeCost = 1;
         private int InvulnerabilityCooldownUpgradeCost = 1;
         private int DashCooldownUpgradeCost = 1;
+        private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 8);
         public UpgradeState() : base()
         {
             CreateButtons();
@@ -35,22 +41,28 @@ namespace Blok3Game.GameStates
 
         private void CreateTexts()
         {
-            CurrencyCount = new TextGameObject("Fonts/SpriteFont@20px")
-            {
-                Text = $"Currency counter: You have {GameState.Instance.player.currencyCounter}",
-                Position = new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 6)
-            };
-            Add(CurrencyCount);
+            TextCreator(CurrencyCount, $"Currency counter: You have {GameState.Instance.player.currencyCounter}", 
+                        new Vector2(GameEnvironment.Screen.X / 3, GameEnvironment.Screen.Y / 6) - TextOffset);
+            TextCreator(BulletSpeedUpgradeText, $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}", 
+                        new Vector2(0, GameEnvironment.Screen.Y / 3) + TextOffset);
+            TextCreator(SpeedUpgradeText, $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}", 
+                        new Vector2(GameEnvironment.Screen.X / 4, GameEnvironment.Screen.Y / 3) + TextOffset);
+            TextCreator(HealthUpgradeText, $"Health Upgrade Cost: {PlayerHealthUpgradeCost}", 
+                        new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 3) + TextOffset);
+            TextCreator(DashUpgradeText, $"Dash Upgrade Cost: {DashCooldownUpgradeCost}", 
+                        new Vector2(GameEnvironment.Screen.X / (float)1.3, GameEnvironment.Screen.Y / 3)+ TextOffset);
+            TextCreator(InvulnerabilityUpgradeText, $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}", 
+                        new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2) + TextOffset);
         }
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5 + ButtonOffSet), "SHOP", OnButtonShopClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / (float)1.5 - ButtonOffSet * (float)1.5, GameEnvironment.Screen.Y / 2 / (float)1.5), "BULLET SPEED INCREASE", OnButtonBulletSpeedClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 4 - ButtonOffSet * 2, GameEnvironment.Screen.Y / 2 / (float)1.5), "PLAYER HEALTH INCREASE", OnButtonPlayerHealthClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet * 2, GameEnvironment.Screen.Y / 2 / (float)1.5), "PLAYER SPEED INCREASE", OnButtonPlayerSpeedClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X - ButtonOffSet * 2, GameEnvironment.Screen.Y / 2 / (float)1.5), "INVULNERABILITY INCREASE", OnButtonInvulnerabilityCooldownClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2 + ButtonOffSet / 3), "DASH COOLDOWN DECREASE", OnButtonDashCooldownClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / (float)1.5), "SHOP", OnButtonShopClicked);
+            CreateButton(new Vector2(0, GameEnvironment.Screen.Y / 3), "BULLET SPEED INCREASE", OnButtonBulletSpeedClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 4, GameEnvironment.Screen.Y / 3), "PLAYER SPEED INCREASE", OnButtonPlayerSpeedClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 3), "PLAYER HEALTH INCREASE", OnButtonPlayerHealthClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / (float)1.3, GameEnvironment.Screen.Y / 3), "DASH COOLDOWN DECREASE", OnButtonDashCooldownClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "INVULNERABILITY INCREASE", OnButtonInvulnerabilityCooldownClicked);
         }
 
         private void OnButtonShopClicked(UIElement element)
@@ -68,6 +80,7 @@ namespace Blok3Game.GameStates
             GameState.Instance.PlayerBulletSpeed += 3;
             GameState.Instance.player.currencyCounter -= BulletSpeedUpgradeCost;
             BulletSpeedUpgradeCost *= 2;
+            UpdateUpgradeText();
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
         }
@@ -106,6 +119,7 @@ namespace Blok3Game.GameStates
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             GameState.Instance.player.UpdateValue(value, type);
             GameState.Instance.player.currencyCounter -= currencyRequirement;
+            UpdateUpgradeText();
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
             Console.WriteLine($"{currencyRequirement} currency was removed from the player");
@@ -115,6 +129,22 @@ namespace Blok3Game.GameStates
         {
             CurrencyCount.Text = $"Currency counter: You have {GameState.Instance.player.currencyCounter}";
             GameState.Instance.playerCurrency.Text = $"you collected {GameState.Instance.player.currencyCounter} currency";
+        }
+
+        private void TextCreator(TextGameObject textObject, string text, Vector2 position)
+        {
+            textObject.Text = text;
+            textObject.Position = position;
+            Add(textObject);
+        }
+
+        private void UpdateUpgradeText()
+        {
+            BulletSpeedUpgradeText.Text = $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}";
+            SpeedUpgradeText.Text = $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}";
+            HealthUpgradeText.Text = $"Health Upgrade Cost: {PlayerHealthUpgradeCost}";
+            DashUpgradeText.Text = $"Dash Upgrade Cost: {DashCooldownUpgradeCost}";
+            InvulnerabilityUpgradeText.Text = $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}";
         }
     }
 }

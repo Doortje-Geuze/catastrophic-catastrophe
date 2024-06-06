@@ -27,14 +27,14 @@ namespace Blok3Game.GameStates
 
         private void CreateTexts()
         {
-            CreateText(new Vector2(GameEnvironment.Screen.X / 4, (GameEnvironment.Screen.Y / 3) - (ButtonOffSet)), "Move around using WASD");
-            CreateText(new Vector2(GameEnvironment.Screen.X / 4, (GameEnvironment.Screen.Y / 2) - (ButtonOffSet)), "Move crosshair with mouse and shoot with left-click");
-            CreateText(new Vector2(GameEnvironment.Screen.X / 4, (GameEnvironment.Screen.Y / (float)1.5) - (ButtonOffSet)), "Dash using left-shift whilst moving");
+            CreateText(new Vector2(GameEnvironment.Screen.X / 4, (GameEnvironment.Screen.Y / 3) - ButtonOffSet.Y), "Move around using WASD");
+            CreateText(new Vector2(GameEnvironment.Screen.X / 4, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "Move crosshair with mouse and shoot with left-click");
+            CreateText(new Vector2(GameEnvironment.Screen.X / 4, (GameEnvironment.Screen.Y / (float)1.5) - ButtonOffSet.Y), "Dash using left-shift whilst moving");
         }
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / (float)1.5), "MAIN MENU", OnButtonMainMenuClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / (float)1.5), "MAIN MENU", OnButtonMainMenuClicked);
         }
 
         private void OnButtonMainMenuClicked(UIElement element)
