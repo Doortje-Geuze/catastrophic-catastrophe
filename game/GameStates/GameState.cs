@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.Engine.JSON;
@@ -17,16 +18,19 @@ namespace Blok3Game.GameStates
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
+        private List<Grenade> grenadeList;
         private List<Enemy> EnemyList;
         private List<Currency> currencyList;
         private List<Explosion> explosionList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
+        private List<GrenadeCollisionBox> grenadeCollisionsList;
         public Player player;
         public Crosshair crosshair;
         public CatGun catGun;
         public Box box;
         public YellowBox yellowBox;
+        public GrenadeCollisionBox grenadeCollisionBox;
         public PurpleBox purpleBox;
         public ShootingEnemy shootingEnemy;
         public FastEnemy fastEnemy;
@@ -57,10 +61,12 @@ namespace Blok3Game.GameStates
             EnemyList = new List<Enemy>();
             playerBulletList = new List<PlayerBullet>();
             enemyBulletList = new List<EnemyBullet>();
+            grenadeList = new List<Grenade>();
             currencyList = new List<Currency>();
             boxlist = new List<Box>();
             explosionList = new List<Explosion>();
             toRemoveList = new List<GameObject>();
+            grenadeCollisionsList = new List<GrenadeCollisionBox>();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
             {
@@ -119,7 +125,7 @@ namespace Blok3Game.GameStates
             //             if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
             //             {
             //                 //Lower Cooldown Upgrade
-            //                 yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
+            // yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
             //                 boxlist.Add(yellowBox);
 
             //                 Add(yellowBox);
@@ -176,6 +182,10 @@ namespace Blok3Game.GameStates
                 Retry();
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
             }
+            foreach (Grenade grenade in grenadeList)
+            {
+                grenade.HandleCollision(grenadeCollisionBox);
+            }
 
             if (PlayerShootCooldown != 0)
             {
@@ -187,12 +197,12 @@ namespace Blok3Game.GameStates
             {
                 enemy.EnemySeeking(player.Position);
 
-                if (enemy.EnemyShootCooldown >= 120 && enemy is not FastEnemy fastEnemy)
-                {
-                    EnemyShoots(enemy);
-                    enemy.EnemyShootCooldown = 0;
-                }
-                enemy.EnemyShootCooldown++;
+                // if (enemy.EnemyShootCooldown >= 120 && enemy is not FastEnemy fastEnemy)
+                // {
+                //     EnemyShoots(enemy);
+                //     enemy.EnemyShootCooldown = 0;
+                // }
+                // enemy.EnemyShootCooldown++;
 
                 player.HandleCollision(enemy);
                 foreach (var playerBullet in playerBulletList)
@@ -286,9 +296,13 @@ namespace Blok3Game.GameStates
             }
             if (inputHelper.KeyPressed(Keys.V))
             {
+                // foreach (Enemy enemy in EnemyList)
+                // {
+                //     BirdAirstrike(enemy);
+                // }
                 foreach (Enemy enemy in EnemyList)
                 {
-                    BirdAirstrike(enemy);
+                    BirdGrenade(enemy);
                 }
             }
         }
@@ -439,6 +453,23 @@ namespace Blok3Game.GameStates
             {
                 BossCooldown--;
             }
+        }
+
+        private void BirdGrenade(Enemy enemy)
+        {
+            float ShootPositionX = enemy.Position.X + enemy.Width / 2;
+            float ShootPositionY = enemy.Position.Y + enemy.Height / 2;
+
+            double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
+
+
+            grenadeCollisionBox = new GrenadeCollisionBox(new Vector2(player.Position.X + player.Width / 2, player.Position.Y + player.Height / 2));
+            boxlist.Add(grenadeCollisionBox);
+            Add(grenadeCollisionBox);
+
+            Grenade grenade = new(new Vector2(ShootPositionX, ShootPositionY), new Vector2(grenadeCollisionBox.Position.X, grenadeCollisionBox.Position.Y), bulletAngle, 15, grenadeCollisionBox.kaboomTime);
+            grenadeList.Add(grenade);
+            Add(grenade);
         }
 
         private void boxCollision()
