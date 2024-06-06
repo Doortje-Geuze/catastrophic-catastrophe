@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
@@ -12,7 +13,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blok3Game.GameStates
 {
-    public class GameState : GameObjectList
+    public class GameState : MenuItem
     {
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
@@ -137,7 +138,7 @@ namespace Blok3Game.GameStates
                             SpawnFastEnemies();
                         }
 
-                        boxCollision();
+                        BoxCollision();
                     }
                     break;
                 case 2: //Wave 3
@@ -167,6 +168,12 @@ namespace Blok3Game.GameStates
             {
                 Retry();
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                SocketClient.Instance.SendDataPacket(new MatchData{
+                    TotalWavesSurvived = 2,
+                    KilledBy = "rat",
+                    Kills = 4,
+                    HealthLeft = 2
+                });
             }
 
             if (PlayerShootCooldown != 0)
@@ -402,7 +409,8 @@ namespace Blok3Game.GameStates
             Add(enemyBullet);
         }
 
-        private void boxCollision()
+
+        private void BoxCollision()
         {
             foreach (Box box in boxlist)
             {
