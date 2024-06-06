@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
@@ -168,12 +167,6 @@ namespace Blok3Game.GameStates
             {
                 Retry();
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                SocketClient.Instance.SendDataPacket(new MatchData{
-                    TotalWavesSurvived = 2,
-                    KilledBy = "rat",
-                    Kills = 4,
-                    HealthLeft = 2
-                });
             }
 
             if (PlayerShootCooldown != 0)

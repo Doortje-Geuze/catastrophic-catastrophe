@@ -1,4 +1,4 @@
-# # C# Generics and interfaces summary
+# LinkedIn course summary
 
 ## C# Interfaces and generics
 
