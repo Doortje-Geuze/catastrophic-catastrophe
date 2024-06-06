@@ -1,4 +1,4 @@
-# C# Data structures summary
+# LinkedIn course summary
 
 ## C# Data structures
 

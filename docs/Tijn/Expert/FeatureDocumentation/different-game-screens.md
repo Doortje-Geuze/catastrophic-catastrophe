@@ -6,7 +6,7 @@ Aan het begin van dit project wordt alles van de game laten zien op 1 scherm van
 ```C#
 namespace Blok3Game.GameStates
 {
-    public class GameState : MenuItem
+    public class GameState : GameObjectList
     {
         //all lists, objects and variables at the start of the game for the gamestate are created in the code here
         public GameState() : base()
