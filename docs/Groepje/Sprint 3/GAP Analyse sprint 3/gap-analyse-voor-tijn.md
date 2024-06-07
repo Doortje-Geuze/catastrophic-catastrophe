@@ -8,11 +8,13 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Feature**                                    | **Weight** | **Commit/Link**                     |
 |------------------------------------------------|------------|--------------------------------------|
-| `currency toegevoegd`                       | `3`    | [Currency](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/efbc033a9daf39c82c9b79dbabd75da0184106f7)           |
-| `Upgrade scherm`                       | `2`    | [upgrade sherm ](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/ed724e96a0d9e3bbda8e3d724d054e19b9dd8bad)           |
+| `currency toegevoegd`                       | `4`    | [Currency](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/efbc033a9daf39c82c9b79dbabd75da0184106f7)           |
+| `indicator gemaakt voor dash`                       | `3`    | [Dash](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/9524c03dba8032325472cde6f77d09aedb4eac36)           |
+| `indicator gemaakt voor HP`                       | `2`    | [Hp](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/e8641e71882c61fac5a99b41ac7de8fef67cfa5b) 
+| `Upgrade scherm (nieuwe state)`                       | `3`    | [upgrade sherm ](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/ed724e96a0d9e3bbda8e3d724d054e19b9dd8bad)           |
 | `correcte hitboxes`                       | `1`    | [correcte hirboxes commit](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/791b15a6511706f4686f224ce2971c850eb56088)           |
 | `upgrades kunnen kopen`                       | `4`    | [upgrades kopen](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/6523fdf9c630cf4464ae7639a8fe7459f9762127)            |
-| **Totaal Weight:**                             | `0`    |                                      |
+| **Totaal Weight:**                             | `17`    |                                      |
 
 ---
 
@@ -44,7 +46,7 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `ja` |
 | - Gebruik van indentatie zoals afgesproken met je groep | `ja` |
 | - C# algemene code conventies toegepast         | `ja` |
-| - Ingewikkelde code is gecomment                | `ja` |
+| - Ingewikkelde code is gecomment                | `nee` |
 | - Alleen public wanneer nodig                   | `ja` |
 | - Magic numbers vermeden                        | `nee` |
 | **Onderhoudbaarheid/Bruikbaarheid**                |  |
@@ -56,13 +58,13 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 **Concrete Verbeterpunten:**
 1. ` let op de magic numbers`
-2. `soms kan je code makelijk breken als je iets aanpast`
+2. `Let op dat je je code vorzient van comments`
 
 **Compliance Score:** `88`%
 
 **Actieplan:**
 - `Let op je magic numbers, zoals bij de dash. Kijk of je deze al veranderd had. Zo niet ga dan door je code heen en kijk of er nog ergens magic numbers staan en probeer deze te verhelpen`
-- `let op de bruikbaarhuid van de code, het is nu niet een probleem maar let hier wel op.`
+- `Je niewe code zoals voor de shop is nog niet voorzien van comments, pas dat aan en doe dat ook bij je anderen code`
 
 ---
 
@@ -71,17 +73,17 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | **Meetbare doelen**                            | **Evaluatie**                                    |
 |------------------------------------------------|-------------------------------------------------|
 | Op basis van je actieplan (toets, code review) | `n.v.t` |
-| Technische uitdagingen overwonnen              | `-` |
-| Gebruik van effectieve algoritmen en datastructuren | `-` |
+| Technische uitdagingen overwonnen              | `ja` |
+| Gebruik van effectieve algoritmen en datastructuren | `soms` |
 | Samenwerking met andere delen van het systeem  | `ja` |
 
 **Concrete Verbeterpunten:**
-1. `--`
+1. `gebruikt nog niet vaak datastructuren, wel is er een interface gemaakt`
 
-**Compliance Score:** `00`%
+**Compliance Score:** `88`%
 
 **Actieplan:**
-- `--`
+- `Begin ook met het gebruiken van Generics(List, Dictionary), .`
 
 ---
 
