@@ -6,6 +6,9 @@ Het doel is om een andere enemy te hebben. deze enemy gaat sneller dan de normal
 
 ## wat is daar voor nodig
 
+- fast enemy class
+- spawn functie voor de fastenemies
+- fastenemies toevoegen aan een enemyList
 ## Progess
 
 fast Enemy class:
@@ -27,11 +30,12 @@ namespace Blok3Game.GameObjects
     }
 }
 ```
-
+variable fast enemy:
 ```c#
 public FastEnemy fastEnemy;
 
 ```
+fast enemy woordt toegevoegd als de speler een upgrade heeft opgepakt.
 ```c# 
 // Al heeft de speler eem upgrade opgepakt gaat de wave verder
 else if (pickedUpPurple || pickedUpYellow)
@@ -43,7 +47,7 @@ else if (pickedUpPurple || pickedUpYellow)
                             SpawnFastEnemies();
                         }
 ```
-
+Al gaat de fast enemy dood woordt hij aan de remove list toegevoegd
 ```c#
 // Fast enemys aan de remove list toevoegen
 if (gameObject is FastEnemy fastEnemy)
@@ -51,7 +55,7 @@ if (gameObject is FastEnemy fastEnemy)
                     EnemyList.Remove(fastEnemy);
                 }
 ```
-
+De functie voor het spawnen van de fast enmeies.
 ```c#
 //Fast enemies spawnen
 private void SpawnFastEnemies()
@@ -95,3 +99,6 @@ private void SpawnFastEnemies()
             }
         }
 ```
+
+## resultaat:
+![fast enemy](../feature-documentatie/fast-enemy.png)

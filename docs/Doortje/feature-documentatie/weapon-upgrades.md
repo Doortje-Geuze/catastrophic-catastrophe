@@ -43,3 +43,6 @@ In de `PlayerShoot` methode:
                 PlayerShootCooldown = 8;
             }
 ```
+
+## resultaat
+![choose your upgarde](../feature-documentatie/Choose-your-upgrade.png)
