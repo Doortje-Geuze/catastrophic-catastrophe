@@ -72,7 +72,7 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                            | **Evaluatie**                                    |
 |------------------------------------------------|-------------------------------------------------|
-| Op basis van je actieplan (toets, code review) | `n.v.t` |
+| Op basis van je actieplan (toets, code review) | `ja` |
 | Technische uitdagingen overwonnen              | `ja` |
 | Gebruik van effectieve algoritmen en datastructuren | `soms` |
 | Samenwerking met andere delen van het systeem  | `ja` |
