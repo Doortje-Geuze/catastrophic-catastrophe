@@ -1,9 +1,5 @@
 # GAP-analyse voor Senna, van Sed
 
-## Introductie
-
-Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kwantiteit, Kwaliteit, Complexiteit en Toelichting & documentatie van elk teamgenoot. Noteer concrete verbeterpunten en bereken een compliance score. Hoe lager de score, hoe concreter het actieplan.
-
 ## Weight
 
 | **Feature**                                    | **Weight** | **Commit/Link**                     |
