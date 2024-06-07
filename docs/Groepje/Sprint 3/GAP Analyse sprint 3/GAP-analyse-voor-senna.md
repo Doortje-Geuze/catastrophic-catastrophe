@@ -1,18 +1,14 @@
 # GAP-analyse voor Senna, van Sed
 
-## Introductie
-
-Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kwantiteit, Kwaliteit, Complexiteit en Toelichting & documentatie van elk teamgenoot. Noteer concrete verbeterpunten en bereken een compliance score. Hoe lager de score, hoe concreter het actieplan.
-
 ## Weight
 
 | **Feature**                                    | **Weight** | **Commit/Link**                     |
 |------------------------------------------------|------------|--------------------------------------|
-| `Player Position Manager`                      | `0`    | [ ]()           |
-| `Camera`                                       | `0`    | []()            |
-| `Database gemaakt`                             | `0`    | []()            |
-| `Game op Itch.io`                              | `0`    | []()            |
-| **Totaal Weight:**                             | `0`    |                                      |
+| `Player Position Manager`                      | `2`    | [Position manager](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/92ccdc580c470d1dd3de7aed26338a1f0ac564bb)           |
+| `Camera`                                       | `4`    | [Camera](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/68de2bfa2b72f7e9c1b25f3f3227370ebf7a1a77)          |
+| `Database gemaakt (EER)`                       | `3`    | [Connectie in C#](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/982d2e7ca8b58f2af6932689b4fd090f91b4d75b)            |
+| `Game op Itch.io`                              | `2`    | [Itch.io Pagina]()            |
+| **Totaal Weight:**                             | `11`   |                                      |
 
 ---
 
@@ -20,17 +16,16 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                             | **Evaluatie**                         |
 |-------------------------------------------------|--------------------------------------|
-| Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `nee` |
-| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `nee/ja` |
+| Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `ja` |
+| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `nee` |
 
 **Concrete Verbeterpunten:**
-1. `Je commit pas wanneer een feature af is of wanneer het werkend is. Commit minstens elke keer aan het einde van de dag ookal ben je nog niet klaar met de feature.`
-2. `--`
+1. `Je hebt gewerkt aan te weinig features deze sprint`
 
-**Compliance Score:** `00`%
+**Compliance Score:** `50`%
 
 **Actieplan:**
-- `--`
+- `Je blijft te lang hangen op een feature als het niet lukt om te maken. Dit zorgt ervoor dat je weinig tijd over hebt om aan andere features te werken. Hak sneller die knoop door.`
 
 ---
 
@@ -77,13 +72,12 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | Samenwerking met andere delen van het systeem  | `ja` |
 
 **Concrete Verbeterpunten:**
-1. `De vorige code review werdt je er op gewezen dat je meer onafgeronde features moet gaan committen omdat je dat nog te weinig deed. Dit heb je bijna niet verandert en is ook nu nog een probleem`
-2. `Gebruik meer datastructuren behalve Lists`
+1. `Gebruik meer datastructuren behalve Lists`
 
 **Compliance Score:** `60`%
 
 **Actieplan:**
-- `Commit je code aan het einde van de dag ookal is het nog niet af`
+- `Gebruik meer datastructuren behalve Lists`
 
 ---
 
