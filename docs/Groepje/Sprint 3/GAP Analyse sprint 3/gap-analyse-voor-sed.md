@@ -43,28 +43,26 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | - OOP toegepast                                 | `ja` |
 | - Minstens 1 stukje logica geschreven           | `ja` |
 | **Code Conventies**                                |                                          |
-| - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `nee/ja` |
-| - Gebruik van indentatie zoals afgesproken met je groep | `nee/ja` |
-| - C# algemene code conventies toegepast         | `nee/ja` |
-| - Ingewikkelde code is gecomment                | `nee/ja` |
-| - Alleen public wanneer nodig                   | `nee/ja` |
-| - Magic numbers vermeden                        | `nee/ja` |
+| - Duidelijke variabele en functienamen & de naam beschrijft duidelijk wat het doet | `ja` |
+| - Gebruik van indentatie zoals afgesproken met je groep | `ja` |
+| - C# algemene code conventies toegepast         | `ja` |
+| - Ingewikkelde code is gecomment                | `ja` |
+| - Alleen public wanneer nodig                   | `ja` |
+| - Magic numbers vermeden                        | `ja` |
 | **Onderhoudbaarheid/Bruikbaarheid**                |  |
-| - Je kan makkelijk iets aanpassen zonder dat het breekt | `nee/ja` |
-| - Geen dubbele code                             | `nee/ja` |
-| - Weinig of geen bugs                           | `nee/ja` |
-| - Nagedacht over toekomstig gebruik             | `nee/ja` |
-| - Weinig directe referenties                    | `nee/ja` |
+| - Je kan makkelijk iets aanpassen zonder dat het breekt | `ja` |
+| - Geen dubbele code                             | `ja` |
+| - Weinig of geen bugs                           | `ja` |
+| - Nagedacht over toekomstig gebruik             | `ja` |
+| - Weinig directe referenties                    | `ja` |
 
 **Concrete Verbeterpunten:**
-1. `--`
-2. `--`
+1. `-`
 
-**Compliance Score:** `00`%
+**Compliance Score:** `100`%
 
 **Actieplan:**
-- `--`
-- `--`
+- `-`
 
 ---
 
@@ -72,18 +70,18 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                            | **Evaluatie**                                    |
 |------------------------------------------------|-------------------------------------------------|
-| Op basis van je actieplan (toets, code review) | `n.v.t` |
-| Technische uitdagingen overwonnen              | `nee/ja` |
-| Gebruik van effectieve algoritmen en datastructuren | `nee/ja` |
-| Samenwerking met andere delen van het systeem  | `nee/ja` |
+| Op basis van je actieplan (toets, code review) | `ja` |
+| Technische uitdagingen overwonnen              | `ja` |
+| Gebruik van effectieve algoritmen en datastructuren | `ja` |
+| Samenwerking met andere delen van het systeem  | `ja` |
 
 **Concrete Verbeterpunten:**
-1. `--`
+1. `-`
 
-**Compliance Score:** `00`%
+**Compliance Score:** `100`%
 
 **Actieplan:**
-- `--`
+- `-`
 
 ---
 
@@ -91,17 +89,18 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 
 | **Meetbare doelen**                             | **Evaluatie**                          |
 |-------------------------------------------------|---------------------------------------|
-| Elke feature is binnen een week voorzien van context en documentatie. | `nee/ja` |
-| Gebruik van code fragmenten en andere relevante documentatiemiddelen (diagrammen, etc.). | `nee/ja` |
-| Voor elke feature van weight > 2 is er documentatie inclusief gebruiksinstructies (denk aan gifs, screenshots). | `nee/ja` |
-| Minstens 1 feature gedocumenteerd & uitgelegd.  | `nee/ja` |
+| Elke feature is binnen een week voorzien van context en documentatie. | `nee` |
+| Gebruik van code fragmenten en andere relevante documentatiemiddelen (diagrammen, etc.). | `nee` |
+| Voor elke feature van weight > 2 is er documentatie inclusief gebruiksinstructies (denk aan gifs, screenshots). | `nee` |
+| Minstens 1 feature gedocumenteerd & uitgelegd.  | `nee` |
 
 **Concrete Verbeterpunten:**
-1. `--`
+1. `Features zijn niet (optijd) gedocumenteerd`
+2. `Er is geen gebruik gemaakt van code snippets`
 
 **Compliance Score:** `00`%
 
 **Actieplan:**
-- `--`
+- `Features waar meer dan 1 werkdag aan gewerkt is, moeten binnen 1 week verzien worden van een documentatiepagina, waarin uitleg wordt gegeven over het proces de bouw van de feature, en eventuele gifs/screenshots gebruikt worden om de feature uit te leggen. Ook kunnen code snippets handig zijn om bepaalde logica te laten zien in deze documentatie.`
 
 ---
