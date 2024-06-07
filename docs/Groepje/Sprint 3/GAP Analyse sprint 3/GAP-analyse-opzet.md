@@ -1,4 +1,4 @@
-# GAP-analyse voor ..., van ..
+# GAP-analyse voor Tijn, van Doortje
 
 ## Introductie
 
