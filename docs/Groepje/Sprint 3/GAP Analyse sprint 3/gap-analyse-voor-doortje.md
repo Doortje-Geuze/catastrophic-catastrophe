@@ -1,17 +1,14 @@
 # GAP-analyse voor Doortje, van Senna
 
-## Introductie
-
-Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kwantiteit, Kwaliteit, Complexiteit en Toelichting & documentatie van elk teamgenoot. Noteer concrete verbeterpunten en bereken een compliance score. Hoe lager de score, hoe concreter het actieplan.
 
 ## Weight
 
 | **Feature**                                    | **Weight** | **Commit/Link**                     |
 |------------------------------------------------|------------|-------------------------------------|
-| `Boxen aanmaken`                               | `0`        | [ ]()                               |
-| `Power-ups`                                    | `0`        | []()                                |
-| `Fast enemies`                                 | `0`        | []()                                |
-| **Totaal Weight:**                             | `0`        |                                     |
+| `Boxen aanmaken`                               | `1`        | [Boxes](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/688c897a6526691aea1953a8b52974c7e3c97fcb)                               |
+| `Power-ups`                                    | `4`        | [Power-ups](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/0589844c34bffaf94ac8960518f7a07ee6d0e401)                                |
+| `Fast enemies`                                 | `2`        | [Fast enemies](https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/-/commit/585c005b4bd6d1097b6b49ee95ab12ff266e21d4)                                |
+| **Totaal Weight:**                             | `7`        |                                     |
 
 ---
 
@@ -20,15 +17,15 @@ Deze documentatie dient als hulpmiddel tijdens de peer code review. Beoordeel Kw
 | **Meetbare doelen**                             | **Evaluatie**                         |
 |-------------------------------------------------|--------------------------------------|
 | Ten minste 1 programmeer-commit per werkdag, minstens 5 per week. | `ja` |
-| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `nee/ja` | ********
+| Je pakt minstens een weight van 6 per week aan features, waarbij 1 een hele kleine feature is en 5 een hele grote. | `nee` | 
 
 **Concrete Verbeterpunten:**
-1. `--` *********************
+1. `-weight-` 
 
-**Compliance Score:** `00`% *************
+**Compliance Score:** `50`% 
 
 **Actieplan:**
-- `--` ****************
+- `-Probeer wat meer features op te pakken. Probeer ook features van een wat grotere weight op te pakken-` 
 
 ---
 
