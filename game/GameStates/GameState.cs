@@ -46,6 +46,8 @@ namespace Blok3Game.GameStates
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
+        public OpenDoor Door; 
+        private bool EnteredDoor = false;
 
         public GameState() : base()
         {
@@ -130,11 +132,16 @@ namespace Blok3Game.GameStates
                         }
                         else if (pickedUpPurple || pickedUpYellow)
                         {
-                            WaveCounter++;
-                            NewWave = true;
-                            WaveIndicatorShowTime = 0;
-                            ResetBullets();
-                            SpawnFastEnemies();
+                            Door = new OpenDoor(new Vector2(GameEnvironment.Screen.X / 2, 0));
+
+                            if(EnteredDoor)
+                            {
+                                WaveCounter++;
+                                NewWave = true;
+                                WaveIndicatorShowTime = 0;
+                                ResetBullets();
+                                SpawnFastEnemies();
+                            }
                         }
 
                         boxCollision();
