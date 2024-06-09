@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
@@ -167,6 +168,19 @@ namespace Blok3Game.GameStates
 
             //Shows to the player which wave it is
             ShowWaveIndicator();
+
+            //switches to lose screen if player's HP falls below 0
+            if (player.HitPoints <= 0)
+            {
+                Retry();
+                GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                SocketClient.Instance.SendDataPacket(new MatchData{
+                    TotalWavesSurvived = 2,
+                    KilledBy = "rat",
+                    Kills = 4,
+                    HealthLeft = 2
+                });
+            }
 
             if (PlayerShootCooldown != 0)
             {
@@ -390,6 +404,7 @@ namespace Blok3Game.GameStates
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);
         }
+
 
         private void BoxCollision()
         {
