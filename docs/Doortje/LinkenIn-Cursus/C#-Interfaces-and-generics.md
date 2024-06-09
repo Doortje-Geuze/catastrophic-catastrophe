@@ -84,7 +84,7 @@ i2.SomeMethode();
 
 ### Using .NET-defined interfaces
 
-![](/docs/Doortje/LinkenIn-Cursus/images/Built%20in%20.NET%20interfaces.png)
+![](../LinkenIn-Cursus/images/Built%20in%20.NET%20interfaces.png)
 
 ## Generics
 
@@ -151,14 +151,9 @@ i2.SomeMethode();
 - mapping an unique key to an asociated value
 
 propertys:
-  ![](/docs/Doortje/LinkenIn-Cursus/images/Dictonary-genaric-interfaces.png)
+  ![](../LinkenIn-Cursus/images/Dictonary-genaric-interfaces.png)
 
 ## Resultaten LinkedIn Learning cursus
 
-![](/docs/Doortje/LinkenIn-Cursus/images/C#%20Interfaces%20and%20Generics%20certivicaat.png) 
+![](../LinkenIn-Cursus/images/C#%20Interfaces%20and%20Generics%20certivicaat.png) 
 
-## Toepassing op eigen project
-
-
-## Vragen voor expert review
-- Wat zijn meer voorbeelden van hoe ik genarics kan gebruiken in mijn eigen project?
