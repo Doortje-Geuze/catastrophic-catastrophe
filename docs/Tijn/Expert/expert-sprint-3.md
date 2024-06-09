@@ -94,7 +94,7 @@ De animatie van elke currency is weggestopt in de logica van de currency zelf. H
 
 Inheritance houdt in dat een class functies overerft van een andere class. Ook kan de nieuwe class de functies veranderen, en nieuwe functies krijgen die de oude class niet heeft.
 
-=== "Character has the variable HitPoints, and gives it to all classes that inherit from it
+=== "Character has the variable HitPoints, and gives it to all classes that inherit from it"
     ```C#
     public abstract class Character : SpriteGameObject
     {
@@ -103,7 +103,7 @@ Inheritance houdt in dat een class functies overerft van een andere class. Ook k
     }
     ```
 
-=== "Player inherits HitPoints from Character
+=== "Player inherits HitPoints from Character"
     ```C#
     public class Player : Character, ICollidable
     {
@@ -116,7 +116,7 @@ Inheritance houdt in dat een class functies overerft van een andere class. Ook k
     }
     ```
 
-=== "Enemy inherits HitPoints from Character
+=== "Enemy inherits HitPoints from Character"
     ```C#
     public class Enemy : Character
     {
@@ -176,3 +176,7 @@ Polymorphism de laatste van de 4 pillaren van OOP. Het is de techniek, waarbij e
     ```
 
 Met het gebruik van deze interface kunnen spritegameobjects die collision nodig hebben, alleen bestaan als ze ook echt een functie hebben voor de collision. Ook kunnen verschillende classes deze functie op hun eigen manier interpreteren
+
+## Klassendiagram van mijn toevoeging
+
+![Klassendiagram]()
