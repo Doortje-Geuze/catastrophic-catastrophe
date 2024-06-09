@@ -178,5 +178,7 @@ Polymorphism de laatste van de 4 pillaren van OOP. Het is de techniek, waarbij e
 Met het gebruik van deze interface kunnen spritegameobjects die collision nodig hebben, alleen bestaan als ze ook echt een functie hebben voor de collision. Ook kunnen verschillende classes deze functie op hun eigen manier interpreteren
 
 ## Klassendiagram van mijn toevoeging
+Hieronder is een gecombineerde klassendiagram te zien van mijn toevoeging aan het project. Hierin is gekeken naar classes waar ik een substantieel deel aan heb bijgedragen, met name de upgrade state en de player.
+![Klassendiagram van game state gedeelte](./Images/ClassDiagramTijn1.png)
 
-![Klassendiagram]()
+![Klassendiagram van player gedeelte](./Images/ClassDiagramTijn2.png)
