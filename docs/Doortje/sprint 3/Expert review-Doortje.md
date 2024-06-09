@@ -234,13 +234,26 @@ public override void Update(GameTime gameTime)
 
 ### Class diagram
 
+Voor dit project heb ik een UML class diagram gemaakt om de 
+relaties tussen alle classen te visualiseren. Er staan ook classes op die ik niet heb gemaakt, maar wel een relatie hebben met de classes die ik heb gemaakt en in gewerkt heb. Deze worden aangegeven met een leeg vak voor attributen en methodes. In alle classes in het diagram is te zien van welke variabelen en methods er gebruik wordt gemaakt en of ze private, protected of public zijn.
+
+
+Allereerst is er een Enemy class, deze class inherit van de abstracte class character. Van deze Enemy class inheriten 3 child classes genaamd ShootingEnemy, StandardEnemy en FastEnemy. De Enemy class inherit weer van een Character class die weer inherit van SpriteGameObject. 
+
+Ook heb ik een abstracte class Box gemaakt. Van deze class inheriten 2 child classes, deze zijn YellowBox en PurpleBox.
+
+Verder heb ik een Bullet class gemaakt, deze inherit van RotatingSpriteGameObject. PlayerBullet en Enemybullet inheriten weer van de Bullet class
+
 ![UML-class-diagram](../sprint%203/uml-class-diagram-blok4.png)
 
 ### Sequence diagram
 
+Voor deze expert review heb ik een Sequence diagram zodat ik één structuurdiagram en één gedragsdiagram heb gebruikt. Dit geeft een breder inzicht in de game. De sequence diagram geeft de flow van de game goed weer. Er is te zien dat de speler het spel kan starten waarna er een level wordt ingeladen met een wave aan enemies en een boss. De enemies schieten op de player en de player kan terugschieten naar de enemies. Als de speler de boss verslaat laat hij zijn wapen vallen en kan de speler het wapen oppakken en gebruiken. Als de speler alle enemies heeft verslagen spawnt er een nieuwe wave. Als de speler al zijn levens kwijt is of als alle waves met enemies zijn verslagen is het spel voorbij.
+
 ![Sequance-diagram](../sprint%203/Sequence-diagram-blok4.png)
 
 ## Database
+Voor de database heb ik een EER gemaakt in mySQL, een connection opgezet met de HBO-ICT cloud, de database gerealiseerd door middel van forward engineeren en met SQL statements data toegevoegd aan de database.
 
 ![EER](/docs/images/EERSprint2.png)  
 ![Connection](/docs/images/DatabaseConnection.png) 
@@ -250,6 +263,73 @@ public override void Update(GameTime gameTime)
 ## Principles
 
 ### Single responsibility principle
+Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershillende soorten enemies, namelijk: ShootingEnemy, StandardEnemy en FastEnemy. Hierbij wordt gelet op het juist overerven van de enemy classes. De enemies worden uitgebreid met schietende enemies en enemies met hogere snelheiden. Hierbij dienen de originele enemies niet aangepast te worden.
+
+=== "Enemy"
+```Csharp
+     public class Enemy : Character
+     {
+        public int EnemyMoveSpeed;
+        public Vector2 steering;
+        public Vector2 desired_velocity;
+        public int EnemyShootCooldown = 120;
+
+        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(hitPoints, moveSpeed, position, assetName)
+        {
+            EnemyMoveSpeed = moveSpeed;
+        }
+
+        public void EnemySeeking(Vector2 PlayerPosition) // Made with the help of https://code.tutsplus.com/understanding-steering-behaviors-seek--gamedev-849t
+        {
+            desired_velocity = PlayerPosition - position;
+            desired_velocity.Normalize();
+            desired_velocity *= EnemyMoveSpeed;
+
+            steering = desired_velocity - velocity;
+
+            steering = steering / 5;
+            velocity = velocity + steering;
+            position += velocity;
+        }
+     }
+
+```
+
+ === "ShootingEnemy"
+```Csharp
+    public class ShootingEnemy : Enemy
+    {
+        public int EnemyHitPoints;
+        public ShootingEnemy(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position, "Images/Characters/rat", 0, " ", 0)
+        {
+            EnemyHitPoints = hitPoints;
+        }
+    }
+
+```
+=== "StandardEnemy"
+```Csharp
+    public class StandardEnemy : Enemy
+    {
+        public int EnemyHitPoints;
+        public StandardEnemy(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position, "Images/Enemies/standardEnemy", 0, " ", 0)
+        {
+            EnemyHitPoints = hitPoints;
+        }
+    }
+```
+=== "FastEnemy"
+```Csharp
+    public class FastEnemy : Enemy
+    {
+        
+        public FastEnemy(int hitPoints, int moveSpeed, Vector2 position) : base(hitPoints, moveSpeed, position, "Images/Characters/fastEnemy", 0, " ", 0)
+        {
+            EnemyHitPoints = hitPoints;
+            EnemyMoveSpeed = moveSpeed;
+        }
+    }
+```
 
 ### Dependency inversion principle
 
@@ -280,4 +360,4 @@ public abstract class Box : SpriteGameObject
 
         }
     }
-````
+```
