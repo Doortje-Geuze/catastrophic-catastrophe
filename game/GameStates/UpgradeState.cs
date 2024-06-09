@@ -75,7 +75,7 @@ namespace Blok3Game.GameStates
         private void OnButtonBulletSpeedClicked(UIElement element)
         {
             if (GameState.Instance.PlayerBulletSpeed >= 30) return;
-            if (GameState.Instance.player.currencyCounter < 1) return;
+            if (GameState.Instance.player.currencyCounter < BulletSpeedUpgradeCost) return;
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             GameState.Instance.PlayerBulletSpeed += 3;
             GameState.Instance.player.currencyCounter -= BulletSpeedUpgradeCost;
@@ -90,6 +90,7 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.BaseMoveSpeed >= 9) return;
             UpgradeButtonClicked(1, "MoveSpeed", PlayerSpeedUpgradeCost);
             PlayerSpeedUpgradeCost *= 2;
+            UpdateUpgradeText();
         }
 
         private void OnButtonPlayerHealthClicked(UIElement element)
@@ -97,6 +98,7 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.HitPoints >= 5) return;
             UpgradeButtonClicked(1, "HitPoints", PlayerHealthUpgradeCost);
             PlayerHealthUpgradeCost *= 2;
+            UpdateUpgradeText();
         }
 
         private void OnButtonInvulnerabilityCooldownClicked(UIElement element)
@@ -104,6 +106,7 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.BaseInvulnerabilityCooldown >= 180) return;
             UpgradeButtonClicked(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
             InvulnerabilityCooldownUpgradeCost *= 2;
+            UpdateUpgradeText();
         }
 
         private void OnButtonDashCooldownClicked(UIElement element)
@@ -111,6 +114,7 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.BaseDashCooldown <= 20) return;
             UpgradeButtonClicked(10, "DashCooldown", DashCooldownUpgradeCost);
             DashCooldownUpgradeCost *= 2;
+            UpdateUpgradeText();
         }
 
         //types that can be given as parameters: "HitPoints, "MoveSpeed", "InvulnerabilityCooldown" & "DashCooldown".
@@ -120,7 +124,6 @@ namespace Blok3Game.GameStates
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             GameState.Instance.player.UpdateValue(value, type);
             GameState.Instance.player.currencyCounter -= currencyRequirement;
-            UpdateUpgradeText();
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
             Console.WriteLine($"{currencyRequirement} currency was removed from the player");
