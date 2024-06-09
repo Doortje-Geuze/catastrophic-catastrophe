@@ -170,7 +170,7 @@ namespace Blok3Game.GameStates
                     TotalWavesSurvived = 2,
                     KilledBy = "rat",
                     Kills = 4,
-                    HealthLeft = 2
+                    HealthLeft = 0
                 });
             }
 

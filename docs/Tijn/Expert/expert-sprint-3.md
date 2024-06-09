@@ -121,7 +121,7 @@ Inheritance houdt in dat een class functies overerft van een andere class. Ook k
     public class Enemy : Character
     {
         //variable declaration happens here
-        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : 
+        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) :
                      base(hitPoints, moveSpeed, position, assetName)
         {
             EnemyMoveSpeed = moveSpeed;
@@ -132,7 +132,7 @@ Inheritance houdt in dat een class functies overerft van een andere class. Ook k
 Hier wordt de variable HitPoints meegegeven aan elke class die ook een Character is. Zoals hierboven te zien gebruikt de player class direct de variable hitPoints om via de constructor HitPoints te declareren. Bij de enemy class hebben wij nog geen health systeem ingebouwd, dus die hoeft deze variable niet te inheriten.
 
 ### Polymorphism
-    
+
 Polymorphism de laatste van de 4 pillaren van OOP. Het is de techniek, waarbij een overgeerfde class, een functie kan aanpassen en op zijn eigen manier kan gebruiken. Meestal wordt dit gedaan aan de hand van abstracte classes of interfaces.
 
 === "Interface ICollidable"
@@ -175,10 +175,37 @@ Polymorphism de laatste van de 4 pillaren van OOP. Het is de techniek, waarbij e
     }
     ```
 
-Met het gebruik van deze interface kunnen spritegameobjects die collision nodig hebben, alleen bestaan als ze ook echt een functie hebben voor de collision. Ook kunnen verschillende classes deze functie op hun eigen manier interpreteren
+Met het gebruik van deze interface kunnen spritegameobjects die collision nodig hebben, alleen bestaan als ze ook echt een functie hebben voor de collision. Ook kunnen verschillende classes deze functie op hun eigen manier interpreteren.
 
 ## Klassendiagram van mijn toevoeging
+
 Hieronder is een gecombineerde klassendiagram te zien van mijn toevoeging aan het project. Hierin is gekeken naar classes waar ik een substantieel deel aan heb bijgedragen, met name de upgrade state en de player.
 ![Klassendiagram van game state gedeelte](./Images/ClassDiagramTijn1.png)
 
 ![Klassendiagram van player gedeelte](./Images/ClassDiagramTijn2.png)
+
+## UML
+
+## EER en database
+
+De database connectie die wij gebruiken in onze game is enkel afgestemt op het verkrijgen van analytics over onze game. Dit hebben wij gedaan, aangezien ons spel singleplayer gespeelt wordt. Voor analytics wordt met name gekeken op doodsoorzaak, tijd overleeft, verste level gehaald en upgrades die gehaald zijn. Door deze data kunnen we eventueel bepaalde enemies sterker/zwakker maken, en hetzelfde geldt voor upgrades die buffs/nerfs nodig hebben, afhankelijk van buy-rate.
+
+![EER van de game](./Images/EERSprint3.png)
+
+Voor het versturen van data naar de database gebruiken, gebruiken wij een query die verstuurd wordt, zodra de speler al zijn/haar levens verliest. Deze query ziet er als volgt uit (voor de query gebruiken we momenteel nog dummy-data om op te sturen).
+
+```C#
+if (player.HitPoints <= 0)
+{
+    Retry();
+    GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+    SocketClient.Instance.SendDataPacket(new MatchData{
+        TotalWavesSurvived = 2,
+        KilledBy = "rat",
+        Kills = 4,
+        HealthLeft = 0
+    });
+}
+```
+
+Hierdoor wordt er elke keer dat een speler al zijn/haar levens verliest, een record naar de database verstuurd, waarin de TotalWavesSurvived, KilledBy en Kills worden meegegeven.

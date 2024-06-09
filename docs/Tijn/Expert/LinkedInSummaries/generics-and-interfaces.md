@@ -1,4 +1,4 @@
-# # C# Generics and interfaces summary
+# C# Generics and interfaces summary
 
 ## C# Interfaces and generics
 
