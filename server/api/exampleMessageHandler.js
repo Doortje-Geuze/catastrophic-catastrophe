@@ -7,10 +7,10 @@ class ExampleMessageHandler extends MessageHandler
     }
 
     handleIncomingMessages(socket) {
-        this.#handleIncomingPlayerChatMessages(socket)
+        this.#sendMatchData(socket)
     }
 
-    #handleIncomingPlayerChatMessages(socket) {
+    #sendMatchData(socket) {
         socket.on("Example", async(data) => {
             this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [8, "rat", 4, 4])
             console.log(data);

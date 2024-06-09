@@ -11,6 +11,8 @@ Op basis van wat ik tot nu toe heb toegevoegd aan het project heb ik een klassen
 
 ![klassendiagram](../images/klassendiagram-sed.png)
 
+![sequencediagram](../images/sequencediagramserver-database.png)
+
 ### OOP
 
 #### Encapsulation
@@ -202,7 +204,7 @@ public class Enemy : Character
 ![EER](../images/EER-blok4-sprint3.png)
 Sinds onze game een singleplayer game is hebben wij voor een simpele analytics database gekozen. Als de player dood gaat wordt er naar de server  data van de match en wat de inventory was van de speler verstuurd. Zo kunnen wij terug zien in de analytics of een enemy, upgrade of wave veel te overpowered of moeilijk is.
 
-## Principles
+### Principles
 
 ### Single responsibility principle
 In onze game hebben wij 2 verschillende soorten bullets: PlayerBullet en EnemyBullet. Sinds in alle 2 de bullet classes op dezelfde manier bepaald moet worden wat de angle en de positie is vanaf waar hij geschoten wordt inheriten ze allebei van de abstract class Bullet. De player en enemy bullets kunnen alle 2 de snelheid en de hoeveelheid bullets veranderen aan de hand van upgrades of waves maar de basis bullet blijft altijd hetzelfde en zal niet verandert hoeven te worden.
@@ -334,3 +336,6 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
         }
     }
 ```
+
+## K3
+![sequence diagram](../images/sequencediagramserver-database.png)
