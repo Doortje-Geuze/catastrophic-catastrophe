@@ -26,22 +26,20 @@ namespace Blok3Game.GameStates
         public Crosshair crosshair;
         public CatGun catGun;
         public Box box;
-        public YellowBox yellowBox;
-        public PurpleBox purpleBox;
-        public ShootingEnemy shootingEnemy;
-        public FastEnemy fastEnemy;
+        private YellowBox yellowBox;
+        private PurpleBox purpleBox;
+        private ShootingEnemy shootingEnemy;
+        private FastEnemy fastEnemy;
         public DashIndicator dashIndicator;
         public WaveIndicator waveIndicator;
         public TextGameObject playerHealth;
-        public int WaveCounter = 0;
-        public int ChosenEnemy = 0;
+        private int WaveCounter = 0;
         public int FramesPerSecond = 60;
-        public int WaveIndicatorShowTime = -20;
+        private int WaveIndicatorShowTime = -20;
         private bool NewWave = true;
         private SpriteGameObject background;
         public TextGameObject playerCurrency;
         public TextGameObject chooseUpgrade;
-        public int EnemyShoot = 0;
         public int PlayerShootCooldown = 0;
         public int PlayerAttackTimes = 0;
         private bool pickedUpPurple = false;
@@ -474,7 +472,7 @@ namespace Blok3Game.GameStates
             Add(background);
         }
 
-        public void Retry()
+        private void Retry()
         {
             //Reset Entities
             ResetEnemies();
