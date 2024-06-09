@@ -108,8 +108,8 @@ namespace Blok3Game.GameStates
                     }
                     break;
                 case 1: //Wave 2
-                    if (EnemyList.Count == 0)
-                    {
+                    //if (EnemyList.Count == 0)
+                    //{
                         if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
                         {
                             //Lower Cooldown Upgrade
@@ -132,7 +132,9 @@ namespace Blok3Game.GameStates
                         }
                         else if (pickedUpPurple || pickedUpYellow)
                         {
-                            Door = new OpenDoor(new Vector2(GameEnvironment.Screen.X / 2, 0));
+                            Door = new OpenDoor(new Vector2((GameEnvironment.Screen.X / 2) - 220, 300));
+                            Add(Door);
+                            Console.WriteLine(Door);
 
                             if(EnteredDoor)
                             {
@@ -145,7 +147,7 @@ namespace Blok3Game.GameStates
                         }
 
                         boxCollision();
-                    }
+                    //}
                     break;
                 case 2: //Wave 3
                     if (EnemyList.Count == 0)

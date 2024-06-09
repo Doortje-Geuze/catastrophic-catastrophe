@@ -11,7 +11,7 @@ namespace Blok3Game.SpriteGameObjects
             Position = position;
         }
     }
-    public class OpenDoor : Box
+    public class OpenDoor : Door
     {
         public OpenDoor(Vector2 position) : base(position, "Images/UI/pixel-door-open", 0, " ", 0)
         {
