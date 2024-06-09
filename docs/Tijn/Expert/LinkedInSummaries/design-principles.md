@@ -1,4 +1,4 @@
-# # C# Design principles summary
+# C# Design principles summary
 
 ## C# Design principles
 
