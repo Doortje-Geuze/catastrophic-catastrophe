@@ -50,7 +50,7 @@ Subtypes moeten altijd vervangbaar kunnen zijn voor hun base type.
 Scheid code in de interface waar nodig zodat het samenhangend blijft en makkelijker te onderhouden.
 
 #### Dependency Inversion Principle
-Hight tier modules zouden niet moet afhangen van low tier moduels. Dit kan gedaan worden aan de hand van een abstrabte class. De abstractie volgt ervoor dat code dat niet gezien hoeft te woorden door andere delen in de code dat ook zo blijft.
+Hight tier modules zouden niet moet afhangen van low tier moduels. Dit kan gedaan worden aan de hand van een abstrabte class. De abstractie volgt ervoor dat code dat niet gezien hoeft te woorden door andere delen in de code.
 
 ## Relevantie tot je project en praktische toepassing
 
