@@ -255,10 +255,11 @@ Voor deze expert review heb ik een Sequence diagram zodat ik één structuurdiag
 ## Database
 Voor de database heb ik een EER gemaakt in mySQL, een connection opgezet met de HBO-ICT cloud, de database gerealiseerd door middel van forward engineeren en met SQL statements data toegevoegd aan de database.
 
-![EER](/docs/images/EERSprint2.png)  
-![Connection](/docs/images/DatabaseConnection.png) 
+![EER](../sprint%203/EER-blok4-sprint3.png)  
+![Connection](../sprint%203/conectie-blok4.png) 
 
 ### Analytics systeem
+
 
 ## Principles
 
@@ -332,6 +333,7 @@ Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershi
 ```
 
 ### Dependency inversion principle
+Voor de dependency inversion principle...
 
 ```Csharp
 
