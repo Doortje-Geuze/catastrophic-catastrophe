@@ -10,12 +10,12 @@ namespace Blok3Game.GameStates
 {
     public class UpgradeState : MenuItem
     {
-        TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
-        TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
-        TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
-        TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
-        TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
-        TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
+        private TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
+        private TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
+        private TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
+        private TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
+        private TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
+        private TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
         private int BulletSpeedUpgradeCost = 1;
         private int PlayerSpeedUpgradeCost = 1;
         private int PlayerHealthUpgradeCost = 1;
@@ -37,6 +37,7 @@ namespace Blok3Game.GameStates
         {
             base.Update(gameTime);
             CurrencyCountUpdate();
+            UpdateUpgradeText();
         }
 
         private void CreateTexts()
@@ -80,7 +81,6 @@ namespace Blok3Game.GameStates
             GameState.Instance.PlayerBulletSpeed += 3;
             GameState.Instance.player.currencyCounter -= BulletSpeedUpgradeCost;
             BulletSpeedUpgradeCost *= 2;
-            UpdateUpgradeText();
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
         }
@@ -90,7 +90,6 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.BaseMoveSpeed >= 9) return;
             UpgradeButtonClicked(1, "MoveSpeed", PlayerSpeedUpgradeCost);
             PlayerSpeedUpgradeCost *= 2;
-            UpdateUpgradeText();
         }
 
         private void OnButtonPlayerHealthClicked(UIElement element)
@@ -98,7 +97,6 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.HitPoints >= 5) return;
             UpgradeButtonClicked(1, "HitPoints", PlayerHealthUpgradeCost);
             PlayerHealthUpgradeCost *= 2;
-            UpdateUpgradeText();
         }
 
         private void OnButtonInvulnerabilityCooldownClicked(UIElement element)
@@ -106,7 +104,6 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.BaseInvulnerabilityCooldown >= 180) return;
             UpgradeButtonClicked(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
             InvulnerabilityCooldownUpgradeCost *= 2;
-            UpdateUpgradeText();
         }
 
         private void OnButtonDashCooldownClicked(UIElement element)
@@ -114,12 +111,12 @@ namespace Blok3Game.GameStates
             if (GameState.Instance.player.BaseDashCooldown <= 20) return;
             UpgradeButtonClicked(10, "DashCooldown", DashCooldownUpgradeCost);
             DashCooldownUpgradeCost *= 2;
-            UpdateUpgradeText();
         }
 
         //types that can be given as parameters: "HitPoints, "MoveSpeed", "InvulnerabilityCooldown" & "DashCooldown".
         private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
         {
+            Console.WriteLine($"the player has {GameState.Instance.player.currencyCounter} left");
             if (GameState.Instance.player.currencyCounter < currencyRequirement) return;
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             GameState.Instance.player.UpdateValue(value, type);

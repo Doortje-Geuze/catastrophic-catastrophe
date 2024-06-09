@@ -28,6 +28,22 @@ public class Player : Character, ICollidable
         HitPoints = hitPoints;
     }
 
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+
+        if (IsDashing)
+        {
+            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510)
+            {
+                ResetDashValue();
+                return;
+            }
+            PlayerDash();
+        }
+        CheckPlayerInvulnerabilityCooldown();
+    }
+
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
@@ -38,17 +54,7 @@ public class Player : Character, ICollidable
         {
             IsDashing = true;
         }
-        if (IsDashing)
-        {
-            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510)
-            {
-                ResetDashValue();
-                return;
-            }
-            PlayerDash();
-        }
         CheckForMovementInputs(inputHelper);
-        CheckPlayerInvulnerabilityCooldown();
     }
 
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
