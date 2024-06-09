@@ -113,6 +113,7 @@ namespace Blok3Game.GameStates
             DashCooldownUpgradeCost *= 2;
         }
 
+        //types that can be given as parameters: "HitPoints, "MoveSpeed", "InvulnerabilityCooldown" & "DashCooldown".
         private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
         {
             if (GameState.Instance.player.currencyCounter < currencyRequirement) return;
