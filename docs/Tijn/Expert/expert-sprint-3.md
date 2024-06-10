@@ -209,3 +209,9 @@ if (player.HitPoints <= 0)
 ```
 
 Hierdoor wordt er elke keer dat een speler al zijn/haar levens verliest, een record naar de database verstuurd, waarin de TotalWavesSurvived, KilledBy en Kills worden meegegeven.
+
+
+## Bronnen
+
+[UML Class diagram explanation](https://www.youtube.com/watch?v=6XrL5jXmTwM)
+[UML Use-case diagram explanation](https://www.youtube.com/watch?v=4emxjxonNRI)
