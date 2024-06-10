@@ -1,6 +1,6 @@
 namespace Blok3Game.Engine.JSON
 {
-    public class MatchData : DataPacket
+    public class InventoryData : DataPacket
     {
         public int TotalWavesSurvived { get; set; }
 
@@ -8,9 +8,9 @@ namespace Blok3Game.Engine.JSON
         public int Kills { get; set; }
         public int HealthLeft { get; set; }
 
-        public MatchData() : base()
+        public InventoryData() : base()
         {
-            EventName = "Match";
+            EventName = "Inventory";
         }
     }
 }

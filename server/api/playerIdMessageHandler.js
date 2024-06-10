@@ -1,6 +1,6 @@
 const MessageHandler = require("./messageHandler");
 
-class ExampleMessageHandler extends MessageHandler
+class playerIdMessageHandler extends MessageHandler
 {
     constructor(io, rooms, socketConnectionListener) {
         super(io, rooms, socketConnectionListener);
@@ -12,13 +12,6 @@ class ExampleMessageHandler extends MessageHandler
 
     #sendMatchData(socket) {
         socket.on("Match", (data) => {
-            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
-            console.log(data);
-        });
-    }
-
-    #sendMatchData(socket) {
-        socket.on("Inventory", (data) => {
             this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
             console.log(data);
         });

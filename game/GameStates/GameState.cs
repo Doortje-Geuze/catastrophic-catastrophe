@@ -97,6 +97,13 @@ namespace Blok3Game.GameStates
                 case 0: //Wave 1
                     if (enemyList.Count == 0)
                     {
+                        SocketClient.Instance.SendDataPacket(new MatchData
+                        {
+                            TotalWavesSurvived = 2,
+                            KilledBy = "Working",
+                            Kills = 4,
+                            HealthLeft = 0
+                        });
                         WaveCounter++;
                         NewWave = true;
                         WaveIndicatorShowTime = 0;
@@ -166,7 +173,8 @@ namespace Blok3Game.GameStates
             {
                 Retry();
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                SocketClient.Instance.SendDataPacket(new MatchData{
+                SocketClient.Instance.SendDataPacket(new MatchData
+                {
                     TotalWavesSurvived = 2,
                     KilledBy = "Working",
                     Kills = 4,
@@ -199,18 +207,19 @@ namespace Blok3Game.GameStates
                         if (enemy.HitPoints <= 0)
                         {
                             Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
-                        {
-                            Scale = 2
-                        };
-                        currencyList.Add(currency);
-                        Add(currency);
-                        toRemoveList.Add(enemy);
-                        toRemoveList.Add(playerBullet);
-                        } else 
+                            {
+                                Scale = 2
+                            };
+                            currencyList.Add(currency);
+                            Add(currency);
+                            toRemoveList.Add(enemy);
+                            toRemoveList.Add(playerBullet);
+                        }
+                        else
                         {
                             enemy.HitPoints -= playerBullet.damage;
                         }
-                        
+
                     }
 
                 }
