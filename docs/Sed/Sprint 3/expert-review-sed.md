@@ -6,11 +6,14 @@
 - [Data structures](../LinkedIn-Cursus/data-structures.md)
 
 ## K1
-### Klassendiagram
+### UML
+#### Klassendiagram
 Op basis van wat ik tot nu toe heb toegevoegd aan het project heb ik een klassendiagram [(Lucid Software, 2023)](https://youtu.be/6XrL5jXmTwM?si=odueNk4dJfThpLdw) gemaakt. Ik heb hierin (Rotating)SpriteGameObject, GameObject en GameObjectlist leeg gelaten omdat ik hieraan niks verandert heb en het niet door mij gemaakt is.
 
 ![klassendiagram](../images/klassendiagram-sed.png)
 
+#### Sequence Diagram
+Sequence Diagram van de client-database communicatie
 ![sequencediagram](../images/sequencediagramserver-database.png)
 
 ### OOP
