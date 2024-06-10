@@ -20,6 +20,7 @@ namespace Blok3Game.GameStates
         private List<Enemy> EnemyList;
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
+        public static GameState Instance { get; private set;}
         private List<Box> boxlist;
         public Player player;
         public Crosshair crosshair;
@@ -47,10 +48,16 @@ namespace Blok3Game.GameStates
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
         public OpenDoor Door; 
-        private bool EnteredDoor = false;
+        public bool EnteredDoor = false;
 
         public GameState() : base()
         {
+            if (Instance != null)
+            {
+                throw new Exception("Only one instance of GameState is allowed");
+            }
+
+            Instance = this;
             CreateBackground();
 
             //List creator
@@ -433,6 +440,14 @@ namespace Blok3Game.GameStates
                     toRemoveList.Add(box);
                     toRemoveList.Add(chooseUpgrade);
                 }
+            }
+        }
+
+        private void DoorCollision()
+        {
+            if (SpriteGameObject.CollidesWith(Door))
+            {
+
             }
         }
 

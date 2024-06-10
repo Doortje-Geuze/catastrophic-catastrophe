@@ -144,6 +144,10 @@ public class Player : Character, ICollidable
                 Gamestate.playerCurrency.Text = $"you collected {currencyCounter} currency";
                 Gamestate.toRemoveList.Add(spriteGameObject);
                 break;
+            case Door:
+                GameState.Instance.EnteredDoor = true;
+                break;
+
         }
     }
 
