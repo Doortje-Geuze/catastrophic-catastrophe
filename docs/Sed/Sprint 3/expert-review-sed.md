@@ -3,7 +3,7 @@
 ## Linked-in Courses
 - [Design principles](../LinkedIn-Cursus/design-principles.md)
 - [Interface and Generics](../LinkedIn-Cursus/interfaces-and-generics.md)
-- [Data structures]()
+- [Data structures](../LinkedIn-Cursus/data-structures.md)
 
 ## K1
 ### Klassendiagram
