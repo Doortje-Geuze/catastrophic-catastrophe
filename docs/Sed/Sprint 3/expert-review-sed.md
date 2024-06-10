@@ -19,7 +19,7 @@ Op basis van wat ik tot nu toe heb toegevoegd aan het project heb ik een klassen
 Encapsulation is een van de kernconcepten bij objectgeoriënteerd programmeren en beschrijft het bundelen van gegevens en methoden. Encapsulation wordt bijvoorbeeld gebruikt om de interne representatie of toestand van een object voor de buitenkant te verbergen [(Stackify, 2024)](https://stackify.com/oop-concept-for-beginners-what-is-encapsulation/).
 
 === "Public"
-    Characer.cs
+    Character.cs
     ```c#
     public abstract class Character : SpriteGameObject
     {
