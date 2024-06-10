@@ -135,9 +135,9 @@ public class Player : Character, ICollidable
         MoveSpeed = BaseMoveSpeed;
     }
     //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
-    public void HandleCollision(SpriteGameObject spriteGameObject)
+    public bool HandleCollision(SpriteGameObject spriteGameObject)
     {
-        if (CollidesWith(spriteGameObject) == false) return;
+        if (CollidesWith(spriteGameObject) == false) return false;
         switch (spriteGameObject)
         {
             case Enemy:
@@ -145,19 +145,20 @@ public class Player : Character, ICollidable
                 {
                     UpdatePlayerHealth();
                 }
-                break;
+                return true;
             case EnemyBullet:
                 if (InvulnerabilityCooldown <= 0)
                 {
                     UpdatePlayerHealth();
                 }
-                break;
+                return true;
             case Currency:
                 currencyCounter++;
                 GameState.Instance.playerCurrency.Text = $"you collected {currencyCounter} currency";
                 GameState.Instance.toRemoveList.Add(spriteGameObject);
-                break;
+                return true;
         }
+        return false;
     }
 
     //updates the playerHealth when the player is hit by an enemy or enemyBullet
