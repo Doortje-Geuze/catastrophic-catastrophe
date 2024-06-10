@@ -13,9 +13,10 @@ Bewijs voor linkedin cursus:
 Binnen OOP is abstraction het verbergen van complexe en onnodige informatie voor de gebruiker. Ik heb dit gedaan door middel van private methods en het keyword `abstract`
 
 === "Gamestate"
-```Csharp
-// Private methode SpawnFastEnemies
-private void SpawnFastEnemies()
+    ```Csharp
+
+    // Private methode SpawnFastEnemies
+    private void SpawnFastEnemies()
         {
             Random random = new Random();
 
@@ -55,11 +56,12 @@ private void SpawnFastEnemies()
                 Add(fastEnemy);
             }
         }
-```
+    ```
+
 === "Characters"
-```Csharp
-public abstract class Character : SpriteGameObject
-{
+    ```Csharp
+ public abstract class Character : SpriteGameObject
+ {
     //all variables that a character needs
     public int HitPoints;
     protected int MoveSpeed;
@@ -70,16 +72,16 @@ public abstract class Character : SpriteGameObject
         MoveSpeed = moveSpeed;
         Position = position;
     }
-}
-```
+ }
+    ```
 
 ### Encapsulation
 Binnen ons project zijn veel classes public, dit is omdat de classes op meerdere plekken gebruikt moeten kunnen worden. Enkele methodes zijn private gamaakt.
 
 === "Enemy"
-```Csharp
-//Enemy class met public methodes en variabelen omdat deze weer op anderen pleken gebruikt moeten worden
-public class Enemy : Character
+    ```Csharp
+ //Enemy class met public methodes en variabelen omdat deze weer op anderen pleken gebruikt moeten worden
+ public class Enemy : Character
     {
         public int EnemyMoveSpeed;
         public Vector2 steering;
@@ -104,9 +106,10 @@ public class Enemy : Character
             position += velocity;
         }
     }
-```
+    ```
+
 === "SpawnFastEnemy"
-```Csharp
+    ```Csharp
 //private method SpawnfastEnemies() Deze method dient niet van buitenaf aangepast te kunnen worden.
 private void SpawnFastEnemies()
         {
@@ -148,7 +151,7 @@ private void SpawnFastEnemies()
                 Add(fastEnemy);
             }
         }
-```
+    ```
 
 ### inheritance
 Alle classes die ik heb gemaakt in dit blok inheriten van een andere class. Ze nemen de methods en variabelen van andere classes over. 
@@ -175,7 +178,7 @@ public class PlayerBullet : Bullet
 Binnen het project worden verschillende classes herbruikt door middel van inheritance en override statements. Zo wordt de Update functie op meerdere plekken ge-override.
 
 === "Bullet"
-```Csharp
+    ```Csharp
  public class Bullet : RotatingSpriteGameObject
     {
         protected int BulletMoveSpeed = 0;
@@ -203,9 +206,10 @@ Binnen het project worden verschillende classes herbruikt door middel van inheri
             }
         }
     }
-```
+    ```
+
 === "GatGun"
-```Csharp
+    ```Csharp
 //Override voor Update()
 public override void Update(GameTime gameTime)
     {
@@ -228,7 +232,7 @@ public override void Update(GameTime gameTime)
             }
         }
     }
-```
+    ```
 
 ## UML diagrammen
 
@@ -260,14 +264,43 @@ Voor de database heb ik een EER gemaakt in mySQL, een connection opgezet met de 
 
 ### Analytics systeem
 
+Er wordt al een datapacket opgestuurd naar de database, voor nu is dat nog dummy data
+
+```Csharp
+if (player.HitPoints <= 0)
+{
+    Retry();
+    GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+    SocketClient.Instance.SendDataPacket(new MatchData{
+        TotalWavesSurvived = 2,
+        KilledBy = "rat",
+        Kills = 4,
+        HealthLeft = 0
+    });
+}
+```
+
+```Csharp
+ #sendMatchData(socket) {
+        socket.on("Example", (data) => {
+            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
+            console.log(data);
+        });
+    }
+
+```
+![](../sprint%203/ConcollDatabase.PNG)
+
+![](../sprint%203/database.PNG)
 
 ## Principles
 
 ### Single responsibility principle
-Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershillende soorten enemies, namelijk: ShootingEnemy, StandardEnemy en FastEnemy. Hierbij wordt gelet op het juist overerven van de enemy classes. De enemies worden uitgebreid met schietende enemies en enemies met hogere snelheiden. Hierbij dienen de originele enemies niet aangepast te worden.
+De single responsibility hebben we toegepast bij de Bullets. Wij hebben nu vershillende soorten enemies, namelijk: ShootingEnemy, StandardEnemy en FastEnemy. Hierbij wordt gelet op het juist overerven van de enemy classes. De enemies worden uitgebreid met schietende enemies en enemies met hogere snelheiden. Hierbij dienen de originele enemies niet aangepast te worden.
 
 === "Enemy"
-```Csharp
+
+    ```Csharp
      public class Enemy : Character
      {
         public int EnemyMoveSpeed;
@@ -294,10 +327,11 @@ Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershi
         }
      }
 
-```
+    ```
 
- === "ShootingEnemy"
-```Csharp
+=== "ShootingEnemy"
+
+    ```Csharp
     public class ShootingEnemy : Enemy
     {
         public int EnemyHitPoints;
@@ -307,9 +341,10 @@ Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershi
         }
     }
 
-```
+    ```
 === "StandardEnemy"
-```Csharp
+
+    ```Csharp
     public class StandardEnemy : Enemy
     {
         public int EnemyHitPoints;
@@ -318,9 +353,10 @@ Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershi
             EnemyHitPoints = hitPoints;
         }
     }
-```
+    ```
 === "FastEnemy"
-```Csharp
+
+    ```Csharp
     public class FastEnemy : Enemy
     {
         
@@ -330,36 +366,85 @@ Desingle responsibility hebben we toegepast bij de enemies. Wij hebben nu vershi
             EnemyMoveSpeed = moveSpeed;
         }
     }
-```
+    ```
 
-### Dependency inversion principle
-Voor de dependency inversion principle...
 
-```Csharp
 
-// Abstract class box
-public abstract class Box : SpriteGameObject
+### Dependency inversion principle (decoupeling)
+
+Voor onze game willen we dat de enemies en de player willen schieten. We hebben dus `playerbullet` en `enemybullet`.  Sinds in alle 2 de bullet classes op dezelfde manier bepaald moet worden wat de angle en de positie is vanaf waar hij geschoten wordt inheriten ze allebei van de abstract class Bullet. De player en enemy bullets kunnen alle 2 de snelheid en de hoeveelheid bullets veranderen
+
+
+
+=== "Bullet.cs"
+    ```c#
+public abstract class Bullet : RotatingSpriteGameObject
     {
-        public Box(Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName)
+        protected int BulletMoveSpeed = 0;
+
+        public Bullet(Vector2 position, double angle, int bulletMoveSpeed, string assetName) : base(assetName)
         {
             Position = position;
+            Angle = (float)angle;
+            BulletMoveSpeed = bulletMoveSpeed;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (Position.X > 0 - Width && Position.X < GameEnvironment.Screen.X + Width && Position.Y > 0 - Width && 
+                Position.Y < GameEnvironment.Screen.Y + Width)
+            {
+                position += AngularDirection * BulletMoveSpeed;
+            }
+            else
+            {
+                velocity = new Vector2(0, 0);
+            }
         }
     }
+    ```
 
-    // yelow box gives Lower Cooldown Upgrade
-    public class YellowBox : Box
+=== "PlayerBullet.cs"
+    ```c#
+public class PlayerBullet : Bullet
+{
+    public int playerBulletCooldown = 2;
+    public int damage = 1;
+
+    public PlayerBullet(Vector2 position, double angle, int bulletMoveSpeed, string assetName = "Images/Characters/whiteCircle45") : base(position, angle, bulletMoveSpeed, assetName)
     {
-        public YellowBox(Vector2 position) : base(position, "Images/Tiles/SquareYellow", 0, " ", 0)
+    }
+
+    public bool CheckForEnemyCollision(SpriteGameObject enemy)
+    {
+        if (CollidesWith(enemy))
+        {
+            return true;
+        } return false;
+    }
+}
+    ```
+
+=== "EnemyBullet.cs"
+    ```c#
+    public class EnemyBullet : Bullet
+    {
+        public EnemyBullet(Vector2 position, double angle, int bulletMoveSpeed, string assetName = "Images/Bullets/enemyBullet") : base(position, angle, bulletMoveSpeed, assetName)
         {
         }
-    }
 
-    // purple box gives Shotgun upgrade 
-    public class PurpleBox : Box
-    {
-        public PurpleBox(Vector2 position) : base(position, "Images/Tiles/PurpleSquare", 0, " ", 0)
+        public bool CheckForEnemyCollision(SpriteGameObject player)
         {
-
+            if (CollidesWith(player))
+            {
+                return true;
+            }
+            return false;
         }
     }
-```
+    ```
+
+ 
+
