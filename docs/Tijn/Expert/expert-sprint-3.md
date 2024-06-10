@@ -67,6 +67,8 @@ Abstraction houdt in dat herhaalde code geinitialiseerd wordt in een functie. Hi
 
 Hierboven is een functie klaargezet in de player om bepaalde waarden te veranderen die de player heeft. Aangezien deze private zijn, kunnen deze niet direct gerefereerd worden in de UpgradeState. Via deze functie kunnen deze waarden alleen aangepast worden via het systeem van de functie (met parameters van het type stat, etc.). Hierdoor wordt verkeerd gebruik van de functie vermeden. Ook kunnen beschermde variablen niet aangepast worden zonder correct gebruik van de functie.
 
+Deze method toont ook decoupling aan; de variables van player zijn niet direct afhankelijk van de upgradeState, de upgradeState veranderd via de functie de variablen, wat directe koppeling vermijdt.
+
 ### Encapsulation
 
 Encapsulation houdt in dat variablen en functies, die specifiek aan een object zijn, gebundeld worden in een class. Hierdoor wordt initialisatie van een object, die meerdere keren wordt gecreeerd, een stuk simpeler.
@@ -89,6 +91,8 @@ Encapsulation houdt in dat variablen en functies, die specifiek aan een object z
     ```
 
 De animatie van elke currency is weggestopt in de logica van de currency zelf. Hierdoor is niks van invloed op de animatie van de currency. Ook is het voor elke currency apart geregeld, waardoor de animaties allemaal los van elkaar verlopen.
+
+Deze method toont de single-responsibility principle ook aan; Alleen de currency is verantwoordelijk voor de animatie van de currency, en niks anders.
 
 ### Inheritance
 
