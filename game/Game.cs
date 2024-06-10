@@ -11,7 +11,7 @@ namespace BaseProject
         {
             base.LoadContent();
 
-            screen = new Point(800, 600);
+            screen = new Point(1280, 800);
             ApplyResolutionSettings();
 
             InitializeSocketClient();

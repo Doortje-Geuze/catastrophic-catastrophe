@@ -34,7 +34,7 @@ public class Player : Character, ICollidable
 
         if (IsDashing)
         {
-            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510)
+            if (Position.X <= 0 || Position.X >= GameEnvironment.Screen.X - Width || Position.Y <= 0 || Position.Y >= GameEnvironment.Screen.Y - Height)
             {
                 ResetDashValue();
                 return;
@@ -153,7 +153,6 @@ public class Player : Character, ICollidable
                 }
                 return true;
             case Currency:
-                currencyCounter++;
                 GameState.Instance.playerCurrency.Text = $"you collected {currencyCounter} currency";
                 GameState.Instance.toRemoveList.Add(spriteGameObject);
                 return true;

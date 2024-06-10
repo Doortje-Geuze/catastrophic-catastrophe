@@ -160,8 +160,8 @@ namespace Blok3Game.GameStates
                 case 3: //Player Wins
                     if (EnemyList.Count == 0)
                     {
-                        ResetBullets();
-                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                        Retry();
+                        GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
                     }
                     break;
             }
@@ -252,6 +252,7 @@ namespace Blok3Game.GameStates
                 if (gameObject is Currency currency)
                 {
                     currencyList.Remove(currency);
+                    player.currencyCounter += 1;
                 }
                 if (gameObject is Box box)
                 {

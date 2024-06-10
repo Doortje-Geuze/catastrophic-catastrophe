@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.UI;
+using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
@@ -76,8 +77,7 @@ namespace Blok3Game.GameStates
         private void OnButtonBulletSpeedClicked(UIElement element)
         {
             if (GameState.Instance.PlayerBulletSpeed >= 30) return;
-            if (GameState.Instance.player.currencyCounter < BulletSpeedUpgradeCost) return;
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            if (!IsUpgradeAffordable(BulletSpeedUpgradeCost)) return;
             GameState.Instance.PlayerBulletSpeed += 3;
             GameState.Instance.player.currencyCounter -= BulletSpeedUpgradeCost;
             BulletSpeedUpgradeCost *= 2;
@@ -88,39 +88,47 @@ namespace Blok3Game.GameStates
         private void OnButtonPlayerSpeedClicked(UIElement element)
         {
             if (GameState.Instance.player.BaseMoveSpeed >= 9) return;
-            UpgradeButtonClicked(1, "MoveSpeed", PlayerSpeedUpgradeCost);
+            if (!IsUpgradeAffordable(PlayerSpeedUpgradeCost)) return;
+            InitiateUpgrade(1, "MoveSpeed", PlayerSpeedUpgradeCost);
             PlayerSpeedUpgradeCost *= 2;
         }
 
         private void OnButtonPlayerHealthClicked(UIElement element)
         {
             if (GameState.Instance.player.HitPoints >= 5) return;
-            UpgradeButtonClicked(1, "HitPoints", PlayerHealthUpgradeCost);
+            if (!IsUpgradeAffordable(PlayerHealthUpgradeCost)) return;
+            InitiateUpgrade(1, "HitPoints", PlayerHealthUpgradeCost);
             PlayerHealthUpgradeCost *= 2;
         }
 
         private void OnButtonInvulnerabilityCooldownClicked(UIElement element)
         {
             if (GameState.Instance.player.BaseInvulnerabilityCooldown >= 180) return;
-            UpgradeButtonClicked(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
+            if (!IsUpgradeAffordable(InvulnerabilityCooldownUpgradeCost)) return;
+            InitiateUpgrade(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
             InvulnerabilityCooldownUpgradeCost *= 2;
         }
 
         private void OnButtonDashCooldownClicked(UIElement element)
         {
             if (GameState.Instance.player.BaseDashCooldown <= 20) return;
-            UpgradeButtonClicked(10, "DashCooldown", DashCooldownUpgradeCost);
+            if (!IsUpgradeAffordable(DashCooldownUpgradeCost)) return;
+            InitiateUpgrade(10, "DashCooldown", DashCooldownUpgradeCost);
             DashCooldownUpgradeCost *= 2;
         }
 
-        //types that can be given as parameters: "HitPoints, "MoveSpeed", "InvulnerabilityCooldown" & "DashCooldown".
-        private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
+        private bool IsUpgradeAffordable(int currencyRequirement)
         {
-            Console.WriteLine($"the player has {GameState.Instance.player.currencyCounter} left");
-            if (GameState.Instance.player.currencyCounter < currencyRequirement) return;
+            if (GameState.Instance.player.currencyCounter < currencyRequirement) return false;
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-            GameState.Instance.player.UpdateValue(value, type);
+            return true;
+        }
+
+        //types that can be given as parameters: "HitPoints, "MoveSpeed", "InvulnerabilityCooldown" & "DashCooldown".
+        private void InitiateUpgrade(int value, string type, int currencyRequirement)
+        {
             GameState.Instance.player.currencyCounter -= currencyRequirement;
+            GameState.Instance.player.UpdateValue(value, type);
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
             Console.WriteLine($"{currencyRequirement} currency was removed from the player");
