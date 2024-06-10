@@ -21,6 +21,7 @@ public class Player : Character, ICollidable
     public int currencyCounter = 0;
     public const int BaseMoveSpeed = 5;
     public const int BaseInvulnerabilityCooldown = 120;
+    public int amountOfKills = 0;
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) :
                   base(hitPoints, moveSpeed, position, "Images/Characters/playerCat@2x1", 0, " ", 0)

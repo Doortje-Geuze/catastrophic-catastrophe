@@ -168,7 +168,7 @@ namespace Blok3Game.GameStates
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 SocketClient.Instance.SendDataPacket(new MatchData{
                     TotalWavesSurvived = 2,
-                    KilledBy = "rat",
+                    KilledBy = "Working",
                     Kills = 4,
                     HealthLeft = 0
                 });

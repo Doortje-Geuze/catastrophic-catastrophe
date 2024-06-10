@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Blok3Game.GameObjects
 {
-    public class Bullet : RotatingSpriteGameObject
+    public abstract class Bullet : RotatingSpriteGameObject
     {
         protected int BulletMoveSpeed = 0;
 

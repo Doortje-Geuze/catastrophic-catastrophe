@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Blok3Game.GameObjects
 {
-    public class Enemy : Character
+    public abstract class Enemy : Character
     {
         private Vector2 steering;
         private Vector2 desired_velocity;

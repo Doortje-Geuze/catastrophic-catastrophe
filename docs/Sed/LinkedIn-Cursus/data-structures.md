@@ -6,52 +6,79 @@ Deze documentatie dient als leidraad om theoretische concepten in onder meer obj
 
 ## Samenvatting van de cursus
 
-### Interfaces
-- Classes kunnen meerdere interface implementeren
-- Interfaces kunnen geimplementeerd worden in verschillende classes
-- Interfaces bieden geen logica
-- Interfaces beschrijven gedrag, geen individuele classes
+### Overview of Data Structures
+- Verschillende data structuren worden voor verschillende scenario's gebruikt waar gegeven moeten worden bijgehouden
+- .NET Generics en Non-Generics:
+  - List
+  - LinkedList
+  - Queue
+  - Stack
+  - Dictionary
 
-#### Implementing a Interface
-- Je defined een interface door `interface` voor de naam te zetten (`interface IStoreable`)
-- Namen van interfaces beginnen met een I
-- `Class Example : IStoreable`
+- .NET specialized collectie:
+  - ListDictionary
+  - HybridDictionary
+  - OrderedDictionary
+  - StringCollection
+  - StringBuilder
 
-#### Interface and Casting
-- "is" keyword is een boolean en wordt gebruikt om te bepalen of een object een instantie is of is afgeleid van een specifieke class
-- "as" keyword wordt gebruikt om een nieuw object te creëren van een ander object als een andere class waar het object van inherit
+### Generics vs. non-generic collections
+- Ligt aan de scenario waar je het nodig voor hebt
+  - Moet je vaak de data wijzigen?
+  - Welke volgorde van de data?
+  - Heb je tijdelijk de data nodig?
+  - Zoek je content of voeg je toe?
 
-#### Implementing multiple interfaces
-- Meerdere Interface kunnen worden geimplementeerd door een komma toe tevoegen (`Class Example : IStoreable, IExampleInter`)
-- Als 2 methods dezelfde naam hebben is er een interface reference nodig voor de method (`void IInterface.SameMethod()`)
-- Wanneer je de methodes called moeten deze worden gecast als de interface (`IInterface i1 = testclass as IInterface`, `i1.SameMethod()`)
+## Basic Data Structures
+### List
+- Snel om items in op te zoeken
+- Items worden aan het einde van de lijst toevoegt
+- Groote wijzigen is moeilijk
 
-#### Using .NET-defined interfaces
-.NET heeft verschillende ingebouwde interface:
-- IComparable, IComparer: Vergelijk verschillende objecten
-- IDisposal: Veilige manier voor callers om jouw object weg te gooien
-- IEquatable: Vergelijk de gelijkheid van 2 objecten van hetzelfde type
-- INotifyPropertyChanged: Broadcast veranderingen tot property waardens om jouw object
+List operators:
+  - Contains
+  - Find
+  - FindAll
+  - Exists
 
-### Generics
-- Generics geven typeveiligheid, herbruikbaarheid en efficiëntie
-- Meestal gebruikt met dataverzameling
-- Beperk data structuren om alleen bepaalde type variabelen toe te laten
+### LinkedList
+- Items kunnen worden toegevoegt aan het begin en einde van de lijst
+- Groote wijzigen is makkelijk
 
-#### Generic List Collections
-- List is een soort array waar de toegevoegde data dezelfde type moet volgen als dat vast gestelt is.
-- List zijn dynamisch in groote en veranderen automatisch hun groote met elke toegevoegde/verwijderde stuk data 
+LinkedList operators:
+  - AddFirst
+  - AddLast
 
-#### Queue and Stack
+## Advanced Data Structures
+### Queue and Stack
 - Queue: FiFo (First in, First out)
   - .Peek, .Pop, .Contains  
 - Stack: FiLo (First in, Last out)
   - .Peel, .Enqueue/.Dequeue, .Contains, .Clear
 
-#### Dictionary
+### Dictionary
 - Geeft values een unieke key
 - Meerdere keys kunnen dezelfde value hebben maar meerdere values kunnen niet dezelde key hebben
     - Count, Add/Remove, ContainsKey, ContainsValue
+
+## Specialized Data Structures
+### OrderedDictionary
+- Houd toegevoegde data bij in de volgorde van wanneer het is toegevoegt
+  
+### ListDictionary
+- Implementeerd een dictionary als een linked list
+- Is sneller dan een linked list tot 100 values
+
+### HybridDictionary
+- Start als een ListDictionary
+- Wanneer ListDictionary niet meer sneller is verandert het naar een normale Dictionary
+  
+### StringCollection
+- Index zoals een Array
+- Wordt gebruikt om een groep van Strings te manipuleren
+
+### StringBuilder
+- Efficenter in het meerdere keren wijzigen van strings
 
 ## Relevantie tot je project en praktische toepassing
 
