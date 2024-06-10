@@ -19,8 +19,7 @@ Op basis van wat ik tot nu toe heb toegevoegd aan het project heb ik een klassen
 Encapsulation is een van de kernconcepten bij objectgeoriënteerd programmeren en beschrijft het bundelen van gegevens en methoden. Encapsulation wordt bijvoorbeeld gebruikt om de interne representatie of toestand van een object voor de buitenkant te verbergen [(Stackify, 2024)](https://stackify.com/oop-concept-for-beginners-what-is-encapsulation/).
 
 === "Public"
-
-Character.cs
+Characer.cs
 ```c#
 public abstract class Character : SpriteGameObject
 {
@@ -29,8 +28,8 @@ public abstract class Character : SpriteGameObject
 
 ```
 Een karakter heeft hitpoints die op het scherm worden laten zien en die naar beneden gaan wanneer het geraakt wordt door bijvoorbeeld een bullet of een enemy. Daarom moet code buiten de Character class erbij kunnen komen om het niet alleen te weergeven maar ook om het naar beneden te laten gaan wanneer nodig.
-=== "Protected"
 
+=== "Protected"
 Protected methods en properties mogen alleen gebruikt worden door de class zelf of door classes die inheriten van die class.
 
 Character.cs
@@ -43,8 +42,8 @@ public abstract class Character : SpriteGameObject
 ```
 
 De baseclass Character heeft een default movespeed die doorgegeven wordt aan alle classes die hiervan inheriten omdat elke karakter een movement speed nodig heeft. Dit hoeft alleen verandert te worden in de Classes die inheriten van Character zelf en niet daarbuiten.
-=== "Private"
 
+=== "Private"
 Private methods en properties mogen alleen gebruikt worden door de class zelf.
 
 Crosshair.cs
