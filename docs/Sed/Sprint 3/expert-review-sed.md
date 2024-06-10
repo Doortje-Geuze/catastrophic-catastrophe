@@ -29,7 +29,6 @@ public abstract class Character : SpriteGameObject
 
 ```
 Een karakter heeft hitpoints die op het scherm worden laten zien en die naar beneden gaan wanneer het geraakt wordt door bijvoorbeeld een bullet of een enemy. Daarom moet code buiten de Character class erbij kunnen komen om het niet alleen te weergeven maar ook om het naar beneden te laten gaan wanneer nodig.
-
 === "Protected"
 
 Protected methods en properties mogen alleen gebruikt worden door de class zelf of door classes die inheriten van die class.
@@ -44,7 +43,6 @@ public abstract class Character : SpriteGameObject
 ```
 
 De baseclass Character heeft een default movespeed die doorgegeven wordt aan alle classes die hiervan inheriten omdat elke karakter een movement speed nodig heeft. Dit hoeft alleen verandert te worden in de Classes die inheriten van Character zelf en niet daarbuiten.
-
 === "Private"
 
 Private methods en properties mogen alleen gebruikt worden door de class zelf.
@@ -96,7 +94,6 @@ public class MenuItem : GameObjectList
     }
 }
 ```
-
 === "MainMenuState.cs"
     
 ```c#
@@ -338,4 +335,4 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
 ```
 
 ## K3
-![sequence diagram](../images/sequencediagramserver-database.png)
+![sequence diagram](../images/sequencediagramserver-database.png)   
