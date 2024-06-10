@@ -199,12 +199,12 @@ polymorfisme beschrijft het concept dat je via dezelfde interface of abstracte c
 
 ### EER
 ![EER](../images/EER-blok4-sprint3.png)
-Sinds onze game een singleplayer game is hebben wij voor een simpele analytics database gekozen. Als de player dood gaat wordt er naar de server  data van de match en wat de inventory was van de speler verstuurd. Zo kunnen wij terug zien in de analytics of een enemy, upgrade of wave veel te overpowered of moeilijk is.
+Omdat onze game een singleplayer game is hebben wij voor een simpele analytics database gekozen. Als de player dood gaat wordt er naar de server  data van de match en wat de inventory was van de speler verstuurd. Zo kunnen wij terug zien in de analytics of een enemy, upgrade of wave veel te overpowered of moeilijk is.
 
 ### Principles
 
 #### Single responsibility principle
-In onze game hebben wij 2 verschillende soorten bullets: PlayerBullet en EnemyBullet. Sinds in alle 2 de bullet classes op dezelfde manier bepaald moet worden wat de angle en de positie is vanaf waar hij geschoten wordt inheriten ze allebei van de abstract class Bullet. De player en enemy bullets kunnen alle 2 de snelheid en de hoeveelheid bullets veranderen aan de hand van upgrades of waves maar de basis bullet blijft altijd hetzelfde en zal niet verandert hoeven te worden.
+In onze game hebben wij 2 verschillende soorten bullets: PlayerBullet en EnemyBullet. Omdat in alle 2 de bullet classes op dezelfde manier bepaald moet worden wat de angle en de positie is vanaf waar hij geschoten wordt inheriten ze allebei van de abstract class Bullet. De player en enemy bullets kunnen alle 2 de snelheid en de hoeveelheid bullets veranderen aan de hand van upgrades of waves maar de basis bullet blijft altijd hetzelfde en zal niet verandert hoeven te worden.
 
 === "Bullet.cs"
     ```c#
@@ -334,4 +334,63 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
     ```
 
 ## K3
-![sequence diagram](../images/sequencediagramserver-database.png)   
+![sequence diagram](../images/sequencediagramserver-database.png)
+
+### Debuggen server
+
+Tijdens het maken van de Backend liepen wij tegen een muur aan. Iederkeer als wij data opstuurde naar de server kregen wij de error terug dat er geen data opgestuurd kon worden als de connectie tot de server dicht was. Hierdoor konden wij ook geen queries sturen naar de database omdat we niks op konden sturen naar de server. Het leek alsof Visual Studio de connectie dicht gooide het moment dat wij iets opstuurde.
+
+Om dit probleem te verhelpen hebben we de connectie verandert naar een pool. Connection Pooling houd in dat een "pool" een aantal actieve connecties met de server openhoud. Wanneer een user een connectie met de server aanvraagt zoekt de pool naar een beschikbare connectie die hij heeft, en zo ja connect de twee met elkaar. Wanneer de user de connectie weer sluit gaat de connectie niet dicht maar gaat het weer terug de pool in ready voor een nieuwe user die wilt connecten [(Microsoft, 2023)](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
+
+Dit verhielp de connectie problemen met de server en liet ons queries sturen naar de database zonder problemen.
+
+```c#
+class MySqlDatabase {
+	#pool;
+
+	async initializeDatabase() {
+		await this.#createPool();
+	}
+
+	async #createPool() {
+		const serverConfig = global.serverConfig;
+		this.#pool = mySql.createPool({
+			host: serverConfig.database.host,
+			port: serverConfig.database.port,
+			user: serverConfig.database.username,
+			password: serverConfig.database.password,
+			database: serverConfig.database.database,
+			connectionLimit: serverConfig.database.connectionLimit,
+			timezone: "UTC",
+			multipleStatements: true,
+			waitForConnections: true
+		});
+		console.log('connection established');
+	}
+
+	async executePreparedQuery(query, parameters) {
+		let connection;
+		try	{
+			connection = await this.#pool.getConnection();
+			const [rows, fields] = await connection.execute(query, parameters);
+			return {
+				rows: rows,
+				fields: fields
+			};
+		} catch (err) {
+			console.log(`An error occurred while executing prepared query: ${err.code} (${err.errno}): ${err.message}`);
+		} finally {
+			if (connection) connection.release();
+		}
+	};
+}
+
+module.exports = MySqlDatabase;
+```
+
+Connection naar pool
+
+debuggen van server
+
+### queries ophalen data
+
