@@ -184,7 +184,10 @@ Hieronder is een gecombineerde klassendiagram te zien van mijn toevoeging aan he
 
 ![Klassendiagram van player gedeelte](./Images/ClassDiagramTijn2.png)
 
-## UML
+## Use-case diagram
+
+Hieronder is een use-case diagram te zien van de acties en voorwaarden die de speler en enemy bezitten.
+![Use-case diagram van Tijn](./Images/useCaseDiagramSprint3.png)
 
 ## EER en database
 
