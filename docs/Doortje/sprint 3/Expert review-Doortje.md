@@ -280,6 +280,19 @@ if (player.HitPoints <= 0)
 }
 ```
 
+```Csharp
+ #sendMatchData(socket) {
+        socket.on("Example", (data) => {
+            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
+            console.log(data);
+        });
+    }
+
+```
+![](../sprint%203/ConcollDatabase.PNG)
+
+![](../sprint%203/database.PNG)
+
 ## Principles
 
 ### Single responsibility principle
