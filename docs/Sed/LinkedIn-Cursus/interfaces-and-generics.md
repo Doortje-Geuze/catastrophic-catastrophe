@@ -80,8 +80,9 @@ foreach (var gameObject in toRemoveList)
 
 ## Resultaten quiz op DLO
 
-[Plak hier een screenshot van je quizresultaat]
+![resultatentoets](../images/toetsresultatenSedK1.PNG)
 
 ## Vragen voor expert review
 
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
+- Is er een mogelijkheid om ipv aan het einde van de gameloop al tijdens de loop gameobjecten te verwijderen?
+- Kan de ToRemoveList anders worden geschreven zodat er niet zoveel if statements staan?

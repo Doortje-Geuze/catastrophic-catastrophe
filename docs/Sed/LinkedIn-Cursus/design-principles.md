@@ -66,8 +66,7 @@ Van de SOLID is de Open-Close Principle handig om te gebruiken. Dit is vooral re
 
 ## Resultaten quiz op DLO
 
-[Plak hier een screenshot van je quizresultaat]
+![resultatentoets](../images/toetsresultatenSedK1.PNG)
 
 ## Vragen voor expert review
 
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
