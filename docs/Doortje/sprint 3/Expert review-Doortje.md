@@ -14,8 +14,9 @@ Binnen OOP is abstraction het verbergen van complexe en onnodige informatie voor
 
 === "Gamestate"
     ```Csharp
-// Private methode SpawnFastEnemies
-private void SpawnFastEnemies()
+
+    // Private methode SpawnFastEnemies
+    private void SpawnFastEnemies()
         {
             Random random = new Random();
 
@@ -56,10 +57,11 @@ private void SpawnFastEnemies()
             }
         }
     ```
+
 === "Characters"
     ```Csharp
-public abstract class Character : SpriteGameObject
-{
+ public abstract class Character : SpriteGameObject
+ {
     //all variables that a character needs
     public int HitPoints;
     protected int MoveSpeed;
@@ -70,7 +72,7 @@ public abstract class Character : SpriteGameObject
         MoveSpeed = moveSpeed;
         Position = position;
     }
-}
+ }
     ```
 
 ### Encapsulation
@@ -78,8 +80,8 @@ Binnen ons project zijn veel classes public, dit is omdat de classes op meerdere
 
 === "Enemy"
     ```Csharp
-//Enemy class met public methodes en variabelen omdat deze weer op anderen pleken gebruikt moeten worden
-public class Enemy : Character
+ //Enemy class met public methodes en variabelen omdat deze weer op anderen pleken gebruikt moeten worden
+ public class Enemy : Character
     {
         public int EnemyMoveSpeed;
         public Vector2 steering;
@@ -105,6 +107,7 @@ public class Enemy : Character
         }
     }
     ```
+
 === "SpawnFastEnemy"
     ```Csharp
 //private method SpawnfastEnemies() Deze method dient niet van buitenaf aangepast te kunnen worden.
