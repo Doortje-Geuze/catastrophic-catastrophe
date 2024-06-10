@@ -11,8 +11,8 @@ class ExampleMessageHandler extends MessageHandler
     }
 
     #sendMatchData(socket) {
-        socket.on("Example", async(data) => {
-            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [8, "rat", 4, 4])
+        socket.on("Example", (data) => {
+            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.TotalWavesSurvived, data.KilledBy, data.Kills, data.HealthLeft])
             console.log(data);
         });
     }
