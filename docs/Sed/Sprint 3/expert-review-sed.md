@@ -19,52 +19,52 @@ Op basis van wat ik tot nu toe heb toegevoegd aan het project heb ik een klassen
 Encapsulation is een van de kernconcepten bij objectgeoriënteerd programmeren en beschrijft het bundelen van gegevens en methoden. Encapsulation wordt bijvoorbeeld gebruikt om de interne representatie of toestand van een object voor de buitenkant te verbergen [(Stackify, 2024)](https://stackify.com/oop-concept-for-beginners-what-is-encapsulation/).
 
 === "Public"
-Characer.cs
-```c#
-public abstract class Character : SpriteGameObject
-{
-    public int HitPoints;
-//more code
-
-```
-Een karakter heeft hitpoints die op het scherm worden laten zien en die naar beneden gaan wanneer het geraakt wordt door bijvoorbeeld een bullet of een enemy. Daarom moet code buiten de Character class erbij kunnen komen om het niet alleen te weergeven maar ook om het naar beneden te laten gaan wanneer nodig.
+    Characer.cs
+    ```c#
+    public abstract class Character : SpriteGameObject
+    {
+        public int HitPoints;
+    //more code
+    }
+    ```
+    Een karakter heeft hitpoints die op het scherm worden laten zien en die naar beneden gaan wanneer het geraakt wordt door bijvoorbeeld een bullet of een enemy. Daarom moet code buiten de Character class erbij kunnen komen om het niet alleen te weergeven maar ook om het naar beneden te laten gaan wanneer nodig.
 
 === "Protected"
 Protected methods en properties mogen alleen gebruikt worden door de class zelf of door classes die inheriten van die class.
 
 Character.cs
-```c#
-public abstract class Character : SpriteGameObject
-{
-    protected int MoveSpeed;
-//more code
+    ```c#
+    public abstract class Character : SpriteGameObject
+    {
+        protected int MoveSpeed;
+    //more code
 
-```
+    ```
 
-De baseclass Character heeft een default movespeed die doorgegeven wordt aan alle classes die hiervan inheriten omdat elke karakter een movement speed nodig heeft. Dit hoeft alleen verandert te worden in de Classes die inheriten van Character zelf en niet daarbuiten.
+    De baseclass Character heeft een default movespeed die doorgegeven wordt aan alle classes die hiervan inheriten omdat elke karakter een movement speed nodig heeft. Dit hoeft alleen verandert te worden in de Classes die inheriten van Character zelf en niet daarbuiten.
 
 === "Private"
 Private methods en properties mogen alleen gebruikt worden door de class zelf.
 
 Crosshair.cs
-```c#
-private Vector2 steering;
-private Vector2 desired_velocity;
+    ```c#
+    private Vector2 steering;
+    private Vector2 desired_velocity;
 
-    public void EnemySeeking(Vector2 PlayerPosition) // Made with the help of https://code.tutsplus.com/understanding-steering-behaviors-seek--gamedev-849t
-    {
-        desired_velocity = PlayerPosition - position;
-        desired_velocity.Normalize();
-        desired_velocity *= EnemyMoveSpeed;
+        public void EnemySeeking(Vector2 PlayerPosition) // Made with the help of https://code.tutsplus.com/understanding-steering-behaviors-seek--gamedev-849t
+        {
+            desired_velocity = PlayerPosition - position;
+            desired_velocity.Normalize();
+            desired_velocity *= EnemyMoveSpeed;
 
-        steering = desired_velocity - velocity;
+            steering = desired_velocity - velocity;
 
-        steering = steering / 5;
-        velocity = velocity + steering;
-        position += velocity;
-    }
-```
-Voor onze game willen we dat de enemies niet in een keer van directie veranderen als de speler van positie verandert maar dat ze in een mooie boog daar naartoe gaan. Dit wordt gedaan door middel van het berekenen van de gewilde velocity en dat + de steering te doen. Deze twee variabelen mogen alleen aangepast worden in deze Class en nergens daarbuiten dus zijn ze private.
+            steering = steering / 5;
+            velocity = velocity + steering;
+            position += velocity;
+        }
+    ```
+    Voor onze game willen we dat de enemies niet in een keer van directie veranderen als de speler van positie verandert maar dat ze in een mooie boog daar naartoe gaan. Dit wordt gedaan door middel van het berekenen van de gewilde velocity en dat + de steering te doen. Deze twee variabelen mogen alleen aangepast worden in deze Class en nergens daarbuiten dus zijn ze private.
 
 #### Inheritance
 Inheritance is een klasse uit een andere klasse afleiden voor een hiërarchie van klassen die een reeks attributen en methoden delen [(Stackify, 2023)](https://stackify.com/oop-concept-inheritance/).
