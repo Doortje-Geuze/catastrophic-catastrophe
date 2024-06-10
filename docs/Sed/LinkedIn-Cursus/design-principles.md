@@ -62,7 +62,7 @@ Van de SOLID is de Open-Close Principle handig om te gebruiken. Dit is vooral re
 
 ## Resultaten LinkedIn Learning cursus
 
-[Plak hier een screenshot of link naar het certificaat]
+![linkedincursus1](../images/linkedinCursus1.PNG)
 
 ## Resultaten quiz op DLO
 

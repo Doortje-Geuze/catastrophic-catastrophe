@@ -103,7 +103,7 @@ foreach (var gameObject in toRemoveList)
 
 ## Resultaten LinkedIn Learning cursus
 
-[Plak hier een screenshot of link naar het certificaat]
+![linkedincursus3](../images/LinkedinCursus3.PNG)
 
 ## Resultaten quiz op DLO
 
