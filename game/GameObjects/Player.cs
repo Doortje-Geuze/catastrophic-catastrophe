@@ -146,6 +146,7 @@ public class Player : Character, ICollidable
     //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
     public bool HandleCollision(SpriteGameObject spriteGameObject)
     {
+        
         if (CollidesWith(spriteGameObject) == false) return false;
         switch (spriteGameObject)
         {
@@ -163,12 +164,11 @@ public class Player : Character, ICollidable
                 return true;
             case Currency:
                 currencyCounter++;
-                Gamestate.playerCurrency.Text = $"you collected {currencyCounter} currency";
-                Gamestate.toRemoveList.Add(spriteGameObject);
+                GameState.Instance.playerCurrency.Text = $"you collected {currencyCounter} currency";
+                GameState.Instance.toRemoveList.Add(spriteGameObject);
                 break;
             case Door:
-                GameState.Instance.EnteredDoor = true;
-                break;
+                return true;
 
         }
         return false;

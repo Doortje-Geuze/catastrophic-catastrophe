@@ -21,7 +21,6 @@ namespace Blok3Game.GameStates
         private List<Enemy> EnemyList;
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
-        public static GameState Instance { get; private set;}
         private List<Box> boxlist;
         public static GameState Instance { get; private set;}
         public Player player;
@@ -50,17 +49,12 @@ namespace Blok3Game.GameStates
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
-        public OpenDoor Door; 
+        public Door Door; 
         public bool EnteredDoor = false;
+        public bool DoorSpawned = false;
 
         public GameState() : base()
         {
-            if (Instance != null)
-            {
-                throw new Exception("Only one instance of GameState is allowed");
-            }
-
-            Instance = this;
             if (Instance != null)
             {
                 throw new Exception("Only one instance of GameState is allowed");
@@ -82,6 +76,8 @@ namespace Blok3Game.GameStates
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);
+
+            Door = new OpenDoor(new Vector2((GameEnvironment.Screen.X / 2) - 220, 300));
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
@@ -122,8 +118,8 @@ namespace Blok3Game.GameStates
                     }
                     break;
                 case 1: //Wave 2
-                    //if (EnemyList.Count == 0)
-                    //{
+                    if (EnemyList.Count == 0)
+                    {
                         if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
                         {
                             //Lower Cooldown Upgrade
@@ -146,31 +142,52 @@ namespace Blok3Game.GameStates
                         }
                         else if (pickedUpPurple || pickedUpYellow)
                         {
-                            Door = new OpenDoor(new Vector2((GameEnvironment.Screen.X / 2) - 220, 300));
                             Add(Door);
-                            Console.WriteLine(Door);
-
-                            if(EnteredDoor)
-                            {
-                                WaveCounter++;
-                                NewWave = true;
-                                WaveIndicatorShowTime = 0;
-                                ResetBullets();
-                                SpawnFastEnemies();
-                            }
+                            DoorSpawned = true;
                         }
-
-                        boxCollision();
-                    //}
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+                        
+                        if(EnteredDoor == true)
+                        {
+                            Remove(Door);
+                            WaveCounter++;
+                            NewWave = true;
+                            WaveIndicatorShowTime = 0;
+                            ResetBullets();
+                            SpawnFastEnemies();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
+                        }
+                        BoxCollision();
+                    }
                     break;
                 case 2: //Wave 3
                     if (EnemyList.Count == 0)
                     {
-                        WaveCounter++;
-                        NewWave = true;
-                        WaveIndicatorShowTime = 0;
-                        ResetBullets();
-                        SpawnStandardEnemies();
+                        Add(Door);
+                        DoorSpawned = true;
+
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+
+                        if(EnteredDoor == true)
+                        {
+                            Remove(Door);
+                            WaveCounter++;
+                            NewWave = true;
+                            WaveIndicatorShowTime = 0;
+                            ResetBullets();
+                            SpawnStandardEnemies();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
+                        }
+
+                        
                     }
                     break;
                 case 3: //Player Wins
@@ -449,9 +466,10 @@ namespace Blok3Game.GameStates
 
         private void DoorCollision()
         {
-            if (SpriteGameObject.CollidesWith(Door))
+            if (player.HandleCollision(Door))
             {
-
+                EnteredDoor = true;
+                Console.WriteLine(EnteredDoor);
             }
         }
 
