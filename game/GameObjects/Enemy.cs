@@ -10,7 +10,8 @@ namespace Blok3Game.GameObjects
         public Vector2 desired_velocity;
         public int EnemyShootCooldown = 120;
 
-        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(hitPoints, moveSpeed, position, assetName)
+        public Enemy(int hitPoints, int moveSpeed, Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : 
+                     base(hitPoints, moveSpeed, position, assetName)
         {
             EnemyMoveSpeed = moveSpeed;
         }

@@ -1,4 +1,4 @@
-# LinkedIn course summary
+# # C# Design principles summary
 
 ## C# Design principles
 

@@ -6,6 +6,6 @@ namespace Blok3Game.Engine.GameObjects
 {
 	public interface ICollidable
 	{
-		void HandleCollision(SpriteGameObject spriteGameObject);
+		bool HandleCollision(SpriteGameObject spriteGameObject);
 	}
 }

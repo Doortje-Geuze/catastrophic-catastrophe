@@ -23,9 +23,9 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "NEW GAME/CONTINUE", OnButtonCreateClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "SETTINGS", OnButtonSettingsClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "CONTROLS", OnButtonControlsClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "NEW GAME/CONTINUE", OnButtonGameClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "SETTINGS", OnButtonSettingsClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, (GameEnvironment.Screen.Y / 2) + ButtonOffSet.Y), "CONTROLS", OnButtonControlsClicked);
         }
 
         private void CreateTexts()
@@ -35,12 +35,7 @@ namespace Blok3Game.GameStates
             CreateText(new Vector2((GameEnvironment.Screen.X / 3) + 30, 150), "Dash using left-shift whilst moving");
         }
 
-        private void ButtonNotImplimented(UIElement element)
-        {
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_not_implimented");
-        }
-
-        private void OnButtonCreateClicked(UIElement element)
+        private void OnButtonGameClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "GAME_STATE";

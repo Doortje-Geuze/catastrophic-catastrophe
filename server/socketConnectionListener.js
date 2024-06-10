@@ -59,6 +59,7 @@ class SocketConnectionListener {
 			socket.join(socket.userId);
 			this.#storeSession(socket);
 			this.#handleDisconnect(socket);
+			this.#exampleMessageHandler.handleIncomingMessages(socket);
 
 			socket.emit("session established", {
 				sessionId: socket.sessionId,
