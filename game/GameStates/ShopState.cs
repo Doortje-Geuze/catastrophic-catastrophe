@@ -40,6 +40,7 @@ namespace Blok3Game.GameStates
 
         private void OnButtonMainMenuClicked(UIElement element)
         {
+            UpgradeState.Instance.PlayerHealthAmountUpdate();
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_cancel");
             nextScreenName = "MAIN_MENU_STATE";
             ButtonClicked();
