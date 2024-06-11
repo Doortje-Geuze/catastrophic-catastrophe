@@ -289,3 +289,51 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     <h3>Criteria</h3>
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
     <h3>Conclusie</h3>
+
+
+=== "persoon 5"
+
+    <h3>Basisinformatie</h4>
+
+    Getest door: <Senna de Vries>
+    Naam proefpersoon: <Bas>
+    Datum test: 11-6-2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1:</b><17>
+    - <b>Vraag 2:</b><wel eens van gehoord>
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | speller heeft kunnen winnen                                              | ja / nee                                | xx:xx                                     | --/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja / nee                                | xx:xx                                     | --/10                                        |
+   
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+    
+    - <b>Observatie 1:</b>
+    - <b>Observatie 2:</b>
+    - <b>Observatie 3:</b>
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1:</b><br>
+    - <b>Vraag 2:</b><br>
+    - <b>Vraag 3:</b><br>
+
+    <h4>Sterke punten:</h4>
+
+    - 
+
+    <h4>Verbeterpunten:</h4>
+
+    - 
+
+    <h4>Foto/Video/Beschrijving (bewijsmateriaal)</h4>
+
+
+    <h3>Criteria</h3>
+    De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
+    <h3>Conclusie</h3>
