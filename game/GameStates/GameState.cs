@@ -21,12 +21,15 @@ namespace Blok3Game.GameStates
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
+        private List<Obstacle> obstacleList;
         public Player player;
         public Crosshair crosshair;
         public CatGun catGun;
         public Box box;
         public YellowBox yellowBox;
         public PurpleBox purpleBox;
+        public Obstacle obstacle;
+        public GreenObstacle greenObstacle;
         public ShootingEnemy shootingEnemy;
         public FastEnemy fastEnemy;
         public DashIndicator dashIndicator;
@@ -57,6 +60,7 @@ namespace Blok3Game.GameStates
             enemyBulletList = new List<EnemyBullet>();
             currencyList = new List<Currency>();
             boxlist = new List<Box>();
+            obstacleList = new List<Obstacle>();
             toRemoveList = new List<GameObject>();
 
             player = new Player(3, 5, new Vector2((GameEnvironment.Screen.X / 2) - (90 / 2), (GameEnvironment.Screen.Y / 2) - (90 / 2)))
@@ -135,9 +139,12 @@ namespace Blok3Game.GameStates
                             WaveIndicatorShowTime = 0;
                             ResetBullets();
                             SpawnFastEnemies();
+
+                        
                         }
 
                         boxCollision();
+                       
                     }
                     break;
                 case 2: //Wave 3
@@ -148,6 +155,12 @@ namespace Blok3Game.GameStates
                         WaveIndicatorShowTime = 0;
                         ResetBullets();
                         SpawnStandardEnemies();
+
+                        greenObstacle = new GreenObstacle(new Vector2((GameEnvironment.Screen.x/2) + 100,150));
+                        obstacleList.Add(greenObstacle);
+                        Add(greenObstacle);
+                        
+                        obstacleCollision();
                     }
                     break;
                 case 3: //Player Wins
@@ -260,6 +273,10 @@ namespace Blok3Game.GameStates
                 if (gameObject is Box box)
                 {
                     boxlist.Remove(box);
+                }
+                if (gameObject is Obstacle obstacle)
+                {
+                    obstacleList.Remove(obstacle);
                 }
                 Remove(gameObject);
             }
