@@ -392,5 +392,22 @@ Connection naar pool
 
 debuggen van server
 
-### queries ophalen data
+### Queries ophalen data
 
+```Js
+SELECT LastUsedWeapon, NumberOfCollectedWeapons, NumberOfUpgradesBought, TotalWavesSurvived, KilledBy, Kills FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch WHERE KilledBy IS NOT NULL; 
+```
+
+![EnemyQuery](../images/OPenemyQuery.PNG)
+
+```Js
+SELECT COUNT(TotalWavesSurvived), KilledBy FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch GROUP BY KilledBy ORDER BY COUNT(TotalWavesSurvived) DESC; 
+```
+
+![EnemyQuery2](../images/OPEnemyWaves.PNG)
+
+```Js
+SELECT LastUsedWeapon, Kills, TotalWavesSurvived FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch ORDER BY Kills DESC
+```
+
+![WeaponQuery](../images/WeaponQuery.PNG)
