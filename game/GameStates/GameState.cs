@@ -52,6 +52,7 @@ namespace Blok3Game.GameStates
         public Door Door; 
         public bool EnteredDoor = false;
         public bool DoorSpawned = false;
+        private int DoorCounter = 0;  
 
         public GameState() : base()
         {
@@ -167,8 +168,13 @@ namespace Blok3Game.GameStates
                 case 2: //Wave 3
                     if (EnemyList.Count == 0)
                     {
-                        Add(Door);
-                        DoorSpawned = true;
+
+                        if (DoorCounter < 1)
+                        {
+                            Add(Door);
+                            DoorSpawned = true;
+                            DoorCounter++;
+                        }
 
                         if (DoorSpawned)
                         {
@@ -185,16 +191,36 @@ namespace Blok3Game.GameStates
                             SpawnStandardEnemies();
                             EnteredDoor = false;
                             DoorSpawned = false;
+                            DoorCounter = 0;
                         }
-
-                        
                     }
                     break;
                 case 3: //Player Wins
                     if (EnemyList.Count == 0)
                     {
-                        ResetBullets();
-                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+
+                        if (DoorCounter < 1)
+                        {
+                            Add(Door);
+                            DoorSpawned = true;
+                            DoorCounter++;
+                        }
+
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+
+                        if(EnteredDoor == true)
+                        {
+                            GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                            Remove(Door);
+                            DoorCounter = 0;
+                            ResetBullets();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
+                        }
+                        
                     }
                     break;
             }
@@ -531,6 +557,12 @@ namespace Blok3Game.GameStates
             //Reset the waves
             waveIndicator.Sprite.SheetIndex = 0;
             WaveCounter = 0;
+
+            //Reset the door
+            DoorCounter = 0;
+            EnteredDoor = false;
+            DoorSpawned = false;
+            Remove(Door);
         }
 
         private void ResetEnemies()
