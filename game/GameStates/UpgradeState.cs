@@ -11,12 +11,12 @@ namespace Blok3Game.GameStates
 {
     public class UpgradeState : MenuItem
     {
-        private TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
-        private TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
+        private readonly TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
         private int BulletSpeedUpgradeCost = 1;
         private int PlayerSpeedUpgradeCost = 1;
         private int PlayerHealthUpgradeCost = 1;
@@ -27,16 +27,16 @@ namespace Blok3Game.GameStates
         private int PlayerHealthUpgradedAmount = GameState.Instance.player.HitPoints;
         private int DashUpgradedAmount = 0;
         private int InvulnerabilityUpgradedAmount = 0;
-        private int BulletSpeedUpgradeMax = 3;
-        private int PlayerSpeedUpgradeMax = 3;
-        private int PlayerHealthUpgradeMax = 5;
-        private int DashUpgradeMax = 4;
-        private int InvulnerabilityUpgradeMax = 5;
-        private int BulletSpeedUpgradeValue = 3;
-        private int PlayerSpeedUpgradeValue = 1;
-        private int PlayerHealthUpgradeValue = 1;
-        private int DashUpgradeValue = 10;
-        private int InvulnerabilityUpgradeValue = 15;
+        private readonly int BulletSpeedUpgradeMax = 3;
+        private readonly int PlayerSpeedUpgradeMax = 3;
+        private readonly int PlayerHealthUpgradeMax = 5;
+        private readonly int DashUpgradeMax = 4;
+        private readonly int InvulnerabilityUpgradeMax = 5;
+        private readonly int BulletSpeedUpgradeValue = 3;
+        private readonly int PlayerSpeedUpgradeValue = 1;
+        private readonly int PlayerHealthUpgradeValue = 1;
+        private readonly int DashUpgradeValue = 10;
+        private readonly int InvulnerabilityUpgradeValue = 15;
         private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 12);
         public static UpgradeState Instance { get; private set; } = new();
         public UpgradeState() : base()
