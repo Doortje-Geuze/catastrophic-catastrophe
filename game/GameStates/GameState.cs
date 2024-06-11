@@ -78,7 +78,7 @@ namespace Blok3Game.GameStates
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);
 
-            Door = new OpenDoor(new Vector2((GameEnvironment.Screen.X / 2) - 220, 300));
+            Door = new OpenDoor(new Vector2(1113, 200));
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
