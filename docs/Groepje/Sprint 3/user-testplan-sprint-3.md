@@ -308,8 +308,8 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
 
     |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
     | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
-    | Doel 1 | speller heeft kunnen winnen                                              | ja / nee                                | xx:xx                                     | --/10                                        |
-    | Doel 2 | Niewe features worden gebruikt                                               | ja / nee                                | xx:xx                                     | --/10                                        |
+    | Doel 1 | speller heeft kunnen winnen                                              | ja                               | 05:00                                     | 7/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja                                | 00:40                                     | 7/10                                        |
    
     <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
     
@@ -319,21 +319,19 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
 
     <h4>Antwoorden op de vragen (tevredenheid)</h4>
 
-    - <b>Vraag 1:</b><br>
-    - <b>Vraag 2:</b><br>
-    - <b>Vraag 3:</b><br>
+    - <b>Vraag 1:</b><Wave 2 was makkelijk. In het begin zonder upgrades was het redelijk lastig. Met de upgrades ging het een stuk beter. De derde wave was lastig maar dat is alleen maar goed.>
+    - <b>Vraag 2:</b><Leuk dat er verschil in zit. Maar de groene (niet schietende) waren te makkelijk.>
+    - <b>Vraag 3:</b><Goed gedaan. Er was veel verschillende keuze en ze waren allemaal nuttig. Misschien is het leuk om belangrijke dingen zoals hp duurder te maken.>
+    - <b>Vraag 4:</b><De dash indicator ziet er leuk uit maar is moeilijk te zien. Misschien kan die nog iets meer naar de voorgrond. De hp indicatie was duidelijk.>
+    - <b>Vraag 5:</b><Leuke toevoeging. Zorgde dat je wat meer progressie maakt en door blijft spelen.>
 
     <h4>Sterke punten:</h4>
 
-    - 
+    - Het kopen van upgrades was een leuke toevoeging
+    - Vermakelijk spel
+    - De upgrade dat je meerdere kogels tegelijk schiet was leuk. Zorgde voor afwisseling
 
     <h4>Verbeterpunten:</h4>
 
-    - 
-
-    <h4>Foto/Video/Beschrijving (bewijsmateriaal)</h4>
-
-
-    <h3>Criteria</h3>
-    De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
-    <h3>Conclusie</h3>
+    - De dash indicatie kon duidelijker
+    - De tweede wave mag nog wat lastiger
