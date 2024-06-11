@@ -313,9 +313,9 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
    
     <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
     
-    - <b>Observatie 1:</b>
-    - <b>Observatie 2:</b>
-    - <b>Observatie 3:</b>
+    - <b>Observatie 1:</b><De testpersoon was aandachtig aan het spelen (voorover geleund)>
+    - <b>Observatie 2:</b><De speler maakte weinig gebruik van de dash functie>
+    - <b>Observatie 3:</b><De speler pakte de muntjes op en maakte gebruik van de verschillende knoppen in het menu>
 
     <h4>Antwoorden op de vragen (tevredenheid)</h4>
 
