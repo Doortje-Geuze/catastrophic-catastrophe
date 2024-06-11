@@ -32,6 +32,11 @@ namespace Blok3Game.GameStates
         private int PlayerHealthUpgradeMax = 5;
         private int DashUpgradeMax = 4;
         private int InvulnerabilityUpgradeMax = 5;
+        private int BulletSpeedUpgradeValue = 3;
+        private int PlayerSpeedUpgradeValue = 1;
+        private int PlayerHealthUpgradeValue = 1;
+        private int DashUpgradeValue = 10;
+        private int InvulnerabilityUpgradeValue = 15;
         private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 12);
         public static UpgradeState Instance { get; private set; } = new();
         public UpgradeState() : base()
@@ -57,23 +62,23 @@ namespace Blok3Game.GameStates
             TextCreator(CurrencyCount, $"Currency counter: You have {GameState.Instance.player.currencyCounter}", 
                         new Vector2(GameEnvironment.Screen.X / 3, GameEnvironment.Screen.Y / 6) - TextOffset);
             TextCreator(BulletSpeedUpgradeText, $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}" + Environment.NewLine + 
-                                                $"Increases bullet speed by 3," + Environment.NewLine  + 
+                                                $"Increases bullet speed by {BulletSpeedUpgradeValue}," + Environment.NewLine  + 
                                                 $"upgraded {BulletSpeedUpgradedAmount} out of {BulletSpeedUpgradeMax} times", 
                         new Vector2(0, GameEnvironment.Screen.Y / 3) + TextOffset);
             TextCreator(SpeedUpgradeText, $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}" + Environment.NewLine + 
-                                          $"Increases player speed," + Environment.NewLine + 
+                                          $"Increases player speed by {PlayerSpeedUpgradeValue}," + Environment.NewLine + 
                                           $"upgraded {PlayerSpeedUpgradedAmount} out of {PlayerSpeedUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / 4, GameEnvironment.Screen.Y / 3) + TextOffset);
             TextCreator(HealthUpgradeText, $"Health Upgrade Cost: {PlayerHealthUpgradeCost}" + Environment.NewLine + 
-                                           $"Increases player health," + Environment.NewLine + 
+                                           $"Increases player health by {PlayerHealthUpgradeValue}," + Environment.NewLine + 
                                            $"upgraded {PlayerHealthUpgradedAmount} out of {PlayerHealthUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 3) + TextOffset);
             TextCreator(DashUpgradeText, $"Dash Upgrade Cost: {DashCooldownUpgradeCost}" + Environment.NewLine + 
-                                         $"Decreases dash cooldown," + Environment.NewLine + 
+                                         $"Decreases dash cooldown by {DashUpgradeValue}," + Environment.NewLine + 
                                          $"upgraded {DashUpgradedAmount} out of {DashUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / (float)1.3, GameEnvironment.Screen.Y / 3)+ TextOffset);
             TextCreator(InvulnerabilityUpgradeText, $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}" + Environment.NewLine + 
-                                                    $"Decreases invulnerability cooldown," + Environment.NewLine + 
+                                                    $"Increase invulnerability timer by {InvulnerabilityUpgradeValue}," + Environment.NewLine + 
                                                     $"upgraded {InvulnerabilityUpgradedAmount} out of {InvulnerabilityUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2) + TextOffset);
         }
@@ -176,19 +181,19 @@ namespace Blok3Game.GameStates
         private void UpdateUpgradeText()
         {
             BulletSpeedUpgradeText.Text = $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}" + Environment.NewLine + 
-                                          $"Increases bullet speed by 3," + Environment.NewLine + 
+                                          $"Increases bullet speed by {BulletSpeedUpgradeValue}," + Environment.NewLine + 
                                           $"upgraded {BulletSpeedUpgradedAmount} out of {BulletSpeedUpgradeMax} times";
             SpeedUpgradeText.Text = $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}" + Environment.NewLine + 
-                                    $"Increases player speed," + Environment.NewLine + 
+                                    $"Increases player speed by {PlayerSpeedUpgradeValue}," + Environment.NewLine + 
                                     $"upgraded {PlayerSpeedUpgradedAmount} out of {PlayerSpeedUpgradeMax} times";
             HealthUpgradeText.Text = $"Health Upgrade Cost: {PlayerHealthUpgradeCost}" + Environment.NewLine + 
-                                     $"Increases player health," + Environment.NewLine + 
+                                     $"Increases player health, by {PlayerHealthUpgradeValue}" + Environment.NewLine + 
                                      $"upgraded {GameState.Instance.player.HitPoints} out of {PlayerHealthUpgradeMax} times";
             DashUpgradeText.Text = $"Dash Upgrade Cost: {DashCooldownUpgradeCost}" + Environment.NewLine + 
-                                   $"Decreases dash cooldown," + Environment.NewLine + 
+                                   $"Decreases dash cooldown by {DashUpgradeValue}," + Environment.NewLine + 
                                    $"upgraded {DashUpgradedAmount} out of {DashUpgradeMax} times";
             InvulnerabilityUpgradeText.Text = $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}" + Environment.NewLine + 
-                                              $"Decreases invulnerability cooldown," + Environment.NewLine + 
+                                              $"Increase invulnerability timer by {InvulnerabilityUpgradeValue}," + Environment.NewLine + 
                                               $"upgraded {InvulnerabilityUpgradedAmount} out of {InvulnerabilityUpgradeMax} times"; 
         }
     }
