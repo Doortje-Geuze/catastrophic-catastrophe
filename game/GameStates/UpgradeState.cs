@@ -96,6 +96,7 @@ namespace Blok3Game.GameStates
         private void OnButtonShopClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            PlayerHealthUpgradedAmount = 3;
             nextScreenName = "SHOP_STATE";
             ButtonClicked();
         }
