@@ -202,7 +202,7 @@ namespace Blok3Game.GameStates
                 player.HandleCollision(enemy);
                 foreach (var playerBullet in playerBulletList)
                 {
-                    if (playerBullet.CheckForEnemyCollision(enemy))
+                    if (playerBullet.HandleCollision(enemy))
                     {
                         if (enemy.HitPoints <= 0)
                         {
