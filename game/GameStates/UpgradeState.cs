@@ -96,7 +96,6 @@ namespace Blok3Game.GameStates
         private void OnButtonShopClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-            PlayerHealthUpgradedAmount = 3;
             nextScreenName = "SHOP_STATE";
             ButtonClicked();
         }
@@ -196,6 +195,11 @@ namespace Blok3Game.GameStates
             InvulnerabilityUpgradeText.Text = $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}" + Environment.NewLine + 
                                               $"Increase invulnerability timer by {InvulnerabilityUpgradeValue}," + Environment.NewLine + 
                                               $"upgraded {InvulnerabilityUpgradedAmount} out of {InvulnerabilityUpgradeMax} times"; 
+        }
+
+        public void PlayerHealthAmountUpdate()
+        {
+            PlayerHealthUpgradedAmount = GameState.Instance.player.HitPoints;
         }
     }
 }
