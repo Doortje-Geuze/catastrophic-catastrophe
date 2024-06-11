@@ -16,13 +16,13 @@ namespace Blok3Game.SpriteGameObjects
     }
     public class YellowBox : Box
     {
-        public YellowBox(Vector2 position) : base(position, "Images/Tiles/SquareYellow", 0, " ", 0)
+        public YellowBox(Vector2 position) : base(position, "Images/Tiles/yellowSquare", 0, " ", 0)
         {
         }
     }
     public class PurpleBox : Box
     {
-        public PurpleBox(Vector2 position) : base(position, "Images/Tiles/PurpleSquare", 0, " ", 0)
+        public PurpleBox(Vector2 position) : base(position, "Images/Tiles/purpleSquare", 0, " ", 0)
         {
 
         }

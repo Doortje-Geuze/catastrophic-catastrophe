@@ -235,7 +235,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Tiles/GreenSquare.png
+/build:Images/Tiles/GreenSquare.png;Images/Tiles/greenSquare.png
 
 #begin Images/Tiles/PurpleSquare.png
 /importer:TextureImporter
@@ -247,9 +247,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Tiles/PurpleSquare.png
+/build:Images/Tiles/PurpleSquare.png;Images/Tiles/purpleSquare.png
 
-#begin Images/Tiles/SquareYellow.png
+#begin Images/Tiles/yellowSquare.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -259,7 +259,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Tiles/SquareYellow.png
+/build:Images/Tiles/yellowSquare.png
 
 #begin Images/UI/animalCoin@2x2.png
 /importer:TextureImporter

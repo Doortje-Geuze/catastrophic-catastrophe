@@ -156,11 +156,11 @@ namespace Blok3Game.GameStates
                         ResetBullets();
                         SpawnStandardEnemies();
 
-                        greenObstacle = new GreenObstacle(new Vector2((GameEnvironment.Screen.x/2) + 100,150));
+                        greenObstacle = new GreenObstacle(new Vector2((GameEnvironment.Screen.X / 2) + 100,150));
                         obstacleList.Add(greenObstacle);
                         Add(greenObstacle);
                         
-                        obstacleCollision();
+                        //obstacleCollision();
                     }
                     break;
                 case 3: //Player Wins
