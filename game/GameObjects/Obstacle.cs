@@ -18,7 +18,7 @@ abstract public class Obstacle : SpriteGameObject
 public class GreenObstacle : Obstacle
 {
 
-public GreenObstacle(Vector2 position) : base(position, "Images/Tiles/GreenSquare.png", 0, " ", 0)
+public GreenObstacle(Vector2 position) : base(position, "Images/Tiles/greenSquare", 0, " ", 0)
     {
         
 
