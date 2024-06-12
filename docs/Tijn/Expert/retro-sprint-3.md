@@ -1,3 +1,23 @@
+# Retrospective sprint 3
+
+## Professional skills
+
+### Persoonlijk leiderschap
+
+
+### Toekomstgericht organiseren
+
+
+### Doelgericht interacteren
+
+
+### Onderzoekend probleemoplossen
+
+
+## Leerdoelen voor volgend jaar
+Als student wil ik leren hoe ik, zodat ik
+
+Als student wil ik leren hoe ik, zodat ik
 Voor deze retrospective reflecteer je op de ontwikkeling van je professional skills dit afgelopen jaar.
 
 Voor elke ondergenoemde professional skill beschrijf je waar je goed in was (sterkte) en waar je je in moet verbeteren (zwakte). Deze sterke en zwakke punten illustreer je doormiddel van het beschrijven een concreet voorbeeld. 
