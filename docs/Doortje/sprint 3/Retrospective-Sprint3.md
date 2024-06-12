@@ -3,24 +3,32 @@
 ## Professional skills
 
 ### Persoonlijk leiderschap
-- zwakte
+- sterkte
+Ik heb me dit jaar elk blok weer meer ontwikkeld. Vooral op het gebied van programmeren ben ik een stuk verbeterd. Aan het begin van dit jaar had ik geen idee hoe ik een array kon makken. Nu heb ik al meerdere datastructuren gebruikt in mijn code zoals Arrays en Lists. Ik ben trots met de progressie die ik heb gemaakt dit jaar.  
 
-Ik heb me dit jaar elk blok weer meer ontwikkeld. Vooral op het gebied van programmeren ben ik een stuk verbeterd. Aan het begin van dit jaar had ik geen idee hoe ik een array kon makken. Nu heb ik al meerdere datastructuren gebruikt in mijn code zoals Arrays en Lists. Ik ben trots met de progressie die ik heb gemaakt dit jaar.  Al heb ik nu de mening dat ik nog niet helemaal op niveau ben met wat er verwacht wordt van mij.
+ - zwakte:
+Ik heb nu het gevoel dat ik nog niet helemaal opniveau ben met mijn klassgenoten. De principles, zoals decoupeling heb ik nog niet heel erg in de hand.
 
 ### Toekomstgericht organiseren 
-- zwakte.
+- sterkte
+Op het gebied van organiseren, ben ik goed in een planning maken. vooral de planning van dit blok ging er goed. Ik en mijn groepje hebben dit blok meestal alles afgekregen wat we af wilde hebben.
 
-Op het gebied van organiseren, ben ik goed in een planning maken. Mezelf er aan houden vind ik wel moeilijk. Ik maak elke week een planning met wat ik die week moet doen, maar ik hou me er niet goed aan waardoor ik dingen uitstel. Dit gebeurt vooral als het een “grote” taak is, zoals een feature in implementeren in de game waar ik nog niet veel kennis van heb.
+- zwakte
+Mezelf aan een planning houden vind ik wel moeilijk. Ik maak elke week een planning met wat ik die week moet doen, maar ik hou me er niet goed aan waardoor ik dingen uitstel. Dit gebeurt vooral als het een “grote” taak is, zoals een feature in implementeren in de game waar ik nog niet veel kennis van heb.
 
 ### Doelgericht Interacteren
 - Sterkte.
+Aan het begin van het jaar vond ik het communiceren met mijn klasgenoten best lastig, dit was vooral omdat ik ze nog niet goed kende. Ik vond het dus ook lastig om hulp te vragen, dit zorgde er voor dat ik vaak lang vast zat op een punt omdat ik niet om hulp durfde te vragen. Nu heb ik mijn plek gevonden in de klas en heb ik ook vrienden gemaakt in de klas. 
 
-Aan het begin van het jaar vond ik het communiceren met mijn klasgenoten best lastig, dit was vooral omdat ik ze nog niet goed kende. Ik vond het dus ook lastig om hulp te vragen, dit zorgde er voor dat ik vaak lang vast zat op een punt omdat ik niet om hulp durfde te vragen. Nu heb ik mijn plek gevonden in de klas en heb ik ook vrienden gemaakt in de klas. Ik vind het nu veel makkelijkere om vragen te stellen en dus ook om te communiceren met mijn klasgenoten.
+- Zwakte
+Ik vind het nu veel makkelijkere om vragen te stellen en dus ook om te communiceren met mijn groepsgenoten, maar met anderen klasgenoten vind ik het nog wel lastig. Dit speelt vooral als ik ze nog niet goed ken. Ik vind het dan lastig om uit te spreken als mij iets dwars zit.
 
 ### Onderzoekend Probleemoplossen 
 - Sterkte.
-  
-Onderzoek doen naar een onderwerp vind ik erg leuk om te doen en het is ook iets waar ik goed in ben. Ik heb ook het gevoel dat het ethiekonderzoek erg goed ging en dat ik wel een goed cijfer uithaal. Voor coderen is het wat moeilijker omdat ik het soms lastig vindt om toe toepassen op mijn eigen koen, maar met hulp van teamgenoten kom ik er altijd uit.
+Onderzoek doen naar een onderwerp vind ik erg leuk om te doen en het is ook iets waar ik goed in ben. Ik heb ook het gevoel dat het ethiekonderzoek erg goed ging en dat ik wel een goed cijfer uithaal.
+
+- Zwakte
+ Voor coderen is het wat moeilijker omdat ik het soms lastig vindt om toe toepassen op mijn eigen code, maar met hulp van teamgenoten kom ik er altijd uit.
 
 ## Leerdoelen
 
