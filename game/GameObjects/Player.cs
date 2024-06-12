@@ -54,6 +54,15 @@ public class Player : Character, ICollidable
         {
             IsDashing = true;
         }
+        if (IsDashing)
+        {
+            if ((Position.X <= 0 && Position.X >= GameEnvironment.Screen.X) || (Position.Y <= 0 && Position.Y >= GameEnvironment.Screen.Y))
+            {
+                ResetDashValue();
+                return;
+            }
+            PlayerDash();
+        }
         CheckForMovementInputs(inputHelper);
     }
 
@@ -137,6 +146,7 @@ public class Player : Character, ICollidable
     //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
     public bool HandleCollision(SpriteGameObject spriteGameObject)
     {
+        
         if (CollidesWith(spriteGameObject) == false) return false;
         switch (spriteGameObject)
         {
@@ -155,7 +165,10 @@ public class Player : Character, ICollidable
             case Currency:
                 GameState.Instance.playerCurrency.Text = $"you collected {currencyCounter} currency";
                 GameState.Instance.toRemoveList.Add(spriteGameObject);
+                break;
+            case Door:
                 return true;
+
         }
         return false;
     }

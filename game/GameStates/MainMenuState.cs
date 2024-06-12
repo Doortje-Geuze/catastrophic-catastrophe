@@ -30,9 +30,9 @@ namespace Blok3Game.GameStates
 
         private void CreateTexts()
         {
-            CreateText(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X, ButtonOffSet.Y / 2), "Move around using WASD");
-            CreateText(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X * 2, ButtonOffSet.Y), "Move crosshair with mouse and shoot with left-click");
-            CreateText(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X, ButtonOffSet.Y * (float)1.5), "Dash using left-shift whilst moving");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 3) + 80, 50), "Move around using WASD");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 3) - 20, 100), "Move crosshair with mouse and shoot with left-click");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 3) + 30, 150), "Dash using left-shift whilst moving");
         }
 
         private void OnButtonGameClicked(UIElement element)
