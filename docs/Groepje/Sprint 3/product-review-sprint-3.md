@@ -1,9 +1,15 @@
 # Product review sprint 3
 
 ## K2: Gebruikersinteractie en Prototyping
-Wij hebben aan het begin van de sprint user tests uitgevoerd. De resultaten van de tests zijn gedocumenteerd in het [Gebruikerstest document](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Sprint%203/user-testplan-sprint-3/)  
+Wij hebben aan het begin van de sprint user tests uitgevoerd. De resultaten van de tests zijn gedocumenteerd in het [Gebruikerstest document](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Sprint%203/user-testplan-sprint-3/)
 
-![Foto prototype]()
+Hieronder zijn een paar foto's te zien van ons prototype. Foto 1 laat de game zien tussen waves in. Foto 2 laat het upgrade scherm zien. Foto 3 laat de wave met de snellere enemies zien, waarin ook de shotgun powerup te zien.
+
+![Foto prototype end of wave](../Images/endOfWavePrototype.png)
+
+![Foto prototype upgrade screen](../Images/upgradeScreenPrototype.png)
+
+![Foto prototype fast enemies](../Images/fastEnemiesPrototype.png)
 
 ## K4: Game design
 Voor game design hebben we veel verschillende theorieën behandeld. Hier is de [Game design document voor Catastrophic Catastrophy - HBO-ICT Digitale turn based multiplayer game (hihva.nl)](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Game-design/) om hiernaar verwezen te worden.
