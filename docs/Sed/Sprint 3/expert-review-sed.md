@@ -338,7 +338,7 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
 
 ### Debuggen server
 
-Tijdens het maken van de Backend liepen wij tegen een muur aan. Iederkeer als wij data opstuurde naar de server kregen wij de error terug dat er geen data opgestuurd kon worden als de connectie tot de server dicht was. Hierdoor konden wij ook geen queries sturen naar de database omdat we niks op konden sturen naar de server. Het leek alsof Visual Studio de connectie dicht gooide het moment dat wij iets opstuurde.
+Tijdens het maken van de Backend liepen wij tegen een muur aan. Iederkeer als wij data opstuurde naar de server kregen wij de error terug dat er geen data opgestuurd kon worden als de connectie tot de server dicht was. Hierdoor kwamen de queries ook niet door.
 
 Om dit probleem te verhelpen hebben we de connectie verandert naar een pool. Connection Pooling houd in dat een "pool" een aantal actieve connecties met de server openhoud. Wanneer een user een connectie met de server aanvraagt zoekt de pool naar een beschikbare connectie die hij heeft, en zo ja connect de twee met elkaar. Wanneer de user de connectie weer sluit gaat de connectie niet dicht maar gaat het weer terug de pool in ready voor een nieuwe user die wilt connecten [(Microsoft, 2023)](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
 
@@ -391,7 +391,7 @@ module.exports = MySqlDatabase;
 ### Analytics Queries
 Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics data, bruikbare informatie geeft over bijvoorbeeld hoe moeilijk een wave is of hoe goed een geweer is.
 
-=== Killed By
+=== "Killed By"
 
     Uit de beschikbare data kan worden gehaald dat de meerdereheid dood zijn gegaan aan de "Rat" enemy en/of dat 2 van de 3 mensen dood zijn gegaan terwijl ze de shotgun gebruikte. Als ontwikkelaar kan er dan gekeken worden naar of de Rat te sterk is en misschien generfed moet worden of dat bijvoorbeeld de shotgun te zwak is en verbeterd moet worden.
 
@@ -401,7 +401,7 @@ Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics dat
 
     ![EnemyQuery](../images/OPenemyQuery.PNG)
 
-=== VERANDER
+=== "VERANDER"
     
     ```Js
     SELECT COUNT(TotalWavesSurvived), KilledBy FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch GROUP BY KilledBy ORDER BY COUNT(TotalWavesSurvived) DESC; 
@@ -409,7 +409,7 @@ Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics dat
 
     ![EnemyQuery2](../images/OPEnemyWaves.PNG)
 
-=== Kills
+=== "Kills"
 
     Met deze query wordt er gekeken naar hoeveel kills een geweer type heeft gemaakt en tot welke wave ze dat heeft gebracht. Zoals te zien is wordt de shotgun vaker gekozen dan het geweer en zou er dus kunnen worden gekeken naar het aantrekkelijker maken van de gun
 
