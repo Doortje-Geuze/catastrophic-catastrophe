@@ -1,34 +1,21 @@
 # Retrospective sprint 3
+Dit is de retrospective van Tijn Stuifbergen, sprint 3 van blok 4: Bullet Hell Game. Hierin wordt mijn progressie over het afgelopen jaar beschreven, en wordt er ook vooruitgeblikt naar verbeterpunten voor mijn ontwikkeling.
 
 ## Professional skills
 
 ### Persoonlijk leiderschap
-
+Ik heb voor persoonlijke ontwikkeling veel groei gemaakt het afgelopen jaar. Aan het begin van het jaar codeerde ik bijvoorbeeld zonder het gebruik van classes, wat voor een enorm onoverzichtelijke en niet future-proof stuk code zorgde. Over het jaar heen ben ik veel op zoek gegaan naar nieuwe syntax om wel/niet te gebruiken om elke situatie beter te leren begrijpen. Coderen aan de front-end gaat mij sinds het laatste blok redelijk af, en met de juiste syntax lukt het mij om redelijk ingewikkelde problemen op te lossen. Ook ben ik een klein stukje verder gekomen met betrekking tot aan de back-end werken van een game. In blok 3 van dit jaar lag de main focus van het coderen op het werken met een server. Hier bleef ik enorm op haken, omdat ik niet precies begreep hoe ik serverconnecties in de code moet verwerken. Back-end werken kan ik dus nog niet goed (genoeg), en ik wil hier ook extra naar kijken in de toekomst.
 
 ### Toekomstgericht organiseren
-
+Voordat ik aan deze opleiding begon, gebruikte ik nooit een vorm van plannen. Op de middelbare school ging mij dit altijd goed af, en bij de individuele opdracht ging dit ook prima. Vanaf het begin van teamopdrachten, zag ik in hoe cruciaal het is om taken met het team af te stellen. In blok 3 was dit nog enorm wennen voor mij en mijn groepsgenoten. In blok 4 lukte het mij om redelijk verdeelde taakverdelingen te maken, waarin iedereen aan ongeveer evenveel werk toegewezen werd. Wel heb ik soms problemen om plannen in mijn ritme te krijgen van werk, aangezien ik het nog niet vaak heb gedaan. Hierom vergeet ik soms mijn werk te plannen, en ga ik aan teveel dingen tegelijkertijd werken. Dit zorgt voor een overweldigend gevoel. Ik ga proberen plannen in mijn werkritme te krijgen, zodat ik mijn werkdruk kan spreiden.
 
 ### Doelgericht interacteren
-
+Ik ben al mijn hele leven bang geweest om te presenteren, vooral als het gaat om een grote groep. Het vaker presenteren van kleinere projectupdates geeft een boost in zelfvertrouwen, zolang deze goed gaan. Zo niet, dan is dit een leermoment. Aan het einde van het jaar stond ik makkelijker voor de klas. Dit kwam niet alleen omdat ik de groep beter ken, maar ook door een verhoogd niveau van zelfvertrouwen tijdens het presenteren. Grotere presentaties heb ik nog wel moeite mee. Het schrijven van documentatie voor verschillende reviews heeft mijn schrijfvaardigheid sterker gemaakt. Met name een belangrijk punt uitgebreid kunnen verwoorden is voor mij lastig geweest, maar na dit jaar van veel schrijven, heb ik hier zeker stappen in gezet. Communicatie in teams gaat al het hele jaar goed, omdat ik dit al vaker heb gedaan op de middelbare school. Soms vergeet ik nog weleens een feature-update te sturen via onze groepschat, waardoor verwarring ontstaat. Dit ga ik komend jaar niet meer laten gebeuren.
 
 ### Onderzoekend probleemoplossen
-
+Ik heb op mijn middelbare school al een uitgebreid onderzoek gedaan, voor het profielwerkstuk wat ik toen moest maken. De basis van bronnenonderzoek en de structuur hiervan begreep ik wel. Maar ik had wel een refresher nodig om aan het ethiek onderzoek te werken. Het ethiek onderzoek zorgde ervoor dat ik al deze kennis weer kon herleren. Onderzoek doen voorafgaand aan coderen had ik nog nooit eerder gedaan. Dit was dus even wennen, maar dit gaat ook redelijk goed. Wel moet ik ervoor zorgen dat ik dit ook in mijn ritme ga krijgen, omdat onderzoek voorafgaan aan coderen nog niet echt natuurlijk voor mij aanvoelt.
 
 ## Leerdoelen voor volgend jaar
-Als student wil ik leren hoe ik, zodat ik
+Als student wil ik leren hoe ik een game goed kan laten werken met een sterke back-end (database/server), zodat ik analytics-schermen en multiplayer games kan maken, aangezien dit de mogelijkheid opengooit om veel meer soorten games te ontwikkelen.
 
-Als student wil ik leren hoe ik, zodat ik
-Voor deze retrospective reflecteer je op de ontwikkeling van je professional skills dit afgelopen jaar.
-
-Voor elke ondergenoemde professional skill beschrijf je waar je goed in was (sterkte) en waar je je in moet verbeteren (zwakte). Deze sterke en zwakke punten illustreer je doormiddel van het beschrijven een concreet voorbeeld. 
-
-Je reflectie sluit je af door het beschrijven van twee leerdoelen (learning stories) voor het volgend schooljaar.
-
-Een learning story heeft de vorm van 'Als student wil ik leren hoe ik [JE ONTWIKKELDOEL], zodat ik [GEWENSTE UITKOMST, WAAROM]
-
-Professional skills:
-
-PERSOONLIJK LEIDERSCHAP (persoonlijke ontwikkeling)
-TOEKOMSTGERICHT ORGANISEREN (plannen, etc.)
-DOELGERICHT INTERACTEREN (presenteren, rapporteren, communicatie in team, etc.)
-ONDERZOEKEND PROBLEEMOPLOSSEN (onderzoek doen, voor rapport, maar ook voor de informatie die je nodig hebt voor het maken van je projectopdracht)
+Als student wil ik leren hoe ik werkgedrag in mijn ritme kan verwerken, zodat ik plannen en onderzoek als normaal ga zien, omdat dit erg handig is om het projectwerk minder veel te laten lijken en ik ook sneller aan het projectwerk kan gaan.
