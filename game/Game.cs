@@ -16,6 +16,7 @@ namespace BaseProject
 
             InitializeSocketClient();
 
+            GameStateManager.AddGameState("TITLE_SCREEN_STATE", new TitleScreenState());
             GameStateManager.AddGameState("MAIN_MENU_STATE", new MainMenuState());
             GameStateManager.AddGameState("SETTINGS_MENU_STATE", new SettingsMenuState());
             GameStateManager.AddGameState("GAME_STATE", new GameState());
@@ -24,7 +25,7 @@ namespace BaseProject
             GameStateManager.AddGameState("CONTROLS_MENU_STATE", new ControlSettingsState());
             GameStateManager.AddGameState("SHOP_STATE", new ShopState());
             GameStateManager.AddGameState("UPGRADE_STATE", new UpgradeState());
-            GameStateManager.SwitchToState("MAIN_MENU_STATE");
+            GameStateManager.SwitchToState("TITLE_SCREEN_STATE");
         }
 
         private void InitializeSocketClient()
