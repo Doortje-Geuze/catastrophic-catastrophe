@@ -1,35 +1,49 @@
 using System;
 using System.Diagnostics;
+using System.Xml.Serialization;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.SpriteGameObjects;
 using Microsoft.Xna.Framework;
+using Blok3Game.GameStates;
 
 
 namespace Blok3Game.GameObjects
 {
-    public class Grenade : RotatingSpriteGameObject
+    public class Grenade : RotatingSpriteGameObject, ICollidable
     {
+        public GameState Gamestate { get; set; }
         protected int BulletMoveSpeed = 0;
         private Vector2 PositionPlayer;
-        private bool KaboomTime = false;
+        private int grenadeTimer = 50;
+        GrenadeCollisionBox CollisionBox;
 
-        public Grenade(Vector2 position, Vector2 positionPlayer, double angle, int bulletMoveSpeed, bool kaboomTime, string assetName = "Images/Bullets/enemyBullet") : base(assetName)
+        public Grenade(Vector2 position, Vector2 positionPlayer, double angle, int bulletMoveSpeed, GrenadeCollisionBox grenadeCollisionBox, string assetName = "Images/Bullets/enemyBullet") : base(assetName)
         {
             Position = position;
             PositionPlayer = positionPlayer;
             Angle = (float)angle;
             BulletMoveSpeed = bulletMoveSpeed;
-            KaboomTime = kaboomTime;
+            CollisionBox = grenadeCollisionBox;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (KaboomTime)
+            if (CollisionBox.hit)
             {
-                velocity = new Vector2(0, 0); // x 10 * angle + Y * angle makes grenade do an arc
-                Debug.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+                // x 10 * angle + Y * angle makes grenade do an arc
+                if (grenadeTimer <= 0)
+                {
+                    Gamestate.grenadeKaboom = true;
+                    grenadeTimer = 50;
+                    CollisionBox.hit = false;
+                }
+                else
+                {
+                    grenadeTimer--;
+                    velocity = new Vector2(0, 0);
+                }
             }
             else
             {
@@ -43,7 +57,7 @@ namespace Blok3Game.GameObjects
             switch (spriteGameObject)
             {
                 case GrenadeCollisionBox:
-                    KaboomTime = true;
+                    CollisionBox.hit = true;
                     break;
             }
         }

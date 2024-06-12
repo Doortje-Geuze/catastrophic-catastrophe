@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection.Metadata;
+using System.Text.RegularExpressions;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.Helpers;
 using Blok3Game.Engine.JSON;
@@ -51,7 +52,9 @@ namespace Blok3Game.GameStates
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
-        private int BossCooldown = 0;
+        private int BossCooldown = 120;
+        public bool grenadeKaboom = false;
+        private bool bossWave = true;
 
         public GameState() : base()
         {
@@ -182,9 +185,18 @@ namespace Blok3Game.GameStates
                 Retry();
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
             }
+
             foreach (Grenade grenade in grenadeList)
             {
                 grenade.HandleCollision(grenadeCollisionBox);
+            }
+
+            foreach (GrenadeCollisionBox collisionBox in grenadeCollisionsList)
+            {
+                if (collisionBox.hit)
+                {
+                    toRemoveList.Add(collisionBox);
+                }
             }
 
             if (PlayerShootCooldown != 0)
@@ -240,6 +252,46 @@ namespace Blok3Game.GameStates
             {
                 player.HandleCollision(currency);
             }
+            foreach (var grenade in grenadeList)
+            {
+                if (grenadeKaboom)
+                {
+                    BirdGrenadeExplode(grenade);
+                }
+            }
+
+            if (bossWave)
+            {
+                if (BossCooldown != 0)
+                {
+                    BossCooldown--;
+                }
+                else if (BossCooldown <= 0)
+                {
+                    Random random = new Random();
+                    int attack = random.Next(0, 2);
+                    Debug.WriteLine(attack);
+
+                    switch (attack)
+                    {
+                        case 0: //SCHIET
+                            foreach (Enemy enemy in EnemyList)
+                            {
+                                EnemyShoots(enemy);
+                            }
+                            BossCooldown = 120;
+                            break;
+                        case 1:
+                            foreach (Enemy enemy in EnemyList)
+                            {
+                                BirdGrenade(enemy);
+                            }
+                            BossCooldown = 120;
+                            break;
+                    }
+
+                }
+            }
 
             //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
             if (player.InvulnerabilityCooldown >= 0)
@@ -280,6 +332,14 @@ namespace Blok3Game.GameStates
                 if (gameObject is Box box)
                 {
                     boxlist.Remove(box);
+                }
+                if (gameObject is GrenadeCollisionBox grenadeCollisionBox)
+                {
+                    grenadeCollisionsList.Remove(grenadeCollisionBox);
+                }
+                if (gameObject is Grenade grenade)
+                {
+                    grenadeList.Remove(grenade);
                 }
                 Remove(gameObject);
             }
@@ -462,14 +522,33 @@ namespace Blok3Game.GameStates
 
             double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
 
-
             grenadeCollisionBox = new GrenadeCollisionBox(new Vector2(player.Position.X + player.Width / 2, player.Position.Y + player.Height / 2));
-            boxlist.Add(grenadeCollisionBox);
+            grenadeCollisionsList.Add(grenadeCollisionBox);
             Add(grenadeCollisionBox);
 
-            Grenade grenade = new(new Vector2(ShootPositionX, ShootPositionY), new Vector2(grenadeCollisionBox.Position.X, grenadeCollisionBox.Position.Y), bulletAngle, 15, grenadeCollisionBox.kaboomTime);
+            Grenade grenade = new(new Vector2(ShootPositionX, ShootPositionY), new Vector2(grenadeCollisionBox.Position.X, grenadeCollisionBox.Position.Y), bulletAngle, 15, grenadeCollisionBox)
+            {
+                Gamestate = this
+            };
             grenadeList.Add(grenade);
             Add(grenade);
+        }
+
+        public void BirdGrenadeExplode(Grenade grenade)
+        {
+            float ShootPositionX = grenade.Position.X;
+            float ShootPositionY = grenade.Position.Y;
+
+            double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
+
+            for (int i = -1; i < 8; i++)
+            {
+                EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle - 0.7f * i, 10);
+                enemyBulletList.Add(enemyBullet);
+                Add(enemyBullet);
+            }
+            grenadeKaboom = false;
+            toRemoveList.Add(grenade);
         }
 
         private void boxCollision()
@@ -525,7 +604,7 @@ namespace Blok3Game.GameStates
 
         private void CreateBackground()
         {
-            background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -1, "background")
+            background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -2, "background")
             {
                 Scale = 2.1f,
             };

@@ -9,16 +9,16 @@ namespace Blok3Game.SpriteGameObjects
 {
     public class GrenadeCollision : SpriteGameObject
     {
-        public GrenadeCollision(Vector2 position, string assetName, int layer = 0, string id = "", int sheetIndex = 0) : base(assetName)
+        public GrenadeCollision(Vector2 position, string assetName, string id = "", int sheetIndex = 0) : base(assetName, -1)
         {
             Position = position;
         }
     }
-    public class GrenadeCollisionBox : Box
+    public class GrenadeCollisionBox : GrenadeCollision
     {
-        public bool kaboomTime = false;
+        public bool hit = false;
 
-        public GrenadeCollisionBox(Vector2 position) : base(position, "Images/Tiles/SquareYellow", 0, " ", 0)
+        public GrenadeCollisionBox(Vector2 position) : base(position, "Images/Tiles/GrenadeHitbox", " ", 0)
         {
             scale = 2;
         }
