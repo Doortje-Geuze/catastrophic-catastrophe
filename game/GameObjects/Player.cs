@@ -163,4 +163,12 @@ public class Player : Character, ICollidable
         }
         return false;
     }
+    public bool CheckForPlayerCollision(SpriteGameObject obstacle)
+    {
+        if (CollidesWith(obstacle))
+        {
+            return true;
+        }
+        return false;
+    }
 }

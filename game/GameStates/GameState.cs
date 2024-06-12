@@ -160,7 +160,7 @@ namespace Blok3Game.GameStates
                         obstacleList.Add(greenObstacle);
                         Add(greenObstacle);
                         
-                        //obstacleCollision();
+                        obstacleCollision();
                     }
                     break;
                 case 3: //Player Wins
@@ -444,6 +444,17 @@ namespace Blok3Game.GameStates
             }
         }
 
+        private void obstacleCollision()
+            {
+                foreach (Obstacle obstacle in obstacleList)
+                {
+                   if (player.CheckForPlayerCollision (obstacle))
+                {
+                    
+                }
+                }
+            }
+        
         private void ShowWaveIndicator()
         {
             //Spawns the wave indicator on the screen
