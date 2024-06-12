@@ -26,6 +26,7 @@ namespace Blok3Game.GameStates
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
         private List<GrenadeCollisionBox> grenadeCollisionsList;
+        public BossKanarien bossKanarie;
         public Player player;
         public Crosshair crosshair;
         public CatGun catGun;
@@ -99,10 +100,9 @@ namespace Blok3Game.GameStates
             Add(dashIndicator);
             dashIndicator.Parent = player;
 
-            shootingEnemy = new ShootingEnemy(5, 1, new Vector2(10, 10));
-            EnemyList.Add(shootingEnemy);
-
-            Add(shootingEnemy);
+            bossKanarie = new BossKanarien(5, 1, new Vector2(10, 10));
+            EnemyList.Add(bossKanarie);
+            Add(bossKanarie);
         }
 
         public override void Update(GameTime gameTime)
