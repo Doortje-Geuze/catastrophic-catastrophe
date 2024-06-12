@@ -308,8 +308,8 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
         }
     ```
 
- === "ShootingEnemy.cs"
-    ```C#
+=== "ShootingEnemy.cs"
+    ```c#
         public class ShootingEnemy : Enemy
         {
             public int EnemyHitPoints;
@@ -334,6 +334,7 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
     ```
 
 ## K3
+Sequence Diagram van de client-database communicatie
 ![sequence diagram](../images/sequencediagramserver-database.png)
 
 ### Debuggen server
