@@ -28,11 +28,6 @@ namespace Blok3Game.GameStates
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "MAIN MENU", OnButtonMainMenuClicked);
         }
 
-        private void ButtonNotImplimented(UIElement element)
-        {
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_not_implimented");
-        }
-
         private void OnButtonRestartClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
