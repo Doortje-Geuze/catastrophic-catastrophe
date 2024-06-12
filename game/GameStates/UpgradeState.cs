@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using Blok3Game.Engine.GameObjects;
 using Blok3Game.Engine.UI;
+using Blok3Game.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
@@ -10,18 +11,34 @@ namespace Blok3Game.GameStates
 {
     public class UpgradeState : MenuItem
     {
-        private TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
-        private TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
-        private TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
+        private readonly TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject HealthUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject DashUpgradeText = new("Fonts/SpriteFont");
+        private readonly TextGameObject InvulnerabilityUpgradeText = new("Fonts/SpriteFont");
         private int BulletSpeedUpgradeCost = 1;
         private int PlayerSpeedUpgradeCost = 1;
         private int PlayerHealthUpgradeCost = 1;
-        private int InvulnerabilityCooldownUpgradeCost = 1;
         private int DashCooldownUpgradeCost = 1;
-        private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 8);
+        private int InvulnerabilityCooldownUpgradeCost = 1;
+        private int BulletSpeedUpgradedAmount = 0;
+        private int PlayerSpeedUpgradedAmount = 0;
+        private int PlayerHealthUpgradedAmount = GameState.Instance.player.HitPoints;
+        private int DashUpgradedAmount = 0;
+        private int InvulnerabilityUpgradedAmount = 0;
+        private readonly int BulletSpeedUpgradeMax = 3;
+        private readonly int PlayerSpeedUpgradeMax = 3;
+        private readonly int PlayerHealthUpgradeMax = 5;
+        private readonly int DashUpgradeMax = 4;
+        private readonly int InvulnerabilityUpgradeMax = 5;
+        private readonly int BulletSpeedUpgradeValue = 3;
+        private readonly int PlayerSpeedUpgradeValue = 1;
+        private readonly int PlayerHealthUpgradeValue = 1;
+        private readonly int DashUpgradeValue = 10;
+        private readonly int InvulnerabilityUpgradeValue = 15;
+        private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 12);
+        public static UpgradeState Instance { get; private set; } = new();
         public UpgradeState() : base()
         {
             CreateButtons();
@@ -44,15 +61,25 @@ namespace Blok3Game.GameStates
         {
             TextCreator(CurrencyCount, $"Currency counter: You have {GameState.Instance.player.currencyCounter}", 
                         new Vector2(GameEnvironment.Screen.X / 3, GameEnvironment.Screen.Y / 6) - TextOffset);
-            TextCreator(BulletSpeedUpgradeText, $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}", 
+            TextCreator(BulletSpeedUpgradeText, $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}" + Environment.NewLine + 
+                                                $"Increases bullet speed by {BulletSpeedUpgradeValue}," + Environment.NewLine  + 
+                                                $"upgraded {BulletSpeedUpgradedAmount} out of {BulletSpeedUpgradeMax} times", 
                         new Vector2(0, GameEnvironment.Screen.Y / 3) + TextOffset);
-            TextCreator(SpeedUpgradeText, $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}", 
+            TextCreator(SpeedUpgradeText, $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}" + Environment.NewLine + 
+                                          $"Increases player speed by {PlayerSpeedUpgradeValue}," + Environment.NewLine + 
+                                          $"upgraded {PlayerSpeedUpgradedAmount} out of {PlayerSpeedUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / 4, GameEnvironment.Screen.Y / 3) + TextOffset);
-            TextCreator(HealthUpgradeText, $"Health Upgrade Cost: {PlayerHealthUpgradeCost}", 
+            TextCreator(HealthUpgradeText, $"Health Upgrade Cost: {PlayerHealthUpgradeCost}" + Environment.NewLine + 
+                                           $"Increases player health by {PlayerHealthUpgradeValue}," + Environment.NewLine + 
+                                           $"upgraded {PlayerHealthUpgradedAmount} out of {PlayerHealthUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 3) + TextOffset);
-            TextCreator(DashUpgradeText, $"Dash Upgrade Cost: {DashCooldownUpgradeCost}", 
+            TextCreator(DashUpgradeText, $"Dash Upgrade Cost: {DashCooldownUpgradeCost}" + Environment.NewLine + 
+                                         $"Decreases dash cooldown by {DashUpgradeValue}," + Environment.NewLine + 
+                                         $"upgraded {DashUpgradedAmount} out of {DashUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / (float)1.3, GameEnvironment.Screen.Y / 3)+ TextOffset);
-            TextCreator(InvulnerabilityUpgradeText, $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}", 
+            TextCreator(InvulnerabilityUpgradeText, $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}" + Environment.NewLine + 
+                                                    $"Increase invulnerability timer by {InvulnerabilityUpgradeValue}," + Environment.NewLine + 
+                                                    $"upgraded {InvulnerabilityUpgradedAmount} out of {InvulnerabilityUpgradeMax} times", 
                         new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2) + TextOffset);
         }
 
@@ -75,52 +102,64 @@ namespace Blok3Game.GameStates
 
         private void OnButtonBulletSpeedClicked(UIElement element)
         {
-            if (GameState.Instance.PlayerBulletSpeed >= 30) return;
-            if (GameState.Instance.player.currencyCounter < BulletSpeedUpgradeCost) return;
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            if (BulletSpeedUpgradedAmount >= BulletSpeedUpgradeMax) return;
+            if (!IsUpgradeAffordable(BulletSpeedUpgradeCost)) return;
             GameState.Instance.PlayerBulletSpeed += 3;
             GameState.Instance.player.currencyCounter -= BulletSpeedUpgradeCost;
             BulletSpeedUpgradeCost *= 2;
+            BulletSpeedUpgradedAmount++;
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
         }
 
         private void OnButtonPlayerSpeedClicked(UIElement element)
         {
-            if (GameState.Instance.player.BaseMoveSpeed >= 9) return;
-            UpgradeButtonClicked(1, "MoveSpeed", PlayerSpeedUpgradeCost);
+            if (PlayerSpeedUpgradedAmount >= PlayerSpeedUpgradeMax) return;
+            if (!IsUpgradeAffordable(PlayerSpeedUpgradeCost)) return;
+            InitiateUpgrade(1, "MoveSpeed", PlayerSpeedUpgradeCost);
             PlayerSpeedUpgradeCost *= 2;
+            PlayerSpeedUpgradedAmount++;
         }
 
         private void OnButtonPlayerHealthClicked(UIElement element)
         {
-            if (GameState.Instance.player.HitPoints >= 5) return;
-            UpgradeButtonClicked(1, "HitPoints", PlayerHealthUpgradeCost);
+            if (PlayerHealthUpgradedAmount >= PlayerHealthUpgradeMax) return;
+            if (!IsUpgradeAffordable(PlayerHealthUpgradeCost)) return;
+            InitiateUpgrade(1, "HitPoints", PlayerHealthUpgradeCost);
             PlayerHealthUpgradeCost *= 2;
+            PlayerHealthUpgradedAmount++;
         }
 
         private void OnButtonInvulnerabilityCooldownClicked(UIElement element)
         {
-            if (GameState.Instance.player.BaseInvulnerabilityCooldown >= 180) return;
-            UpgradeButtonClicked(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
+            if (InvulnerabilityUpgradedAmount >= InvulnerabilityUpgradeMax) return;
+            if (!IsUpgradeAffordable(InvulnerabilityCooldownUpgradeCost)) return;
+            InitiateUpgrade(15, "InvulnerabilityCooldown", InvulnerabilityCooldownUpgradeCost);
             InvulnerabilityCooldownUpgradeCost *= 2;
+            InvulnerabilityUpgradedAmount++;
         }
 
         private void OnButtonDashCooldownClicked(UIElement element)
         {
-            if (GameState.Instance.player.BaseDashCooldown <= 20) return;
-            UpgradeButtonClicked(10, "DashCooldown", DashCooldownUpgradeCost);
+            if (DashUpgradedAmount >= DashUpgradeMax) return;
+            if (!IsUpgradeAffordable(DashCooldownUpgradeCost)) return;
+            InitiateUpgrade(10, "DashCooldown", DashCooldownUpgradeCost);
             DashCooldownUpgradeCost *= 2;
+            DashUpgradedAmount++;
+        }
+
+        private bool IsUpgradeAffordable(int currencyRequirement)
+        {
+            if (GameState.Instance.player.currencyCounter < currencyRequirement) return false;
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            return true;
         }
 
         //types that can be given as parameters: "HitPoints, "MoveSpeed", "InvulnerabilityCooldown" & "DashCooldown".
-        private void UpgradeButtonClicked(int value, string type, int currencyRequirement)
+        private void InitiateUpgrade(int value, string type, int currencyRequirement)
         {
-            Console.WriteLine($"the player has {GameState.Instance.player.currencyCounter} left");
-            if (GameState.Instance.player.currencyCounter < currencyRequirement) return;
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-            GameState.Instance.player.UpdateValue(value, type);
             GameState.Instance.player.currencyCounter -= currencyRequirement;
+            GameState.Instance.player.UpdateValue(value, type);
             nextScreenName = "UPGRADE_STATE";
             ButtonClicked();
             Console.WriteLine($"{currencyRequirement} currency was removed from the player");
@@ -141,11 +180,26 @@ namespace Blok3Game.GameStates
 
         private void UpdateUpgradeText()
         {
-            BulletSpeedUpgradeText.Text = $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}";
-            SpeedUpgradeText.Text = $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}";
-            HealthUpgradeText.Text = $"Health Upgrade Cost: {PlayerHealthUpgradeCost}";
-            DashUpgradeText.Text = $"Dash Upgrade Cost: {DashCooldownUpgradeCost}";
-            InvulnerabilityUpgradeText.Text = $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}";
+            BulletSpeedUpgradeText.Text = $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}" + Environment.NewLine + 
+                                          $"Increases bullet speed by {BulletSpeedUpgradeValue}," + Environment.NewLine + 
+                                          $"upgraded {BulletSpeedUpgradedAmount} out of {BulletSpeedUpgradeMax} times";
+            SpeedUpgradeText.Text = $"Speed Upgrade Cost: {PlayerSpeedUpgradeCost}" + Environment.NewLine + 
+                                    $"Increases player speed by {PlayerSpeedUpgradeValue}," + Environment.NewLine + 
+                                    $"upgraded {PlayerSpeedUpgradedAmount} out of {PlayerSpeedUpgradeMax} times";
+            HealthUpgradeText.Text = $"Health Upgrade Cost: {PlayerHealthUpgradeCost}" + Environment.NewLine + 
+                                     $"Increases player health, by {PlayerHealthUpgradeValue}" + Environment.NewLine + 
+                                     $"upgraded {GameState.Instance.player.HitPoints} out of {PlayerHealthUpgradeMax} times";
+            DashUpgradeText.Text = $"Dash Upgrade Cost: {DashCooldownUpgradeCost}" + Environment.NewLine + 
+                                   $"Decreases dash cooldown by {DashUpgradeValue}," + Environment.NewLine + 
+                                   $"upgraded {DashUpgradedAmount} out of {DashUpgradeMax} times";
+            InvulnerabilityUpgradeText.Text = $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}" + Environment.NewLine + 
+                                              $"Increase invulnerability timer by {InvulnerabilityUpgradeValue}," + Environment.NewLine + 
+                                              $"upgraded {InvulnerabilityUpgradedAmount} out of {InvulnerabilityUpgradeMax} times"; 
+        }
+
+        public void PlayerHealthAmountUpdate()
+        {
+            PlayerHealthUpgradedAmount = GameState.Instance.player.HitPoints;
         }
     }
 }
