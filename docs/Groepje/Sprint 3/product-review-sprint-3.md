@@ -12,12 +12,12 @@ Hieronder zijn een paar foto's te zien van ons prototype. Foto 1 laat de game zi
 ![Foto prototype fast enemies](../Images/fastEnemiesPrototype.png)
 
 ## K4: Game design
-Voor game design hebben we veel verschillende theorieën behandeld. Hier is de [Game design document voor Catastrophic Catastrophy - HBO-ICT Digitale turn based multiplayer game (hihva.nl)](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Game-design/) om hiernaar verwezen te worden.
+Voor game design hebben we veel verschillende theorieën behandeld. Hier is de [Game design document voor Catastrophic Catastrophy](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Game-design/) om hiernaar verwezen te worden.
 
 ## G2: Samenwerking
 Voor deze sprint was onze samenwerking voorspoedig, wij hebben een samenwerkingscontract opgesteld en er zijn nog geen problemen in de groep. 
 Hier het 
-[Samenwerkingscontract](https://suuleewooyaa34-propedeuse-hbo-ict-onderwijs-2023-379a4339aa11c7.dev.hihva.nl/Groepje/Samenwerkings-contract/ )
+[Samenwerkingscontract](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Samenwerkings-contract/)
 
 Verder hebben we de user stories verdeeld zodat alle groepsleden een gelijke bijdragen hebben
 ![Foto van Userstories](../Images/issueBoardSprint3.png)
