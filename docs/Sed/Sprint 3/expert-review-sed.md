@@ -308,8 +308,8 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
         }
     ```
 
- === "ShootingEnemy.cs"
-    ```C#
+=== "ShootingEnemy.cs"
+    ```c#
         public class ShootingEnemy : Enemy
         {
             public int EnemyHitPoints;
@@ -334,82 +334,131 @@ Voor onze game willen we dat de enemies niet in een keer van directie veranderen
     ```
 
 ## K3
+Sequence Diagram van de client-database communicatie
 ![sequence diagram](../images/sequencediagramserver-database.png)
 
 ### Debuggen server
 
-Tijdens het maken van de Backend liepen wij tegen een muur aan. Iederkeer als wij data opstuurde naar de server kregen wij de error terug dat er geen data opgestuurd kon worden als de connectie tot de server dicht was. Hierdoor konden wij ook geen queries sturen naar de database omdat we niks op konden sturen naar de server. Het leek alsof Visual Studio de connectie dicht gooide het moment dat wij iets opstuurde.
+Tijdens het maken van de Backend liepen wij tegen een muur aan. Iederkeer als er data opgestuurt zou moeten worden naar de server kregen wij de error "Can't send data when connection to the server is closed" in onze terminal. Het probleem leek hem te liggen in dat de connectie tussen de server dicht werd gegooit na een korte tijd en daarna niet meer open werd/mocht worden gemaakt.
 
-Om dit probleem te verhelpen hebben we de connectie verandert naar een pool. Connection Pooling houd in dat een "pool" een aantal actieve connecties met de server openhoud. Wanneer een user een connectie met de server aanvraagt zoekt de pool naar een beschikbare connectie die hij heeft, en zo ja connect de twee met elkaar. Wanneer de user de connectie weer sluit gaat de connectie niet dicht maar gaat het weer terug de pool in ready voor een nieuwe user die wilt connecten [(Microsoft, 2023)](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
+Als oplossing vertelde een mede student aan ons dat `mySqlDatabase.js` gebruikt maakt van `connection` en dat als we het veranderen naar `pool` het probleem verholpen kon worden. Het verschil tussen `connection` en `Connection Pooling` is dat connection iederekeer een connectie tussen de server opent en sluit, dit zorgt ervoor dat er iederkeer weer een nieuwe handshake moet worden gedaan. Bij ons ging de handshake bij het versturen van data de hele tijd niet goed, dus sloot de connectie iederekeer. Connection Pooling doorintegen houd in dat een "pool" een aantal actieve connecties met de server openhoud. Wanneer een user een connectie met de server aanvraagt zoekt de pool naar een beschikbare connectie die hij heeft, en zo ja connect het de twee met elkaar. Wanneer de user de connectie weer sluit gaat de connectie niet dicht maar gaat het weer terug de pool in ready voor een nieuwe user die wilt connecten [(Microsoft, 2023)](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
 
-Dit verhielp de connectie problemen met de server en liet ons queries sturen naar de database zonder problemen.
+Het veranderen van connection naar connection pooling verhielp ons probleem en liet ons data en queries sturen naar de server zonder problemen.
 
-```c#
-class MySqlDatabase {
-	#pool;
+=== "Connection"
+    ```Js
+        class MySqlDatabase {
+	    #connection;
 
-	async initializeDatabase() {
-		await this.#createPool();
-	}
+	    async initializeDatabase() {
+		    await this.#createConnection();
+	    }
 
-	async #createPool() {
-		const serverConfig = global.serverConfig;
-		this.#pool = mySql.createPool({
-			host: serverConfig.database.host,
-			port: serverConfig.database.port,
-			user: serverConfig.database.username,
-			password: serverConfig.database.password,
-			database: serverConfig.database.database,
-			connectionLimit: serverConfig.database.connectionLimit,
-			timezone: "UTC",
-			multipleStatements: true,
-			waitForConnections: true
-		});
-		console.log('connection established');
-	}
+	    async #createConnection() {
+		    const serverConfig = global.serverConfig;
+		    this.#connection = mySql.createConnection({
+			    host: serverConfig.database.host,
+			    port: serverConfig.database.port,
+			    user: serverConfig.database.username,
+			    password: serverConfig.database.password,
+			    database: serverConfig.database.database,
+			    connectionLimit: serverConfig.database.connectionLimit,
+			    timezone: "UTC",
+			    multipleStatements: true,
+			    waitForConnections: true
+		    });
+		    console.log('connection established');
+	    }
 
-	async executePreparedQuery(query, parameters) {
-		let connection;
-		try	{
-			connection = await this.#pool.getConnection();
-			const [rows, fields] = await connection.execute(query, parameters);
-			return {
-				rows: rows,
-				fields: fields
-			};
-		} catch (err) {
-			console.log(`An error occurred while executing prepared query: ${err.code} (${err.errno}): ${err.message}`);
-		} finally {
-			if (connection) connection.release();
-		}
-	};
-}
+	    async executePreparedQuery(query, parameters) {
+		    let connection;
+		    try	{
+			    connection = await this.#connection.getConnection();
+			    const [rows, fields] = await connection.execute(query, parameters);
+			    return {
+				    rows: rows,
+				    fields: fields
+			    };
+		    } catch (err) {
+			    console.log(`An error occurred while executing prepared query: ${err.code} (${err.errno}): ${err.message}`);
+		    } finally {
+			    if (connection) connection.release();
+		    }
+	    };
+    }
 
-module.exports = MySqlDatabase;
-```
+    module.exports = MySqlDatabase;
+    ```
+
+=== "Connection Pooling"
+    ```Js
+    class MySqlDatabase {
+	    #pool;
+
+	    async initializeDatabase() {
+		    await this.#createPool();
+	    }
+
+	    async #createPool() {
+		    const serverConfig = global.serverConfig;
+		    this.#pool = mySql.createPool({
+			    host: serverConfig.database.host,
+			    port: serverConfig.database.port,
+			    user: serverConfig.database.username,
+			    password: serverConfig.database.password,
+			    database: serverConfig.database.database,
+			    connectionLimit: serverConfig.database.connectionLimit,
+			    timezone: "UTC",
+			    multipleStatements: true,
+			    waitForConnections: true
+		    });
+		    console.log('connection established');
+	    }
+
+	    async executePreparedQuery(query, parameters) {
+		    let connection;
+		    try	{
+			    connection = await this.#pool.getConnection();
+			    const [rows, fields] = await connection.execute(query, parameters);
+			    return {
+				    rows: rows,
+				    fields: fields
+			    };
+		    } catch (err) {
+			    console.log(`An error occurred while executing prepared query: ${err.code} (${err.errno}): ${err.message}`);
+		    } finally {
+			    if (connection) connection.release();
+		    }
+	    };
+    }
+
+    module.exports = MySqlDatabase;
+    ```
 
 ### Analytics Queries
 Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics data, bruikbare informatie geeft over bijvoorbeeld hoe moeilijk een wave is of hoe goed een geweer is.
 
-=== Killed By
+=== "Balancing"
 
     Uit de beschikbare data kan worden gehaald dat de meerdereheid dood zijn gegaan aan de "Rat" enemy en/of dat 2 van de 3 mensen dood zijn gegaan terwijl ze de shotgun gebruikte. Als ontwikkelaar kan er dan gekeken worden naar of de Rat te sterk is en misschien generfed moet worden of dat bijvoorbeeld de shotgun te zwak is en verbeterd moet worden.
 
     ```Js
-    SELECT LastUsedWeapon, NumberOfCollectedWeapons, NumberOfUpgradesBought, TotalWavesSurvived, KilledBy FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch WHERE KilledBy IS NOT NULL; 
+    SELECT LastUsedWeapon, NumberOfCollectedWeapons, NumberOfUpgradesBought, TotalWavesSurvived, KilledBy FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch WHERE KilledBy IS NOT NULL
     ```
 
     ![EnemyQuery](../images/OPenemyQuery.PNG)
 
-=== VERANDER
+=== "Overpowered enemy?"
+    
+    Hier kan worden gezien hoe vaak speler dood zijn gegaan aan een bepaalde vijand of het spel gehaald heeft (KilledBy = NULL). Deze query gaat wat dieper in op welke enemy misschien te sterk is dan de eerste query en geeft een duidelijker beeld over de enemies.
     
     ```Js
-    SELECT COUNT(TotalWavesSurvived), KilledBy FROM inventory INNER JOIN `match` ON Match_idMatch = idMatch GROUP BY KilledBy ORDER BY COUNT(TotalWavesSurvived) DESC; 
+    SELECT COUNT(idPlayer), KilledBy FROM `match` INNER JOIN player ON idMatch = Match_idMatch GROUP BY KilledBy DESC
     ```
 
     ![EnemyQuery2](../images/OPEnemyWaves.PNG)
 
-=== Kills
+=== "Most chosen"
 
     Met deze query wordt er gekeken naar hoeveel kills een geweer type heeft gemaakt en tot welke wave ze dat heeft gebracht. Zoals te zien is wordt de shotgun vaker gekozen dan het geweer en zou er dus kunnen worden gekeken naar het aantrekkelijker maken van de gun
 
