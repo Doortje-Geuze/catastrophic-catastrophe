@@ -437,7 +437,7 @@ Het veranderen van connection naar connection pooling verhielp ons probleem en l
 ### Analytics Queries
 Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics data, bruikbare informatie geeft over bijvoorbeeld hoe moeilijk een wave is of hoe goed een geweer is.
 
-=== "Killed By"
+=== "Balancing"
 
     Uit de beschikbare data kan worden gehaald dat de meerdereheid dood zijn gegaan aan de "Rat" enemy en/of dat 2 van de 3 mensen dood zijn gegaan terwijl ze de shotgun gebruikte. Als ontwikkelaar kan er dan gekeken worden naar of de Rat te sterk is en misschien generfed moet worden of dat bijvoorbeeld de shotgun te zwak is en verbeterd moet worden.
 
@@ -447,7 +447,7 @@ Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics dat
 
     ![EnemyQuery](../images/OPenemyQuery.PNG)
 
-=== "VERANDER"
+=== "Overpowered enemy?"
     
     Hier kan worden gezien hoe vaak speler dood zijn gegaan aan een bepaalde vijand of het spel gehaald heeft (KilledBy = NULL). Deze query gaat wat dieper in op welke enemy misschien te sterk is dan de eerste query en geeft een duidelijker beeld over de enemies.
     
@@ -457,7 +457,7 @@ Voor de analystics heb ik queries geschreven die uit de opgeslagen analytics dat
 
     ![EnemyQuery2](../images/OPEnemyWaves.PNG)
 
-=== "Kills"
+=== "Most chosen"
 
     Met deze query wordt er gekeken naar hoeveel kills een geweer type heeft gemaakt en tot welke wave ze dat heeft gebracht. Zoals te zien is wordt de shotgun vaker gekozen dan het geweer en zou er dus kunnen worden gekeken naar het aantrekkelijker maken van de gun
 
