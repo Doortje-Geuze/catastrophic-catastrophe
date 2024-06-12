@@ -11,21 +11,37 @@ using Blok3Game.GameStates;
 public class Player : Character, ICollidable
 {
     //all variables that a player needs
-    public GameState Gamestate { get; set; }
     private int PlayerDashTimer = 0;
     private Vector2 Direction = new();
     private bool IsDashing = false;
     private int DashCooldown = 0;
     public int InvulnerabilityCooldown = 0;
     public int BaseHitPoints = 3;
-    public int currencyCounter = 0;
-    public const int BaseMoveSpeed = 5;
-    public const int BaseInvulnerabilityCooldown = 120;
+    public int currencyCounter;
+    public int BaseMoveSpeed = 5;
+    public int BaseInvulnerabilityCooldown = 120;
+    public int BaseDashCooldown = 60;
 
     public Player(int hitPoints, int moveSpeed, Vector2 position) :
                   base(hitPoints, moveSpeed, position, "Images/Characters/playerCat@2x1", 0, " ", 0)
     {
         HitPoints = hitPoints;
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+
+        if (IsDashing)
+        {
+            if (Position.X <= 0 || Position.X >= GameEnvironment.Screen.X - Width || Position.Y <= 0 || Position.Y >= GameEnvironment.Screen.Y - Height)
+            {
+                ResetDashValue();
+                return;
+            }
+            PlayerDash();
+        }
+        CheckPlayerInvulnerabilityCooldown();
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -38,17 +54,7 @@ public class Player : Character, ICollidable
         {
             IsDashing = true;
         }
-        if (IsDashing)
-        {
-            if (Position.X is <= 0 or >= 710 || Position.Y is <= 0 or >= 510)
-            {
-                ResetDashValue();
-                return;
-            }
-            PlayerDash();
-        }
         CheckForMovementInputs(inputHelper);
-        CheckPlayerInvulnerabilityCooldown();
     }
 
     //Increases movement speed for a short duration, which launches the player forward, and puts dash on a cooldown
@@ -56,7 +62,7 @@ public class Player : Character, ICollidable
     {
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         PlayerDashTimer++;
-        DashCooldown = 60;
+        DashCooldown = BaseDashCooldown;
         MoveSpeed = BaseMoveSpeed * 5;
         Position = new Vector2(Position.X + MoveSpeed * Direction.X, Position.Y + MoveSpeed * Direction.Y);
         return;
@@ -68,7 +74,7 @@ public class Player : Character, ICollidable
         if (DashCooldown > 0)
         {
             DashCooldown--;
-            Gamestate.dashIndicator.SwitchSprites(DashCooldown);
+            GameState.Instance.dashIndicator.SwitchSprites(DashCooldown, BaseDashCooldown);
         }
         if (PlayerDashTimer > 5)
         {
@@ -77,11 +83,19 @@ public class Player : Character, ICollidable
         }
     }
 
-    //Reduces InvulnerabilityCooldown every frame
+    //if-statement that flashes red colouring over the player to indicate that they have been hit, and are currently invulnerable
     private void CheckPlayerInvulnerabilityCooldown()
     {
         if (InvulnerabilityCooldown > 0)
         {
+            if (InvulnerabilityCooldown % (BaseInvulnerabilityCooldown / 2) > (BaseInvulnerabilityCooldown / 4))
+            {
+                Shade = new Color(255, 0, 0);
+            }
+            if (InvulnerabilityCooldown % (BaseInvulnerabilityCooldown / 2) < (BaseInvulnerabilityCooldown / 4))
+            {
+                Shade = new Color(255, 255, 255);
+            }
             InvulnerabilityCooldown--;
         }
     }
@@ -120,11 +134,10 @@ public class Player : Character, ICollidable
         PlayerDashTimer = 0;
         MoveSpeed = BaseMoveSpeed;
     }
-
     //handles player collision with spritegameobjects, using a switch-case to correctly handle the collision based on the type of spritegameobject
-    public void HandleCollision(SpriteGameObject spriteGameObject)
+    public bool HandleCollision(SpriteGameObject spriteGameObject)
     {
-        if (CollidesWith(spriteGameObject) == false) return;
+        if (CollidesWith(spriteGameObject) == false) return false;
         switch (spriteGameObject)
         {
             case Enemy:
@@ -132,29 +145,29 @@ public class Player : Character, ICollidable
                 {
                     UpdatePlayerHealth();
                 }
-                break;
+                return true;
             case EnemyBullet:
                 if (InvulnerabilityCooldown <= 0)
                 {
                     UpdatePlayerHealth();
                 }
-                break;
+                return true;
             case Currency:
-                currencyCounter++;
-                Gamestate.playerCurrency.Text = $"you collected {currencyCounter} currency";
-                Gamestate.toRemoveList.Add(spriteGameObject);
-                break;
+                GameState.Instance.playerCurrency.Text = $"you collected {currencyCounter} currency";
+                GameState.Instance.toRemoveList.Add(spriteGameObject);
+                return true;
         }
+        return false;
     }
 
     //updates the playerHealth when the player is hit by an enemy or enemyBullet
     private void UpdatePlayerHealth()
     {
         HitPoints -= 1;
-        Gamestate.playerHealth.Text = $"{HitPoints}";
+        GameState.Instance.playerHealth.Text = $"{HitPoints}";
         InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-        Console.WriteLine(HitPoints);
     }
+
     public bool CheckForPlayerCollision(SpriteGameObject box)
     {
         if (CollidesWith(box))
@@ -162,5 +175,26 @@ public class Player : Character, ICollidable
             return true;
         }
         return false;
+    }
+
+    public void UpdateValue(int value, string type)
+    {
+        switch (type)
+        {
+            case "HitPoints":
+                HitPoints += value;
+                GameState.Instance.playerHealth.Text = $"{HitPoints}";
+                break;
+            case "MoveSpeed":
+                BaseMoveSpeed += value;
+                MoveSpeed += value;
+                break;
+            case "InvulnerabilityCooldown":
+                BaseInvulnerabilityCooldown += value;
+                break;
+            case "DashCooldown":
+                BaseDashCooldown -= value;
+                break;
+        }
     }
 }

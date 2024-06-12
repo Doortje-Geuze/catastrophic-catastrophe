@@ -1,12 +1,12 @@
 {
 	"debug":
 	{
-		"location": "http://localhost:3000",
-		"path": ""
+		"location": "https://suuleewooyaa34-pb4gdd2324.hbo-ict.cloud",
+		"path": "/api/socket.io"
 	},
 	"release":
 	{
-		"location": "[...]",
+		"location": "https://suuleewooyaa34-pb4gdd2324.hbo-ict.cloud",
 		"path": "/api/socket.io"
 	}
-}
+} 	

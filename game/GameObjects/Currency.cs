@@ -22,7 +22,7 @@ namespace Blok3Game.GameObjects
 
         private void DoAnimation()
         {
-            var Switcher = Math.Floor((float)(animationTimer / 12));
+            var Switcher = Math.Floor((float)(animationTimer / 6));
             animationTimer += animationCounter;
             switch (Switcher) 
             {
@@ -32,16 +32,16 @@ namespace Blok3Game.GameObjects
                 case 0:
                     Sprite.SheetIndex = 0;
                     return;
-                case 1:
+                case 2:
                     Sprite.SheetIndex = 1;
                     return;
-                case 2:
+                case 4:
                     Sprite.SheetIndex = 2;
                     return;
-                case 3:
+                case 6:
                     Sprite.SheetIndex = 3;
                     return;
-                case 4:
+                case 7:
                     animationCounter = -1;
                     return;
             }

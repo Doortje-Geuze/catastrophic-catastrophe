@@ -11,7 +11,7 @@ namespace BaseProject
         {
             base.LoadContent();
 
-            screen = new Point(800, 600);
+            screen = new Point(1280, 800);
             ApplyResolutionSettings();
 
             InitializeSocketClient();
@@ -22,6 +22,8 @@ namespace BaseProject
             GameStateManager.AddGameState("LOSE_SCREEN_STATE", new LoseScreenState());
             GameStateManager.AddGameState("WIN_SCREEN_STATE", new WinScreenState());
             GameStateManager.AddGameState("CONTROLS_MENU_STATE", new ControlSettingsState());
+            GameStateManager.AddGameState("SHOP_STATE", new ShopState());
+            GameStateManager.AddGameState("UPGRADE_STATE", new UpgradeState());
             GameStateManager.SwitchToState("MAIN_MENU_STATE");
         }
 
