@@ -6,12 +6,12 @@ Wij hebben aan het begin van de sprint user tests uitgevoerd. De resultaten van 
 ![Foto prototype]()
 
 ## K4: Game design
-Voor game design hebben we veel verschillende theorieën behandeld. Hier is de [game design document link](Game design document voor Catastrophic Catastrophy - HBO-ICT Digitale turn based multiplayer game (hihva.nl)) om hiernaar verwezen te worden.
+Voor game design hebben we veel verschillende theorieën behandeld. Hier is de [Game design document voor Catastrophic Catastrophy - HBO-ICT Digitale turn based multiplayer game (hihva.nl)](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Groepje/Game-design/) om hiernaar verwezen te worden.
 
 ## G2: Samenwerking
 Voor deze sprint was onze samenwerking voorspoedig, wij hebben een samenwerkingscontract opgesteld en er zijn nog geen problemen in de groep. 
 Hier het 
-[samenwerkingscontract](https://suuleewooyaa34-propedeuse-hbo-ict-onderwijs-2023-379a4339aa11c7.dev.hihva.nl/Groepje/Samenwerkings-contract/ )
+[Samenwerkingscontract](https://suuleewooyaa34-propedeuse-hbo-ict-onderwijs-2023-379a4339aa11c7.dev.hihva.nl/Groepje/Samenwerkings-contract/ )
 
 Verder hebben we de user stories verdeeld zodat alle groepsleden een gelijke bijdragen hebben
 ![Foto van Userstories]()
