@@ -35,8 +35,8 @@ In eerdere opleidingen had ik al geleerd hoe ik systematisch onderzoek moet doen
 In sommige gevallen schrijf ik te beschrijvend. Ik zou de teksten zakelijker kunnen houden.
 
 ## Leerdoelen
-1) Als student wil ik leren hoe ik grotendeels in classes kan werken, zodat ik mijn code en project opgeruimd en overzichtelijk houd.
-2) Als student wil ik leren hoe ik overzicht en duidelijkheid in mijn project breng, zodat ik beter door het project heen kom en meer motivatie heb.
+1) Als student wil ik leren hoe ik grotendeels in classes kan werken, zodat ik mijn code en project opgeruimd en overzichtelijk houd.  
+2) Als student wil ik leren hoe ik overzicht en duidelijkheid in mijn project breng, zodat ik beter door het project heen kom en meer motivatie heb.  
 
 ## Link classes en namespaces documentatie
 [classes en namespaces documentatie](https://propedeuse-hbo-ict.dev.hihva.nl/onderwijs/2023-2024/out-d-se-gd/blok-4/suuleewooyaa34/Senna/Classes-en-Namespaces-documentatie/)
