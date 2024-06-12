@@ -73,8 +73,8 @@ Met de using keyword importeer je namen van een andere namespace.
 
 # Bronnen
 
-[sitemasters.be](http://www.sitemasters.be/tutorials/20/1/551/Gecombineerd/Classes)
-[Tutorialspoint](https://www.tutorialspoint.com/csharp/csharp_namespaces.htm)
-[Microsoft](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/namespaces)
-[Programiz](https://www.programiz.com/csharp-programming/namespaces)
-[Bro Code](https://www.youtube.com/watch?v=8FmE_-QXg3Y)
+[sitemasters.be](http://www.sitemasters.be/tutorials/20/1/551/Gecombineerd/Classes)  
+[Tutorialspoint](https://www.tutorialspoint.com/csharp/csharp_namespaces.htm)  
+[Microsoft](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/namespaces)  
+[Programiz](https://www.programiz.com/csharp-programming/namespaces)  
+[Bro Code](https://www.youtube.com/watch?v=8FmE_-QXg3Y)  
