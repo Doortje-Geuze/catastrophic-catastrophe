@@ -37,10 +37,7 @@ namespace Blok3Game.GameStates
 
         private void CreateTitle()
         {
-            SpriteGameObject logoText = new ("Images/UI/gameLogo", 0)
-            {
-                 Scale = 1,
-             };
+            SpriteGameObject logoText = new ("Images/UI/gameLogo", 0);
 
              //use the width and height of the title to position it in the center of the screen
              logoText.Position = new Vector2((GameEnvironment.Screen.X / 2) - (logoText.Width / 2), GameEnvironment.Screen.Y / 7);
