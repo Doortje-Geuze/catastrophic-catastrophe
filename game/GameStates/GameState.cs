@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -49,6 +49,10 @@ namespace Blok3Game.GameStates
         private bool pickedUpPurple = false;
         private bool pickedUpYellow = false;
         private bool waveRemoved = false;
+        public Door Door; 
+        public bool EnteredDoor = false;
+        public bool DoorSpawned = false;
+        private int DoorCounter = 0;  
 
         public GameState() : base()
         {
@@ -73,6 +77,8 @@ namespace Blok3Game.GameStates
 
             crosshair = new Crosshair(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Add(crosshair);
+
+            Door = new OpenDoor(new Vector2(1113, 200));
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
@@ -137,31 +143,89 @@ namespace Blok3Game.GameStates
                         }
                         else if (pickedUpPurple || pickedUpYellow)
                         {
+                            Add(Door);
+                            DoorSpawned = true;
+                        }
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+                        
+                        if(EnteredDoor == true)
+                        {
+                            Remove(Door);
                             WaveCounter++;
                             NewWave = true;
                             WaveIndicatorShowTime = 0;
                             ResetBullets();
                             SpawnFastEnemies();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
                         }
-
                         BoxCollision();
                     }
                     break;
                 case 2: //Wave 3
                     if (enemyList.Count == 0)
                     {
-                        WaveCounter++;
-                        NewWave = true;
-                        WaveIndicatorShowTime = 0;
-                        ResetBullets();
-                        SpawnStandardEnemies();
+
+                        if (DoorCounter < 1)
+                        {
+                            Add(Door);
+                            DoorSpawned = true;
+                            DoorCounter++;
+                        }
+
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+
+                        if(EnteredDoor == true)
+                        {
+                            Remove(Door);
+                            WaveCounter++;
+                            NewWave = true;
+                            WaveIndicatorShowTime = 0;
+                            ResetBullets();
+                            SpawnStandardEnemies();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
+                            DoorCounter = 0;
+                        }
                     }
                     break;
                 case 3: //Player Wins
                     if (enemyList.Count == 0)
                     {
+
+
+                        if (DoorCounter < 1)
+                        {
+                            Add(Door);
+                            DoorSpawned = true;
+                            DoorCounter++;
+                        }
+
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+
+                        if(EnteredDoor == true)
+                        {
+                            GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                            Remove(Door);
+                            DoorCounter = 0;
+                            ResetBullets();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
+                        }
+                        
+
                         Retry();
                         GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
+
                     }
                     break;
             }
@@ -453,6 +517,15 @@ namespace Blok3Game.GameStates
             }
         }
 
+        private void DoorCollision()
+        {
+            if (player.HandleCollision(Door))
+            {
+                EnteredDoor = true;
+                Console.WriteLine(EnteredDoor);
+            }
+        }
+
         private void ShowWaveIndicator()
         {
             //Spawns the wave indicator on the screen
@@ -483,10 +556,11 @@ namespace Blok3Game.GameStates
         {
             background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -1, "background")
             {
-                Scale = 2.1f,
+                Scale = 3.75f,
             };
 
             //use the width and height of the background to position it in the center of the screen
+            
             background.Position = new Vector2((GameEnvironment.Screen.X / 2) - (background.Width / 2), 0);
 
             Add(background);
@@ -510,6 +584,12 @@ namespace Blok3Game.GameStates
             //Reset the waves
             waveIndicator.Sprite.SheetIndex = 0;
             WaveCounter = 0;
+
+            //Reset the door
+            DoorCounter = 0;
+            EnteredDoor = false;
+            DoorSpawned = false;
+            Remove(Door);
         }
 
         private void ResetEnemies()
