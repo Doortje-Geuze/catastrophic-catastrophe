@@ -24,13 +24,7 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, GameEnvironment.Screen.Y / 2), "MAIN MENU", OnButtonMainMenuClicked);
-            //CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet, (GameEnvironment.Screen.Y / 2) + ButtonOffSet), "EXIT GAME", ButtonNotImplimented);
-        }
-
-        private void ButtonNotImplimented(UIElement element)
-        {
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_not_implimented");
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "MAIN MENU", OnButtonMainMenuClicked);
         }
 
         private void OnButtonMainMenuClicked(UIElement element)

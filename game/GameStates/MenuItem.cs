@@ -9,7 +9,7 @@ namespace Blok3Game.GameStates
     public class MenuItem : GameObjectList
     {
         //private SpriteGameObject background;
-        protected int ButtonOffSet = 100;
+        protected Vector2 ButtonOffSet = new(GameEnvironment.Screen.X / 8, GameEnvironment.Screen.Y / 8);
         protected const float BUTTON_SCALE = 0.2f;
         protected List<Button> buttons;
         protected List<TextInput> textInputs;

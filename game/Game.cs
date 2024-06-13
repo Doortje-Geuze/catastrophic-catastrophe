@@ -11,18 +11,21 @@ namespace BaseProject
         {
             base.LoadContent();
 
-            screen = new Point(800, 600);
+            screen = new Point(1440, 720);
             ApplyResolutionSettings();
 
             InitializeSocketClient();
 
+            GameStateManager.AddGameState("TITLE_SCREEN_STATE", new TitleScreenState());
             GameStateManager.AddGameState("MAIN_MENU_STATE", new MainMenuState());
             GameStateManager.AddGameState("SETTINGS_MENU_STATE", new SettingsMenuState());
             GameStateManager.AddGameState("GAME_STATE", new GameState());
             GameStateManager.AddGameState("LOSE_SCREEN_STATE", new LoseScreenState());
             GameStateManager.AddGameState("WIN_SCREEN_STATE", new WinScreenState());
             GameStateManager.AddGameState("CONTROLS_MENU_STATE", new ControlSettingsState());
-            GameStateManager.SwitchToState("MAIN_MENU_STATE");
+            GameStateManager.AddGameState("SHOP_STATE", new ShopState());
+            GameStateManager.AddGameState("UPGRADE_STATE", new UpgradeState());
+            GameStateManager.SwitchToState("TITLE_SCREEN_STATE");
         }
 
         private void InitializeSocketClient()
