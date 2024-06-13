@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -15,15 +15,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blok3Game.GameStates
 {
-    public class GameState : MenuItem
+    public class GameState : GameObjectList
     {
         //all lists, objects and variables at the start of the game for the gamestate are created here
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<Grenade> grenadeList;
         private List<Enemy> EnemyList;
-        private List<Currency> currencyList;
-        public List<GameObject> toRemoveList;
         private List<Box> boxlist;
         private List<GrenadeCollisionBox> grenadeCollisionsList;
         public BossKanarien bossKanarie;
