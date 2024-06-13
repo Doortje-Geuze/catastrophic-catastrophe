@@ -160,7 +160,7 @@ namespace Blok3Game.GameStates
                             DoorSpawned = true;
                         }
 
-                        boxCollision();
+                        BoxCollision();
 
                         if (DoorSpawned)
                         {
@@ -198,7 +198,7 @@ namespace Blok3Game.GameStates
                             DoorSpawned = true;
                         }
 
-                        boxCollision();
+                        BoxCollision();
 
                         if (DoorSpawned)
                         {
@@ -698,7 +698,7 @@ namespace Blok3Game.GameStates
             toRemoveList.Add(grenade);
         }
 
-        private void boxCollision()
+        private void BoxCollision()
         {
             foreach (Box box in boxList)
             {
