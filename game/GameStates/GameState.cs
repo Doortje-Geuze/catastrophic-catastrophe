@@ -251,6 +251,7 @@ namespace Blok3Game.GameStates
                             ResetBullets();
                             EnteredDoor = false;
                             DoorSpawned = false;
+                            Retry();
                         }
                     }
                     break;
@@ -783,6 +784,7 @@ namespace Blok3Game.GameStates
             playerHealth.Text = $"{player.HitPoints}";
             pickedUpPurple = false;
             pickedUpYellow = false;
+            playerWin = false;
 
 
             //Reset the waves
