@@ -22,7 +22,6 @@ namespace Blok3Game.GameStates
         private List<Grenade> grenadeList;
         private List<Enemy> EnemyList;
         private List<Currency> currencyList;
-        private List<Explosion> explosionList;
         public List<GameObject> toRemoveList;
         private List<Box> boxlist;
         private List<GrenadeCollisionBox> grenadeCollisionsList;
@@ -55,8 +54,11 @@ namespace Blok3Game.GameStates
         private bool waveRemoved = false;
         private int BossCooldown = 120;
         public bool grenadeKaboom = false;
-        private bool bossWave = true;
+        private bool bossWave = false;
         private int BossWalking = 0;
+        private bool bossSchoot = false;
+        private int BossShowAnimation = 60;
+        private bool playerWin = false;
 
         public GameState() : base()
         {
@@ -69,7 +71,6 @@ namespace Blok3Game.GameStates
             grenadeList = new List<Grenade>();
             currencyList = new List<Currency>();
             boxlist = new List<Box>();
-            explosionList = new List<Explosion>();
             toRemoveList = new List<GameObject>();
             grenadeCollisionsList = new List<GrenadeCollisionBox>();
 
@@ -100,81 +101,80 @@ namespace Blok3Game.GameStates
             dashIndicator = new DashIndicator(Vector2.Zero);
             Add(dashIndicator);
             dashIndicator.Parent = player;
-
-            bossKanarie = new BossKanarien(5, 1, new Vector2(10, 10));
-            Add(bossKanarie);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            //The Waves controller
-            // switch (WaveCounter)
-            // {
-            //     case 0: //Wave 1
-            //         if (EnemyList.Count == 0)
-            //         {
-            //             WaveCounter++;
-            //             NewWave = true;
-            //             WaveIndicatorShowTime = 0;
-            //             ResetBullets();
-            //             SpawnStandardEnemies();
-            //         }
-            //         break;
-            //     case 1: //Wave 2
-            //         if (EnemyList.Count == 0)
-            //         {
-            //             if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
-            //             {
-            //                 //Lower Cooldown Upgrade
-            // yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
-            //                 boxlist.Add(yellowBox);
+            // The Waves controller
+            switch (WaveCounter)
+            {
+                case 0: //Wave 1
+                    if (EnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        NewWave = true;
+                        WaveIndicatorShowTime = 0;
+                        ResetBullets();
+                        SpawnStandardEnemies();
+                    }
+                    break;
+                case 1: //Wave 2
+                    if (EnemyList.Count == 0)
+                    {
+                        if (boxlist.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
+                        {
+                            //Lower Cooldown Upgrade
+                            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
+                            boxlist.Add(yellowBox);
 
-            //                 Add(yellowBox);
+                            Add(yellowBox);
 
-            //                 //Shotgun upgrade
-            //                 purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) + 100, 150));
-            //                 boxlist.Add(purpleBox);
+                            //Shotgun upgrade
+                            purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) + 100, 150));
+                            boxlist.Add(purpleBox);
 
-            //                 Add(purpleBox);
+                            Add(purpleBox);
 
-            //                 chooseUpgrade = new TextGameObject("Fonts/SpriteFont@20px", 1);
-            //                 Add(chooseUpgrade);
-            //                 chooseUpgrade.Text = $"Choose your upgrade!";
-            //                 chooseUpgrade.Color = new(255, 255, 255);
-            //                 chooseUpgrade.Position = new Vector2((GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2) + 20, 200);
-            //             }
-            //             else if (pickedUpPurple || pickedUpYellow)
-            //             {
-            //                 WaveCounter++;
-            //                 NewWave = true;
-            //                 WaveIndicatorShowTime = 0;
-            //                 ResetBullets();
-            //                 SpawnFastEnemies();
-            //             }
+                            chooseUpgrade = new TextGameObject("Fonts/SpriteFont@20px", 1);
+                            Add(chooseUpgrade);
+                            chooseUpgrade.Text = $"Choose your upgrade!";
+                            chooseUpgrade.Color = new(255, 255, 255);
+                            chooseUpgrade.Position = new Vector2((GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2) + 20, 200);
+                        }
+                        else if (pickedUpPurple || pickedUpYellow)
+                        {
+                            WaveCounter++;
+                            NewWave = true;
+                            WaveIndicatorShowTime = 0;
+                            ResetBullets();
+                            SpawnFastEnemies();
+                        }
 
-            //             boxCollision();
-            //         }
-            //         break;
-            //     case 2: //Wave 3
-            //         if (EnemyList.Count == 0)
-            //         {
-            //             WaveCounter++;
-            //             NewWave = true;
-            //             WaveIndicatorShowTime = 0;
-            //             ResetBullets();
-            //             SpawnStandardEnemies();
-            //         }
-            //         break;
-            //     case 3: //Player Wins
-            //         if (EnemyList.Count == 0)
-            //         {
-            //             ResetBullets();
-            //             GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-            //         }
-            //         break;
-            // }
+                        boxCollision();
+                    }
+                    break;
+                case 2: //Wave 3
+                    if (EnemyList.Count == 0)
+                    {
+                        WaveCounter++;
+                        NewWave = true;
+                        WaveIndicatorShowTime = 0;
+                        ResetBullets();
+                        bossKanarie = new BossKanarien(5, 1, new Vector2(10, 10));
+                        Add(bossKanarie);
+                        bossWave = true;
+                    }
+                    break;
+                case 3: //Player Wins
+                    if (playerWin)
+                    {
+                        ResetBullets();
+                        GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
+                    }
+                    break;
+            }
 
             //Shows to the player which wave it is
             ShowWaveIndicator();
@@ -204,45 +204,6 @@ namespace Blok3Game.GameStates
                 PlayerShootCooldown--;
             }
 
-            //Tells every enemy where to go, when to shoot and what to do when it collides with the player. Does the same for the PlayerBullets
-            // foreach (Enemy enemy in EnemyList)
-            // {
-            //     enemy.EnemySeeking(player.Position);
-
-            //     // if (enemy.EnemyShootCooldown >= 120 && enemy is not FastEnemy fastEnemy)
-            //     // {
-            //     //     EnemyShoots(enemy);
-            //     //     enemy.EnemyShootCooldown = 0;
-            //     // }
-            //     // enemy.EnemyShootCooldown++;
-
-            //     player.HandleCollision(enemy);
-            //     foreach (var playerBullet in playerBulletList)
-            //     {
-            //         if (playerBullet.CheckForEnemyCollision(enemy))
-            //         {
-            //             if (enemy.HitPoints > 0)
-            //             {
-            //                 enemy.HitPoints--;
-            //             }
-            //             else if (enemy.HitPoints <= 0)
-            //             {
-            //                 Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
-            //                 {
-            //                     Scale = 2
-            //                 };
-            //                 currencyList.Add(currency);
-            //                 Add(currency);
-
-            //                 toRemoveList.Add(enemy);
-            //             }
-
-            //             toRemoveList.Add(playerBullet);
-            //         }
-
-            //     }
-            // }
-
             foreach (var enemyBullet in enemyBulletList)
             {
                 player.HandleCollision(enemyBullet);
@@ -262,17 +223,74 @@ namespace Blok3Game.GameStates
 
             if (bossWave)
             {
+                foreach (var playerBullet in playerBulletList)
+                {
+                    if (playerBullet.CheckForEnemyCollision(bossKanarie))
+                    {
+                        if (bossKanarie.HitPoints > 0)
+                        {
+                            bossKanarie.HitPoints--;
+                            bossKanarie.InvulnerabilityCooldown = 10;
+                        }
+                        if (bossKanarie.HitPoints <= 0)
+                        {
+                            Currency currency = new(bossKanarie.Position + new Vector2(bossKanarie.Width / 2, bossKanarie.Height / 2))
+                            {
+                                Scale = 2
+                            };
+                            currencyList.Add(currency);
+                            Add(currency);
+
+                            toRemoveList.Add(bossKanarie);
+                            bossWave = false;
+                            playerWin = true;
+                        }
+                        toRemoveList.Add(playerBullet);
+                    }
+                }
+
+                //if-statement that flashes red colouring over the boss to indicate that they have been hit
+                if (bossKanarie.InvulnerabilityCooldown >= 0)
+                {
+                    if (bossKanarie.InvulnerabilityCooldown > 1)
+                    {
+                        bossKanarie.Shade = new Color(255, 0, 0);
+                    }
+                    else bossKanarie.Shade = new Color(255, 255, 255);
+
+                    bossKanarie.InvulnerabilityCooldown--;
+                }
+
                 if (BossWalking != 0)
                 {
                     bossKanarie.Velocity = new Vector2(0, 0);
+                    bossKanarie.Sprite.SheetIndex = 0;
                     BossWalking--;
                 }
-                else if (BossWalking <= 0)
+                else if (BossWalking <= 0 && !bossSchoot)
                 {
                     bossKanarie.EnemySeeking(player.Position);
+                    bossKanarie.DoWalking();
                 }
 
-                if (BossCooldown != 0)
+                if (bossSchoot)
+                {
+                    if (BossShowAnimation > 0)
+                    {
+                        bossKanarie.DoShooting();
+                        BossShowAnimation--;
+                    }
+                    else if (BossShowAnimation <= 0)
+                    {
+                        EnemyShoots(bossKanarie);
+                        BossCooldown = 120;
+                        bossKanarie.Sprite.SheetIndex = 0;
+                        bossSchoot = false;
+                        BossShowAnimation = 60;
+                    }
+                }
+
+                if (BossCooldown >= 0)
                 {
                     if (BossCooldown == 10 && BossWalking <= 0)
                     {
@@ -280,7 +298,7 @@ namespace Blok3Game.GameStates
                     }
                     BossCooldown--;
                 }
-                else if (BossCooldown <= 0)
+                else if (BossCooldown <= 0 && !bossSchoot)
                 {
                     Random random = new Random();
                     int attack = random.Next(0, 2);
@@ -289,15 +307,53 @@ namespace Blok3Game.GameStates
                     switch (attack)
                     {
                         case 0: //SCHIET
-                            EnemyShoots(bossKanarie);
-                            BossCooldown = 120;
+                            bossSchoot = true;
                             break;
                         case 1:
                             BirdGrenade(bossKanarie);
                             BossCooldown = 120;
                             break;
                     }
+                }
+            }
+            else
+            {
+                foreach (Enemy enemy in EnemyList) // Tells every enemy where to go, when to shoot and what to do when it collides with the player. Does the same for the PlayerBullets
+                {
+                    enemy.EnemySeeking(player.Position);
 
+                    if (enemy.EnemyShootCooldown >= 120 && enemy is not FastEnemy fastEnemy)
+                    {
+                        EnemyShoots(enemy);
+                        enemy.EnemyShootCooldown = 0;
+                    }
+                    enemy.EnemyShootCooldown++;
+
+                    player.HandleCollision(enemy);
+                    foreach (var playerBullet in playerBulletList)
+                    {
+                        if (playerBullet.CheckForEnemyCollision(enemy))
+                        {
+                            if (enemy.HitPoints > 0)
+                            {
+                                enemy.HitPoints--;
+                            }
+                            if (enemy.HitPoints <= 0)
+                            {
+                                Currency currency = new(enemy.Position + new Vector2(enemy.Width / 2, enemy.Height / 2))
+                                {
+                                    Scale = 2
+                                };
+                                currencyList.Add(currency);
+                                Add(currency);
+
+                                toRemoveList.Add(enemy);
+                            }
+
+                            toRemoveList.Add(playerBullet);
+                        }
+
+                    }
                 }
             }
 
@@ -313,6 +369,7 @@ namespace Blok3Game.GameStates
                     player.Shade = new Color(255, 255, 255);
                 }
             }
+
 
             //removes all objects that are put in the toRemoveList. We use this because we can't remove items from a list while using a foreach-loop on it
             foreach (var gameObject in toRemoveList)
@@ -491,32 +548,16 @@ namespace Blok3Game.GameStates
             float ShootPositionY = enemy.Position.Y + enemy.Height / 2;
             double bulletAngle = Math.Atan2((player.Position.Y + player.Height / 2) - ShootPositionY, (player.Position.X + player.Width / 2) - ShootPositionX);
 
-            EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, 15);
+            int bulletMoveSpeed = 15;
+            if (bossSchoot)
+            {
+                bulletMoveSpeed = 20;
+            }
+
+            EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, bulletMoveSpeed);
 
             enemyBulletList.Add(enemyBullet);
             Add(enemyBullet);
-        }
-
-        private void BirdAirstrike(Enemy enemy)
-        {
-            float ShootPositionX = player.Position.X;
-            float ShootPositionY = player.Position.Y;
-
-            if (BossCooldown <= 0)
-            {
-                for (int i = 0; i < GameEnvironment.Screen.X; i++)
-                {
-                    Explosion explosion = new(new Vector2(0 + 20 * i, ShootPositionY));
-
-                    explosionList.Add(explosion);
-                    Add(explosion);
-                    BossCooldown = 100;
-                }
-            }
-            else
-            {
-                BossCooldown--;
-            }
         }
 
         private void BirdGrenade(Enemy enemy)
@@ -552,6 +593,7 @@ namespace Blok3Game.GameStates
                 Add(enemyBullet);
             }
             grenadeKaboom = false;
+
             toRemoveList.Add(grenade);
         }
 

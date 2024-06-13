@@ -153,7 +153,6 @@ public class Player : Character, ICollidable
         HitPoints -= 1;
         Gamestate.playerHealth.Text = $"{HitPoints}";
         InvulnerabilityCooldown = BaseInvulnerabilityCooldown;
-        Console.WriteLine(HitPoints);
     }
     public bool CheckForPlayerCollision(SpriteGameObject box)
     {

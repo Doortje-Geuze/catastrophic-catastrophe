@@ -17,7 +17,7 @@ namespace Blok3Game.GameObjects
         private int grenadeTimer = 50;
         GrenadeCollisionBox CollisionBox;
 
-        public Grenade(Vector2 position, Vector2 positionPlayer, double angle, int bulletMoveSpeed, GrenadeCollisionBox grenadeCollisionBox, string assetName = "Images/Bullets/enemyBullet") : base(assetName)
+        public Grenade(Vector2 position, Vector2 positionPlayer, double angle, int bulletMoveSpeed, GrenadeCollisionBox grenadeCollisionBox, string assetName = "Images/Bullets/Grenade") : base(assetName)
         {
             Position = position;
             PositionPlayer = positionPlayer;
