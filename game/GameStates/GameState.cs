@@ -128,13 +128,6 @@ namespace Blok3Game.GameStates
                 case 0: //Wave 1
                     if (enemyList.Count == 0)
                     {
-                        SocketClient.Instance.SendDataPacket(new MatchData
-                        {
-                            TotalWavesSurvived = 2,
-                            KilledBy = "Working",
-                            Kills = 4,
-                            HealthLeft = 0
-                        });
                         WaveCounter++;
                         NewWave = true;
                         WaveIndicatorShowTime = 0;
@@ -275,8 +268,8 @@ namespace Blok3Game.GameStates
                 {
                     TotalWavesSurvived = WaveCounter,
                     KilledBy = "rat",
-                    Kills = 4,
-                    HealthLeft = 0
+                    Kills = player.currencyCounter,
+                    HealthLeft = player.HitPoints
                 });
             }
 
@@ -648,7 +641,7 @@ namespace Blok3Game.GameStates
             int bulletMoveSpeed = 15;
             if (bossSchoot)
             {
-                bulletMoveSpeed = 20;
+                bulletMoveSpeed = 25;
             }
 
             EnemyBullet enemyBullet = new(new Vector2(ShootPositionX, ShootPositionY), bulletAngle, bulletMoveSpeed);
