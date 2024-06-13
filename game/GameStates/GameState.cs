@@ -21,7 +21,6 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<Grenade> grenadeList;
-        private List<Box> boxlist;
         private List<GrenadeCollisionBox> grenadeCollisionsList;
         public BossKanarien bossKanarie;
         private List<Enemy> enemyList;
@@ -97,7 +96,7 @@ namespace Blok3Game.GameStates
 
             Door = new OpenDoor(new Vector2(1113, 200));
 
-            shopkeeper = new Shopkeeper(new Vector2(100, 200));
+            shopkeeper = new Shopkeeper(new Vector2(50, GameEnvironment.Screen.Y / 2));
 
             catGun = new CatGun(player, crosshair, new Vector2(10, 10));
             Add(catGun);
@@ -154,7 +153,7 @@ namespace Blok3Game.GameStates
                             chooseUpgrade.Color = new(255, 255, 255);
                             chooseUpgrade.Position = new Vector2(GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2, 200);
                         }
-                        else if (pickedUpPurple)
+                        else if (pickedUpPurple && !DoorSpawned && !shopkeeper.Exists)
                         {
                             Add(Door);
                             Add(shopkeeper);
@@ -192,53 +191,15 @@ namespace Blok3Game.GameStates
                 case 2: //Boss wave
                     if (enemyList.Count == 0)
                     {
-
-                        if (DoorCounter < 1)
+                        if (!DoorSpawned && !shopkeeper.Exists)
                         {
                             Add(Door);
                             Add(shopkeeper);
                             shopkeeper.Exists = true;
                             DoorSpawned = true;
-                            DoorCounter++;
                         }
 
-                        if (DoorSpawned)
-                        {
-                            DoorCollision();
-                            if (shopkeeper.Exists && shopkeeper.HandleCollision(player))
-                            {
-                                player.Position = new Vector2((GameEnvironment.Screen.X / 2) - (player.Width / 2), (GameEnvironment.Screen.Y / 2) - (player.Height / 2));
-                                GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
-                            }
-                        }
-
-                        if(EnteredDoor == true)
-                        {
-                            Remove(Door);
-                            WaveCounter++;
-                            NewWave = true;
-                            WaveIndicatorShowTime = 0;
-                            ResetBullets();
-                            SpawnStandardEnemies();
-                            EnteredDoor = false;
-                            DoorSpawned = false;
-                            DoorCounter = 0;
-                            shopkeeper.Exists = false;
-                            Remove(shopkeeper);
-                        }
-                    }
-                    break;
-                case 3: //Player Wins
-                    if (playerWin)
-                    {
-                        if (DoorCounter < 1)
-                        {
-                            Add(Door);
-                            Add(shopkeeper);
-                            shopkeeper.Exists = true;
-                            DoorSpawned = true;
-                            DoorCounter++;
-                        }
+                        boxCollision();
 
                         if (DoorSpawned)
                         {
@@ -252,14 +213,45 @@ namespace Blok3Game.GameStates
 
                         if (EnteredDoor == true)
                         {
-                            Retry();
+                            Remove(Door);
+                            WaveCounter++;
+                            NewWave = true;
+                            WaveIndicatorShowTime = 0;
+                            ResetBullets();
+                            EnteredDoor = false;
+                            DoorSpawned = false;
+                            shopkeeper.Exists = false;
+                            Remove(shopkeeper);
+
+                            bossKanarie = new BossKanarien(50, 1, new Vector2(0, GameEnvironment.Screen.Y / 2));
+                            Add(bossKanarie);
+                            bossWave = true;
+                        }
+                    }
+                    break;
+                case 3: //Player Wins
+                    if (playerWin)
+                    {
+                        if (DoorCounter < 1)
+                        {
+                            Add(Door);
+                            DoorSpawned = true;
+                            DoorCounter++;
+                        }
+
+                        if (DoorSpawned)
+                        {
+                            DoorCollision();
+                        }
+
+                        if (EnteredDoor == true)
+                        {
                             GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
                             toRemoveList.Add(Door);
                             DoorCounter = 0;
                             ResetBullets();
                             EnteredDoor = false;
                             DoorSpawned = false;
-                            Remove(shopkeeper);
                         }
                     }
                     break;
@@ -714,7 +706,6 @@ namespace Blok3Game.GameStates
             if (player.HandleCollision(Door))
             {
                 EnteredDoor = true;
-                Debug.WriteLine(EnteredDoor);
             }
         }
 
@@ -815,7 +806,7 @@ namespace Blok3Game.GameStates
 
         private void HandleEndOfWave()
         {
-            
+
         }
     }
 }
