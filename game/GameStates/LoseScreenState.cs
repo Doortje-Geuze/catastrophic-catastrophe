@@ -50,7 +50,7 @@ namespace Blok3Game.GameStates
              };
 
              //use the width and height of the title to position it in the center of the screen
-             defeatText.Position = new Vector2((GameEnvironment.Screen.X / 2), GameEnvironment.Screen.Y / 7);
+             defeatText.Position = new Vector2((GameEnvironment.Screen.X / 2) - 210, GameEnvironment.Screen.Y / 7);
 
         Add(defeatText);
         }
