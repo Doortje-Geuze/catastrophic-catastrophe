@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Input;
 
 public class CatGun : RotatingSpriteGameObject
 {
-    Player playerPos;
-    Crosshair crossHair;
+    private Player playerPos;
+    private Crosshair crossHair;
     bool CatArms = false;
     public CatGun(Player player, Crosshair crosshair, Vector2 position) : base("Images/Characters/gunCat@2x1")
     {

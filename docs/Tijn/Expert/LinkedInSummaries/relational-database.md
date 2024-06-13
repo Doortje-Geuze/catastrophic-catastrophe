@@ -1,4 +1,4 @@
-# # C# Relational databases summary
+# C# Relational databases summary
 
 ## Inleiding
 

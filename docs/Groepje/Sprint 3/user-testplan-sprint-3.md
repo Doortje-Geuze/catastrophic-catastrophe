@@ -189,7 +189,7 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
     <h3>Conclusie</h3>
 
-=== "persoon 3"
+=== "Persoon 3"
 
     <h3>Basisinformatie</h4>
 
@@ -241,7 +241,7 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
     <h3>Conclusie</h3>
 
-=== "persoon 4"
+=== "Persoon 4"
 
     <h3>Basisinformatie</h4>
 
@@ -289,3 +289,145 @@ Wij geloven dat de moeilijkheidsgraad van het spel op niveau is voor de doelgroe
     <h3>Criteria</h3>
     De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
     <h3>Conclusie</h3>
+
+
+=== "Persoon 5"
+
+    <h3>Basisinformatie</h4>
+
+    Getest door: Senna de Vries
+    Naam proefpersoon: Bas
+    Datum test: 11-6-2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1: 17
+    - <b>Vraag 2: wel eens van gehoord
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | speller heeft kunnen winnen                                              | ja                               | 05:00                                     | 7/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja                                | 00:40                                     | 7/10                                        |
+   
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+    
+    - <b>Observatie 1:</b><De testpersoon was aandachtig aan het spelen (voorover geleund)>
+    - <b>Observatie 2:</b><De speler maakte weinig gebruik van de dash functie>
+    - <b>Observatie 3:</b><De speler pakte de muntjes op en maakte gebruik van de verschillende knoppen in het menu>
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1:</b><Wave 2 was makkelijk. In het begin zonder upgrades was het redelijk lastig. Met de upgrades ging het een stuk beter. De derde wave was lastig maar dat is alleen maar goed.>
+    - <b>Vraag 2:</b><Leuk dat er verschil in zit. Maar de groene (niet schietende) waren te makkelijk.>
+    - <b>Vraag 3:</b><Goed gedaan. Er was veel verschillende keuze en ze waren allemaal nuttig. Misschien is het leuk om belangrijke dingen zoals hp duurder te maken.>
+    - <b>Vraag 4:</b><De dash indicator ziet er leuk uit maar is moeilijk te zien. Misschien kan die nog iets meer naar de voorgrond. De hp indicatie was duidelijk.>
+    - <b>Vraag 5:</b><Leuke toevoeging. Zorgde dat je wat meer progressie maakt en door blijft spelen.>
+
+    <h4>Sterke punten:</h4>
+
+    - Het kopen van upgrades was een leuke toevoeging
+    - Vermakelijk spel
+    - De upgrade dat je meerdere kogels tegelijk schiet was leuk. Zorgde voor afwisseling
+
+    <h4>Verbeterpunten:</h4>
+
+    - De dash indicatie kon duidelijker
+    - De tweede wave mag nog wat lastiger
+
+=== "Persoon 6"
+
+    <h3>Basisinformatie</h4>
+
+    Getest door: Sed<br>
+    Naam proefpersoon: Esmee<br>
+    Datum test: 31-05-2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1:</b> 22<br>
+    - <b>Vraag 2:</b> Ja<br>
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | Speler heeft kunnen winnen                                              | nee                                | --:--                                     | --/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja                                | 00:23                                     | --/10                                        |
+   
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+    
+    - <b>Observatie 1:</b> Ging meteen beginnen met het spel zonder de gebruiksaanwijzingen te lezen
+    - <b>Observatie 2:</b> Had wat moeite met wave 1, versloeg wave 2 makkelijk maar ging toen meteen dood aan het begin van wave 3
+    - <b>Observatie 3:</b> Klikte vaak buiten het beeld
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1:</b> Te moeilijk, de eerste wave moet makkelijker worden omdat mensen niet gewent zijn aan de mechanics (Tutorial level)<br>
+    - <b>Vraag 2:</b>Love Rats, Dacht dat de komkommers slangen waren eerst. 2de wave was wel een stuk makkelijker door het niet schieten<br>
+    - <b>Vraag 3:</b>De (shotgun) upgrade zorgte ervoor dat ik een hoek kon pakken en dan vervolgens al de enemies makkelijk neer kon schieten. Maar voor de variatie moeten upgrades wel blijven<br>
+    - <b>Vraag 4:</b>Volledig gemist Ik was gefocused op de "begin nieuw game" button en zag daarom niks er omheen<br>
+    - <b>Vraag 5:</b>Cute. Zou fijn zijn als de coins naar je toe kwamen in een kleine area<br>
+
+    <h4>Sterke punten:</h4>
+    - De snelle enemies waren leuk omdat ze ineens snel te voorschijn kwamen, dat liet me wel eventjes schrikken (in een goeie weg)
+    - De indicatie van de Wave laat het er intens uit zien
+
+    <h4>Verbeterpunten:</h4>
+    - Fullscreen/Groter scherm. Het was soms slecht te zien doordat het zo klein is en daardoor schoot ik vaak ernaast
+    - Mensen letten niet op de healthbar/sprintbar omdat je sneller kijkt naar de enemies dan naar de speler zelf
+
+    <h3>Criteria</h3>
+    De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
+
+    <h3>Conclusie</h3>
+    De moeilijksheidgraad is voor nu te ongebalanceerd. In plaats van dat het steeds stijler wordt gaat het nu van stijl naar dalend naar weer stijl war voor frustratie veroorzaakt als de speler dood gaat.
+
+=== "Persoon 7"
+
+    <h3>Basisinformatie</h4>
+
+    Getest door: Sed<br>
+    Naam proefpersoon: Robin<br>
+    Datum test: 31-05-2024
+
+    <h4>Antwoorden op de vragen </h4>
+
+    - <b>Vraag 1:</b> 22<br>
+    - <b>Vraag 2:</b> Ja<br>
+
+    <h3>Resultaattabel</h4>
+
+    |        | Doel/User Story<br>*Wat moet je gebruiker kunnen bereiken?* | Effectiviteit<br>*Is het doel bereikt?* | Efficientie<br>*Hoeveel tijd kostte dat?* | Tevredenheid<br>*Op een schaal van 1 tot 10* |
+    | ------ | ----------------------------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+    | Doel 1 | Speler heeft kunnen winnen                                              | ja                                | 01:37                                     | --/10                                        |
+    | Doel 2 | Niewe features worden gebruikt                                               | ja                                | 00:15                                     | 6/10                                        |
+   
+    <h4>Observaties (wat deed en zei je testpersoon tijdens de test)</h4>
+    
+    - <b>Observatie 1:</b> Ging meteen beginnen met het spel zonder de gebruiksaanwijzingen te lezen
+    - <b>Observatie 2:</b> Begon goed in wave 1 en wave 2 maar ging toch een paar keer dood in wave 3
+    - <b>Observatie 3:</b> Klikte vaak buiten het beeld
+
+    <h4>Antwoorden op de vragen (tevredenheid)</h4>
+
+    - <b>Vraag 1:</b> Goed, het werd langzaam steeds moeilijker. Wave 2 was wel ineens wat anders<br>
+    - <b>Vraag 2:</b>Prima, de ratten bewogen niet te snel. Ze schoten wel allemaal tegelijk wat het een stuk makkelijker maakte met de dash. De ratten zouden sneller kunnen lopen per wave<br>
+    - <b>Vraag 3:</b>De shotgun was zeker een fijne additie om crowd control te doen<br>
+    - <b>Vraag 4:</b>Niet gezien. Had wel het idee dat ik na 3 seconden weer kon dashen. Misschien wat meer zichtbaar, ben gewent in de hoek van het scherm<br>
+    - <b>Vraag 5:</b>leuk en cute. Leuk dat het niet gewoon coins zijn maar specialized voor cat.<br>
+
+    <h4>Sterke punten:</h4>
+    - De wat makkelijkere enemies in wave 2 waren wel fijn om gewent te raken aan de shotgun
+    - Rat
+
+    <h4>Verbeterpunten:</h4>
+    - Fullscreen, ik klikte heel vaak buiten het scherm wat vervelend was
+    -  De coins laten vergaan na 5 seconden
+
+    <h3>Criteria</h3>
+    De hypothese die wij aan het begin hebben vastgesteld, is correct als de spelers de moeilijkheidsgraad van het spel voldoende vinden
+
+    <h3>Conclusie</h3>
+    De moeilijkheidsgraad is oke voor wat meer ervaren spelers maar kan soms toch nog iets te moeilijk zijn. Laat het wat langzamer opbouwen dan dat het nu doet.

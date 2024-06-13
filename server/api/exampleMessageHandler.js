@@ -7,15 +7,29 @@ class ExampleMessageHandler extends MessageHandler
     }
 
     handleIncomingMessages(socket) {
-        this.#handleIncomingPlayerChatMessages(socket)
+        this.#sendMatchData(socket)
     }
 
-    #handleIncomingPlayerChatMessages(socket) {
-        socket.on("Example", async(data) => {
-            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [8, "rat", 4, 4])
+    #sendPlayerData(socket) {
+        socket.on("Player", (data) => {
+            this._socketConnectionListener.executePreparedQuery("INSERT INTO player (Player_Session) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
             console.log(data);
         });
     }
+
+    #sendMatchData(socket) {
+        socket.on("Match", (data) => {
+            this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
+            console.log(data);
+        });
+    }
+
+    // #sendMatchData(socket) {
+    //     socket.on("Inventory", (data) => {
+    //         this._socketConnectionListener.executePreparedQuery("INSERT INTO `match` (TotalWavesSurvived, KilledBy, Kills, HealthLeft) VALUES (? , ?, ?, ?)", [data.totalWavesSurvived, data.killedBy, data.kills, data.healthLeft])
+    //         console.log(data);
+    //     });
+    // }
 }
 
 module.exports = ExampleMessageHandler;

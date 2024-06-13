@@ -95,9 +95,4 @@ het design principle: encapsute what varies zouden wij kunnen toepassen op onze 
 
 ## Resultaten LinkedIn Learning cursus
 
-![](/docs/Doortje/LinkenIn-Cursus/Images/C#%20Design%20Principles.png) 
-
-
-## Vragen voor expert review
-
-[Stel drie concrete vragen op die je tijdens de expert review wil behandelen. Deze vragen zijn gericht op het verkrijgen van feedback en inzichten van de beoordelaar.]
+![](../LinkenIn-Cursus/Images/C#-Design-Principles.png)

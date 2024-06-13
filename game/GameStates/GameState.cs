@@ -45,11 +45,10 @@ namespace Blok3Game.GameStates
         public int WaveCounter = 0;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
-        public int WaveIndicatorShowTime = -20;
+        private int WaveIndicatorShowTime = -20;
         private bool NewWave = true;
         private SpriteGameObject background;
         public TextGameObject chooseUpgrade;
-        public int EnemyShoot = 0;
         public int PlayerShootCooldown = 0;
         public int PlayerAttackTimes = 0;
         public int PlayerBulletSpeed = 18;
@@ -129,6 +128,13 @@ namespace Blok3Game.GameStates
                 case 0: //Wave 1
                     if (enemyList.Count == 0)
                     {
+                        SocketClient.Instance.SendDataPacket(new MatchData
+                        {
+                            TotalWavesSurvived = 2,
+                            KilledBy = "Working",
+                            Kills = 4,
+                            HealthLeft = 0
+                        });
                         WaveCounter++;
                         NewWave = true;
                         WaveIndicatorShowTime = 0;
@@ -270,7 +276,7 @@ namespace Blok3Game.GameStates
                     TotalWavesSurvived = WaveCounter,
                     KilledBy = "rat",
                     Kills = 4,
-                    HealthLeft = 2
+                    HealthLeft = 0
                 });
             }
 
@@ -749,7 +755,7 @@ namespace Blok3Game.GameStates
             Add(background);
         }
 
-        public void Retry()
+        private void Retry()
         {
             //Reset Entities
             ResetEnemies();
