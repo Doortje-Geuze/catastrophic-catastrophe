@@ -26,8 +26,7 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / (float)1.5), "UPGRADES", OnButtonUpgradesClicked);
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X, GameEnvironment.Screen.Y / 2 - (ButtonOffSet.Y * 2)), "MAIN MENU", OnButtonMainMenuClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X, GameEnvironment.Screen.Y / 2 - (ButtonOffSet.Y * 2)), "UPGRADES", OnButtonUpgradesClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "CONTINUE", OnButtonContinueClicked);
         }
 
@@ -35,14 +34,6 @@ namespace Blok3Game.GameStates
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "UPGRADE_STATE";
-            ButtonClicked();
-        }
-
-        private void OnButtonMainMenuClicked(UIElement element)
-        {
-            UpgradeState.Instance.PlayerHealthAmountUpdate();
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_cancel");
-            nextScreenName = "MAIN_MENU_STATE";
             ButtonClicked();
         }
 

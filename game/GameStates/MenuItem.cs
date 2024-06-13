@@ -10,7 +10,7 @@ namespace Blok3Game.GameStates
     {
         //private SpriteGameObject background;
         protected Vector2 ButtonOffSet = new(GameEnvironment.Screen.X / 8, GameEnvironment.Screen.Y / 8);
-        protected const float BUTTON_SCALE = 0.2f;
+        protected const float BUTTON_SCALE = 0.3f;
         protected List<Button> buttons;
         protected List<TextInput> textInputs;
         protected List<TextGameObject> texts;

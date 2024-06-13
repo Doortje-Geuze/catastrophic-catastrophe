@@ -11,6 +11,7 @@ namespace Blok3Game.GameStates
 {
     public class UpgradeState : MenuItem
     {
+        private SpriteGameObject ratShopKeeper;
         private readonly TextGameObject CurrencyCount = new("Fonts/SpriteFont@20px");
         private readonly TextGameObject BulletSpeedUpgradeText = new("Fonts/SpriteFont");
         private readonly TextGameObject SpeedUpgradeText = new("Fonts/SpriteFont");
@@ -37,12 +38,13 @@ namespace Blok3Game.GameStates
         private readonly int PlayerHealthUpgradeValue = 1;
         private readonly int DashUpgradeValue = 10;
         private readonly int InvulnerabilityUpgradeValue = 15;
-        private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 12);
+        private Vector2 TextOffset = new(GameEnvironment.Screen.X / 80, GameEnvironment.Screen.Y / 8);
         public static UpgradeState Instance { get; private set; } = new();
         public UpgradeState() : base()
         {
             CreateButtons();
             CreateTexts();
+            CreateShopKeeper();
         }
 
         public override void Reset()
@@ -60,7 +62,7 @@ namespace Blok3Game.GameStates
         private void CreateTexts()
         {
             TextCreator(CurrencyCount, $"Currency counter: You have {GameState.Instance.player.currencyCounter}", 
-                        new Vector2(GameEnvironment.Screen.X / 3, GameEnvironment.Screen.Y / 6) - TextOffset);
+                        new Vector2(GameEnvironment.Screen.X / 2 - 180, GameEnvironment.Screen.Y / 6) - TextOffset);
             TextCreator(BulletSpeedUpgradeText, $"Bullet Speed Upgrade Cost: {BulletSpeedUpgradeCost}" + Environment.NewLine + 
                                                 $"Increases bullet speed by {BulletSpeedUpgradeValue}," + Environment.NewLine  + 
                                                 $"upgraded {BulletSpeedUpgradedAmount} out of {BulletSpeedUpgradeMax} times", 
@@ -80,17 +82,17 @@ namespace Blok3Game.GameStates
             TextCreator(InvulnerabilityUpgradeText, $"Invulnerability Upgrade Cost: {InvulnerabilityCooldownUpgradeCost}" + Environment.NewLine + 
                                                     $"Increase invulnerability timer by {InvulnerabilityUpgradeValue}," + Environment.NewLine + 
                                                     $"upgraded {InvulnerabilityUpgradedAmount} out of {InvulnerabilityUpgradeMax} times", 
-                        new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2) + TextOffset);
+                        new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 1.7f) + TextOffset);
         }
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / (float)1.5), "SHOP", OnButtonShopClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 1.2f), "BACK", OnButtonShopClicked);
             CreateButton(new Vector2(0, GameEnvironment.Screen.Y / 3), "BULLET SPEED INCREASE", OnButtonBulletSpeedClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 4, GameEnvironment.Screen.Y / 3), "PLAYER SPEED INCREASE", OnButtonPlayerSpeedClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 3), "PLAYER HEALTH INCREASE", OnButtonPlayerHealthClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / (float)1.3, GameEnvironment.Screen.Y / 3), "DASH COOLDOWN DECREASE", OnButtonDashCooldownClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "INVULNERABILITY INCREASE", OnButtonInvulnerabilityCooldownClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 1.7f), "INVULNERABILITY INCREASE", OnButtonInvulnerabilityCooldownClicked);
         }
 
         private void OnButtonShopClicked(UIElement element)
@@ -200,6 +202,20 @@ namespace Blok3Game.GameStates
         public void PlayerHealthAmountUpdate()
         {
             PlayerHealthUpgradedAmount = GameState.Instance.player.HitPoints;
+        }
+
+        private void CreateShopKeeper()
+        {
+            ratShopKeeper = new SpriteGameObject("Images/Characters/shopkeeper", -2, "background")
+            {
+                Scale = 1.45f
+            };
+
+            //use the width and height of the background to position it in the center of the screen
+
+            ratShopKeeper.Position = new Vector2(GameEnvironment.Screen.X - (ratShopKeeper.Width + 20), GameEnvironment.Screen.Y - (ratShopKeeper.Height + 20));
+
+            Add(ratShopKeeper);
         }
     }
 }

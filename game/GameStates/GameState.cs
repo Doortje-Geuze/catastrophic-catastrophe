@@ -42,7 +42,7 @@ namespace Blok3Game.GameStates
         public TextGameObject playerHealth;
         public TextGameObject playerCurrency;
         public Shopkeeper shopkeeper;
-        public int WaveCounter = 0;
+        public int WaveCounter = 1;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
         private int WaveIndicatorShowTime = -20;
@@ -263,6 +263,17 @@ namespace Blok3Game.GameStates
             if (player.HitPoints <= 0)
             {
                 Retry();
+                if (bossWave)
+                {
+                    GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
+                    SocketClient.Instance.SendDataPacket(new MatchData
+                    {
+                        TotalWavesSurvived = WaveCounter,
+                        KilledBy = "Kanari",
+                        Kills = player.currencyCounter,
+                        HealthLeft = player.HitPoints
+                    });
+                }
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 SocketClient.Instance.SendDataPacket(new MatchData
                 {
@@ -755,6 +766,12 @@ namespace Blok3Game.GameStates
             ResetBullets();
             ResetCurrency();
 
+            if (bossWave)
+            {
+                Remove(bossKanarie);
+                bossWave = false;
+            };
+
             //Reset everything Player
             player.InvulnerabilityCooldown = 30;
             player.HitPoints = player.BaseHitPoints;
@@ -801,11 +818,6 @@ namespace Blok3Game.GameStates
                 toRemoveList.Add(currency);
             }
             playerCurrency.Text = $"you collected {player.currencyCounter} currency";
-        }
-
-        private void HandleEndOfWave()
-        {
-
         }
     }
 }

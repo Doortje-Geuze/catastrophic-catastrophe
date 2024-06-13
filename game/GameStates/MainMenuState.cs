@@ -23,16 +23,15 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X / 2, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "NEW GAME/CONTINUE", OnButtonGameClicked);
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X / 2, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "NEW GAME", OnButtonGameClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X / 2, GameEnvironment.Screen.Y / 2), "SETTINGS", OnButtonSettingsClicked);
-            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X / 2, (GameEnvironment.Screen.Y / 2) + ButtonOffSet.Y), "CONTROLS", OnButtonControlsClicked);
         }
 
         private void CreateTexts()
         {
-            CreateText(new Vector2((GameEnvironment.Screen.X / 3) + 80, 50), "Move around using WASD");
-            CreateText(new Vector2((GameEnvironment.Screen.X / 3) - 20, 100), "Move crosshair with mouse and shoot with left-click");
-            CreateText(new Vector2((GameEnvironment.Screen.X / 3) + 30, 150), "Dash using left-shift whilst moving");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 2) - 110, 50), "Move around using WASD");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 2)- 230, 100), "Move crosshair with mouse and shoot with left-click");
+            CreateText(new Vector2((GameEnvironment.Screen.X / 2) - 140, 150), "Dash using left-shift whilst moving");
         }
 
         private void OnButtonGameClicked(UIElement element)
@@ -46,13 +45,6 @@ namespace Blok3Game.GameStates
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
             nextScreenName = "SETTINGS_MENU_STATE";
-            ButtonClicked();
-        }
-
-        private void OnButtonControlsClicked(UIElement element)
-        {
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
-            nextScreenName = "CONTROLS_MENU_STATE";
             ButtonClicked();
         }
     }
