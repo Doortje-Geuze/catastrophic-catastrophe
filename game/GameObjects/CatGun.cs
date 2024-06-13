@@ -25,7 +25,7 @@ public class CatGun : RotatingSpriteGameObject
         {
             Sprite.Mirror = true;
         }
-        if (inputHelper.IsKeyDown(Keys.D) && Position.X < 800 - Height)
+        if (inputHelper.IsKeyDown(Keys.D) && Position.X < GameEnvironment.Screen.X - Height)
         {
             Sprite.Mirror = false;
         }
