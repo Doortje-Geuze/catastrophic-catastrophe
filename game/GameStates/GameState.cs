@@ -223,7 +223,7 @@ namespace Blok3Game.GameStates
                             shopkeeper.Exists = false;
                             Remove(shopkeeper);
 
-                            bossKanarie = new BossKanarien(50, 1, new Vector2(0, GameEnvironment.Screen.Y / 2));
+                            bossKanarie = new BossKanarien(50, 1, new Vector2(-15, GameEnvironment.Screen.Y / 2));
                             Add(bossKanarie);
                             bossWave = true;
                         }
@@ -267,7 +267,7 @@ namespace Blok3Game.GameStates
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
                 SocketClient.Instance.SendDataPacket(new MatchData
                 {
-                    TotalWavesSurvived = 2,
+                    TotalWavesSurvived = WaveCounter,
                     KilledBy = "rat",
                     Kills = 4,
                     HealthLeft = 2
@@ -739,7 +739,7 @@ namespace Blok3Game.GameStates
         {
             background = new SpriteGameObject("Images/UI/Background/woodFloorBackground", -2, "background")
             {
-                Scale = 3.75f,
+                Scale = 1.45f
             };
 
             //use the width and height of the background to position it in the center of the screen
