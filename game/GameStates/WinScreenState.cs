@@ -24,12 +24,15 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
+            CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "RESTART?", OnButtonRestartClicked);
             CreateButton(new Vector2(GameEnvironment.Screen.X / 2 - ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "MAIN MENU", OnButtonMainMenuClicked);
         }
 
-        private void ButtonNotImplimented(UIElement element)
+        private void OnButtonRestartClicked(UIElement element)
         {
-            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_not_implimented");
+            GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_agree");
+            nextScreenName = "GAME_STATE";
+            ButtonClicked();
         }
 
         private void OnButtonMainMenuClicked(UIElement element)

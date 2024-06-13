@@ -167,6 +167,9 @@ public class Player : Character, ICollidable
                 break;
             case Door:
                 return true;
+            case Shopkeeper:
+                return true;
+
         }
         return false;
     }

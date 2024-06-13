@@ -201,6 +201,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Characters/rat.png
 
+#begin Images/Characters/shopkeeper.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Characters/shopkeeper.png
+
 #begin Images/Characters/whiteCircle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -429,11 +441,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/UI/frame.png
 
-
-#begin Images/UI/pixel-door-open.png
-
 #begin Images/UI/gameLogo.png
-
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -443,11 +451,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-
-/build:Images/UI/pixel-door-open.png
-
 /build:Images/UI/gameLogo.png
 
+#begin Images/UI/pixel-door-open.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/pixel-door-open.png
 
 #begin Images/UI/selectedGameName.png
 /importer:TextureImporter
