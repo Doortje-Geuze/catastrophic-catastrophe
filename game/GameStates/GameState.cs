@@ -42,7 +42,7 @@ namespace Blok3Game.GameStates
         public TextGameObject playerHealth;
         public TextGameObject playerCurrency;
         public Shopkeeper shopkeeper;
-        public int WaveCounter = 1;
+        public int WaveCounter = 0;
         public int ChosenEnemy = 0;
         public int FramesPerSecond = 60;
         private int WaveIndicatorShowTime = -20;
@@ -408,6 +408,11 @@ namespace Blok3Game.GameStates
                             bossSchoot = true;
                             break;
                         case 1:
+                            BirdGrenade(bossKanarie);
+                            BossCooldown = 120;
+                            break;
+                        case 2:
+                            BirdGrenade(bossKanarie);
                             BirdGrenade(bossKanarie);
                             BossCooldown = 120;
                             break;
