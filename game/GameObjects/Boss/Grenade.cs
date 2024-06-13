@@ -9,7 +9,7 @@ using Blok3Game.GameStates;
 
 namespace Blok3Game.GameObjects
 {
-    public class Grenade : RotatingSpriteGameObject, ICollidable
+    public class Grenade : RotatingSpriteGameObject
     {
         public GameState Gamestate { get; set; }
         protected int BulletMoveSpeed = 0;

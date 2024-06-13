@@ -21,7 +21,6 @@ namespace Blok3Game.GameStates
         private List<PlayerBullet> playerBulletList;
         private List<EnemyBullet> enemyBulletList;
         private List<Grenade> grenadeList;
-        private List<Enemy> EnemyList;
         private List<Box> boxlist;
         private List<GrenadeCollisionBox> grenadeCollisionsList;
         public BossKanarien bossKanarie;
@@ -29,7 +28,7 @@ namespace Blok3Game.GameStates
         private List<Currency> currencyList;
         public List<GameObject> toRemoveList;
         private List<Box> boxList;
-        public static GameState Instance { get; private set;}
+        public static GameState Instance { get; private set; }
         public Player player;
         public Crosshair crosshair;
         public CatGun catGun;
@@ -64,10 +63,10 @@ namespace Blok3Game.GameStates
         private bool bossSchoot = false;
         private int BossShowAnimation = 60;
         private bool playerWin = false;
-        public Door Door; 
+        public Door Door;
         public bool EnteredDoor = false;
         public bool DoorSpawned = false;
-        private int DoorCounter = 0;  
+        private int DoorCounter = 0;
 
         public GameState() : base()
         {
@@ -138,37 +137,34 @@ namespace Blok3Game.GameStates
                 case 1: //Wave 2
                     if (enemyList.Count == 0)
                     {
-                        if (boxList.Count == 0 && (!pickedUpPurple || !pickedUpYellow))
+                        if (boxList.Count == 0 && !pickedUpPurple)
                         {
-                            //Lower Cooldown Upgrade
-                            yellowBox = new YellowBox(new Vector2((GameEnvironment.Screen.X / 2) - 100, 150));
-                            boxList.Add(yellowBox);
-
-                            Add(yellowBox);
-
                             //Shotgun upgrade
-                            purpleBox = new PurpleBox(new Vector2((GameEnvironment.Screen.X / 2) + 100, 150));
+                            purpleBox = new PurpleBox(new Vector2(GameEnvironment.Screen.X / 2, 150));
                             boxList.Add(purpleBox);
 
                             Add(purpleBox);
 
                             chooseUpgrade = new TextGameObject("Fonts/SpriteFont@20px", 1);
                             Add(chooseUpgrade);
-                            chooseUpgrade.Text = $"Choose your upgrade!";
+                            chooseUpgrade.Text = $"The bird is coming... Take this!";
                             chooseUpgrade.Color = new(255, 255, 255);
-                            chooseUpgrade.Position = new Vector2((GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2) + 20, 200);
+                            chooseUpgrade.Position = new Vector2(GameEnvironment.Screen.X / 2 - chooseUpgrade.Size.X / 2, 200);
                         }
-                        else if (pickedUpPurple || pickedUpYellow)
+                        else if (pickedUpPurple)
                         {
                             Add(Door);
                             DoorSpawned = true;
                         }
+
+                        boxCollision();
+
                         if (DoorSpawned)
                         {
                             DoorCollision();
                         }
-                        
-                        if(EnteredDoor == true)
+
+                        if (EnteredDoor == true)
                         {
                             Remove(Door);
                             WaveCounter++;
@@ -179,23 +175,23 @@ namespace Blok3Game.GameStates
                             EnteredDoor = false;
                             DoorSpawned = false;
                         }
-                        BoxCollision();
                     }
                     break;
-                case 2: //Wave 3
+                case 2: //Boss wave
                     if (enemyList.Count == 0)
                     {
                         WaveCounter++;
                         NewWave = true;
                         WaveIndicatorShowTime = 0;
                         ResetBullets();
-                        bossKanarie = new BossKanarien(5, 1, new Vector2(10, 10));
+                        bossKanarie = new BossKanarien(5, 1, new Vector2(-20, -20));
                         Add(bossKanarie);
                         bossWave = true;
                     }
                     break;
                 case 3: //Player Wins
                     if (playerWin)
+                    {
                         if (DoorCounter < 1)
                         {
                             Add(Door);
@@ -208,18 +204,15 @@ namespace Blok3Game.GameStates
                             DoorCollision();
                         }
 
-                        if(EnteredDoor == true)
+                        if (EnteredDoor == true)
                         {
                             GameEnvironment.GameStateManager.SwitchToState("WIN_SCREEN_STATE");
-                            Remove(Door);
+                            toRemoveList.Add(Door);
                             DoorCounter = 0;
                             ResetBullets();
                             EnteredDoor = false;
                             DoorSpawned = false;
                         }
-
-                        Retry();
-                        GameEnvironment.GameStateManager.SwitchToState("SHOP_STATE");
                     }
                     break;
             }
@@ -232,7 +225,8 @@ namespace Blok3Game.GameStates
             {
                 Retry();
                 GameEnvironment.GameStateManager.SwitchToState("LOSE_SCREEN_STATE");
-                SocketClient.Instance.SendDataPacket(new MatchData{
+                SocketClient.Instance.SendDataPacket(new MatchData
+                {
                     TotalWavesSurvived = 2,
                     KilledBy = "rat",
                     Kills = 4,
@@ -279,7 +273,7 @@ namespace Blok3Game.GameStates
             {
                 foreach (var playerBullet in playerBulletList)
                 {
-                    if (playerBullet.CheckForEnemyCollision(bossKanarie))
+                    if (playerBullet.HandleCollision(bossKanarie))
                     {
                         if (bossKanarie.HitPoints > 0)
                         {
@@ -372,7 +366,7 @@ namespace Blok3Game.GameStates
             }
             else
             {
-                foreach (Enemy enemy in EnemyList) // Tells every enemy where to go, when to shoot and what to do when it collides with the player. Does the same for the PlayerBullets
+                foreach (Enemy enemy in enemyList) // Tells every enemy where to go, when to shoot and what to do when it collides with the player. Does the same for the PlayerBullets
                 {
                     enemy.EnemySeeking(player.Position);
 
@@ -386,7 +380,7 @@ namespace Blok3Game.GameStates
                     player.HandleCollision(enemy);
                     foreach (var playerBullet in playerBulletList)
                     {
-                        if (playerBullet.CheckForEnemyCollision(enemy))
+                        if (playerBullet.HandleCollision(enemy))
                         {
                             if (enemy.HitPoints > 0)
                             {
@@ -451,9 +445,9 @@ namespace Blok3Game.GameStates
                     currencyList.Remove(currency);
                     player.currencyCounter += 1;
                 }
-                if (gameObject is Box box)
+                if (gameObject is PurpleBox box)
                 {
-                    boxlist.Remove(box);
+                    boxList.Remove(box);
                 }
                 if (gameObject is GrenadeCollisionBox grenadeCollisionBox)
                 {
@@ -482,17 +476,6 @@ namespace Blok3Game.GameStates
             if (inputHelper.MouseLeftButtonPressed && PlayerShootCooldown == 0)
             {
                 PlayerShoot(inputHelper.MousePosition.X, inputHelper.MousePosition.Y);
-            }
-            if (inputHelper.KeyPressed(Keys.V))
-            {
-                // foreach (Enemy enemy in EnemyList)
-                // {
-                //     BirdAirstrike(enemy);
-                // }
-                foreach (Enemy enemy in EnemyList)
-                {
-                    BirdGrenade(enemy);
-                }
             }
         }
 
@@ -671,21 +654,9 @@ namespace Blok3Game.GameStates
             {
                 if (player.CheckForPlayerCollision(box))
                 {
-                    if (box is YellowBox)
-                    {
-                        pickedUpYellow = true;
-                    }
-
-                    if (box is PurpleBox)
-                    {
-                        pickedUpPurple = true;
-                    }
-                }
-
-                if (pickedUpPurple || pickedUpYellow)
-                {
                     toRemoveList.Add(box);
                     toRemoveList.Add(chooseUpgrade);
+                    pickedUpPurple = true;
                 }
             }
         }
@@ -695,7 +666,7 @@ namespace Blok3Game.GameStates
             if (player.HandleCollision(Door))
             {
                 EnteredDoor = true;
-                Console.WriteLine(EnteredDoor);
+                Debug.WriteLine(EnteredDoor);
             }
         }
 
@@ -733,7 +704,7 @@ namespace Blok3Game.GameStates
             };
 
             //use the width and height of the background to position it in the center of the screen
-            
+
             background.Position = new Vector2((GameEnvironment.Screen.X / 2) - (background.Width / 2), 0);
 
             Add(background);
@@ -795,5 +766,6 @@ namespace Blok3Game.GameStates
         }
     }
 }
+
 
 
