@@ -78,6 +78,7 @@ These databases are called NoSQL Databases, but are more non-relational than the
 
 ## Relevantie tot je project en praktische toepassing
 
+Onze game maakt direct gebruik van een database connectie. Dit is handig om analytics bij te houden over bepaalde zaken in de game, zoals upgrades die vaker gekocht worden dan andere upgrades, cause of death en tijd die de speler nodig heeft om bepaalde levels te halen.
 [Leg uit hoe de theoretische concepten die in deze cursus worden behandeld direct of indirect verband houden met jouw project. Benadruk specifieke gebieden waar kennis die is opgedaan uit de cursus is toegepast of zal worden toegepast in het ontwikkelingsproces. Geef hier voorbeelden van en benoem hoe deze relevant zijn.]
 
 ## Resultaten LinkedIn Learning cursus

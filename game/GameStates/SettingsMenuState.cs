@@ -27,13 +27,13 @@ namespace Blok3Game.GameStates
 
         private void CreateButtons()
         {
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) + ButtonOffSet, GameEnvironment.Screen.Y / 2), "Music Louder", onButtonMusicLouderClicked);
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - (ButtonOffSet * 3), GameEnvironment.Screen.Y / 2), "Music Softer", onButtonMusicSofterClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) + ButtonOffSet.X, GameEnvironment.Screen.Y / 2), "Music Louder", onButtonMusicLouderClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - (ButtonOffSet.X * 3), GameEnvironment.Screen.Y / 2), "Music Softer", onButtonMusicSofterClicked);
 
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) + ButtonOffSet, (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "Effects Louder", onButtonEffectsLouderClicked);
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - (ButtonOffSet * 3), (GameEnvironment.Screen.Y / 2) - ButtonOffSet), "Effects Lower", onButtonEffectsSofterClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) + ButtonOffSet.X, (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "Effects Louder", onButtonEffectsLouderClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - (ButtonOffSet.X * 3), (GameEnvironment.Screen.Y / 2) - ButtonOffSet.Y), "Effects Lower", onButtonEffectsSofterClicked);
 
-            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet, GameEnvironment.Screen.Y / 2 + (ButtonOffSet * 2)), "Main Menu", OnButtonCancelClicked);
+            CreateButton(new Vector2((GameEnvironment.Screen.X / 2) - ButtonOffSet.X, GameEnvironment.Screen.Y / 2 + (ButtonOffSet.Y * 2)), "Main Menu", OnButtonMainMenuClicked);
         }
 
         // private void CreateTexts()
@@ -96,7 +96,7 @@ namespace Blok3Game.GameStates
             }
         }
 
-        private void OnButtonCancelClicked(UIElement element)
+        private void OnButtonMainMenuClicked(UIElement element)
         {
             GameEnvironment.AssetManager.AudioManager.PlaySoundEffect("button_cancel");
             nextScreenName = "MAIN_MENU_STATE";
